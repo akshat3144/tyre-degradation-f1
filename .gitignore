@@ -1,0 +1,112 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ---- FastF1 cache (large, regenerable) ----
+data/fastf1_cache/
+
+# ---- Reference material ----
+# The benchmark authors' code repo has NO license file, so all rights are
+# reserved and we have no right to redistribute it. Fetched locally, never
+# committed. See scripts/fetch_reference.sh.
+benchmark/upstream/
+
+# ---- Intermediate data (regenerable from scripts/) ----
+data/raw/
+data/processed/
+*.parquet
+
+# NOTE: data/artifacts/*.json IS committed on purpose: the paper's claims
+# registry and the tests read them, so a fresh clone checks without refitting.
+!data/artifacts/*.json
+
+# ---- Stan build output ----
+# Compiled models are platform-specific binaries; the .stan source is committed.
+*.exe
+*.o
+*.hpp.bak
+src/tyredeg/models/stan/*
+!src/tyredeg/models/stan/*.stan
+!src/tyredeg/models/stan/*.stanfunctions
+# The benchmark's Stan files are the authors' code (no licence), migrated by
+# scripts/fetch_reference.sh. They live here locally and are never committed.
+benchmark/stan/
+
+# ---- R ----
+.Rhistory
+.RData
+.Rproj.user/
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Scratch ----
+scratch/
+tmp/
+*.log
+
+# Claude Code local state. Per-machine, never shared.
+.claude/
+
+# ---- Discovered / user-editable state ----
+# The schedule cache is regenerable from the API and goes stale, but it is
+# committed on purpose so a fresh clone can name the races with no network.
+# schedule.load() re-fetches once the copy is older than its TTL, so a committed
+# cache cannot freeze.
+!data/schedule/
+!data/schedule/*.json
+# allocation.json is Pirelli's nomination per weekend -- the one fact no feed
+# carries. Committed so a clone starts with the values we cited; anything
+# edited is marked source=user.
+!data/allocation.json
+
+# ---- Env files: never committed ----
+.env
+.env.*
+
+# ---- Private keys. Never, under any name. ----
+*.pem
+*.key
+*.ppk
+id_rsa*
+id_ed25519*
+
+# ---- Paper reference PDFs: downloaded by paper/refs/fetch.sh, never committed ----
+paper/refs/*.pdf
+!paper/results/*.json
+
+# ---- Benchmark CSV outputs: the numbers live in paper/results/benchmark.json ----
+benchmark/results/
+
+# Style-reference corpus (published JQAS PDFs, not redistributed); template/ is De Gruyter-copyrighted, see paper/style/CORPUS.md
+paper/style/**/*.pdf
+# De Gruyter template (no licence) and extracted corpus text: local only
+paper/style/template/
+paper/style/_txt/
+
+# Resume checkpoints written while long paper scripts run
+paper/results/*.checkpoint.json
+
+# ---- Paper writing: kept local until the paper is final, then un-ignored ----
+# The generated numbers, tables and figures stay tracked: tests and CI check them.
+paper/manuscript/*
+!paper/manuscript/generated/
+!paper/manuscript/figures/
+!paper/manuscript/smoke_assets.tex
+paper/style/
+paper/refs/
+paper/references.bib

@@ -1,0 +1,8 @@
+# Normalise line endings so Windows checkouts stop warning on every commit.
+* text=auto eol=lf
+
+# Binary — never touch these.
+*.pdf   binary
+*.pptx  binary
+*.png   binary
+*.parquet binary
