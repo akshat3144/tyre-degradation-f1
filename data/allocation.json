@@ -1,0 +1,156 @@
+[
+  {
+    "event": "Australian Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C3",
+      "MEDIUM": "C4",
+      "SOFT": "C5"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "Austrian Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C3",
+      "MEDIUM": "C4",
+      "SOFT": "C5"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "Barcelona Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C2",
+      "MEDIUM": "C3",
+      "SOFT": "C4"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "Belgian Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C2",
+      "MEDIUM": "C3",
+      "SOFT": "C4"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "British Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C1",
+      "MEDIUM": "C2",
+      "SOFT": "C3"
+    },
+    "source": "pirelli",
+    "updated_at": "2026-09-10T05:08:14+00:00"
+  },
+  {
+    "event": "Canadian Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C3",
+      "MEDIUM": "C4",
+      "SOFT": "C5"
+    },
+    "source": "pirelli",
+    "updated_at": "2026-09-10T05:08:14+00:00"
+  },
+  {
+    "event": "Chinese Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C2",
+      "MEDIUM": "C3",
+      "SOFT": "C4"
+    },
+    "source": "pirelli",
+    "updated_at": "2026-09-10T05:08:14+00:00"
+  },
+  {
+    "event": "Dutch Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C2",
+      "MEDIUM": "C3",
+      "SOFT": "C4"
+    },
+    "source": "pirelli",
+    "updated_at": "2026-09-10T05:08:14+00:00"
+  },
+  {
+    "event": "Hungarian Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C3",
+      "MEDIUM": "C4",
+      "SOFT": "C5"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "Italian Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C3",
+      "MEDIUM": "C4",
+      "SOFT": "C5"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "Japanese Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C1",
+      "MEDIUM": "C2",
+      "SOFT": "C3"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "Miami Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C3",
+      "MEDIUM": "C4",
+      "SOFT": "C5"
+    },
+    "source": "pirelli",
+    "updated_at": "2026-09-10T05:08:14+00:00"
+  },
+  {
+    "event": "Monaco Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C3",
+      "MEDIUM": "C4",
+      "SOFT": "C5"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  },
+  {
+    "event": "Spanish Grand Prix",
+    "season": 2026,
+    "compounds": {
+      "HARD": "C2",
+      "MEDIUM": "C3",
+      "SOFT": "C4"
+    },
+    "source": "pirelli",
+    "updated_at": null
+  }
+]
