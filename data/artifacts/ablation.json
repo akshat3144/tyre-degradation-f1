@@ -1,0 +1,110 @@
+{
+  "context": "race",
+  "rows": [
+    {
+      "compound": "C1",
+      "label": null,
+      "naive": {
+        "mean": -0.03514748039202972,
+        "lo": -0.06522909476051711,
+        "hi": -0.005065866023542344
+      },
+      "deconfounded": {
+        "mean": 0.08237373164121486,
+        "lo": 0.041326060985090944,
+        "hi": 0.12342140229733878
+      },
+      "published": null,
+      "practitioner": {
+        "mean": 0.033583575523941304,
+        "lo": 0.025434678153114478,
+        "hi": 0.04173247289476813
+      }
+    },
+    {
+      "compound": "C2",
+      "label": "HARD",
+      "naive": {
+        "mean": 0.20067727086810017,
+        "lo": 0.11628467201147513,
+        "hi": 0.2850698697247252
+      },
+      "deconfounded": {
+        "mean": 0.053238532633224846,
+        "lo": 0.025679687235048636,
+        "hi": 0.08079737803140105
+      },
+      "published": null,
+      "practitioner": {
+        "mean": 0.03817883317572103,
+        "lo": 0.030971345365787967,
+        "hi": 0.045386320985654094
+      }
+    },
+    {
+      "compound": "C3",
+      "label": "HARD",
+      "naive": {
+        "mean": -0.036662318682436634,
+        "lo": -0.09317465671716901,
+        "hi": 0.019850019352295738
+      },
+      "deconfounded": {
+        "mean": 0.050238877986984606,
+        "lo": 0.02409100195163683,
+        "hi": 0.07638675402233239
+      },
+      "published": {
+        "mean": 0.054,
+        "lo": 0.004,
+        "hi": 0.133
+      },
+      "practitioner": {
+        "mean": 0.04814402855503408,
+        "lo": 0.038099819942420975,
+        "hi": 0.058188237167647185
+      }
+    },
+    {
+      "compound": "C4",
+      "label": "MEDIUM",
+      "naive": {
+        "mean": 0.015856374170125274,
+        "lo": -0.047297305846826974,
+        "hi": 0.07901005418707752
+      },
+      "deconfounded": {
+        "mean": 0.04204812409057375,
+        "lo": 0.015452089911155445,
+        "hi": 0.06864415826999205
+      },
+      "published": null,
+      "practitioner": {
+        "mean": 0.03302914872611498,
+        "lo": 0.026884388313801216,
+        "hi": 0.03917390913842875
+      }
+    },
+    {
+      "compound": "C5",
+      "label": "SOFT",
+      "naive": {
+        "mean": -0.06993058726137394,
+        "lo": -0.1329342067569865,
+        "hi": -0.006926967765761377
+      },
+      "deconfounded": {
+        "mean": 0.021724811496190467,
+        "lo": -0.006815296635639356,
+        "hi": 0.050264919628020294
+      },
+      "published": null,
+      "practitioner": {
+        "mean": 0.016300082091916693,
+        "lo": 0.0033803757373647523,
+        "hi": 0.029219788446468636
+      }
+    }
+  ],
+  "caption": "All three estimates use the same laps and the same physical-compound grouping. The naive slope has no controls, so fuel burn and track evolution -- which both make laps faster -- cancel part of the rise from wear. On 3 of 5 compounds the naive slope comes out NEGATIVE (C5 at -0.070 s/lap), a tyre getting faster as it wears. The fuel-corrected within-stint regression is the fairer comparator; it differs from ours by up to 0.049 s/lap (C1)."
+}

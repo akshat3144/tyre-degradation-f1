@@ -1,0 +1,106 @@
+{
+  "rows": [
+    {
+      "label": "HARD",
+      "n_cells": 16,
+      "ratio": 0.258,
+      "median_race": 0.02937,
+      "median_practice": 0.02483
+    },
+    {
+      "label": "MEDIUM",
+      "n_cells": 53,
+      "ratio": 0.4159,
+      "median_race": 0.07459,
+      "median_practice": 0.1045
+    },
+    {
+      "label": "SOFT",
+      "n_cells": 30,
+      "ratio": 0.4482,
+      "median_race": 0.06999,
+      "median_practice": 0.18388
+    }
+  ],
+  "n_cells": 99,
+  "n_events": 21,
+  "n_seasons": 5,
+  "seasons": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "rho": 0.0325,
+  "p_one_sided": 0.6132,
+  "p_two_sided": 0.7736,
+  "p_kruskal": 0.9564,
+  "ordered": false,
+  "significant": false,
+  "verdict": "Race-observed degradation runs at roughly 56% of the practice-observed rate on set-state-matched, same-estimator comparisons (MEDIUM and SOFT pooled; gap -0.056 s/lap, 95% CI -0.096 to -0.019). Compound-specific nursing is NOT established: the SOFT-minus-HARD gradient in that gap is -0.071 s/lap (-0.134 to -0.013) but SOFT versus MEDIUM shows none, a uniform damping of every compound by the same factor would itself produce a gradient of similar size (softer tyres have larger practice slopes), and a practice-versus-practice placebo shows one too.",
+  "stability": [
+    {
+      "seasons": [
+        2026
+      ],
+      "n_cells": 12,
+      "rho": 0.2451,
+      "p_one_sided": 0.7787,
+      "p_two_sided": 0.4426,
+      "ordered": false
+    },
+    {
+      "seasons": [
+        2025,
+        2026
+      ],
+      "n_cells": 23,
+      "rho": -0.0193,
+      "p_one_sided": 0.4651,
+      "p_two_sided": 0.9302,
+      "ordered": true
+    },
+    {
+      "seasons": [
+        2024,
+        2025,
+        2026
+      ],
+      "n_cells": 44,
+      "rho": -0.0136,
+      "p_one_sided": 0.465,
+      "p_two_sided": 0.93,
+      "ordered": true
+    },
+    {
+      "seasons": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "n_cells": 60,
+      "rho": 0.0294,
+      "p_one_sided": 0.5881,
+      "p_two_sided": 0.8238,
+      "ordered": false
+    },
+    {
+      "seasons": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "n_cells": 81,
+      "rho": 0.0325,
+      "p_one_sided": 0.6132,
+      "p_two_sided": 0.7736,
+      "ordered": false
+    }
+  ],
+  "n_event_seasons": 63,
+  "caveat": "Race and practice slopes here come from the SAME estimator (within-run, fuel-corrected, tyre ages 6-16), so the numbers are comparable, but the comparison is observational. Race stints and practice runs start on different set states (practice runs mostly start on used sets), practice sessions differ from races in fuel and traffic, and a practice-versus-practice placebo shows a compound gradient of similar size to the race-versus-practice one. The ratio view shown here is a poor estimand (a ratio of two noisy slopes) and is kept only for continuity; the paper's analysis, with matched set state, a two-way fixed-effects compound contrast, placebos and a power calculation, is in paper/results/management.json. The earlier claim that drivers nurse softer tyres harder (rho -0.29, p 0.0035, 101 cells) rested on a race estimator that leaked each compound's pace offset into its slope and is withdrawn."
+}

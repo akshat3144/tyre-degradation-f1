@@ -1,0 +1,116 @@
+{
+  "event": "Hungarian Grand Prix",
+  "pit_loss_s": 22.22,
+  "race_laps": 70,
+  "plans": [
+    {
+      "n_stops": 1,
+      "compounds": [
+        "C3",
+        "C5"
+      ],
+      "stint_lengths": [
+        44,
+        26
+      ],
+      "total_time": {
+        "mean": 98.24,
+        "lo": 61.32,
+        "hi": 133.14
+      },
+      "p_best": 0.0,
+      "regret_s": 72.65
+    },
+    {
+      "n_stops": 2,
+      "compounds": [
+        "C4",
+        "C5",
+        "C5"
+      ],
+      "stint_lengths": [
+        18,
+        26,
+        26
+      ],
+      "total_time": {
+        "mean": 25.77,
+        "lo": -25.1,
+        "hi": 76.2
+      },
+      "p_best": 0.794,
+      "regret_s": 0.19
+    },
+    {
+      "n_stops": 3,
+      "compounds": [
+        "C4",
+        "C5",
+        "C5",
+        "C5"
+      ],
+      "stint_lengths": [
+        8,
+        20,
+        21,
+        21
+      ],
+      "total_time": {
+        "mean": 29.62,
+        "lo": -25.32,
+        "hi": 81.98
+      },
+      "p_best": 0.057,
+      "regret_s": 4.04
+    }
+  ],
+  "recommended_stops": 2,
+  "rationale": "2-stop: C4 x18 + C5 x26 + C5 x26 is 3.7s faster than the best 3-stop alternative at a measured pit loss of 22.2s (\u00b1 0.3). The recommended stop count is the cheapest in 93% of draws over the uncertain inputs.",
+  "confidence": 0.931,
+  "optimal_stint": {
+    "C3": {
+      "mean": 23.0,
+      "lo": 21.0,
+      "hi": 24.0
+    },
+    "C4": {
+      "mean": 24.0,
+      "lo": 22.0,
+      "hi": 25.0
+    },
+    "C5": {
+      "mean": 26.0,
+      "lo": 25.0,
+      "hi": 26.0
+    }
+  },
+  "stop_probabilities": {
+    "1": 0.0,
+    "2": 0.931,
+    "3": 0.069
+  },
+  "rates_source": "race",
+  "uncertainty": {
+    "n_draws": 1000,
+    "propagated": {
+      "rates": "truncated normals, SD from the fitted interval, floor 0.00 s/lap",
+      "pit_loss": "truncated normal, SD 0.35 s (bootstrap of the stops measured)",
+      "pace_step": "truncated normal, mean 0.6 s, SD 0.2 s (ASSUMED)"
+    },
+    "not_propagated": [
+      "circuit-slope uncertainty: the rate intervals are a lower bound",
+      "traffic, safety cars, track position, undercut"
+    ],
+    "total_time_band": "2.5%-97.5% of the plan's total over the draws; includes the pace-step uncertainty common to every plan, so compare plans through p_best and regret_s",
+    "stint_ceilings": {
+      "C3": 44,
+      "C4": 33,
+      "C5": 26
+    },
+    "stint_floors": {
+      "C3": 14,
+      "C4": 8,
+      "C5": 7
+    }
+  }
+}

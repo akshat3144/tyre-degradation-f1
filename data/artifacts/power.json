@@ -1,0 +1,43 @@
+{
+  "effect_size": 0.006,
+  "points": [
+    {
+      "n_driver_stints": 52,
+      "power": 0.1
+    },
+    {
+      "n_driver_stints": 104,
+      "power": 0.16
+    },
+    {
+      "n_driver_stints": 208,
+      "power": 0.18
+    },
+    {
+      "n_driver_stints": 416,
+      "power": 0.35
+    },
+    {
+      "n_driver_stints": 832,
+      "power": 0.67
+    },
+    {
+      "n_driver_stints": 1248,
+      "power": 0.81
+    },
+    {
+      "n_driver_stints": 1664,
+      "power": 0.87
+    },
+    {
+      "n_driver_stints": 2496,
+      "power": 0.98
+    }
+  ],
+  "n_for_80pct": 1212,
+  "benchmark_n": 3,
+  "ours_n": 820,
+  "n_for_80pct_se": 132.335,
+  "power_ceiling_split_design": 0.057,
+  "design": "simulated from the fitted mixed model (circuit, driver, run, lap variance), 13 circuits, 20-lap stints, both compounds at every circuit; Wald z test"
+}

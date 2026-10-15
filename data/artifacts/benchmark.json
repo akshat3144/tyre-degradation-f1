@@ -1,0 +1,134 @@
+{
+  "austria_2025": [
+    {
+      "model": "ARIMA(2,1,2)",
+      "rmspe": 1.52,
+      "crps": 0.324,
+      "source": "published"
+    },
+    {
+      "model": "SSM base",
+      "rmspe": 1.169,
+      "crps": 0.23,
+      "source": "published"
+    },
+    {
+      "model": "SSM compound-specific",
+      "rmspe": 1.187,
+      "crps": 0.236,
+      "source": "published"
+    },
+    {
+      "model": "SSM skew-t (their best)",
+      "rmspe": 1.082,
+      "crps": 0.202,
+      "source": "published"
+    },
+    {
+      "model": "Pooled model",
+      "rmspe": 1.1949,
+      "crps": 0.2294,
+      "source": "ours"
+    }
+  ],
+  "season_2025": [
+    {
+      "race": "Italian Grand Prix",
+      "ours_crps": 0.1266,
+      "theirs_crps": 0.1284,
+      "ours_wins": true
+    },
+    {
+      "race": "Saudi Arabian Grand Prix",
+      "ours_crps": 0.1911,
+      "theirs_crps": 0.162,
+      "ours_wins": false
+    },
+    {
+      "race": "Austrian Grand Prix",
+      "ours_crps": 0.2294,
+      "theirs_crps": 0.2022,
+      "ours_wins": false
+    },
+    {
+      "race": "Spanish Grand Prix",
+      "ours_crps": 0.2569,
+      "theirs_crps": 0.2645,
+      "ours_wins": true
+    },
+    {
+      "race": "Japanese Grand Prix",
+      "ours_crps": 0.2623,
+      "theirs_crps": 0.1654,
+      "ours_wins": false
+    },
+    {
+      "race": "Mexico City Grand Prix",
+      "ours_crps": 0.2697,
+      "theirs_crps": 0.1985,
+      "ours_wins": false
+    },
+    {
+      "race": "Abu Dhabi Grand Prix",
+      "ours_crps": 0.2898,
+      "theirs_crps": 0.1768,
+      "ours_wins": false
+    },
+    {
+      "race": "Las Vegas Grand Prix",
+      "ours_crps": 0.3116,
+      "theirs_crps": 0.1991,
+      "ours_wins": false
+    },
+    {
+      "race": "Azerbaijan Grand Prix",
+      "ours_crps": 0.3172,
+      "theirs_crps": 0.2872,
+      "ours_wins": false
+    },
+    {
+      "race": "Emilia Romagna Grand Prix",
+      "ours_crps": 0.3177,
+      "theirs_crps": 0.2064,
+      "ours_wins": false
+    },
+    {
+      "race": "Canadian Grand Prix",
+      "ours_crps": 0.3809,
+      "theirs_crps": 0.2158,
+      "ours_wins": false
+    },
+    {
+      "race": "Bahrain Grand Prix",
+      "ours_crps": 0.3822,
+      "theirs_crps": 0.1447,
+      "ours_wins": false
+    },
+    {
+      "race": "Singapore Grand Prix",
+      "ours_crps": 0.4298,
+      "theirs_crps": 0.2398,
+      "ours_wins": false
+    },
+    {
+      "race": "Hungarian Grand Prix",
+      "ours_crps": 0.5509,
+      "theirs_crps": 0.3111,
+      "ours_wins": false
+    },
+    {
+      "race": "Monaco Grand Prix",
+      "ours_crps": 0.5715,
+      "theirs_crps": 0.4021,
+      "ours_wins": false
+    }
+  ],
+  "n_wins": 2,
+  "n_races": 15,
+  "ours_season_crps": 0.3957,
+  "theirs_season_crps": 0.238,
+  "ours_season_crps_median": 0.3144,
+  "ours_season_races": 18,
+  "theirs_season_races": 19,
+  "r_crosscheck_max_diff": 2.4787283336991095e-11
+}

@@ -1,0 +1,180 @@
+{
+  "generated_at": "2026-10-31T12:46:59+00:00",
+  "schema_version": "1.0.0",
+  "model_version": "reml-v3-circuit-run",
+  "season": 2026,
+  "events": [
+    "Australian Grand Prix",
+    "Austrian Grand Prix",
+    "Barcelona Grand Prix",
+    "Belgian Grand Prix",
+    "British Grand Prix",
+    "Canadian Grand Prix",
+    "Chinese Grand Prix",
+    "Dutch Grand Prix",
+    "Hungarian Grand Prix",
+    "Italian Grand Prix",
+    "Japanese Grand Prix",
+    "Miami Grand Prix",
+    "Monaco Grand Prix"
+  ],
+  "n_laps_clean": 23856,
+  "n_long_run_laps": 11039,
+  "n_runs": 820,
+  "n_drivers": 23,
+  "fastf1_version": "3.8.3",
+  "is_real": true,
+  "events_in_dataset": [
+    "Australian Grand Prix",
+    "Austrian Grand Prix",
+    "Barcelona Grand Prix",
+    "Belgian Grand Prix",
+    "British Grand Prix",
+    "Canadian Grand Prix",
+    "Chinese Grand Prix",
+    "Dutch Grand Prix",
+    "Hungarian Grand Prix",
+    "Italian Grand Prix",
+    "Japanese Grand Prix",
+    "Miami Grand Prix",
+    "Monaco Grand Prix",
+    "Spanish Grand Prix"
+  ],
+  "practice_only_events": [
+    "Spanish Grand Prix"
+  ],
+  "laps_by_event_session": {
+    "Australian Grand Prix": {
+      "FP1": 285,
+      "FP2": 329,
+      "FP3": 166,
+      "R": 834
+    },
+    "Austrian Grand Prix": {
+      "FP1": 299,
+      "FP2": 371,
+      "FP3": 234,
+      "R": 1157
+    },
+    "Barcelona Grand Prix": {
+      "FP1": 311,
+      "FP2": 341,
+      "FP3": 130,
+      "R": 1029
+    },
+    "Belgian Grand Prix": {
+      "FP1": 230,
+      "FP2": 140,
+      "FP3": 189,
+      "R": 682
+    },
+    "British Grand Prix": {
+      "FP1": 378,
+      "R": 824,
+      "S": 325
+    },
+    "Canadian Grand Prix": {
+      "FP1": 342,
+      "R": 935,
+      "S": 435
+    },
+    "Chinese Grand Prix": {
+      "FP1": 294,
+      "R": 738,
+      "S": 296
+    },
+    "Dutch Grand Prix": {
+      "FP1": 435,
+      "R": 1090,
+      "S": 480
+    },
+    "Hungarian Grand Prix": {
+      "FP1": 313,
+      "FP2": 378,
+      "FP3": 214,
+      "R": 1252
+    },
+    "Italian Grand Prix": {
+      "FP1": 346,
+      "FP2": 412,
+      "FP3": 225,
+      "R": 889
+    },
+    "Japanese Grand Prix": {
+      "FP1": 347,
+      "FP2": 330,
+      "FP3": 241,
+      "R": 918
+    },
+    "Miami Grand Prix": {
+      "FP1": 472,
+      "R": 791,
+      "S": 358
+    },
+    "Monaco Grand Prix": {
+      "FP1": 413,
+      "FP2": 488,
+      "FP3": 346,
+      "R": 1161
+    },
+    "Spanish Grand Prix": {
+      "FP1": 330,
+      "FP2": 250,
+      "FP3": 83
+    }
+  },
+  "fit_scope": {
+    "race_degradation": {
+      "sessions": [
+        "R"
+      ],
+      "events": [
+        "Australian Grand Prix",
+        "Austrian Grand Prix",
+        "Barcelona Grand Prix",
+        "Belgian Grand Prix",
+        "British Grand Prix",
+        "Canadian Grand Prix",
+        "Chinese Grand Prix",
+        "Dutch Grand Prix",
+        "Hungarian Grand Prix",
+        "Italian Grand Prix",
+        "Japanese Grand Prix",
+        "Miami Grand Prix",
+        "Monaco Grand Prix"
+      ],
+      "n_events": 13,
+      "n_laps": 11039,
+      "n_runs": 820,
+      "note": "race laps in long runs, after the field-pooled design's filters"
+    },
+    "practice_degradation": {
+      "sessions": [
+        "FP1",
+        "FP2",
+        "FP3",
+        "S"
+      ],
+      "events": [
+        "Australian Grand Prix",
+        "Austrian Grand Prix",
+        "Barcelona Grand Prix",
+        "Belgian Grand Prix",
+        "British Grand Prix",
+        "Canadian Grand Prix",
+        "Chinese Grand Prix",
+        "Dutch Grand Prix",
+        "Hungarian Grand Prix",
+        "Italian Grand Prix",
+        "Japanese Grand Prix",
+        "Miami Grand Prix",
+        "Monaco Grand Prix",
+        "Spanish Grand Prix"
+      ],
+      "n_events": 14,
+      "n_laps": 2815,
+      "n_runs": 300,
+      "note": "race-simulation runs in practice and sprint sessions"
+    }
+  }
+}

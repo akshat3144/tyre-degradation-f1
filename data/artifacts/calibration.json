@@ -1,0 +1,66 @@
+{
+  "points": [
+    {
+      "nominal": 0.5,
+      "empirical": 0.48808768910227374,
+      "n": 11039
+    },
+    {
+      "nominal": 0.6,
+      "empirical": 0.583839115861944,
+      "n": 11039
+    },
+    {
+      "nominal": 0.7,
+      "empirical": 0.6891022737566809,
+      "n": 11039
+    },
+    {
+      "nominal": 0.8,
+      "empirical": 0.8058700969290696,
+      "n": 11039
+    },
+    {
+      "nominal": 0.9,
+      "empirical": 0.916206178095842,
+      "n": 11039
+    },
+    {
+      "nominal": 0.95,
+      "empirical": 0.9569707401032702,
+      "n": 11039
+    },
+    {
+      "nominal": 0.99,
+      "empirical": 0.9878612193133436,
+      "n": 11039
+    }
+  ],
+  "coverage_80": 0.8059,
+  "context": "race",
+  "rate_points": [
+    {
+      "nominal": 0.5,
+      "empirical": 0.5278,
+      "n": 36
+    },
+    {
+      "nominal": 0.8,
+      "empirical": 0.7778,
+      "n": 36
+    },
+    {
+      "nominal": 0.9,
+      "empirical": 0.8889,
+      "n": 36
+    },
+    {
+      "nominal": 0.95,
+      "empirical": 0.9167,
+      "n": 36
+    }
+  ],
+  "rate_coverage_80": 0.7778,
+  "rate_n_cells": 36,
+  "note": "points/coverage_80 are held-out LAPS (lap-to-lap scatter dominates, so this is an easy bar). rate_* is leave-one-event-out: does each circuit's own fitted rate fall in the pooled model's predictive interval for it."
+}
