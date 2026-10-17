@@ -1,0 +1,972 @@
+{
+  "source_note": "Pirelli dry-compound nominations (which physical compound C0-C6 was brought as HARD / MEDIUM / SOFT) for every Formula 1 Grand Prix held 2022-2025, keyed by FastF1 EventName. Primary source: Pirelli press-area race previews and compound-choice releases (press.pirelli.com); second source: the formula1.com 'what tyres will the teams and drivers have' article for the race (or a Pirelli summary release / secondary outlet). Compounds were read from fetched page text, 2026-10-29. Caveat: the F1.com articles are largely derived from Pirelli's releases, so the two sources are corroborating rather than statistically independent. 'verified' is true when at least two sources name the same trio and at least one states the HARD/MEDIUM/SOFT labelling in words; false when sources disagree or the labelling is only inferred (see 'notes'). No C0 nomination occurred in 2022-2025; C6 first appears in 2025 (Emilia Romagna). Gaps: the 2023 Emilia Romagna GP was cancelled (flood), so there is no 2023 entry for it.",
+  "seasons": {
+    "2022": {
+      "Abu Dhabi Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2022-abu-dhabi-grand-prix--preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-abu-dhabi-grand-prix.6JdtRjYzOPcs0ztbRgQ6h"
+        ],
+        "verified": true
+      },
+      "Australian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2022-australian-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-australian-grand.5JMcZHb0xdllgZriDhNh2z"
+        ],
+        "verified": true,
+        "notes": "Non-consecutive trio: C4 skipped (C2 hard, C3 medium, C5 soft)."
+      },
+      "Austrian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2022-austrian-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-austrian-grand-prix.ewOLe0OWjT6zjVKJKLyps"
+        ],
+        "verified": true,
+        "notes": "Sprint weekend."
+      },
+      "Azerbaijan Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2022-azerbaijan-grand-prix--preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-azerbaijan-grand.7atY1px5Zfm7DsKyJ54R4w"
+        ],
+        "verified": true
+      },
+      "Bahrain Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2022-bahrain-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-bahrain-grand-prix.5nQGRrYUMcq8Y2BQeHBTeK"
+        ],
+        "verified": true
+      },
+      "Belgian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-belgian-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-the-drivers-have-for-the-2022-belgian-grand-prix.3Oe5pImn6WlfNAasi7BP2W"
+        ],
+        "verified": true
+      },
+      "British Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2022-british-grand-prix--preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-british-grand-prix.5NSQn3DvP84qUkQIqltoxd"
+        ],
+        "verified": true
+      },
+      "Canadian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2022-canada-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-canadian-grand-prix.3fi2Bwiw5SHQIpsLC5iMNm"
+        ],
+        "verified": true
+      },
+      "Dutch Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2022-dutch-grand-prix--preview/",
+          "https://www.planetf1.com/news/pirelli-confirm-tyre-compounds-belgium-netherlands-and-italy",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-dutch-grand-prix.42wkB6Wt5cmLOO0ARUKQ2e"
+        ],
+        "verified": false,
+        "notes": "SOURCES DISAGREE. Pirelli press preview ('three hardest compounds', C1 white hard) and PlanetF1 give C1/C2/C3; the F1.com tyre article reads 'C5 soft', almost certainly a typo. Recorded value follows the Pirelli primary source but is left unverified because a cited source contradicts it."
+      },
+      "Emilia Romagna Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-italian-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-emilia-romagna-grand.17cD1GrOv2QYLvKMgiLn3A"
+        ],
+        "verified": true
+      },
+      "French Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-french-grand-prix--preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-french-grand-prix.58EOZxJbEn9HrkWwff65Le"
+        ],
+        "verified": true
+      },
+      "Hungarian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-hungarian-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-the-drivers-have-for-the-2022-hungarian-grand.5PuhP8wwAEKwpOMfvDRcK8"
+        ],
+        "verified": true
+      },
+      "Italian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-italian-grand-prix---preview-2/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-italian-grand-prix.7uEHB4PyHVg5rDYFNDYlF3"
+        ],
+        "verified": true
+      },
+      "Japanese Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2022-japanese-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-japanese-grand-prix.2zNoknycKIBTT6FVLnQyiD"
+        ],
+        "verified": true
+      },
+      "Mexico City Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-mexican-grand-prix--preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-mexico-city-grand.3d5OophSIaGcsxsKOyPWO5"
+        ],
+        "verified": true
+      },
+      "Miami Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-miami-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-miami-grand-prix.6fCJdV9Z6b1zlRLg4FzgrJ"
+        ],
+        "verified": true
+      },
+      "Monaco Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2022-monaco-grand-prix--preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-monaco-grand-prix.15S0GNtRiZBTCaOT2T7zUO"
+        ],
+        "verified": true
+      },
+      "Saudi Arabian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-saudi-arabia-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-saudi-arabian-grand.5sg8XLWwSxlLWllvQf4DfF"
+        ],
+        "verified": true
+      },
+      "Singapore Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2022-singapore-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-singapore-grand-prix.6HHFZYnPHBnKcByUWIptCN"
+        ],
+        "verified": true
+      },
+      "Spanish Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2022-spanish-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-spanish-grand-prix.VXEhLD0f4D2g4RJABk4fm"
+        ],
+        "verified": true
+      },
+      "São Paulo Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-brazilian-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2022-sao-paulo-grand-prix.3IpT57LvDqqrvwvz5U87W6"
+        ],
+        "verified": true
+      },
+      "United States Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2022-united-states-grand-prix---preview-0/",
+          "https://www.formula1.com/en/latest/article.what-tyres-will-the-teams-and-drivers-have-for-the-2022-united-states-grand.4BgVW4AMaHNwmv0qCaK0rx.html"
+        ],
+        "verified": true
+      }
+    },
+    "2023": {
+      "Abu Dhabi Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/a-soft-landing-for-the-2023-world-championship/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-abu-dhabi-grand-prix.64CNIc1wzgQmwUqJCWG1Q0"
+        ],
+        "verified": true
+      },
+      "Australian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2023-australian-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article.pirelli-confirm-tyre-choices-for-first-three-f1-races-of-2023-as-new.1xlpcTVaLqw0NeM3aYoyCt.html"
+        ],
+        "verified": true
+      },
+      "Austrian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2023-tyre-compound-choices--canada-austria-and-great-britain/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-austrian-grand-prix.4uQiByAubQKgLekMk3g5Rz"
+        ],
+        "verified": true
+      },
+      "Azerbaijan Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2023-tyre-compound-choices--azerbaijan-usa-and-italy/",
+          "https://www.formula1.com/en/latest/article/2023-azerbaijan-grand-prix-tyres-pirelli-teams-drivers.1xGQAuax0HLdQXf0DzSw9H"
+        ],
+        "verified": true
+      },
+      "Bahrain Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2023-bahrain-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article.pirelli-confirm-tyre-choices-for-first-three-f1-races-of-2023-as-new.1xlpcTVaLqw0NeM3aYoyCt.html"
+        ],
+        "verified": true
+      },
+      "Belgian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/tyre-news-and-nominations-for-hungary-and-belgium/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-belgian-grand-prix.40NGZ2lPr20TxJY12eRHPo"
+        ],
+        "verified": true
+      },
+      "British Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2023-tyre-compound-choices--canada-austria-and-great-britain/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-british-grand-prix.I8A8IlnQDX1YauQHSgY5Q"
+        ],
+        "verified": true
+      },
+      "Canadian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2023-tyre-compound-choices--canada-austria-and-great-britain/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-canadian-grand-prix.1Hw7hRXSHPaor3sWUdlv4C"
+        ],
+        "verified": true
+      },
+      "Dutch Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/news-and-tyre-choices-for-zandvoort-and-monza/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-dutch-grand-prix.3pw91vurngvK6UBYVfGWef"
+        ],
+        "verified": true
+      },
+      "Hungarian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/tyre-news-and-nominations-for-hungary-and-belgium/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-hungarian-grand-prix.4hNRA4AFjDT1PtiDn56imH"
+        ],
+        "verified": true,
+        "notes": "Alternative Tyre Allocation trial (11 slick sets: 3H/4M/4S). Nominated compounds unaffected."
+      },
+      "Italian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/news-and-tyre-choices-for-zandvoort-and-monza/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-italian-grand-prix.6h2cQeDiNp8Wqs6lj4ArWJ"
+        ],
+        "verified": true,
+        "notes": "Alternative Tyre Allocation (11 slick sets: 3H/4M/4S). Nominated compounds unaffected."
+      },
+      "Japanese Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/unchanged-nominations-for-singapore-japan-and-qatar--in-name-at-least/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-japanese-grand-prix.4AG2oXMnZ3lk57gxUrUKKD",
+          "https://raceweek.com.au/same-names-but-tyres-one-step-softer-for-singapore-japan-and-qatar-grands-prix/"
+        ],
+        "verified": true
+      },
+      "Las Vegas Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/a-soft-landing-for-the-2023-world-championship/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-las-vegas-grand-prix.4D4UZXYbPpq1naoP1QiUpa"
+        ],
+        "verified": true
+      },
+      "Mexico City Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/two-confirmations-and-an-innovation-in-the-tyre-choices-for-the-american-continent/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-mexico-city-grand.MAS6QQvlCln4LZmnPQRr9"
+        ],
+        "verified": true
+      },
+      "Miami Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2023-miami-grand-prix---preview-0/",
+          "https://press.pirelli.com/2023-tyre-compound-choices--azerbaijan-usa-and-italy/",
+          "https://www.formula1.com/en/latest/article.what-tyres-will-the-teams-and-drivers-have-for-the-2023-miami-grand-prix.2cyD0jxr7HUNNeLtlPyJGb.html"
+        ],
+        "verified": true,
+        "notes": "Two of the three sources are both Pirelli pages."
+      },
+      "Monaco Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/2023-tyre-compound-choices--monaco-and-spain/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-monaco-grand-prix.IKOQak5Uuxb3K46yhztxd"
+        ],
+        "verified": false,
+        "notes": "Both sources confirm the trio C3/C4/C5 ('three softer compounds'), but neither text assigns HARD/MEDIUM/SOFT in words; the labels are inferred from Pirelli's hardest-to-softest convention (F1.com lists 2 hard/3 medium/8 soft sets). Left unverified for that reason."
+      },
+      "Qatar Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/unchanged-nominations-for-singapore-japan-and-qatar--in-name-at-least/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-qatar-grand-prix.7lwS2mAXKyyh7Un1AV8RVp.7lwS2mAXKyyh7Un1AV8RVp",
+          "https://raceweek.com.au/same-names-but-tyres-one-step-softer-for-singapore-japan-and-qatar-grands-prix/"
+        ],
+        "verified": true,
+        "notes": "Nomination unchanged, but after it was made a maximum 18-lap stint per tyre set was imposed (safety), forcing three stops."
+      },
+      "Saudi Arabian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/2023-saudi-arabia-grand-prix---preview/",
+          "https://www.formula1.com/en/latest/article.pirelli-confirm-tyre-choices-for-first-three-f1-races-of-2023-as-new.1xlpcTVaLqw0NeM3aYoyCt.html"
+        ],
+        "verified": true
+      },
+      "Singapore Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/unchanged-nominations-for-singapore-japan-and-qatar--in-name-at-least/",
+          "https://raceweek.com.au/same-names-but-tyres-one-step-softer-for-singapore-japan-and-qatar-grands-prix/"
+        ],
+        "verified": true
+      },
+      "Spanish Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2023-tyre-compound-choices--monaco-and-spain/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-spanish-grand-prix.3IaSmXq9Xlor4RI0Kk4MBr"
+        ],
+        "verified": true,
+        "notes": "C0 existed in the 2023 range (hardest) but was not nominated."
+      },
+      "São Paulo Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/two-confirmations-and-an-innovation-in-the-tyre-choices-for-the-american-continent/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-sao-paulo-grand-prix.5QySZYNelhDIKRbDLBWGwe"
+        ],
+        "verified": true
+      },
+      "United States Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/two-confirmations-and-an-innovation-in-the-tyre-choices-for-the-american-continent/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2023-united-states-grand.24UsOsaCszDcdoTFNZVcIl"
+        ],
+        "verified": true
+      }
+    },
+    "2024": {
+      "Abu Dhabi Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/all-compounds-on-track-to-end-the-season/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-abu-dhabi-grand-prix.2OXWgaSqshIDYeUW4NY4ED"
+        ],
+        "verified": true
+      },
+      "Australian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/pirelli-nominates-the-compounds-for-the-start-of-2024/",
+          "https://press.pirelli.com/melbourne-writes-the-first-chapter-of-the-new-f1-season/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-australian-grand.6VUbZ0PCx0V9XHZxIcpC2d"
+        ],
+        "verified": true
+      },
+      "Austrian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/no-surprises-for-the-compounds-for-spain-austria-and-great-britain/",
+          "https://press.pirelli.com/return-of-the-sprint-format-in-austria/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-austrian-grand-prix.501nkNqLI40inoC4Tdf4w6"
+        ],
+        "verified": true
+      },
+      "Azerbaijan Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/a-soft-september-for-pirelli-in-f1-compounds-confirmed-for-monza-baku-and-singapore/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-azerbaijan-grand.aGhsiAw345fUTYfryA0oE"
+        ],
+        "verified": true
+      },
+      "Bahrain Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/pirelli-nominates-the-compounds-for-the-start-of-2024/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-bahrain-grand-prix.6XY3WMWfBQV97jQz2NkVFw",
+          "https://tyrepress.com/2024/02/pirelli-looks-forward-to-bahrain-opener-for-longest-formula-1-season-in-history"
+        ],
+        "verified": true,
+        "notes": "Pirelli/F1.com name the trio C1/C2/C3; tyrepress states C1 hard and C2 medium explicitly, so C3 is the soft by elimination."
+      },
+      "Belgian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/all-compounds-on-track-over-next-three-races/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-belgian-grand-prix-2024.1bVXWDHuyJqYPqPsYq5ByZ"
+        ],
+        "verified": true
+      },
+      "British Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/no-surprises-for-the-compounds-for-spain-austria-and-great-britain/",
+          "https://press.pirelli.com/the-hardest-compounds-for-the-cradle-of-formula-1/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-british-grand-prix.3vzK0q1kbEOjzwGClOCXoF"
+        ],
+        "verified": true
+      },
+      "Canadian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/same-soft-trio-for-imola-monaco-and-montreal/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-canadian-grand-prix.3xS2raatSWhmFr3YlQxBd3"
+        ],
+        "verified": true
+      },
+      "Chinese Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/these-are-the-p-zero-compounds-for-suzuka-shanghai-and-miami/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-chinese-grand-prix.3LFhCcXn6iSXklWRPglLQk"
+        ],
+        "verified": true
+      },
+      "Dutch Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/all-compounds-on-track-over-next-three-races/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-dutch-grand-prix.5p57LNOThFxzf35X7eMWQi"
+        ],
+        "verified": true
+      },
+      "Emilia Romagna Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/same-soft-trio-for-imola-monaco-and-montreal/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-emilia-romagna-grand.6H3BnwUVJrVFqcyQTukIXv"
+        ],
+        "verified": true
+      },
+      "Hungarian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/all-compounds-on-track-over-next-three-races/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-hungarian-grand-prix.6zgvwbJiWKVLFACHPftc1j"
+        ],
+        "verified": true
+      },
+      "Italian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/a-soft-september-for-pirelli-in-f1-compounds-confirmed-for-monza-baku-and-singapore/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-italian-grand-prix.2oO1jaVl2vB25F16qcFMPH"
+        ],
+        "verified": true
+      },
+      "Japanese Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/these-are-the-p-zero-compounds-for-suzuka-shanghai-and-miami/",
+          "https://press.pirelli.com/formula-1-comes-to-japan-in-the-springtime/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-japanese-grand-prix.0dan38YDF6LLdAHyNuhJX"
+        ],
+        "verified": true
+      },
+      "Las Vegas Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/all-compounds-on-track-to-end-the-season/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-las-vegas-grand-prix.ufsYJ5HkKWCc65K1yWydN"
+        ],
+        "verified": true
+      },
+      "Mexico City Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/these-are-the-tyres-for-the-americas/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-mexico-city-grand.4uo2ohRP4QS8uFPBubq8F0"
+        ],
+        "verified": true
+      },
+      "Miami Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/these-are-the-p-zero-compounds-for-suzuka-shanghai-and-miami/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-miami-grand-prix.3WEEez2FIT763XYXEBcc14"
+        ],
+        "verified": true
+      },
+      "Monaco Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/same-soft-trio-for-imola-monaco-and-montreal/",
+          "https://press.pirelli.com/the-monaco-wheel-spins-round-to-70/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-monaco-grand-prix.6XljI9p0yHXOccDGq1ryRo"
+        ],
+        "verified": true
+      },
+      "Qatar Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/all-compounds-on-track-to-end-the-season/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-qatar-grand-prix.3wg5fMRihKy4tF17WRrDvw"
+        ],
+        "verified": true
+      },
+      "Saudi Arabian Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/pirelli-nominates-the-compounds-for-the-start-of-2024/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-saudi-arabian-grand.KCEC0ZFv09wpvwNB6qIPI"
+        ],
+        "verified": true
+      },
+      "Singapore Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/a-soft-september-for-pirelli-in-f1-compounds-confirmed-for-monza-baku-and-singapore/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-singapore-grand-prix.4R4ztKTmbD76VIwmsYmJPC"
+        ],
+        "verified": true
+      },
+      "Spanish Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/no-surprises-for-the-compounds-for-spain-austria-and-great-britain/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-spanish-grand-prix.7rLCqBvroeRw7HVW8GGChP"
+        ],
+        "verified": true
+      },
+      "São Paulo Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/these-are-the-tyres-for-the-americas/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-sao-paulo-grand-prix.6vKgx4XLiN5It5wtiYXqsL"
+        ],
+        "verified": true
+      },
+      "United States Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/these-are-the-tyres-for-the-americas/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2024-united-states-grand.8QfDCtgqiePxAvvNol577"
+        ],
+        "verified": true
+      }
+    },
+    "2025": {
+      "Abu Dhabi Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-abu-dhabi-grand-prix.7dAs4svUzCpUlKIdh20q4Y",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/",
+          "https://press.pirelli.com/in-abu-dhabi-for-a-first-step-towards-the-f1-of-the-future/"
+        ],
+        "verified": true
+      },
+      "Australian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/under-starters-orders-in-melbourne-and-something-new-on-the-podium/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-australian-grand.6BHZAGXShd5oMNiVGtcofW"
+        ],
+        "verified": true
+      },
+      "Austrian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/a-hot-summer-of-formula-1-gets-underway-in-austria/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-austrian-grand-prix.7zps1tcBvL2pq421HYW3kT",
+          "https://press.pirelli.com/both-new-and-familiar-for-spielberg-to-budapest/"
+        ],
+        "verified": true
+      },
+      "Azerbaijan Grand Prix": {
+        "HARD": "C4",
+        "MEDIUM": "C5",
+        "SOFT": "C6",
+        "sources": [
+          "https://press.pirelli.com/the-c6-is-back-for-baku/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-azerbaijan-grand.137gQOhmf7W3otBHh8YmlE",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/"
+        ],
+        "verified": true
+      },
+      "Bahrain Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/in-bahrain-with-prior-knowledge/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-bahrain-grand-prix.7gnHbNpm0OJQIjPqsWoyof"
+        ],
+        "verified": true
+      },
+      "Belgian Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/sprint-with-a-jump-in-compounds-in-the-ardennes/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-belgian-grand-prix.6B5G9r7T9TZNTbPp8GOsho"
+        ],
+        "verified": true,
+        "notes": "Non-consecutive trio: C2 skipped (C1 hard, C3 medium, C4 soft)."
+      },
+      "British Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/both-new-and-familiar-for-spielberg-to-budapest/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-british-grand-prix.6opAAx7AJ2PuRfCj9kpb0l"
+        ],
+        "verified": true
+      },
+      "Canadian Grand Prix": {
+        "HARD": "C4",
+        "MEDIUM": "C5",
+        "SOFT": "C6",
+        "sources": [
+          "https://press.pirelli.com/formula-1-heads-for-montreal-with-its-overtaking-and-changeable-weather/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-canadian-grand-prix.6f3pKs15OHHlxe7uI544kO"
+        ],
+        "verified": true
+      },
+      "Chinese Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/a-chinese-weekend-that-presents-many-challenges-as-well-as-something-new/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-chinese-grand-prix.6yy4SvLV4JKr2GQ39wJPa1"
+        ],
+        "verified": true
+      },
+      "Dutch Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/there-at-the-start-75-years-ago-pirelli-hits-the-500-grands-prix-mark/",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-dutch-grand-prix.67BZ3TKXXRXKVATns2bhni"
+        ],
+        "verified": true
+      },
+      "Emilia Romagna Grand Prix": {
+        "HARD": "C4",
+        "MEDIUM": "C5",
+        "SOFT": "C6",
+        "sources": [
+          "https://press.pirelli.com/pirelli-on-the-soft-side-for-miami-and-imola/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-emilia-romagna-grand.2zbwVinaEBPAb8YLDslZ8n"
+        ],
+        "verified": true,
+        "notes": "C6 debut (new softest compound of the 2025 range)."
+      },
+      "Hungarian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/hungary-hits-40-before-the-summer-break/",
+          "https://press.pirelli.com/both-new-and-familiar-for-spielberg-to-budapest/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-hungarian-grand-prix.FZNZbRnpwYyLoRBrpOSwL"
+        ],
+        "verified": true
+      },
+      "Italian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/art-history-and-speed-monza-gets-ever-more-special/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-italian-grand-prix.7fO9Z1g1aG6QUGhXzg8gLU",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/"
+        ],
+        "verified": true
+      },
+      "Japanese Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/2025-compounds-something-new-for-jeddah/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-japanese-grand-prix.5dxDtDqIkRerswA1JSKpDC"
+        ],
+        "verified": true
+      },
+      "Las Vegas Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-las-vegas-grand-prix.5qcQtekAT0xEFID0CX8nGC",
+          "https://press.pirelli.com/roulette-in-las-vegas/"
+        ],
+        "verified": true
+      },
+      "Mexico City Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/once-again-a-skip-in-compounds-for-the-mexico-city-weekend/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-mexico-city-grand.321Njw4EBFbhCUVrZWOb6f",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/"
+        ],
+        "verified": true,
+        "notes": "Non-consecutive trio: C3 skipped (C2 hard, C4 medium, C5 soft)."
+      },
+      "Miami Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/pirelli-on-the-soft-side-for-miami-and-imola/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-miami-grand-prix.1PVJRhU0GRuJZ7yvWOzq5V"
+        ],
+        "verified": true
+      },
+      "Monaco Grand Prix": {
+        "HARD": "C4",
+        "MEDIUM": "C5",
+        "SOFT": "C6",
+        "sources": [
+          "https://press.pirelli.com/two-pit-stops-mandatory-in-monaco/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-monaco-grand-prix.2vbcWNeFsxMEZMojG7UXFA"
+        ],
+        "verified": true,
+        "notes": "2025-only Monaco rule: two mandatory pit stops, at least three tyre sets/types used. Nominated compounds C4/C5/C6."
+      },
+      "Qatar Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/a-maximum-of-25-laps-per-tyre-set-in-qatar/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-qatar-grand-prix.5uM7XCc74nzDcQgtnJivy9",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/"
+        ],
+        "verified": true,
+        "notes": "Hardest trio of 2025 range; Pirelli stated a maximum of 25 laps per set."
+      },
+      "Saudi Arabian Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/a-softer-approach-for-jeddah/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-saudi-arabian-grand.51lzVd1cvHKJoZ7S6VLGQr"
+        ],
+        "verified": true
+      },
+      "Singapore Grand Prix": {
+        "HARD": "C3",
+        "MEDIUM": "C4",
+        "SOFT": "C5",
+        "sources": [
+          "https://press.pirelli.com/managing-the-heat-under-the-lights-in-singapore/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-singapore-grand-prix.o1G8IryVwlbayGQ1z6JHo",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/"
+        ],
+        "verified": true,
+        "notes": "Pirelli ruled out C6 for Singapore (overheating risk); nominated C3/C4/C5."
+      },
+      "Spanish Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C2",
+        "SOFT": "C3",
+        "sources": [
+          "https://press.pirelli.com/the-hardest-tyres-are-back-for-spain/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-spanish-grand-prix.5R3UWCrzQEzL5nW91ulSlk"
+        ],
+        "verified": true
+      },
+      "São Paulo Grand Prix": {
+        "HARD": "C2",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/harder-compounds-for-the-sao-paulo-sprint-weekend/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-sao-paulo-grand-prix.GZPklEOlKlVoyqxAR8yNH",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/"
+        ],
+        "verified": true
+      },
+      "United States Grand Prix": {
+        "HARD": "C1",
+        "MEDIUM": "C3",
+        "SOFT": "C4",
+        "sources": [
+          "https://press.pirelli.com/a-texas-rodeo-with-a-jump-in-compounds/",
+          "https://www.formula1.com/en/latest/article/what-tyres-will-the-teams-and-drivers-have-for-the-2025-united-states-grand.iA1RRCtPcRcMlIZqdQP3G",
+          "https://press.pirelli.com/changes-and-status-quo-when-it-comes-to-compound-choices-for-the-rest-of-the-season0/"
+        ],
+        "verified": true,
+        "notes": "Non-consecutive trio: C2 skipped (C1 hard, C3 medium, C4 soft)."
+      }
+    }
+  }
+}
