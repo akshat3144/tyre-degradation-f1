@@ -1,0 +1,202 @@
+{
+  "source": {
+    "citation": "Cappello C, Hoegh A (2026). A state-space approach to modeling tire degradation in formula 1 racing. Journal of Sports Analytics 12(0): 1-13.",
+    "doi": "10.1177/22150218261446170",
+    "licence": "Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0), as printed on the first page of the article",
+    "table": "Table 4, 'Cross-race CV results. Overall means do not include the Singapore grand prix.'",
+    "printed_page": 10,
+    "pdf_page": 10,
+    "pdf_local_copy": "paper/refs/cappelloHoegh2026journal.pdf (gitignored; publisher bot check, see paper/refs/fetch.sh)",
+    "transcribed_by": "hand, from pdftotext -layout output, checked against the Austrian row of Table 3 (CRPS 0.202 / 0.289) and Table 2 totals (RMSPE 1.082/3 = 0.361, 1.478/3 = 0.493)",
+    "columns": "RMSPE and CRPS are race-level: the mean of stint-level scores within the race (journal p. 8). 'ssm' = skewed-t state-space model, 'ar1' = AR(1) with stint resets. Each race is fitted independently. Three decimals as printed.",
+    "scope": "Cappello & Hoegh's single driver (Lewis Hamilton), 2025 season, 19 dry races"
+  },
+  "published_means": {
+    "note": "As printed in the 'Mean Across Races' row; the caption says the means do not include Singapore.",
+    "rmspe_ssm": 0.409,
+    "rmspe_ar1": 0.479,
+    "crps_ssm": 0.238,
+    "crps_ar1": 0.3
+  },
+  "published_counts": {
+    "ssm_better_rmspe": "15 of 19 (journal p. 8)",
+    "ssm_better_crps": "16 of 19 (journal p. 8)"
+  },
+  "races": {
+    "Chinese Grand Prix": {
+      "rmspe_ssm": 0.238,
+      "rmspe_ar1": 0.24,
+      "crps_ssm": 0.144,
+      "crps_ar1": 0.143,
+      "stints": 3
+    },
+    "Japanese Grand Prix": {
+      "rmspe_ssm": 0.292,
+      "rmspe_ar1": 0.319,
+      "crps_ssm": 0.165,
+      "crps_ar1": 0.184,
+      "stints": 2
+    },
+    "Bahrain Grand Prix": {
+      "rmspe_ssm": 0.228,
+      "rmspe_ar1": 0.302,
+      "crps_ssm": 0.145,
+      "crps_ar1": 0.201,
+      "stints": 3
+    },
+    "Saudi Arabian Grand Prix": {
+      "rmspe_ssm": 0.258,
+      "rmspe_ar1": 0.262,
+      "crps_ssm": 0.162,
+      "crps_ar1": 0.163,
+      "stints": 2
+    },
+    "Emilia Romagna Grand Prix": {
+      "rmspe_ssm": 0.348,
+      "rmspe_ar1": 0.464,
+      "crps_ssm": 0.206,
+      "crps_ar1": 0.279,
+      "stints": 3
+    },
+    "Monaco Grand Prix": {
+      "rmspe_ssm": 0.661,
+      "rmspe_ar1": 0.815,
+      "crps_ssm": 0.402,
+      "crps_ar1": 0.481,
+      "stints": 3
+    },
+    "Spanish Grand Prix": {
+      "rmspe_ssm": 0.426,
+      "rmspe_ar1": 0.637,
+      "crps_ssm": 0.265,
+      "crps_ar1": 0.431,
+      "stints": 4
+    },
+    "Canadian Grand Prix": {
+      "rmspe_ssm": 0.348,
+      "rmspe_ar1": 0.368,
+      "crps_ssm": 0.216,
+      "crps_ar1": 0.229,
+      "stints": 3
+    },
+    "Austrian Grand Prix": {
+      "rmspe_ssm": 0.36,
+      "rmspe_ar1": 0.493,
+      "crps_ssm": 0.202,
+      "crps_ar1": 0.289,
+      "stints": 3
+    },
+    "Hungarian Grand Prix": {
+      "rmspe_ssm": 0.55,
+      "rmspe_ar1": 0.682,
+      "crps_ssm": 0.311,
+      "crps_ar1": 0.389,
+      "stints": 2
+    },
+    "Italian Grand Prix": {
+      "rmspe_ssm": 0.21,
+      "rmspe_ar1": 0.256,
+      "crps_ssm": 0.128,
+      "crps_ar1": 0.152,
+      "stints": 2
+    },
+    "Azerbaijan Grand Prix": {
+      "rmspe_ssm": 0.527,
+      "rmspe_ar1": 0.582,
+      "crps_ssm": 0.287,
+      "crps_ar1": 0.346,
+      "stints": 2
+    },
+    "Singapore Grand Prix": {
+      "rmspe_ssm": 0.399,
+      "rmspe_ar1": 0.352,
+      "crps_ssm": 0.24,
+      "crps_ar1": 0.231,
+      "stints": 3
+    },
+    "United States Grand Prix": {
+      "rmspe_ssm": 1.11,
+      "rmspe_ar1": 1.063,
+      "crps_ssm": 0.575,
+      "crps_ar1": 0.558,
+      "stints": 2
+    },
+    "Mexico City Grand Prix": {
+      "rmspe_ssm": 0.352,
+      "rmspe_ar1": 0.342,
+      "crps_ssm": 0.199,
+      "crps_ar1": 0.218,
+      "stints": 3
+    },
+    "Sao Paulo Grand Prix": {
+      "rmspe_ssm": 0.389,
+      "rmspe_ar1": 0.387,
+      "crps_ssm": 0.252,
+      "crps_ar1": 0.377,
+      "stints": 3
+    },
+    "Las Vegas Grand Prix": {
+      "rmspe_ssm": 0.368,
+      "rmspe_ar1": 0.617,
+      "crps_ssm": 0.199,
+      "crps_ar1": 0.392,
+      "stints": 2
+    },
+    "Qatar Grand Prix": {
+      "rmspe_ssm": 0.404,
+      "rmspe_ar1": 0.564,
+      "crps_ssm": 0.247,
+      "crps_ar1": 0.401,
+      "stints": 3
+    },
+    "Abu Dhabi Grand Prix": {
+      "rmspe_ssm": 0.298,
+      "rmspe_ar1": 0.351,
+      "crps_ssm": 0.177,
+      "crps_ar1": 0.228,
+      "stints": 3
+    }
+  },
+  "other_published_tables_austria": {
+    "note": "Hamilton, 2025 Austrian GP only. Journal Tables 2, 3 (p. 8), 5 and 6 (p. 10). Table 2 totals are sums over the three stints; Table 3 CRPS is the mean over stints.",
+    "table2_rmspe_total": {
+      "ar1": 1.478,
+      "base": 1.169,
+      "extension1_compound": 1.187,
+      "extension2_time_varying": 1.218,
+      "skew_t": 1.082
+    },
+    "table3_crps": {
+      "base": 0.23,
+      "extension1_compound": 0.236,
+      "extension2_time_varying": 0.245,
+      "skew_t": 0.202,
+      "ar1": 0.289
+    },
+    "table5_nu_s_per_lap_extension1": {
+      "hard": {
+        "mean": 0.054,
+        "lo": 0.004,
+        "hi": 0.132
+      },
+      "medium": {
+        "mean": 0.06,
+        "lo": 0.008,
+        "hi": 0.12
+      }
+    },
+    "table6_beta_extension2": {
+      "hard": {
+        "mean": 0.011,
+        "lo": 0.003,
+        "hi": 0.02
+      },
+      "medium": {
+        "mean": 0.01,
+        "lo": 0.002,
+        "hi": 0.018
+      }
+    },
+    "arxiv_v1_differences": "arXiv v1 Table 1/2 used ARIMA(2,1,2): RMSPE total 1.520, CRPS 0.324; Table 3 hard 0.054 [0.004, 0.133], medium 0.060 [0.009, 0.120]."
+  }
+}
