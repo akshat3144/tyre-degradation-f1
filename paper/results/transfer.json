@@ -1,0 +1,5716 @@
+{
+ "data": {
+  "cells_2026": 21,
+  "weekends_2026": 12,
+  "cells_holdout": 70,
+  "weekends_holdout": 44,
+  "cells_holdout_by_season": {
+   "2022": 22,
+   "2023": 15,
+   "2024": 19,
+   "2025": 14
+  },
+  "holdout_has_history": 37,
+  "s2026_has_history": 15,
+  "holdout_compounds": "HARD/MEDIUM/SOFT labels (relative to nomination)",
+  "negative_race_rates_2026": 5,
+  "negative_race_rates_holdout": 6
+ },
+ "s2026_loeo": {
+  "n_cells": 21,
+  "n_weekends": 12,
+  "scoreboard": {
+   "zero": {
+    "mae": 0.068905,
+    "rmse": 0.0862,
+    "spearman": null,
+    "mae_ci_lo": 0.04863,
+    "mae_ci_hi": 0.095827
+   },
+   "const": {
+    "mae": 0.072573,
+    "rmse": 0.091187,
+    "spearman": -0.734002,
+    "mae_ci_lo": 0.049835,
+    "mae_ci_hi": 0.102465
+   },
+   "pooled": {
+    "mae": 0.071289,
+    "rmse": 0.087803,
+    "spearman": 0.110387,
+    "mae_ci_lo": 0.052291,
+    "mae_ci_hi": 0.096443
+   },
+   "history": {
+    "mae": 0.061477,
+    "rmse": 0.086518,
+    "spearman": 0.313738,
+    "mae_ci_lo": 0.04049,
+    "mae_ci_hi": 0.094837
+   },
+   "naive": {
+    "mae": 0.08707,
+    "rmse": 0.107641,
+    "spearman": 0.525974,
+    "mae_ci_lo": 0.064805,
+    "mae_ci_hi": 0.114566
+   },
+   "scalar": {
+    "mae": 0.056068,
+    "rmse": 0.072868,
+    "spearman": 0.457143,
+    "mae_ci_lo": 0.039912,
+    "mae_ci_hi": 0.078868
+   },
+   "compound": {
+    "mae": 0.060715,
+    "rmse": 0.074855,
+    "spearman": 0.520779,
+    "mae_ci_lo": 0.046859,
+    "mae_ci_hi": 0.080136
+   },
+   "shrink50": {
+    "mae": 0.058445,
+    "rmse": 0.078117,
+    "spearman": 0.41039,
+    "mae_ci_lo": 0.040885,
+    "mae_ci_hi": 0.086116
+   },
+   "stack": {
+    "mae": 0.059242,
+    "rmse": 0.082555,
+    "spearman": 0.298701,
+    "mae_ci_lo": 0.039913,
+    "mae_ci_hi": 0.089332
+   }
+  },
+  "scalar_vs": {
+   "zero": {
+    "mean_diff": -0.012837,
+    "ci_lo": -0.031018,
+    "ci_hi": 0.004412,
+    "dm_t": -1.349732,
+    "dm_p": 0.204223,
+    "signflip_p": 0.228516,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.571429
+   },
+   "const": {
+    "mean_diff": -0.016505,
+    "ci_lo": -0.03038,
+    "ci_hi": -0.002942,
+    "dm_t": -2.261224,
+    "dm_p": 0.044995,
+    "signflip_p": 0.046875,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.714286
+   },
+   "pooled": {
+    "mean_diff": -0.015221,
+    "ci_lo": -0.02554,
+    "ci_hi": -0.002323,
+    "dm_t": -2.424893,
+    "dm_p": 0.033713,
+    "signflip_p": 0.04834,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.714286
+   },
+   "history": {
+    "mean_diff": -0.005409,
+    "ci_lo": -0.020442,
+    "ci_hi": 0.00704,
+    "dm_t": -0.74665,
+    "dm_p": 0.470932,
+    "signflip_p": 0.456055,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.571429
+   },
+   "naive": {
+    "mean_diff": -0.031002,
+    "ci_lo": -0.058893,
+    "ci_hi": -0.002991,
+    "dm_t": -2.133256,
+    "dm_p": 0.056261,
+    "signflip_p": 0.057129,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.761905
+   },
+   "compound": {
+    "mean_diff": -0.004647,
+    "ci_lo": -0.018757,
+    "ci_hi": 0.010643,
+    "dm_t": -0.591618,
+    "dm_p": 0.566066,
+    "signflip_p": 0.580078,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.333333
+   },
+   "shrink50": {
+    "mean_diff": -0.002377,
+    "ci_lo": -0.009727,
+    "ci_hi": 0.003641,
+    "dm_t": -0.680437,
+    "dm_p": 0.510296,
+    "signflip_p": 0.499512,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.571429
+   },
+   "stack": {
+    "mean_diff": -0.003174,
+    "ci_lo": -0.011652,
+    "ci_hi": 0.000453,
+    "dm_t": -0.907779,
+    "dm_p": 0.383451,
+    "signflip_p": 0.75,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.095238
+   }
+  },
+  "pairs": {
+   "compound_vs_scalar": {
+    "mean_diff": 0.004647,
+    "ci_lo": -0.010643,
+    "ci_hi": 0.018757,
+    "dm_t": 0.591618,
+    "dm_p": 0.566066,
+    "signflip_p": 0.580078,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.52381
+   },
+   "stack_vs_scalar": {
+    "mean_diff": 0.003174,
+    "ci_lo": -0.000453,
+    "ci_hi": 0.011652,
+    "dm_t": 0.907779,
+    "dm_p": 0.383451,
+    "signflip_p": 0.75,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.190476
+   },
+   "scalar_vs_history": {
+    "mean_diff": -0.005409,
+    "ci_lo": -0.020442,
+    "ci_hi": 0.00704,
+    "dm_t": -0.74665,
+    "dm_p": 0.470932,
+    "signflip_p": 0.456055,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.571429
+   }
+  },
+  "factor_full_sample": 0.349406,
+  "note": "design and session weights were chosen on these cells: this is the original, optimistically tuned number"
+ },
+ "nested": {
+  "n_cells": 21,
+  "n_candidates": 91,
+  "mae_nested": 0.059524,
+  "mae_shipped_tuned_on_eval": 0.056068,
+  "optimism_of_shipped": 0.003456,
+  "scoreboard": {
+   "zero": {
+    "mae": 0.068905,
+    "rmse": 0.0862,
+    "spearman": null,
+    "mae_ci_lo": 0.04863,
+    "mae_ci_hi": 0.095827
+   },
+   "pooled": {
+    "mae": 0.071289,
+    "rmse": 0.087803,
+    "spearman": 0.110387,
+    "mae_ci_lo": 0.052291,
+    "mae_ci_hi": 0.096443
+   },
+   "naive": {
+    "mae": 0.08707,
+    "rmse": 0.107641,
+    "spearman": 0.525974,
+    "mae_ci_lo": 0.064805,
+    "mae_ci_hi": 0.114566
+   },
+   "history": {
+    "mae": 0.061477,
+    "rmse": 0.086518,
+    "spearman": 0.313738,
+    "mae_ci_lo": 0.04049,
+    "mae_ci_hi": 0.094837
+   },
+   "scalar": {
+    "mae": 0.056068,
+    "rmse": 0.072868,
+    "spearman": 0.457143,
+    "mae_ci_lo": 0.039912,
+    "mae_ci_hi": 0.078868
+   },
+   "nested": {
+    "mae": 0.059524,
+    "rmse": 0.075165,
+    "spearman": 0.364935,
+    "mae_ci_lo": 0.044248,
+    "mae_ci_hi": 0.081455
+   }
+  },
+  "nested_vs": {
+   "scalar": {
+    "mean_diff": 0.003456,
+    "ci_lo": -0.00195,
+    "ci_hi": 0.008147,
+    "dm_t": 1.318117,
+    "dm_p": 0.214253,
+    "signflip_p": 0.28125,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.047619
+   },
+   "pooled": {
+    "mean_diff": -0.011766,
+    "ci_lo": -0.021428,
+    "ci_hi": -0.000234,
+    "dm_t": -2.067799,
+    "dm_p": 0.063012,
+    "signflip_p": 0.07373,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.666667
+   },
+   "zero": {
+    "mean_diff": -0.009382,
+    "ci_lo": -0.023799,
+    "ci_hi": 0.004143,
+    "dm_t": -1.255203,
+    "dm_p": 0.235416,
+    "signflip_p": 0.255859,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.52381
+   },
+   "naive": {
+    "mean_diff": -0.027546,
+    "ci_lo": -0.056473,
+    "ci_hi": 0.00082,
+    "dm_t": -1.868605,
+    "dm_p": 0.088522,
+    "signflip_p": 0.083496,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.666667
+   },
+   "history": {
+    "mean_diff": -0.001953,
+    "ci_lo": -0.017418,
+    "ci_hi": 0.010431,
+    "dm_t": -0.263005,
+    "dm_p": 0.797408,
+    "signflip_p": 0.815918,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.571429
+   }
+  },
+  "n_fallback_cells": 1,
+  "selection_log": [
+   {
+    "held_out": "Australian Grand Prix",
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "inner_mae": 0.053248,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Austrian Grand Prix",
+    "design": "warmup1",
+    "weights": "sprint only",
+    "inner_mae": 0.06384,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Barcelona Grand Prix",
+    "design": "warmup1",
+    "weights": "sprint only",
+    "inner_mae": 0.05614,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Belgian Grand Prix",
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "inner_mae": 0.044895,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Canadian Grand Prix",
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "inner_mae": 0.051062,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Chinese Grand Prix",
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "inner_mae": 0.05783,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Dutch Grand Prix",
+    "design": "warmup1",
+    "weights": "sprint only",
+    "inner_mae": 0.062828,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Hungarian Grand Prix",
+    "design": "warmup1",
+    "weights": "sprint only",
+    "inner_mae": 0.063162,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Italian Grand Prix",
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "inner_mae": 0.053295,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Japanese Grand Prix",
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "inner_mae": 0.051579,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Miami Grand Prix",
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "inner_mae": 0.055235,
+    "n_eligible": 49
+   },
+   {
+    "held_out": "Monaco Grand Prix",
+    "design": "warmup1-gap1",
+    "weights": "sprint down",
+    "inner_mae": 0.056217,
+    "n_eligible": 70
+   }
+  ],
+  "selection_counts": [
+   {
+    "design": "warmup1",
+    "weights": "FP2 heavy (shipped)",
+    "folds": 7
+   },
+   {
+    "design": "warmup1",
+    "weights": "sprint only",
+    "folds": 4
+   },
+   {
+    "design": "warmup1-gap1",
+    "weights": "sprint down",
+    "folds": 1
+   }
+  ],
+  "shipped_chosen_in_folds": 0
+ },
+ "holdout_frozen": {
+  "n_cells": 70,
+  "n_weekends": 44,
+  "scoreboard": {
+   "zero": {
+    "mae": 0.050184,
+    "rmse": 0.060878,
+    "spearman": null,
+    "mae_ci_lo": 0.041824,
+    "mae_ci_hi": 0.058953
+   },
+   "const": {
+    "mae": 0.031054,
+    "rmse": 0.040768,
+    "spearman": null,
+    "mae_ci_lo": 0.024633,
+    "mae_ci_hi": 0.03833
+   },
+   "pooled": {
+    "mae": 0.046801,
+    "rmse": 0.062455,
+    "spearman": 0.182491,
+    "mae_ci_lo": 0.038368,
+    "mae_ci_hi": 0.055606
+   },
+   "history": {
+    "mae": 0.039407,
+    "rmse": 0.051608,
+    "spearman": 0.418753,
+    "mae_ci_lo": 0.031363,
+    "mae_ci_hi": 0.048012
+   },
+   "naive": {
+    "mae": 0.112017,
+    "rmse": 0.138176,
+    "spearman": 0.29434,
+    "mae_ci_lo": 0.09229,
+    "mae_ci_hi": 0.132362
+   },
+   "scalar": {
+    "mae": 0.035532,
+    "rmse": 0.047162,
+    "spearman": 0.29434,
+    "mae_ci_lo": 0.028606,
+    "mae_ci_hi": 0.042641
+   },
+   "compound": {
+    "mae": 0.063389,
+    "rmse": 0.092775,
+    "spearman": 0.281358,
+    "mae_ci_lo": 0.050356,
+    "mae_ci_hi": 0.077148
+   },
+   "shrink50": {
+    "mae": 0.029503,
+    "rmse": 0.037385,
+    "spearman": 0.462304,
+    "mae_ci_lo": 0.024482,
+    "mae_ci_hi": 0.034785
+   },
+   "stack": {
+    "mae": 0.031674,
+    "rmse": 0.040684,
+    "spearman": 0.451177,
+    "mae_ci_lo": 0.025543,
+    "mae_ci_hi": 0.038247
+   }
+  },
+  "scalar_vs": {
+   "zero": {
+    "mean_diff": -0.014652,
+    "ci_lo": -0.025832,
+    "ci_hi": -0.003941,
+    "dm_t": -2.556918,
+    "dm_p": 0.014172,
+    "signflip_p": 0.013749,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.657143
+   },
+   "const": {
+    "mean_diff": 0.004478,
+    "ci_lo": -0.004442,
+    "ci_hi": 0.013629,
+    "dm_t": 0.953236,
+    "dm_p": 0.345799,
+    "signflip_p": 0.360032,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.5
+   },
+   "pooled": {
+    "mean_diff": -0.011268,
+    "ci_lo": -0.022925,
+    "ci_hi": 0.000373,
+    "dm_t": -1.869816,
+    "dm_p": 0.068328,
+    "signflip_p": 0.072396,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.542857
+   },
+   "history": {
+    "mean_diff": -0.003875,
+    "ci_lo": -0.014865,
+    "ci_hi": 0.00721,
+    "dm_t": -0.688026,
+    "dm_p": 0.495131,
+    "signflip_p": 0.498725,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.542857
+   },
+   "naive": {
+    "mean_diff": -0.076485,
+    "ci_lo": -0.09491,
+    "ci_hi": -0.058799,
+    "dm_t": -8.18363,
+    "dm_p": 0.0,
+    "signflip_p": 5e-05,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.885714
+   },
+   "compound": {
+    "mean_diff": -0.027856,
+    "ci_lo": -0.040747,
+    "ci_hi": -0.016127,
+    "dm_t": -4.339959,
+    "dm_p": 8.5e-05,
+    "signflip_p": 5e-05,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.628571
+   },
+   "shrink50": {
+    "mean_diff": 0.006029,
+    "ci_lo": -0.000989,
+    "ci_hi": 0.012949,
+    "dm_t": 1.676875,
+    "dm_p": 0.100823,
+    "signflip_p": 0.110844,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.414286
+   },
+   "stack": {
+    "mean_diff": 0.003858,
+    "ci_lo": -0.005338,
+    "ci_hi": 0.012978,
+    "dm_t": 0.819755,
+    "dm_p": 0.416876,
+    "signflip_p": 0.421979,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.442857
+   }
+  },
+  "pairs": {
+   "compound_vs_scalar": {
+    "mean_diff": 0.027856,
+    "ci_lo": 0.016127,
+    "ci_hi": 0.040747,
+    "dm_t": 4.339959,
+    "dm_p": 8.5e-05,
+    "signflip_p": 5e-05,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.371429
+   },
+   "scalar_vs_history": {
+    "mean_diff": -0.003875,
+    "ci_lo": -0.014865,
+    "ci_hi": 0.00721,
+    "dm_t": -0.688026,
+    "dm_p": 0.495131,
+    "signflip_p": 0.498725,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.542857
+   }
+  },
+  "factor_frozen_from_2026": 0.349406,
+  "by_season": {
+   "2022": {
+    "zero": {
+     "mae": 0.050425,
+     "rmse": 0.066953,
+     "spearman": null,
+     "mae_ci_lo": 0.034247,
+     "mae_ci_hi": 0.070786
+    },
+    "pooled": {
+     "mae": 0.054997,
+     "rmse": 0.069845,
+     "spearman": 0.382724,
+     "mae_ci_lo": 0.037325,
+     "mae_ci_hi": 0.073748
+    },
+    "naive": {
+     "mae": 0.12456,
+     "rmse": 0.151644,
+     "spearman": 0.10559,
+     "mae_ci_lo": 0.08888,
+     "mae_ci_hi": 0.160922
+    },
+    "history": {
+     "mae": 0.054997,
+     "rmse": 0.069845,
+     "spearman": 0.382724,
+     "mae_ci_lo": 0.037325,
+     "mae_ci_hi": 0.073748
+    },
+    "scalar": {
+     "mae": 0.04554,
+     "rmse": 0.060802,
+     "spearman": 0.10559,
+     "mae_ci_lo": 0.031523,
+     "mae_ci_hi": 0.06117
+    }
+   },
+   "2023": {
+    "zero": {
+     "mae": 0.045397,
+     "rmse": 0.052817,
+     "spearman": null,
+     "mae_ci_lo": 0.032206,
+     "mae_ci_hi": 0.060971
+    },
+    "pooled": {
+     "mae": 0.047427,
+     "rmse": 0.058537,
+     "spearman": -0.024398,
+     "mae_ci_lo": 0.030826,
+     "mae_ci_hi": 0.063758
+    },
+    "naive": {
+     "mae": 0.095892,
+     "rmse": 0.111655,
+     "spearman": 0.707143,
+     "mae_ci_lo": 0.063047,
+     "mae_ci_hi": 0.129727
+    },
+    "history": {
+     "mae": 0.028318,
+     "rmse": 0.035745,
+     "spearman": 0.360375,
+     "mae_ci_lo": 0.016717,
+     "mae_ci_hi": 0.04057
+    },
+    "scalar": {
+     "mae": 0.025827,
+     "rmse": 0.033849,
+     "spearman": 0.707143,
+     "mae_ci_lo": 0.015549,
+     "mae_ci_hi": 0.038314
+    }
+   },
+   "2024": {
+    "zero": {
+     "mae": 0.050874,
+     "rmse": 0.060334,
+     "spearman": null,
+     "mae_ci_lo": 0.032729,
+     "mae_ci_hi": 0.068521
+    },
+    "pooled": {
+     "mae": 0.052817,
+     "rmse": 0.06941,
+     "spearman": -0.099228,
+     "mae_ci_lo": 0.040129,
+     "mae_ci_hi": 0.066533
+    },
+    "naive": {
+     "mae": 0.127804,
+     "rmse": 0.156952,
+     "spearman": 0.394737,
+     "mae_ci_lo": 0.086712,
+     "mae_ci_hi": 0.176157
+    },
+    "history": {
+     "mae": 0.029979,
+     "rmse": 0.036154,
+     "spearman": 0.636842,
+     "mae_ci_lo": 0.021563,
+     "mae_ci_hi": 0.038691
+    },
+    "scalar": {
+     "mae": 0.031824,
+     "rmse": 0.041062,
+     "spearman": 0.394737,
+     "mae_ci_lo": 0.020885,
+     "mae_ci_hi": 0.044262
+    }
+   },
+   "2025": {
+    "zero": {
+     "mae": 0.053999,
+     "rmse": 0.059643,
+     "spearman": null,
+     "mae_ci_lo": 0.0426,
+     "mae_ci_hi": 0.069173
+    },
+    "pooled": {
+     "mae": 0.025084,
+     "rmse": 0.040345,
+     "spearman": 0.411488,
+     "mae_ci_lo": 0.013819,
+     "mae_ci_hi": 0.038026
+    },
+    "naive": {
+     "mae": 0.088159,
+     "rmse": 0.111975,
+     "spearman": 0.164835,
+     "mae_ci_lo": 0.056607,
+     "mae_ci_hi": 0.127323
+    },
+    "history": {
+     "mae": 0.039584,
+     "rmse": 0.050078,
+     "spearman": 0.410989,
+     "mae_ci_lo": 0.023313,
+     "mae_ci_hi": 0.059838
+    },
+    "scalar": {
+     "mae": 0.035236,
+     "rmse": 0.042377,
+     "spearman": 0.164835,
+     "mae_ci_lo": 0.020674,
+     "mae_ci_hi": 0.049721
+    }
+   }
+  },
+  "cells_with_history": {
+   "n_cells": 37,
+   "n_weekends": 25,
+   "scoreboard": {
+    "zero": {
+     "mae": 0.051097,
+     "rmse": 0.058677,
+     "spearman": null,
+     "mae_ci_lo": 0.040384,
+     "mae_ci_hi": 0.061986
+    },
+    "const": {
+     "mae": 0.027548,
+     "rmse": 0.034967,
+     "spearman": null,
+     "mae_ci_lo": 0.019771,
+     "mae_ci_hi": 0.035615
+    },
+    "pooled": {
+     "mae": 0.046208,
+     "rmse": 0.063478,
+     "spearman": -0.042452,
+     "mae_ci_lo": 0.035282,
+     "mae_ci_hi": 0.056732
+    },
+    "history": {
+     "mae": 0.03222,
+     "rmse": 0.041093,
+     "spearman": 0.402086,
+     "mae_ci_lo": 0.023585,
+     "mae_ci_hi": 0.041214
+    },
+    "naive": {
+     "mae": 0.111776,
+     "rmse": 0.137112,
+     "spearman": 0.397345,
+     "mae_ci_lo": 0.08622,
+     "mae_ci_hi": 0.139323
+    },
+    "scalar": {
+     "mae": 0.029714,
+     "rmse": 0.038244,
+     "spearman": 0.397345,
+     "mae_ci_lo": 0.021871,
+     "mae_ci_hi": 0.037929
+    },
+    "compound": {
+     "mae": 0.063306,
+     "rmse": 0.098561,
+     "spearman": 0.260787,
+     "mae_ci_lo": 0.044498,
+     "mae_ci_hi": 0.083478
+    },
+    "shrink50": {
+     "mae": 0.024059,
+     "rmse": 0.029646,
+     "spearman": 0.516121,
+     "mae_ci_lo": 0.019086,
+     "mae_ci_hi": 0.02903
+    },
+    "stack": {
+     "mae": 0.026591,
+     "rmse": 0.032203,
+     "spearman": 0.46918,
+     "mae_ci_lo": 0.021258,
+     "mae_ci_hi": 0.03218
+    }
+   },
+   "scalar_vs": {
+    "zero": {
+     "mean_diff": -0.021383,
+     "ci_lo": -0.035528,
+     "ci_hi": -0.006473,
+     "dm_t": -2.804385,
+     "dm_p": 0.009829,
+     "signflip_p": 0.013699,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.702703
+    },
+    "const": {
+     "mean_diff": 0.002165,
+     "ci_lo": -0.009485,
+     "ci_hi": 0.014904,
+     "dm_t": 0.339987,
+     "dm_p": 0.736824,
+     "signflip_p": 0.740413,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.540541
+    },
+    "pooled": {
+     "mean_diff": -0.016494,
+     "ci_lo": -0.029751,
+     "ci_hi": -0.001777,
+     "dm_t": -2.245767,
+     "dm_p": 0.034195,
+     "signflip_p": 0.040948,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.567568
+    },
+    "history": {
+     "mean_diff": -0.002506,
+     "ci_lo": -0.015048,
+     "ci_hi": 0.010457,
+     "dm_t": -0.383076,
+     "dm_p": 0.705035,
+     "signflip_p": 0.706315,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.567568
+    },
+    "naive": {
+     "mean_diff": -0.082062,
+     "ci_lo": -0.106409,
+     "ci_hi": -0.060116,
+     "dm_t": -6.737624,
+     "dm_p": 1e-06,
+     "signflip_p": 5e-05,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.918919
+    },
+    "compound": {
+     "mean_diff": -0.033592,
+     "ci_lo": -0.052186,
+     "ci_hi": -0.01649,
+     "dm_t": -3.543001,
+     "dm_p": 0.001656,
+     "signflip_p": 0.0004,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.648649
+    },
+    "shrink50": {
+     "mean_diff": 0.005655,
+     "ci_lo": -0.001123,
+     "ci_hi": 0.012422,
+     "dm_t": 1.577938,
+     "dm_p": 0.127671,
+     "signflip_p": 0.126194,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.405405
+    },
+    "stack": {
+     "mean_diff": 0.003123,
+     "ci_lo": -0.005617,
+     "ci_hi": 0.012176,
+     "dm_t": 0.667494,
+     "dm_p": 0.510824,
+     "signflip_p": 0.518224,
+     "n_cells": 37,
+     "n_clusters": 25,
+     "frac_cells_a_better": 0.459459
+    }
+   }
+  },
+  "scalar_vs_baselines_circuit_clustered": {
+   "pooled": {
+    "mean_diff": -0.011268,
+    "ci_lo": -0.026766,
+    "ci_hi": 0.005186,
+    "dm_t": -1.342305,
+    "dm_p": 0.197149,
+    "signflip_p": 0.224239,
+    "n_cells": 70,
+    "n_clusters": 18,
+    "frac_cells_a_better": 0.542857
+   },
+   "zero": {
+    "mean_diff": -0.014652,
+    "ci_lo": -0.028721,
+    "ci_hi": -0.000728,
+    "dm_t": -1.963518,
+    "dm_p": 0.066157,
+    "signflip_p": 0.069047,
+    "n_cells": 70,
+    "n_clusters": 18,
+    "frac_cells_a_better": 0.657143
+   },
+   "naive": {
+    "mean_diff": -0.076485,
+    "ci_lo": -0.09531,
+    "ci_hi": -0.057342,
+    "dm_t": -7.927185,
+    "dm_p": 0.0,
+    "signflip_p": 5e-05,
+    "n_cells": 70,
+    "n_clusters": 18,
+    "frac_cells_a_better": 0.885714
+   }
+  }
+ },
+ "holdout_loeo": {
+  "n_cells": 70,
+  "n_weekends": 44,
+  "scoreboard": {
+   "zero": {
+    "mae": 0.050184,
+    "rmse": 0.060878,
+    "spearman": null,
+    "mae_ci_lo": 0.041824,
+    "mae_ci_hi": 0.058953
+   },
+   "const": {
+    "mae": 0.030993,
+    "rmse": 0.038902,
+    "spearman": -0.719144,
+    "mae_ci_lo": 0.025414,
+    "mae_ci_hi": 0.037398
+   },
+   "pooled": {
+    "mae": 0.031923,
+    "rmse": 0.039036,
+    "spearman": -0.112437,
+    "mae_ci_lo": 0.02676,
+    "mae_ci_hi": 0.037699
+   },
+   "history": {
+    "mae": 0.034506,
+    "rmse": 0.042641,
+    "spearman": 0.292128,
+    "mae_ci_lo": 0.028604,
+    "mae_ci_hi": 0.041058
+   },
+   "naive": {
+    "mae": 0.112017,
+    "rmse": 0.138176,
+    "spearman": 0.29434,
+    "mae_ci_lo": 0.09229,
+    "mae_ci_hi": 0.132362
+   },
+   "scalar": {
+    "mae": 0.037244,
+    "rmse": 0.047479,
+    "spearman": 0.238912,
+    "mae_ci_lo": 0.030857,
+    "mae_ci_hi": 0.04375
+   },
+   "compound": {
+    "mae": 0.035158,
+    "rmse": 0.045022,
+    "spearman": 0.300289,
+    "mae_ci_lo": 0.029012,
+    "mae_ci_hi": 0.041367
+   },
+   "shrink50": {
+    "mae": 0.031322,
+    "rmse": 0.038778,
+    "spearman": 0.291646,
+    "mae_ci_lo": 0.026381,
+    "mae_ci_hi": 0.036704
+   },
+   "stack": {
+    "mae": 0.03162,
+    "rmse": 0.038931,
+    "spearman": 0.293325,
+    "mae_ci_lo": 0.026697,
+    "mae_ci_hi": 0.037014
+   }
+  },
+  "scalar_vs": {
+   "zero": {
+    "mean_diff": -0.01294,
+    "ci_lo": -0.02307,
+    "ci_hi": -0.003026,
+    "dm_t": -2.464352,
+    "dm_p": 0.0178,
+    "signflip_p": 0.016699,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.671429
+   },
+   "const": {
+    "mean_diff": 0.006251,
+    "ci_lo": -0.000827,
+    "ci_hi": 0.013593,
+    "dm_t": 1.68684,
+    "dm_p": 0.098877,
+    "signflip_p": 0.110644,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.528571
+   },
+   "pooled": {
+    "mean_diff": 0.005321,
+    "ci_lo": -0.001725,
+    "ci_hi": 0.01252,
+    "dm_t": 1.455788,
+    "dm_p": 0.152714,
+    "signflip_p": 0.164842,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.5
+   },
+   "history": {
+    "mean_diff": 0.002738,
+    "ci_lo": -0.005494,
+    "ci_hi": 0.010872,
+    "dm_t": 0.650196,
+    "dm_p": 0.519024,
+    "signflip_p": 0.526624,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.485714
+   },
+   "naive": {
+    "mean_diff": -0.074773,
+    "ci_lo": -0.093521,
+    "ci_hi": -0.05702,
+    "dm_t": -7.870674,
+    "dm_p": 0.0,
+    "signflip_p": 5e-05,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.871429
+   },
+   "compound": {
+    "mean_diff": 0.002086,
+    "ci_lo": -0.000439,
+    "ci_hi": 0.00487,
+    "dm_t": 1.526126,
+    "dm_p": 0.134301,
+    "signflip_p": 0.132143,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.485714
+   },
+   "shrink50": {
+    "mean_diff": 0.005922,
+    "ci_lo": 0.001368,
+    "ci_hi": 0.010522,
+    "dm_t": 2.548918,
+    "dm_p": 0.014457,
+    "signflip_p": 0.016999,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.4
+   },
+   "stack": {
+    "mean_diff": 0.005625,
+    "ci_lo": 0.000502,
+    "ci_hi": 0.010802,
+    "dm_t": 2.129966,
+    "dm_p": 0.038937,
+    "signflip_p": 0.044448,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.4
+   }
+  },
+  "pairs": {
+   "compound_vs_scalar": {
+    "mean_diff": -0.002086,
+    "ci_lo": -0.00487,
+    "ci_hi": 0.000439,
+    "dm_t": -1.526126,
+    "dm_p": 0.134301,
+    "signflip_p": 0.132143,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.485714
+   },
+   "stack_vs_scalar": {
+    "mean_diff": -0.005625,
+    "ci_lo": -0.010802,
+    "ci_hi": -0.000502,
+    "dm_t": -2.129966,
+    "dm_p": 0.038937,
+    "signflip_p": 0.044448,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.6
+   },
+   "scalar_vs_history": {
+    "mean_diff": 0.002738,
+    "ci_lo": -0.005494,
+    "ci_hi": 0.010872,
+    "dm_t": 0.650196,
+    "dm_p": 0.519024,
+    "signflip_p": 0.526624,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.485714
+   }
+  },
+  "factor_full_sample": 0.323148,
+  "scalar_vs_pooled_circuit_clustered": {
+   "pooled": {
+    "mean_diff": 0.005321,
+    "ci_lo": -0.002764,
+    "ci_hi": 0.014257,
+    "dm_t": 1.209769,
+    "dm_p": 0.242922,
+    "signflip_p": 0.266287,
+    "n_cells": 70,
+    "n_clusters": 18,
+    "frac_cells_a_better": 0.5
+   },
+   "zero": {
+    "mean_diff": -0.01294,
+    "ci_lo": -0.025604,
+    "ci_hi": -0.000109,
+    "dm_t": -1.898194,
+    "dm_p": 0.074783,
+    "signflip_p": 0.080846,
+    "n_cells": 70,
+    "n_clusters": 18,
+    "frac_cells_a_better": 0.671429
+   },
+   "naive": {
+    "mean_diff": -0.074773,
+    "ci_lo": -0.094121,
+    "ci_hi": -0.055538,
+    "dm_t": -7.61475,
+    "dm_p": 1e-06,
+    "signflip_p": 5e-05,
+    "n_cells": 70,
+    "n_clusters": 18,
+    "frac_cells_a_better": 0.871429
+   }
+  }
+ },
+ "compound_factor": {
+  "2026_by_C": {
+   "C1": {
+    "n": 1,
+    "median_ratio": -1.538929,
+    "ls_factor": -1.538929,
+    "median_ratio_ci": [
+     -1.538929,
+     -1.538929
+    ],
+    "ls_factor_ci": [
+     -1.538929,
+     -1.538929
+    ]
+   },
+   "C2": {
+    "n": 2,
+    "median_ratio": 1.126677,
+    "ls_factor": 0.792857,
+    "median_ratio_ci": [
+     0.445193,
+     1.808161
+    ],
+    "ls_factor_ci": [
+     0.445193,
+     1.808161
+    ]
+   },
+   "C3": {
+    "n": 7,
+    "median_ratio": 0.637174,
+    "ls_factor": 0.552414,
+    "median_ratio_ci": [
+     0.083582,
+     2.045046
+    ],
+    "ls_factor_ci": [
+     0.232032,
+     0.84108
+    ]
+   },
+   "C4": {
+    "n": 7,
+    "median_ratio": 0.348774,
+    "ls_factor": 0.266626,
+    "median_ratio_ci": [
+     -2.393045,
+     0.457528
+    ],
+    "ls_factor_ci": [
+     -0.005279,
+     0.514259
+    ]
+   },
+   "C5": {
+    "n": 4,
+    "median_ratio": -0.405653,
+    "ls_factor": -0.143936,
+    "median_ratio_ci": [
+     -5.252241,
+     0.580577
+    ],
+    "ls_factor_ci": [
+     -0.944935,
+     0.580577
+    ]
+   },
+   "_trend_per_softness_step": {
+    "slope": -0.627289,
+    "ci": [
+     -1.789397,
+     0.176045
+    ],
+    "share_boot_negative": 0.926
+   }
+  },
+  "2026_by_label": {
+   "HARD": {
+    "n": 7,
+    "median_ratio": 0.445193,
+    "ls_factor": 0.423709,
+    "median_ratio_ci": [
+     0.060033,
+     1.808161
+    ],
+    "ls_factor_ci": [
+     0.127768,
+     0.772028
+    ]
+   },
+   "MEDIUM": {
+    "n": 9,
+    "median_ratio": 0.376571,
+    "ls_factor": 0.462166,
+    "median_ratio_ci": [
+     0.099509,
+     0.782812
+    ],
+    "ls_factor_ci": [
+     0.199225,
+     0.768404
+    ]
+   },
+   "SOFT": {
+    "n": 5,
+    "median_ratio": -0.585587,
+    "ls_factor": -0.269592,
+    "median_ratio_ci": [
+     -7.283957,
+     0.580577
+    ],
+    "ls_factor_ci": [
+     -5.252241,
+     0.482873
+    ]
+   },
+   "_trend_per_softness_step": {
+    "slope": -1.621637,
+    "ci": [
+     -2.951612,
+     -0.143629
+    ],
+    "share_boot_negative": 0.986
+   }
+  },
+  "holdout_by_label": {
+   "HARD": {
+    "n": 20,
+    "median_ratio": 0.309547,
+    "ls_factor": 0.264438,
+    "median_ratio_ci": [
+     -0.15931,
+     0.375298
+    ],
+    "ls_factor_ci": [
+     0.11543,
+     0.384703
+    ]
+   },
+   "MEDIUM": {
+    "n": 33,
+    "median_ratio": 0.39038,
+    "ls_factor": 0.308745,
+    "median_ratio_ci": [
+     0.225534,
+     0.534532
+    ],
+    "ls_factor_ci": [
+     0.214069,
+     0.417904
+    ]
+   },
+   "SOFT": {
+    "n": 17,
+    "median_ratio": 0.207897,
+    "ls_factor": 0.163771,
+    "median_ratio_ci": [
+     0.017218,
+     0.417688
+    ],
+    "ls_factor_ci": [
+     0.068436,
+     0.270269
+    ]
+   },
+   "_trend_per_softness_step": {
+    "slope": 0.068075,
+    "ci": [
+     -0.077502,
+     0.25434
+    ],
+    "share_boot_negative": 0.2055
+   }
+  }
+ },
+ "identifiability": {
+  "2026": {
+   "n_cells": 21,
+   "n_standin_available": 20,
+   "n_flagged_by_shipped_rule": 5,
+   "scoreboard": {
+    "always": {
+     "mae": 0.056068,
+     "rmse": 0.072868,
+     "spearman": 0.457143,
+     "mae_ci_lo": 0.039912,
+     "mae_ci_hi": 0.078868
+    },
+    "rule0.5": {
+     "mae": 0.054915,
+     "rmse": 0.076485,
+     "spearman": 0.355844,
+     "mae_ci_lo": 0.036236,
+     "mae_ci_hi": 0.081976
+    },
+    "rule1": {
+     "mae": 0.055052,
+     "rmse": 0.076541,
+     "spearman": 0.307792,
+     "mae_ci_lo": 0.036518,
+     "mae_ci_hi": 0.082137
+    },
+    "rule2": {
+     "mae": 0.05614,
+     "rmse": 0.076707,
+     "spearman": 0.232619,
+     "mae_ci_lo": 0.036578,
+     "mae_ci_hi": 0.08447
+    },
+    "eb": {
+     "mae": 0.054707,
+     "rmse": 0.073564,
+     "spearman": 0.393506,
+     "mae_ci_lo": 0.037768,
+     "mae_ci_hi": 0.080279
+    }
+   },
+   "rule1_vs_always": {
+    "mean_diff": -0.001016,
+    "ci_lo": -0.006427,
+    "ci_hi": 0.004739,
+    "dm_t": -0.353424,
+    "dm_p": 0.730451,
+    "signflip_p": 0.75,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.095238
+   },
+   "eb_vs_rule1": {
+    "mean_diff": -0.000345,
+    "ci_lo": -0.00265,
+    "ci_hi": 0.001922,
+    "dm_t": -0.28592,
+    "dm_p": 0.780252,
+    "signflip_p": 0.783203,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.428571
+   },
+   "eb_vs_always": {
+    "mean_diff": -0.001361,
+    "ci_lo": -0.005724,
+    "ci_hi": 0.003199,
+    "dm_t": -0.58161,
+    "dm_p": 0.572555,
+    "signflip_p": 0.603516,
+    "n_cells": 21,
+    "n_clusters": 12,
+    "frac_cells_a_better": 0.428571
+   },
+   "flagged_cells": [
+    {
+     "event": "Belgian Grand Prix",
+     "C": "C4",
+     "practice_rate": 0.025427,
+     "se_p": 0.080064,
+     "race_rate": -0.185211,
+     "si_rate": 0.124683
+    },
+    {
+     "event": "Canadian Grand Prix",
+     "C": "C5",
+     "practice_rate": 0.012352,
+     "se_p": 0.02696,
+     "race_rate": -0.064875,
+     "si_rate": 0.022333
+    },
+    {
+     "event": "Dutch Grand Prix",
+     "C": "C2",
+     "practice_rate": 0.041997,
+     "se_p": 0.137678,
+     "race_rate": 0.075937,
+     "si_rate": 0.095876
+    },
+    {
+     "event": "Monaco Grand Prix",
+     "C": "C3",
+     "practice_rate": 0.013808,
+     "se_p": 0.053073,
+     "race_rate": 0.055637,
+     "si_rate": 0.14319
+    },
+    {
+     "event": "Monaco Grand Prix",
+     "C": "C5",
+     "practice_rate": -0.052356,
+     "se_p": 0.092702,
+     "race_rate": 0.011818,
+     "si_rate": 0.128244
+    }
+   ]
+  },
+  "holdout": {
+   "n_cells": 70,
+   "n_standin_available": 70,
+   "n_flagged_by_shipped_rule": 5,
+   "scoreboard": {
+    "always": {
+     "mae": 0.037244,
+     "rmse": 0.047479,
+     "spearman": 0.238912,
+     "mae_ci_lo": 0.030857,
+     "mae_ci_hi": 0.04375
+    },
+    "rule0.5": {
+     "mae": 0.036095,
+     "rmse": 0.046097,
+     "spearman": 0.287481,
+     "mae_ci_lo": 0.030004,
+     "mae_ci_hi": 0.042448
+    },
+    "rule1": {
+     "mae": 0.035618,
+     "rmse": 0.045636,
+     "spearman": 0.268725,
+     "mae_ci_lo": 0.030023,
+     "mae_ci_hi": 0.041459
+    },
+    "rule2": {
+     "mae": 0.034192,
+     "rmse": 0.044068,
+     "spearman": 0.223865,
+     "mae_ci_lo": 0.028792,
+     "mae_ci_hi": 0.039936
+    },
+    "eb": {
+     "mae": 0.033986,
+     "rmse": 0.043512,
+     "spearman": 0.279048,
+     "mae_ci_lo": 0.028267,
+     "mae_ci_hi": 0.040177
+    }
+   },
+   "rule1_vs_always": {
+    "mean_diff": -0.001626,
+    "ci_lo": -0.004359,
+    "ci_hi": 0.00058,
+    "dm_t": -1.26605,
+    "dm_p": 0.212312,
+    "signflip_p": 0.250537,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.057143
+   },
+   "eb_vs_rule1": {
+    "mean_diff": -0.001631,
+    "ci_lo": -0.003938,
+    "ci_hi": 0.000432,
+    "dm_t": -1.463279,
+    "dm_p": 0.150663,
+    "signflip_p": 0.163492,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.471429
+   },
+   "eb_vs_always": {
+    "mean_diff": -0.003258,
+    "ci_lo": -0.006159,
+    "ci_hi": -0.000809,
+    "dm_t": -2.37433,
+    "dm_p": 0.022115,
+    "signflip_p": 0.016899,
+    "n_cells": 70,
+    "n_clusters": 44,
+    "frac_cells_a_better": 0.514286
+   },
+   "flagged_cells": [
+    {
+     "event": "2022 United States Grand Prix",
+     "C": "MEDIUM",
+     "practice_rate": 0.03081,
+     "se_p": 0.192893,
+     "race_rate": 0.111195,
+     "si_rate": 0.184288
+    },
+    {
+     "event": "2023 Spanish Grand Prix",
+     "C": "MEDIUM",
+     "practice_rate": 0.064095,
+     "se_p": 0.101997,
+     "race_rate": 0.037332,
+     "si_rate": 0.095027
+    },
+    {
+     "event": "2024 Monaco Grand Prix",
+     "C": "HARD",
+     "practice_rate": -0.018622,
+     "se_p": 0.126166,
+     "race_rate": 0.034994,
+     "si_rate": 0.126143
+    },
+    {
+     "event": "2024 Saudi Arabian Grand Prix",
+     "C": "SOFT",
+     "practice_rate": 0.037822,
+     "se_p": 0.057896,
+     "race_rate": 0.015042,
+     "si_rate": 0.163397
+    },
+    {
+     "event": "2025 Monaco Grand Prix",
+     "C": "HARD",
+     "practice_rate": -0.07074,
+     "se_p": 0.092166,
+     "race_rate": 0.040056,
+     "si_rate": 0.100656
+    }
+   ]
+  }
+ },
+ "standins": {
+  "2026": {
+   "n_hidden_cells_imputed": 20,
+   "n_total": 21,
+   "n_scaled_by_severity": 16,
+   "scoreboard_race_rate": {
+    "zero": {
+     "mae": 0.069896,
+     "rmse": 0.087644,
+     "spearman": null,
+     "mae_ci_lo": 0.048469,
+     "mae_ci_hi": 0.097309
+    },
+    "const": {
+     "mae": 0.071557,
+     "rmse": 0.091101,
+     "spearman": -0.727886,
+     "mae_ci_lo": 0.047905,
+     "mae_ci_hi": 0.102705
+    },
+    "pooled": {
+     "mae": 0.070209,
+     "rmse": 0.087541,
+     "spearman": 0.100684,
+     "mae_ci_lo": 0.050237,
+     "mae_ci_hi": 0.096592
+    },
+    "pooled_unscaled": {
+     "mae": 0.068428,
+     "rmse": 0.090137,
+     "spearman": -0.604511,
+     "mae_ci_lo": 0.044584,
+     "mae_ci_hi": 0.099988
+    },
+    "standin": {
+     "mae": 0.060014,
+     "rmse": 0.079252,
+     "spearman": 0.179902,
+     "mae_ci_lo": 0.040891,
+     "mae_ci_hi": 0.088046
+    },
+    "scalar": {
+     "mae": 0.055838,
+     "rmse": 0.073424,
+     "spearman": 0.419549,
+     "mae_ci_lo": 0.038451,
+     "mae_ci_hi": 0.079888
+    }
+   },
+   "standin_vs": {
+    "pooled": {
+     "mean_diff": -0.010196,
+     "ci_lo": -0.01986,
+     "ci_hi": 0.001854,
+     "dm_t": -1.776289,
+     "dm_p": 0.106064,
+     "signflip_p": 0.135742,
+     "n_cells": 20,
+     "n_clusters": 11,
+     "frac_cells_a_better": 0.6
+    },
+    "zero": {
+     "mean_diff": -0.009882,
+     "ci_lo": -0.029336,
+     "ci_hi": 0.01018,
+     "dm_t": -0.948977,
+     "dm_p": 0.365002,
+     "signflip_p": 0.370117,
+     "n_cells": 20,
+     "n_clusters": 11,
+     "frac_cells_a_better": 0.55
+    },
+    "const": {
+     "mean_diff": -0.011543,
+     "ci_lo": -0.021496,
+     "ci_hi": -0.00094,
+     "dm_t": -2.149357,
+     "dm_p": 0.057126,
+     "signflip_p": 0.070312,
+     "n_cells": 20,
+     "n_clusters": 11,
+     "frac_cells_a_better": 0.75
+    },
+    "scalar": {
+     "mean_diff": 0.004176,
+     "ci_lo": -0.004278,
+     "ci_hi": 0.013132,
+     "dm_t": 0.909482,
+     "dm_p": 0.384492,
+     "signflip_p": 0.357422,
+     "n_cells": 20,
+     "n_clusters": 11,
+     "frac_cells_a_better": 0.4
+    }
+   },
+   "shipped_interval_coverage_of_race_rate": 0.8,
+   "shipped_multiples_used": {
+    "scaled": 3.0,
+    "unscaled": 5.0
+   },
+   "calibrated_multiple_95": {
+    "n": 20,
+    "multiple_for_level": 13.147881,
+    "cv_coverage_at_calibrated": 0.9,
+    "z_median": 1.168702
+   },
+   "calibrated_multiple_90": {
+    "n": 20,
+    "multiple_for_level": 8.039029,
+    "cv_coverage_at_calibrated": 0.85,
+    "z_median": 1.168702
+   },
+   "mean_interval_halfwidth_shipped": 0.138922,
+   "mean_abs_error": 0.060014,
+   "mean_shipped_multiple": 3.4,
+   "measured_interval_coverage_as_drawn": 0.238095,
+   "measured_interval_calibration_95": {
+    "n": 21,
+    "multiple_for_level": 10.905324,
+    "cv_coverage_at_calibrated": 0.904762,
+    "z_median": 2.604143
+   },
+   "measured_interval_empirical_95": {
+    "n": 21,
+    "multiple_for_level": 0.136562,
+    "cv_coverage_at_calibrated": 0.904762,
+    "z_median": 0.050813
+   }
+  },
+  "holdout": {
+   "n_hidden_cells_imputed": 70,
+   "n_total": 70,
+   "n_scaled_by_severity": 66,
+   "scoreboard_race_rate": {
+    "zero": {
+     "mae": 0.050184,
+     "rmse": 0.060878,
+     "spearman": null,
+     "mae_ci_lo": 0.041824,
+     "mae_ci_hi": 0.058953
+    },
+    "const": {
+     "mae": 0.030993,
+     "rmse": 0.038902,
+     "spearman": -0.719144,
+     "mae_ci_lo": 0.025414,
+     "mae_ci_hi": 0.037398
+    },
+    "pooled": {
+     "mae": 0.031923,
+     "rmse": 0.039036,
+     "spearman": -0.112437,
+     "mae_ci_lo": 0.02676,
+     "mae_ci_hi": 0.037699
+    },
+    "pooled_unscaled": {
+     "mae": 0.034257,
+     "rmse": 0.041855,
+     "spearman": -0.29203,
+     "mae_ci_lo": 0.028494,
+     "mae_ci_hi": 0.040622
+    },
+    "standin": {
+     "mae": 0.040299,
+     "rmse": 0.052146,
+     "spearman": 0.075776,
+     "mae_ci_lo": 0.032629,
+     "mae_ci_hi": 0.04896
+    },
+    "scalar": {
+     "mae": 0.037244,
+     "rmse": 0.047479,
+     "spearman": 0.238912,
+     "mae_ci_lo": 0.030857,
+     "mae_ci_hi": 0.04375
+    }
+   },
+   "standin_vs": {
+    "pooled": {
+     "mean_diff": 0.008377,
+     "ci_lo": 0.00109,
+     "ci_hi": 0.016043,
+     "dm_t": 2.174511,
+     "dm_p": 0.035215,
+     "signflip_p": 0.039848,
+     "n_cells": 70,
+     "n_clusters": 44,
+     "frac_cells_a_better": 0.442857
+    },
+    "zero": {
+     "mean_diff": -0.009884,
+     "ci_lo": -0.021417,
+     "ci_hi": 0.00179,
+     "dm_t": -1.648778,
+     "dm_p": 0.106481,
+     "signflip_p": 0.105795,
+     "n_cells": 70,
+     "n_clusters": 44,
+     "frac_cells_a_better": 0.671429
+    },
+    "const": {
+     "mean_diff": 0.009306,
+     "ci_lo": 0.00207,
+     "ci_hi": 0.017011,
+     "dm_t": 2.417197,
+     "dm_p": 0.019954,
+     "signflip_p": 0.021449,
+     "n_cells": 70,
+     "n_clusters": 44,
+     "frac_cells_a_better": 0.4
+    },
+    "scalar": {
+     "mean_diff": 0.003055,
+     "ci_lo": -0.004894,
+     "ci_hi": 0.010992,
+     "dm_t": 0.7578,
+     "dm_p": 0.452704,
+     "signflip_p": 0.456827,
+     "n_cells": 70,
+     "n_clusters": 44,
+     "frac_cells_a_better": 0.428571
+    }
+   },
+   "shipped_interval_coverage_of_race_rate": 0.971429,
+   "shipped_multiples_used": {
+    "scaled": 3.0,
+    "unscaled": 5.0
+   },
+   "calibrated_multiple_95": {
+    "n": 70,
+    "multiple_for_level": 2.480189,
+    "cv_coverage_at_calibrated": 0.942857,
+    "z_median": 0.839056
+   },
+   "calibrated_multiple_90": {
+    "n": 70,
+    "multiple_for_level": 2.061165,
+    "cv_coverage_at_calibrated": 0.871429,
+    "z_median": 0.839056
+   },
+   "mean_interval_halfwidth_shipped": 0.13484,
+   "mean_abs_error": 0.040299,
+   "mean_shipped_multiple": 3.114286,
+   "measured_interval_coverage_as_drawn": 0.428571,
+   "measured_interval_calibration_95": {
+    "n": 70,
+    "multiple_for_level": 3.703275,
+    "cv_coverage_at_calibrated": 0.942857,
+    "z_median": 1.141205
+   },
+   "measured_interval_empirical_95": {
+    "n": 70,
+    "multiple_for_level": 0.100731,
+    "cv_coverage_at_calibrated": 0.942857,
+    "z_median": 0.028768
+   }
+  }
+ },
+ "session_skill": {
+  "2026": {
+   "per_session": {
+    "FP1": {
+     "n_cells": 11,
+     "n_weekends": 7,
+     "median_laps": 28,
+     "pearson": 0.292857,
+     "pearson_ci": [
+      -0.624094,
+      0.790495
+     ],
+     "spearman": 0.245455,
+     "loeo_mae_scalar": 0.041992,
+     "loeo_mae_scalar_ci": [
+      0.026049,
+      0.056973
+     ],
+     "loeo_mae_naive": 0.082307
+    },
+    "FP2": {
+     "n_cells": 10,
+     "n_weekends": 7,
+     "median_laps": 41,
+     "pearson": 0.64586,
+     "pearson_ci": [
+      0.10282,
+      0.907921
+     ],
+     "spearman": 0.624242,
+     "loeo_mae_scalar": 0.061369,
+     "loeo_mae_scalar_ci": [
+      0.04349,
+      0.087601
+     ],
+     "loeo_mae_naive": 0.108116
+    },
+    "FP3": {
+     "n_cells": 2,
+     "n_weekends": 2,
+     "median_laps": 20,
+     "pearson": null,
+     "pearson_ci": [
+      null,
+      null
+     ],
+     "spearman": null,
+     "loeo_mae_scalar": 0.207067,
+     "loeo_mae_scalar_ci": [
+      0.203495,
+      0.210638
+     ],
+     "loeo_mae_naive": 0.207067
+    },
+    "S": {
+     "n_cells": 9,
+     "n_weekends": 4,
+     "median_laps": 58,
+     "pearson": 0.646911,
+     "pearson_ci": [
+      -0.207267,
+      0.977046
+     ],
+     "spearman": 0.55,
+     "loeo_mae_scalar": 0.049879,
+     "loeo_mae_scalar_ci": [
+      0.027571,
+      0.063344
+     ],
+     "loeo_mae_naive": 0.07637
+    }
+   },
+   "contrasts": {
+    "FP1-FP2": {
+     "n_common": 3
+    },
+    "FP1-FP3": {
+     "n_common": 0
+    },
+    "FP1-S": {
+     "n_common": 4
+    },
+    "FP2-FP3": {
+     "n_common": 1
+    },
+    "FP2-S": {
+     "n_common": 0
+    },
+    "FP3-S": {
+     "n_common": 0
+    }
+   }
+  },
+  "weights_2026": {
+   "FP2 heavy (shipped)": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.056068,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.056068,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ],
+    "signflip_p": 1.0,
+    "mae_common_all": 0.056068,
+    "n_common_all": 21
+   },
+   "equal": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.058491,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.058491,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.002423,
+    "diff_ci": [
+     0.000831,
+     0.004622
+    ],
+    "signflip_p": 0.000488,
+    "mae_common_all": 0.058491,
+    "n_common_all": 21
+   },
+   "FP1+FP2 equal": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.057522,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.057522,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.001454,
+    "diff_ci": [
+     0.000546,
+     0.002889
+    ],
+    "signflip_p": 0.001465,
+    "mae_common_all": 0.057522,
+    "n_common_all": 21
+   },
+   "FP1 heavy": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.058992,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.058992,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.002924,
+    "diff_ci": [
+     0.00129,
+     0.004993
+    ],
+    "signflip_p": 0.000977,
+    "mae_common_all": 0.058992,
+    "n_common_all": 21
+   },
+   "FP3 down only": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.056555,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.056555,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.000487,
+    "diff_ci": [
+     -0.001826,
+     0.002581
+    ],
+    "signflip_p": 0.69043,
+    "mae_common_all": 0.056555,
+    "n_common_all": 21
+   },
+   "sprint down": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.056093,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.056093,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 2.5e-05,
+    "diff_ci": [
+     -3e-06,
+     6.5e-05
+    ],
+    "signflip_p": 0.25,
+    "mae_common_all": 0.056093,
+    "n_common_all": 21
+   },
+   "sprint only": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.060194,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.060194,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.004126,
+    "diff_ci": [
+     -7e-06,
+     0.008426
+    ],
+    "signflip_p": 0.12793,
+    "mae_common_all": 0.060194,
+    "n_common_all": 21
+   }
+  },
+  "2022-2025": {
+   "per_session": {
+    "FP1": {
+     "n_cells": 44,
+     "n_weekends": 29,
+     "median_laps": 19,
+     "pearson": 0.17942,
+     "pearson_ci": [
+      -0.161567,
+      0.500177
+     ],
+     "spearman": 0.212967,
+     "loeo_mae_scalar": 0.044376,
+     "loeo_mae_scalar_ci": [
+      0.033575,
+      0.056725
+     ],
+     "loeo_mae_naive": 0.139361
+    },
+    "FP2": {
+     "n_cells": 49,
+     "n_weekends": 35,
+     "median_laps": 30,
+     "pearson": 0.23859,
+     "pearson_ci": [
+      -0.080949,
+      0.519533
+     ],
+     "spearman": 0.334388,
+     "loeo_mae_scalar": 0.03763,
+     "loeo_mae_scalar_ci": [
+      0.030456,
+      0.046138
+     ],
+     "loeo_mae_naive": 0.113002
+    },
+    "FP3": {
+     "n_cells": 16,
+     "n_weekends": 12,
+     "median_laps": 21,
+     "pearson": 0.268902,
+     "pearson_ci": [
+      -0.277071,
+      0.746166
+     ],
+     "spearman": 0.232353,
+     "loeo_mae_scalar": 0.041999,
+     "loeo_mae_scalar_ci": [
+      0.027713,
+      0.055847
+     ],
+     "loeo_mae_naive": 0.140063
+    }
+   },
+   "contrasts": {
+    "FP1-FP2": {
+     "n_common": 25,
+     "n_weekends": 18,
+     "rho_a": 0.09116,
+     "rho_b": 0.203711,
+     "rho_diff": -0.112551,
+     "rho_diff_ci": [
+      -0.394789,
+      0.186318
+     ],
+     "mae_diff_a_minus_b": 0.001895,
+     "mae_diff_ci": [
+      -0.009003,
+      0.012892
+     ],
+     "mae_diff_signflip_p": 0.746813
+    },
+    "FP1-FP3": {
+     "n_common": 6,
+     "n_weekends": 5,
+     "rho_a": 0.823031,
+     "rho_b": 0.898832,
+     "rho_diff": -0.075801,
+     "rho_diff_ci": [
+      -1.465064,
+      0.091007
+     ],
+     "mae_diff_a_minus_b": 0.007055,
+     "mae_diff_ci": [
+      -0.010446,
+      0.033962
+     ],
+     "mae_diff_signflip_p": 0.625
+    },
+    "FP2-FP3": {
+     "n_common": 4
+    }
+   }
+  },
+  "2022-2025_by_season": {
+   "2022": {
+    "FP1": {
+     "n_cells": 12,
+     "n_weekends": 6,
+     "median_laps": 18,
+     "pearson": -0.1054,
+     "pearson_ci": [
+      -0.791098,
+      0.692617
+     ],
+     "spearman": -0.097902,
+     "loeo_mae_scalar": 0.070822,
+     "loeo_mae_scalar_ci": [
+      0.042772,
+      0.120662
+     ],
+     "loeo_mae_naive": 0.188353
+    },
+    "FP2": {
+     "n_cells": 14,
+     "n_weekends": 9,
+     "median_laps": 36,
+     "pearson": 0.012342,
+     "pearson_ci": [
+      -0.725377,
+      0.849779
+     ],
+     "spearman": 0.178022,
+     "loeo_mae_scalar": 0.054054,
+     "loeo_mae_scalar_ci": [
+      0.033575,
+      0.072868
+     ],
+     "loeo_mae_naive": 0.11403
+    },
+    "FP3": {
+     "n_cells": 7,
+     "n_weekends": 5,
+     "median_laps": 17,
+     "pearson": 0.769893,
+     "pearson_ci": [
+      -0.238492,
+      1.0
+     ],
+     "spearman": 0.785714,
+     "loeo_mae_scalar": 0.031894,
+     "loeo_mae_scalar_ci": [
+      0.019084,
+      0.042384
+     ],
+     "loeo_mae_naive": 0.139218
+    }
+   },
+   "2023": {
+    "FP1": {
+     "n_cells": 10,
+     "n_weekends": 8,
+     "median_laps": 17,
+     "pearson": 0.416994,
+     "pearson_ci": [
+      0.018041,
+      0.775887
+     ],
+     "spearman": 0.393939,
+     "loeo_mae_scalar": 0.048026,
+     "loeo_mae_scalar_ci": [
+      0.026294,
+      0.077668
+     ],
+     "loeo_mae_naive": 0.108847
+    },
+    "FP2": {
+     "n_cells": 13,
+     "n_weekends": 11,
+     "median_laps": 23,
+     "pearson": 0.281833,
+     "pearson_ci": [
+      -0.179081,
+      0.833373
+     ],
+     "spearman": 0.489011,
+     "loeo_mae_scalar": 0.03652,
+     "loeo_mae_scalar_ci": [
+      0.024239,
+      0.050318
+     ],
+     "loeo_mae_naive": 0.110918
+    },
+    "FP3": {
+     "n_cells": 2,
+     "n_weekends": 2,
+     "median_laps": 31,
+     "pearson": null,
+     "pearson_ci": [
+      null,
+      null
+     ],
+     "spearman": null,
+     "loeo_mae_scalar": 0.026313,
+     "loeo_mae_scalar_ci": [
+      0.026034,
+      0.026591
+     ],
+     "loeo_mae_naive": 0.026313
+    }
+   },
+   "2024": {
+    "FP1": {
+     "n_cells": 11,
+     "n_weekends": 7,
+     "median_laps": 22,
+     "pearson": 0.534218,
+     "pearson_ci": [
+      -0.07886,
+      0.971202
+     ],
+     "spearman": 0.427273,
+     "loeo_mae_scalar": 0.029942,
+     "loeo_mae_scalar_ci": [
+      0.014083,
+      0.049175
+     ],
+     "loeo_mae_naive": 0.157246
+    },
+    "FP2": {
+     "n_cells": 13,
+     "n_weekends": 8,
+     "median_laps": 30,
+     "pearson": 0.596403,
+     "pearson_ci": [
+      -0.208384,
+      0.852695
+     ],
+     "spearman": 0.675824,
+     "loeo_mae_scalar": 0.032768,
+     "loeo_mae_scalar_ci": [
+      0.023796,
+      0.042077
+     ],
+     "loeo_mae_naive": 0.1162
+    },
+    "FP3": {
+     "n_cells": 5,
+     "n_weekends": 3,
+     "median_laps": 31,
+     "pearson": -0.427413,
+     "pearson_ci": [
+      -1.0,
+      -0.209268
+     ],
+     "spearman": -0.5,
+     "loeo_mae_scalar": 0.0787,
+     "loeo_mae_scalar_ci": [
+      0.044128,
+      0.08976
+     ],
+     "loeo_mae_naive": 0.185013
+    }
+   },
+   "2025": {
+    "FP1": {
+     "n_cells": 11,
+     "n_weekends": 8,
+     "median_laps": 24,
+     "pearson": -0.012787,
+     "pearson_ci": [
+      -0.917357,
+      0.644675
+     ],
+     "spearman": -0.363636,
+     "loeo_mae_scalar": 0.041357,
+     "loeo_mae_scalar_ci": [
+      0.026698,
+      0.060336
+     ],
+     "loeo_mae_naive": 0.095771
+    },
+    "FP2": {
+     "n_cells": 9,
+     "n_weekends": 7,
+     "median_laps": 31,
+     "pearson": 0.054652,
+     "pearson_ci": [
+      -0.831292,
+      0.338147
+     ],
+     "spearman": 0.183333,
+     "loeo_mae_scalar": 0.040795,
+     "loeo_mae_scalar_ci": [
+      0.027275,
+      0.057985
+     ],
+     "loeo_mae_naive": 0.109792
+    },
+    "FP3": {
+     "n_cells": 2,
+     "n_weekends": 2,
+     "median_laps": 24,
+     "pearson": null,
+     "pearson_ci": [
+      null,
+      null
+     ],
+     "spearman": null,
+     "loeo_mae_scalar": 0.144394,
+     "loeo_mae_scalar_ci": [
+      0.088952,
+      0.199836
+     ],
+     "loeo_mae_naive": 0.144394
+    }
+   }
+  },
+  "weights_2022-2025": {
+   "FP2 heavy (shipped)": {
+    "n_cells_own": 70,
+    "n_weekends_own": 44,
+    "mae_own": 0.037244,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.037244,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ],
+    "signflip_p": 1.0,
+    "mae_common_all": 0.037244,
+    "n_common_all": 70
+   },
+   "equal": {
+    "n_cells_own": 70,
+    "n_weekends_own": 44,
+    "mae_own": 0.036539,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.036539,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.000705,
+    "diff_ci": [
+     -0.001796,
+     0.000527
+    ],
+    "signflip_p": 0.267137,
+    "mae_common_all": 0.036539,
+    "n_common_all": 70
+   },
+   "FP1+FP2 equal": {
+    "n_cells_own": 70,
+    "n_weekends_own": 44,
+    "mae_own": 0.036682,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.036682,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.000562,
+    "diff_ci": [
+     -0.001752,
+     0.00083
+    ],
+    "signflip_p": 0.419129,
+    "mae_common_all": 0.036682,
+    "n_common_all": 70
+   },
+   "FP1 heavy": {
+    "n_cells_own": 70,
+    "n_weekends_own": 44,
+    "mae_own": 0.035999,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.035999,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.001245,
+    "diff_ci": [
+     -0.003031,
+     0.000813
+    ],
+    "signflip_p": 0.235338,
+    "mae_common_all": 0.035999,
+    "n_common_all": 70
+   },
+   "FP3 down only": {
+    "n_cells_own": 70,
+    "n_weekends_own": 44,
+    "mae_own": 0.036771,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.036771,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.000473,
+    "diff_ci": [
+     -0.001866,
+     0.001127
+    ],
+    "signflip_p": 0.553122,
+    "mae_common_all": 0.036771,
+    "n_common_all": 70
+   }
+  },
+  "weights_2022-2025_note": "the two sprint schemes are omitted: 2022-2025 data contain no Sprint sessions, so they are identical to shipped / the FP1-down variant there"
+ },
+ "design_sweep": {
+  "parity": {
+   "shipped_laps": 2815,
+   "rebuilt_laps": 2815,
+   "identical": true,
+   "legacy_laps": 2339,
+   "cause_of_old_mismatch": "old build() default was the pre-keep-runs pipeline (== legacy variant), not the shipped one"
+  },
+  "2026": {
+   "legacy": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.072549,
+    "n_common_with_shipped": 19,
+    "mae_on_common": 0.07036,
+    "mae_shipped_on_common": 0.057711,
+    "diff_vs_shipped": 0.012649,
+    "diff_ci": [
+     -0.001651,
+     0.026307
+    ],
+    "signflip_p": 0.145508,
+    "mae_common_all": 0.058055,
+    "n_common_all": 12
+   },
+   "keep-runs": {
+    "n_cells_own": 28,
+    "n_weekends_own": 13,
+    "mae_own": 0.068519,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.071455,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.015387,
+    "diff_ci": [
+     0.00013,
+     0.031634
+    ],
+    "signflip_p": 0.123047,
+    "mae_common_all": 0.063463,
+    "n_common_all": 12
+   },
+   "warmup1": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.054301,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.054301,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": -0.001767,
+    "diff_ci": [
+     -0.005646,
+     0.000606
+    ],
+    "signflip_p": 0.5,
+    "mae_common_all": 0.045932,
+    "n_common_all": 12
+   },
+   "warmup2": {
+    "n_cells_own": 16,
+    "n_weekends_own": 9,
+    "mae_own": 0.050208,
+    "n_common_with_shipped": 16,
+    "mae_on_common": 0.050208,
+    "mae_shipped_on_common": 0.047764,
+    "diff_vs_shipped": 0.002443,
+    "diff_ci": [
+     -0.008269,
+     0.014009
+    ],
+    "signflip_p": 0.738281,
+    "mae_common_all": 0.050852,
+    "n_common_all": 12
+   },
+   "warmup3": {
+    "n_cells_own": 13,
+    "n_weekends_own": 8,
+    "mae_own": 0.053587,
+    "n_common_with_shipped": 13,
+    "mae_on_common": 0.053587,
+    "mae_shipped_on_common": 0.045913,
+    "diff_vs_shipped": 0.007674,
+    "diff_ci": [
+     -0.002577,
+     0.018094
+    ],
+    "signflip_p": 0.21875,
+    "mae_common_all": 0.055122,
+    "n_common_all": 12
+   },
+   "warmup1-min4": {
+    "n_cells_own": 28,
+    "n_weekends_own": 13,
+    "mae_own": 0.066099,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.068631,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.012563,
+    "diff_ci": [
+     0.002417,
+     0.023933
+    ],
+    "signflip_p": 0.058594,
+    "mae_common_all": 0.059189,
+    "n_common_all": 12
+   },
+   "warmup1-min6": {
+    "n_cells_own": 17,
+    "n_weekends_own": 10,
+    "mae_own": 0.045467,
+    "n_common_with_shipped": 17,
+    "mae_on_common": 0.045467,
+    "mae_shipped_on_common": 0.048524,
+    "diff_vs_shipped": -0.003057,
+    "diff_ci": [
+     -0.007449,
+     0.000287
+    ],
+    "signflip_p": 0.201172,
+    "mae_common_all": 0.042416,
+    "n_common_all": 12
+   },
+   "warmup1-noshape": {
+    "n_cells_own": 22,
+    "n_weekends_own": 12,
+    "mae_own": 0.062797,
+    "n_common_with_shipped": 19,
+    "mae_on_common": 0.067039,
+    "mae_shipped_on_common": 0.057711,
+    "diff_vs_shipped": 0.009329,
+    "diff_ci": [
+     -0.000258,
+     0.020083
+    ],
+    "signflip_p": 0.137695,
+    "mae_common_all": 0.055274,
+    "n_common_all": 12
+   },
+   "warmup1-gap1": {
+    "n_cells_own": 20,
+    "n_weekends_own": 12,
+    "mae_own": 0.06228,
+    "n_common_with_shipped": 20,
+    "mae_on_common": 0.06228,
+    "mae_shipped_on_common": 0.057366,
+    "diff_vs_shipped": 0.004914,
+    "diff_ci": [
+     -0.002105,
+     0.011152
+    ],
+    "signflip_p": 0.265625,
+    "mae_common_all": 0.053641,
+    "n_common_all": 12
+   },
+   "warmup1-gap2": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.056068,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.056068,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ],
+    "signflip_p": 1.0,
+    "mae_common_all": 0.045505,
+    "n_common_all": 12
+   },
+   "warmup1-gap4": {
+    "n_cells_own": 21,
+    "n_weekends_own": 12,
+    "mae_own": 0.054301,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.054301,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": -0.001767,
+    "diff_ci": [
+     -0.005646,
+     0.000606
+    ],
+    "signflip_p": 0.5,
+    "mae_common_all": 0.045932,
+    "n_common_all": 12
+   },
+   "all-runs": {
+    "n_cells_own": 28,
+    "n_weekends_own": 13,
+    "mae_own": 0.069061,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.073839,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.017771,
+    "diff_ci": [
+     -6.6e-05,
+     0.036112
+    ],
+    "signflip_p": 0.121094,
+    "mae_common_all": 0.066107,
+    "n_common_all": 12
+   },
+   "min4": {
+    "n_cells_own": 28,
+    "n_weekends_own": 13,
+    "mae_own": 0.063516,
+    "n_common_with_shipped": 21,
+    "mae_on_common": 0.066701,
+    "mae_shipped_on_common": 0.056068,
+    "diff_vs_shipped": 0.010633,
+    "diff_ci": [
+     -0.002447,
+     0.025047
+    ],
+    "signflip_p": 0.193359,
+    "mae_common_all": 0.057105,
+    "n_common_all": 12
+   }
+  },
+  "2022-2025": {
+   "legacy": {
+    "n_cells_own": 63,
+    "n_weekends_own": 42,
+    "mae_own": 0.03416,
+    "n_common_with_shipped": 56,
+    "mae_on_common": 0.034512,
+    "mae_shipped_on_common": 0.03712,
+    "diff_vs_shipped": -0.002608,
+    "diff_ci": [
+     -0.005742,
+     0.000428
+    ],
+    "signflip_p": 0.109695,
+    "mae_common_all": 0.033991,
+    "n_common_all": 24
+   },
+   "keep-runs": {
+    "n_cells_own": 88,
+    "n_weekends_own": 52,
+    "mae_own": 0.036479,
+    "n_common_with_shipped": 69,
+    "mae_on_common": 0.032851,
+    "mae_shipped_on_common": 0.037652,
+    "diff_vs_shipped": -0.0048,
+    "diff_ci": [
+     -0.007554,
+     -0.002106
+    ],
+    "signflip_p": 0.00125,
+    "mae_common_all": 0.030069,
+    "n_common_all": 24
+   },
+   "warmup1": {
+    "n_cells_own": 71,
+    "n_weekends_own": 45,
+    "mae_own": 0.037217,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.037092,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.000152,
+    "diff_ci": [
+     -0.00085,
+     0.0005
+    ],
+    "signflip_p": 0.681266,
+    "mae_common_all": 0.034049,
+    "n_common_all": 24
+   },
+   "warmup2": {
+    "n_cells_own": 42,
+    "n_weekends_own": 32,
+    "mae_own": 0.033446,
+    "n_common_with_shipped": 42,
+    "mae_on_common": 0.033446,
+    "mae_shipped_on_common": 0.032291,
+    "diff_vs_shipped": 0.001155,
+    "diff_ci": [
+     -0.002751,
+     0.00508
+    ],
+    "signflip_p": 0.573721,
+    "mae_common_all": 0.034805,
+    "n_common_all": 24
+   },
+   "warmup3": {
+    "n_cells_own": 25,
+    "n_weekends_own": 20,
+    "mae_own": 0.041969,
+    "n_common_with_shipped": 25,
+    "mae_on_common": 0.041969,
+    "mae_shipped_on_common": 0.03507,
+    "diff_vs_shipped": 0.006899,
+    "diff_ci": [
+     0.000718,
+     0.012887
+    ],
+    "signflip_p": 0.053997,
+    "mae_common_all": 0.040645,
+    "n_common_all": 24
+   },
+   "warmup1-min4": {
+    "n_cells_own": 82,
+    "n_weekends_own": 50,
+    "mae_own": 0.037333,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.034083,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.003161,
+    "diff_ci": [
+     -0.006153,
+     -0.00056
+    ],
+    "signflip_p": 0.026399,
+    "mae_common_all": 0.032729,
+    "n_common_all": 24
+   },
+   "warmup1-min6": {
+    "n_cells_own": 49,
+    "n_weekends_own": 35,
+    "mae_own": 0.032427,
+    "n_common_with_shipped": 49,
+    "mae_on_common": 0.032427,
+    "mae_shipped_on_common": 0.033887,
+    "diff_vs_shipped": -0.001459,
+    "diff_ci": [
+     -0.003614,
+     0.000598
+    ],
+    "signflip_p": 0.182141,
+    "mae_common_all": 0.031019,
+    "n_common_all": 24
+   },
+   "warmup1-noshape": {
+    "n_cells_own": 59,
+    "n_weekends_own": 40,
+    "mae_own": 0.038108,
+    "n_common_with_shipped": 55,
+    "mae_on_common": 0.037193,
+    "mae_shipped_on_common": 0.037579,
+    "diff_vs_shipped": -0.000387,
+    "diff_ci": [
+     -0.005481,
+     0.004189
+    ],
+    "signflip_p": 0.877756,
+    "mae_common_all": 0.036623,
+    "n_common_all": 24
+   },
+   "warmup1-gap1": {
+    "n_cells_own": 68,
+    "n_weekends_own": 44,
+    "mae_own": 0.035094,
+    "n_common_with_shipped": 68,
+    "mae_on_common": 0.035094,
+    "mae_shipped_on_common": 0.036311,
+    "diff_vs_shipped": -0.001217,
+    "diff_ci": [
+     -0.002244,
+     -0.000347
+    ],
+    "signflip_p": 0.011249,
+    "mae_common_all": 0.032755,
+    "n_common_all": 24
+   },
+   "warmup1-gap2": {
+    "n_cells_own": 70,
+    "n_weekends_own": 44,
+    "mae_own": 0.037244,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.037244,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": 0.0,
+    "diff_ci": [
+     0.0,
+     0.0
+    ],
+    "signflip_p": 1.0,
+    "mae_common_all": 0.033749,
+    "n_common_all": 24
+   },
+   "warmup1-gap4": {
+    "n_cells_own": 71,
+    "n_weekends_own": 45,
+    "mae_own": 0.037217,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.037092,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.000152,
+    "diff_ci": [
+     -0.00085,
+     0.0005
+    ],
+    "signflip_p": 0.681266,
+    "mae_common_all": 0.034049,
+    "n_common_all": 24
+   },
+   "all-runs": {
+    "n_cells_own": 96,
+    "n_weekends_own": 53,
+    "mae_own": 0.040301,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.036911,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": -0.000333,
+    "diff_ci": [
+     -0.003748,
+     0.002986
+    ],
+    "signflip_p": 0.850157,
+    "mae_common_all": 0.034172,
+    "n_common_all": 24
+   },
+   "min4": {
+    "n_cells_own": 101,
+    "n_weekends_own": 55,
+    "mae_own": 0.043276,
+    "n_common_with_shipped": 70,
+    "mae_on_common": 0.037314,
+    "mae_shipped_on_common": 0.037244,
+    "diff_vs_shipped": 7e-05,
+    "diff_ci": [
+     -0.003703,
+     0.003711
+    ],
+    "signflip_p": 0.970201,
+    "mae_common_all": 0.0355,
+    "n_common_all": 24
+   }
+  }
+ },
+ "cells_2026_loeo": [
+  {
+   "event": "Australian Grand Prix",
+   "season": 2026,
+   "C": "C4",
+   "label": "MEDIUM",
+   "practice_rate": 0.228,
+   "se_p": 0.054722,
+   "n_runs_p": 4,
+   "race_rate": 0.02632,
+   "n_runs_r": 20,
+   "hist_rate": null,
+   "factor_used": 0.362988,
+   "pred_scalar": 0.082761,
+   "pred_naive": 0.228,
+   "pred_pooled": 0.036987
+  },
+  {
+   "event": "Austrian Grand Prix",
+   "season": 2026,
+   "C": "C3",
+   "label": "HARD",
+   "practice_rate": 0.240089,
+   "se_p": 0.065218,
+   "n_runs_p": 4,
+   "race_rate": 0.083889,
+   "n_runs_r": 34,
+   "hist_rate": 0.051147,
+   "factor_used": 0.348774,
+   "pred_scalar": 0.083737,
+   "pred_naive": 0.240089,
+   "pred_pooled": 0.065178
+  },
+  {
+   "event": "Austrian Grand Prix",
+   "season": 2026,
+   "C": "C4",
+   "label": "MEDIUM",
+   "practice_rate": 0.1868,
+   "se_p": 0.024005,
+   "n_runs_p": 8,
+   "race_rate": 0.085466,
+   "n_runs_r": 30,
+   "hist_rate": 0.066766,
+   "factor_used": 0.348774,
+   "pred_scalar": 0.065151,
+   "pred_naive": 0.1868,
+   "pred_pooled": 0.017911
+  },
+  {
+   "event": "Barcelona Grand Prix",
+   "season": 2026,
+   "C": "C3",
+   "label": "MEDIUM",
+   "practice_rate": 0.235712,
+   "se_p": 0.049646,
+   "n_runs_p": 10,
+   "race_rate": 0.218847,
+   "n_runs_r": 18,
+   "hist_rate": 0.067118,
+   "factor_used": 0.34909,
+   "pred_scalar": 0.082285,
+   "pred_naive": 0.235712,
+   "pred_pooled": 0.065178
+  },
+  {
+   "event": "Belgian Grand Prix",
+   "season": 2026,
+   "C": "C4",
+   "label": "SOFT",
+   "practice_rate": 0.025427,
+   "se_p": 0.080064,
+   "n_runs_p": 4,
+   "race_rate": -0.185211,
+   "n_runs_r": 3,
+   "hist_rate": 0.099035,
+   "factor_used": 0.362988,
+   "pred_scalar": 0.00923,
+   "pred_naive": 0.025427,
+   "pred_pooled": 0.045395
+  },
+  {
+   "event": "Canadian Grand Prix",
+   "season": 2026,
+   "C": "C4",
+   "label": "MEDIUM",
+   "practice_rate": 0.021712,
+   "se_p": 0.009771,
+   "n_runs_p": 31,
+   "race_rate": -0.051635,
+   "n_runs_r": 65,
+   "hist_rate": 0.008425,
+   "factor_used": 0.376571,
+   "pred_scalar": 0.008176,
+   "pred_naive": 0.021712,
+   "pred_pooled": 0.045395
+  },
+  {
+   "event": "Canadian Grand Prix",
+   "season": 2026,
+   "C": "C5",
+   "label": "SOFT",
+   "practice_rate": 0.012352,
+   "se_p": 0.02696,
+   "n_runs_p": 8,
+   "race_rate": -0.064875,
+   "n_runs_r": 40,
+   "hist_rate": null,
+   "factor_used": 0.376571,
+   "pred_scalar": 0.004651,
+   "pred_naive": 0.012352,
+   "pred_pooled": 0.011818
+  },
+  {
+   "event": "Chinese Grand Prix",
+   "season": 2026,
+   "C": "C2",
+   "label": "HARD",
+   "practice_rate": 0.071769,
+   "se_p": 0.043269,
+   "n_runs_p": 3,
+   "race_rate": 0.031951,
+   "n_runs_r": 42,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.025076,
+   "pred_naive": 0.071769,
+   "pred_pooled": 0.075937
+  },
+  {
+   "event": "Chinese Grand Prix",
+   "season": 2026,
+   "C": "C3",
+   "label": "MEDIUM",
+   "practice_rate": 0.149795,
+   "se_p": 0.022328,
+   "n_runs_p": 26,
+   "race_rate": 0.01252,
+   "n_runs_r": 14,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.052339,
+   "pred_naive": 0.149795,
+   "pred_pooled": 0.079303
+  },
+  {
+   "event": "Dutch Grand Prix",
+   "season": 2026,
+   "C": "C2",
+   "label": "HARD",
+   "practice_rate": 0.041997,
+   "se_p": 0.137678,
+   "n_runs_p": 4,
+   "race_rate": 0.075937,
+   "n_runs_r": 33,
+   "hist_rate": 0.050711,
+   "factor_used": 0.348774,
+   "pred_scalar": 0.014647,
+   "pred_naive": 0.041997,
+   "pred_pooled": 0.031951
+  },
+  {
+   "event": "Dutch Grand Prix",
+   "season": 2026,
+   "C": "C3",
+   "label": "MEDIUM",
+   "practice_rate": 0.117264,
+   "se_p": 0.004537,
+   "n_runs_p": 22,
+   "race_rate": 0.074718,
+   "n_runs_r": 13,
+   "hist_rate": 0.002238,
+   "factor_used": 0.348774,
+   "pred_scalar": 0.040899,
+   "pred_naive": 0.117264,
+   "pred_pooled": 0.069763
+  },
+  {
+   "event": "Hungarian Grand Prix",
+   "season": 2026,
+   "C": "C3",
+   "label": "HARD",
+   "practice_rate": 0.136585,
+   "se_p": 0.016084,
+   "n_runs_p": 5,
+   "race_rate": 0.103685,
+   "n_runs_r": 46,
+   "hist_rate": 0.058639,
+   "factor_used": 0.232421,
+   "pred_scalar": 0.031745,
+   "pred_naive": 0.136585,
+   "pred_pooled": 0.065178
+  },
+  {
+   "event": "Hungarian Grand Prix",
+   "season": 2026,
+   "C": "C4",
+   "label": "MEDIUM",
+   "practice_rate": 0.184851,
+   "se_p": 0.036937,
+   "n_runs_p": 12,
+   "race_rate": 0.064471,
+   "n_runs_r": 20,
+   "hist_rate": 0.048637,
+   "factor_used": 0.232421,
+   "pred_scalar": 0.042963,
+   "pred_naive": 0.184851,
+   "pred_pooled": 0.017911
+  },
+  {
+   "event": "Hungarian Grand Prix",
+   "season": 2026,
+   "C": "C5",
+   "label": "SOFT",
+   "practice_rate": 0.115902,
+   "se_p": 0.086707,
+   "n_runs_p": 6,
+   "race_rate": 0.06729,
+   "n_runs_r": 25,
+   "hist_rate": 0.053008,
+   "factor_used": 0.232421,
+   "pred_scalar": 0.026938,
+   "pred_naive": 0.115902,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "Italian Grand Prix",
+   "season": 2026,
+   "C": "C4",
+   "label": "MEDIUM",
+   "practice_rate": 0.025234,
+   "se_p": 0.02143,
+   "n_runs_p": 5,
+   "race_rate": 0.009503,
+   "n_runs_r": 16,
+   "hist_rate": 0.001461,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.008817,
+   "pred_naive": 0.025234,
+   "pred_pooled": 0.045395
+  },
+  {
+   "event": "Italian Grand Prix",
+   "season": 2026,
+   "C": "C5",
+   "label": "SOFT",
+   "practice_rate": 0.140587,
+   "se_p": 0.040315,
+   "n_runs_p": 6,
+   "race_rate": -0.082326,
+   "n_runs_r": 4,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.049122,
+   "pred_naive": 0.140587,
+   "pred_pooled": 0.011818
+  },
+  {
+   "event": "Japanese Grand Prix",
+   "season": 2026,
+   "C": "C1",
+   "label": "HARD",
+   "practice_rate": 0.0319,
+   "se_p": 0.022091,
+   "n_runs_p": 6,
+   "race_rate": -0.049092,
+   "n_runs_r": 19,
+   "hist_rate": 0.041324,
+   "factor_used": 0.362988,
+   "pred_scalar": 0.011579,
+   "pred_naive": 0.0319,
+   "pred_pooled": 0.043794
+  },
+  {
+   "event": "Miami Grand Prix",
+   "season": 2026,
+   "C": "C3",
+   "label": "HARD",
+   "practice_rate": 0.094051,
+   "se_p": 0.013792,
+   "n_runs_p": 17,
+   "race_rate": 0.005646,
+   "n_runs_r": 30,
+   "hist_rate": 0.033447,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.032862,
+   "pred_naive": 0.094051,
+   "pred_pooled": 0.079303
+  },
+  {
+   "event": "Miami Grand Prix",
+   "season": 2026,
+   "C": "C4",
+   "label": "MEDIUM",
+   "practice_rate": 0.064516,
+   "se_p": 0.008011,
+   "n_runs_p": 20,
+   "race_rate": 0.086173,
+   "n_runs_r": 17,
+   "hist_rate": 0.026309,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.022542,
+   "pred_naive": 0.064516,
+   "pred_pooled": 0.017911
+  },
+  {
+   "event": "Monaco Grand Prix",
+   "season": 2026,
+   "C": "C3",
+   "label": "HARD",
+   "practice_rate": 0.013808,
+   "se_p": 0.053073,
+   "n_runs_p": 6,
+   "race_rate": 0.055637,
+   "n_runs_r": 12,
+   "hist_rate": 0.040056,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.004824,
+   "pred_naive": 0.013808,
+   "pred_pooled": 0.079303
+  },
+  {
+   "event": "Monaco Grand Prix",
+   "season": 2026,
+   "C": "C5",
+   "label": "SOFT",
+   "practice_rate": -0.052356,
+   "se_p": 0.092702,
+   "n_runs_p": 5,
+   "race_rate": 0.011818,
+   "n_runs_r": 19,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": -0.018294,
+   "pred_naive": -0.052356,
+   "pred_pooled": -0.064875
+  }
+ ],
+ "cells_holdout_frozen": [
+  {
+   "event": "2022 Abu Dhabi Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.17314,
+   "se_p": 0.028674,
+   "n_runs_p": 6,
+   "race_rate": 0.062199,
+   "n_runs_r": 30,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.060496,
+   "pred_naive": 0.17314,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2022 Abu Dhabi Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.254027,
+   "se_p": 0.048186,
+   "n_runs_p": 7,
+   "race_rate": 0.037712,
+   "n_runs_r": 27,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.088758,
+   "pred_naive": 0.254027,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Abu Dhabi Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.343901,
+   "se_p": 0.056669,
+   "n_runs_p": 5,
+   "race_rate": 0.005921,
+   "n_runs_r": 3,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.120161,
+   "pred_naive": 0.343901,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2022 Bahrain Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.18343,
+   "se_p": 0.036207,
+   "n_runs_p": 12,
+   "race_rate": 0.181303,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.064092,
+   "pred_naive": 0.18343,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Bahrain Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.130082,
+   "se_p": 0.018478,
+   "n_runs_p": 6,
+   "race_rate": -0.000209,
+   "n_runs_r": 47,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.045451,
+   "pred_naive": 0.130082,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2022 Belgian Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.2271,
+   "se_p": 0.096723,
+   "n_runs_p": 5,
+   "race_rate": 0.094905,
+   "n_runs_r": 6,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.07935,
+   "pred_naive": 0.2271,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2022 British Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.038346,
+   "se_p": 0.029371,
+   "n_runs_p": 5,
+   "race_rate": -0.006424,
+   "n_runs_r": 10,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.013398,
+   "pred_naive": 0.038346,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2022 British Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.093888,
+   "se_p": 0.077124,
+   "n_runs_p": 4,
+   "race_rate": -0.016592,
+   "n_runs_r": 28,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.032805,
+   "pred_naive": 0.093888,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Canadian Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.103447,
+   "se_p": 0.071986,
+   "n_runs_p": 3,
+   "race_rate": 0.034799,
+   "n_runs_r": 47,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.036145,
+   "pred_naive": 0.103447,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2022 Dutch Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.117819,
+   "se_p": 0.04972,
+   "n_runs_p": 3,
+   "race_rate": 0.029037,
+   "n_runs_r": 14,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.041167,
+   "pred_naive": 0.117819,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2022 Dutch Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.294816,
+   "se_p": 0.12021,
+   "n_runs_p": 3,
+   "race_rate": 0.006948,
+   "n_runs_r": 22,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.10301,
+   "pred_naive": 0.294816,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Dutch Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.109527,
+   "se_p": 0.01649,
+   "n_runs_p": 13,
+   "race_rate": 0.031278,
+   "n_runs_r": 34,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.038269,
+   "pred_naive": 0.109527,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2022 French Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.123458,
+   "se_p": 0.033212,
+   "n_runs_p": 7,
+   "race_rate": 0.072695,
+   "n_runs_r": 22,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.043137,
+   "pred_naive": 0.123458,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Hungarian Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.166072,
+   "se_p": 0.022049,
+   "n_runs_p": 9,
+   "race_rate": 0.075283,
+   "n_runs_r": 43,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.058027,
+   "pred_naive": 0.166072,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Italian Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.144636,
+   "se_p": 0.062046,
+   "n_runs_p": 5,
+   "race_rate": 0.023042,
+   "n_runs_r": 10,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": -0.050537,
+   "pred_naive": -0.144636,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2022 Italian Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.101171,
+   "se_p": 0.045106,
+   "n_runs_p": 6,
+   "race_rate": 0.060935,
+   "n_runs_r": 30,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.03535,
+   "pred_naive": 0.101171,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Mexico City Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.103395,
+   "se_p": 0.033083,
+   "n_runs_p": 5,
+   "race_rate": 0.032042,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.036127,
+   "pred_naive": 0.103395,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Mexico City Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.114121,
+   "se_p": 0.108014,
+   "n_runs_p": 3,
+   "race_rate": 0.001528,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.039875,
+   "pred_naive": 0.114121,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2022 Singapore Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.273971,
+   "se_p": 0.135157,
+   "n_runs_p": 4,
+   "race_rate": -0.035497,
+   "n_runs_r": 6,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.095727,
+   "pred_naive": 0.273971,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2022 Spanish Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.213333,
+   "se_p": 0.033246,
+   "n_runs_p": 12,
+   "race_rate": 0.103811,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.07454,
+   "pred_naive": 0.213333,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2022 Spanish Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.184866,
+   "se_p": 0.030649,
+   "n_runs_p": 8,
+   "race_rate": 0.085985,
+   "n_runs_r": 47,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.064593,
+   "pred_naive": 0.184866,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2022 United States Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.03081,
+   "se_p": 0.192893,
+   "n_runs_p": 5,
+   "race_rate": 0.111195,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.010765,
+   "pred_naive": 0.03081,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Abu Dhabi Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.087058,
+   "se_p": 0.015116,
+   "n_runs_p": 4,
+   "race_rate": 0.042044,
+   "n_runs_r": 19,
+   "hist_rate": 0.037712,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.030419,
+   "pred_naive": 0.087058,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Bahrain Grand Prix",
+   "season": 2023,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.211305,
+   "se_p": 0.026452,
+   "n_runs_p": 19,
+   "race_rate": 0.04393,
+   "n_runs_r": 34,
+   "hist_rate": -0.000209,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.073831,
+   "pred_naive": 0.211305,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2023 British Grand Prix",
+   "season": 2023,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.068683,
+   "se_p": 0.030921,
+   "n_runs_p": 3,
+   "race_rate": 0.010233,
+   "n_runs_r": 8,
+   "hist_rate": -0.006424,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.023998,
+   "pred_naive": 0.068683,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2023 Canadian Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.068318,
+   "se_p": 0.01382,
+   "n_runs_p": 14,
+   "race_rate": 0.011302,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.023871,
+   "pred_naive": 0.068318,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Dutch Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": -0.070837,
+   "se_p": 0.053488,
+   "n_runs_p": 3,
+   "race_rate": 0.007355,
+   "n_runs_r": 8,
+   "hist_rate": 0.006948,
+   "factor_used": 0.349406,
+   "pred_scalar": -0.024751,
+   "pred_naive": -0.070837,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Dutch Grand Prix",
+   "season": 2023,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.182914,
+   "se_p": 0.044031,
+   "n_runs_p": 7,
+   "race_rate": 0.034578,
+   "n_runs_r": 32,
+   "hist_rate": 0.031278,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.063911,
+   "pred_naive": 0.182914,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2023 Hungarian Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.195718,
+   "se_p": 0.023742,
+   "n_runs_p": 3,
+   "race_rate": 0.076405,
+   "n_runs_r": 23,
+   "hist_rate": 0.075283,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.068385,
+   "pred_naive": 0.195718,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Italian Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.056136,
+   "se_p": 0.022671,
+   "n_runs_p": 7,
+   "race_rate": 0.03175,
+   "n_runs_r": 25,
+   "hist_rate": 0.060935,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.019614,
+   "pred_naive": 0.056136,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Japanese Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.228555,
+   "se_p": 0.04559,
+   "n_runs_p": 9,
+   "race_rate": 0.09382,
+   "n_runs_r": 20,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.079858,
+   "pred_naive": 0.228555,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Mexico City Grand Prix",
+   "season": 2023,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.157673,
+   "se_p": 0.02517,
+   "n_runs_p": 9,
+   "race_rate": 0.075029,
+   "n_runs_r": 31,
+   "hist_rate": 0.003034,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.055092,
+   "pred_naive": 0.157673,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2023 Monaco Grand Prix",
+   "season": 2023,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.19434,
+   "se_p": 0.126886,
+   "n_runs_p": 3,
+   "race_rate": 0.032587,
+   "n_runs_r": 27,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": -0.067903,
+   "pred_naive": -0.19434,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2023 Monaco Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.186929,
+   "se_p": 0.140666,
+   "n_runs_p": 3,
+   "race_rate": 0.034012,
+   "n_runs_r": 19,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.065314,
+   "pred_naive": 0.186929,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Singapore Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.149403,
+   "se_p": 0.042223,
+   "n_runs_p": 3,
+   "race_rate": 0.090097,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.052202,
+   "pred_naive": 0.149403,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Spanish Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.064095,
+   "se_p": 0.101997,
+   "n_runs_p": 6,
+   "race_rate": 0.037332,
+   "n_runs_r": 17,
+   "hist_rate": 0.103811,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.022395,
+   "pred_naive": 0.064095,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2023 Spanish Grand Prix",
+   "season": 2023,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.117479,
+   "se_p": 0.01243,
+   "n_runs_p": 14,
+   "race_rate": 0.060478,
+   "n_runs_r": 22,
+   "hist_rate": 0.085985,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.041048,
+   "pred_naive": 0.117479,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2024 Bahrain Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.146199,
+   "se_p": 0.017806,
+   "n_runs_p": 10,
+   "race_rate": 0.029171,
+   "n_runs_r": 26,
+   "hist_rate": 0.04393,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.051083,
+   "pred_naive": 0.146199,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2024 Belgian Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.313317,
+   "se_p": 0.028705,
+   "n_runs_p": 9,
+   "race_rate": 0.086307,
+   "n_runs_r": 30,
+   "hist_rate": 0.150926,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.109475,
+   "pred_naive": 0.313317,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Belgian Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.410405,
+   "se_p": 0.08571,
+   "n_runs_p": 6,
+   "race_rate": 0.099035,
+   "n_runs_r": 3,
+   "hist_rate": 0.094905,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.143398,
+   "pred_naive": 0.410405,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2024 Canadian Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.177848,
+   "se_p": 0.048822,
+   "n_runs_p": 15,
+   "race_rate": -0.006956,
+   "n_runs_r": 11,
+   "hist_rate": 0.011302,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.062141,
+   "pred_naive": 0.177848,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Dutch Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.133741,
+   "se_p": 0.046157,
+   "n_runs_p": 3,
+   "race_rate": 0.05234,
+   "n_runs_r": 20,
+   "hist_rate": 0.029037,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.04673,
+   "pred_naive": 0.133741,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2024 Dutch Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.096758,
+   "se_p": 0.037702,
+   "n_runs_p": 3,
+   "race_rate": 0.002238,
+   "n_runs_r": 20,
+   "hist_rate": 0.007355,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.033808,
+   "pred_naive": 0.096758,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Emilia Romagna Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.10869,
+   "se_p": 0.014801,
+   "n_runs_p": 5,
+   "race_rate": 0.076257,
+   "n_runs_r": 19,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.037977,
+   "pred_naive": 0.10869,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2024 Emilia Romagna Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.173175,
+   "se_p": 0.015285,
+   "n_runs_p": 11,
+   "race_rate": 0.029912,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.060509,
+   "pred_naive": 0.173175,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Hungarian Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.131078,
+   "se_p": 0.031979,
+   "n_runs_p": 11,
+   "race_rate": 0.104662,
+   "n_runs_r": 27,
+   "hist_rate": 0.076405,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.045799,
+   "pred_naive": 0.131078,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Japanese Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.148948,
+   "se_p": 0.019523,
+   "n_runs_p": 7,
+   "race_rate": 0.064518,
+   "n_runs_r": 18,
+   "hist_rate": 0.09382,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.052043,
+   "pred_naive": 0.148948,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Japanese Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.404348,
+   "se_p": 0.042087,
+   "n_runs_p": 6,
+   "race_rate": 0.035949,
+   "n_runs_r": 5,
+   "hist_rate": 0.093364,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.141282,
+   "pred_naive": 0.404348,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2024 Monaco Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.018622,
+   "se_p": 0.126166,
+   "n_runs_p": 9,
+   "race_rate": 0.034994,
+   "n_runs_r": 22,
+   "hist_rate": 0.032587,
+   "factor_used": 0.349406,
+   "pred_scalar": -0.006507,
+   "pred_naive": -0.018622,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2024 Monaco Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.205021,
+   "se_p": 0.063759,
+   "n_runs_p": 12,
+   "race_rate": 0.015328,
+   "n_runs_r": 11,
+   "hist_rate": 0.034012,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.071636,
+   "pred_naive": 0.205021,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Saudi Arabian Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.070057,
+   "se_p": 0.027563,
+   "n_runs_p": 4,
+   "race_rate": 0.008911,
+   "n_runs_r": 15,
+   "hist_rate": 0.04449,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.024478,
+   "pred_naive": 0.070057,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2024 Saudi Arabian Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.037822,
+   "se_p": 0.057896,
+   "n_runs_p": 4,
+   "race_rate": 0.015042,
+   "n_runs_r": 4,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.013215,
+   "pred_naive": 0.037822,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2024 Singapore Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.208569,
+   "se_p": 0.058739,
+   "n_runs_p": 3,
+   "race_rate": 0.073707,
+   "n_runs_r": 16,
+   "hist_rate": 0.040344,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.072875,
+   "pred_naive": 0.208569,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2024 Spanish Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.161148,
+   "se_p": 0.018391,
+   "n_runs_p": 3,
+   "race_rate": 0.084355,
+   "n_runs_r": 13,
+   "hist_rate": 0.034144,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.056306,
+   "pred_naive": 0.161148,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2024 Spanish Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.178758,
+   "se_p": 0.041055,
+   "n_runs_p": 8,
+   "race_rate": 0.069035,
+   "n_runs_r": 19,
+   "hist_rate": 0.037332,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.062459,
+   "pred_naive": 0.178758,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2024 Spanish Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.186459,
+   "se_p": 0.02901,
+   "n_runs_p": 9,
+   "race_rate": 0.077881,
+   "n_runs_r": 30,
+   "hist_rate": 0.060478,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.06515,
+   "pred_naive": 0.186459,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2025 Abu Dhabi Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.143693,
+   "se_p": 0.021759,
+   "n_runs_p": 7,
+   "race_rate": 0.050963,
+   "n_runs_r": 21,
+   "hist_rate": 0.048404,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.050207,
+   "pred_naive": 0.143693,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2025 Austrian Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.069632,
+   "se_p": 0.018729,
+   "n_runs_p": 4,
+   "race_rate": 0.051147,
+   "n_runs_r": 21,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.02433,
+   "pred_naive": 0.069632,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2025 Austrian Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.062306,
+   "se_p": 0.019141,
+   "n_runs_p": 7,
+   "race_rate": 0.066766,
+   "n_runs_r": 29,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.02177,
+   "pred_naive": 0.062306,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2025 Austrian Grand Prix",
+   "season": 2025,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.100836,
+   "se_p": 0.020973,
+   "n_runs_p": 6,
+   "race_rate": -0.011994,
+   "n_runs_r": 6,
+   "hist_rate": null,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.035233,
+   "pred_naive": 0.100836,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2025 Bahrain Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.22037,
+   "se_p": 0.097754,
+   "n_runs_p": 4,
+   "race_rate": 0.062299,
+   "n_runs_r": 14,
+   "hist_rate": 0.105032,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.076999,
+   "pred_naive": 0.22037,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2025 Bahrain Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.193303,
+   "se_p": 0.028994,
+   "n_runs_p": 9,
+   "race_rate": 0.130004,
+   "n_runs_r": 26,
+   "hist_rate": 0.181303,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.067541,
+   "pred_naive": 0.193303,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2025 British Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.058679,
+   "se_p": 0.037668,
+   "n_runs_p": 10,
+   "race_rate": 0.054885,
+   "n_runs_r": 11,
+   "hist_rate": -0.025623,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.020503,
+   "pred_naive": 0.058679,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2025 Hungarian Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.070894,
+   "se_p": 0.056422,
+   "n_runs_p": 3,
+   "race_rate": 0.058639,
+   "n_runs_r": 24,
+   "hist_rate": 0.083092,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.024771,
+   "pred_naive": 0.070894,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2025 Hungarian Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.180727,
+   "se_p": 0.033144,
+   "n_runs_p": 6,
+   "race_rate": 0.048637,
+   "n_runs_r": 21,
+   "hist_rate": 0.104662,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.063147,
+   "pred_naive": 0.180727,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2025 Japanese Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.047628,
+   "se_p": 0.036538,
+   "n_runs_p": 4,
+   "race_rate": 0.041324,
+   "n_runs_r": 18,
+   "hist_rate": 0.14139,
+   "factor_used": 0.349406,
+   "pred_scalar": -0.016641,
+   "pred_naive": -0.047628,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2025 Mexico City Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.162755,
+   "se_p": 0.023614,
+   "n_runs_p": 19,
+   "race_rate": 0.061247,
+   "n_runs_r": 16,
+   "hist_rate": -0.009398,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.056868,
+   "pred_naive": 0.162755,
+   "pred_pooled": 0.064471
+  },
+  {
+   "event": "2025 Mexico City Grand Prix",
+   "season": 2025,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.116751,
+   "se_p": 0.026116,
+   "n_runs_p": 11,
+   "race_rate": 0.050889,
+   "n_runs_r": 27,
+   "hist_rate": 0.001528,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.040793,
+   "pred_naive": 0.116751,
+   "pred_pooled": -0.064875
+  },
+  {
+   "event": "2025 Monaco Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.07074,
+   "se_p": 0.092166,
+   "n_runs_p": 4,
+   "race_rate": 0.040056,
+   "n_runs_r": 35,
+   "hist_rate": 0.034994,
+   "factor_used": 0.349406,
+   "pred_scalar": -0.024717,
+   "pred_naive": -0.07074,
+   "pred_pooled": 0.055637
+  },
+  {
+   "event": "2025 Monaco Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.296222,
+   "se_p": 0.131407,
+   "n_runs_p": 7,
+   "race_rate": 0.027132,
+   "n_runs_r": 19,
+   "hist_rate": 0.015328,
+   "factor_used": 0.349406,
+   "pred_scalar": 0.103502,
+   "pred_naive": 0.296222,
+   "pred_pooled": 0.064471
+  }
+ ],
+ "cells_holdout_loeo": [
+  {
+   "event": "2022 Abu Dhabi Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.17314,
+   "se_p": 0.028674,
+   "n_runs_p": 6,
+   "race_rate": 0.062199,
+   "n_runs_r": 30,
+   "hist_rate": null,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.058243,
+   "pred_naive": 0.17314,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2022 Abu Dhabi Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.254027,
+   "se_p": 0.048186,
+   "n_runs_p": 7,
+   "race_rate": 0.037712,
+   "n_runs_r": 27,
+   "hist_rate": null,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.085453,
+   "pred_naive": 0.254027,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2022 Abu Dhabi Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.343901,
+   "se_p": 0.056669,
+   "n_runs_p": 5,
+   "race_rate": 0.005921,
+   "n_runs_r": 3,
+   "hist_rate": null,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.115686,
+   "pred_naive": 0.343901,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2022 Bahrain Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.18343,
+   "se_p": 0.036207,
+   "n_runs_p": 12,
+   "race_rate": 0.181303,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.059275,
+   "pred_naive": 0.18343,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2022 Bahrain Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.130082,
+   "se_p": 0.018478,
+   "n_runs_p": 6,
+   "race_rate": -0.000209,
+   "n_runs_r": 47,
+   "hist_rate": null,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.042036,
+   "pred_naive": 0.130082,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2022 Belgian Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.2271,
+   "se_p": 0.096723,
+   "n_runs_p": 5,
+   "race_rate": 0.094905,
+   "n_runs_r": 6,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.070379,
+   "pred_naive": 0.2271,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2022 British Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.038346,
+   "se_p": 0.029371,
+   "n_runs_p": 5,
+   "race_rate": -0.006424,
+   "n_runs_r": 10,
+   "hist_rate": null,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.013225,
+   "pred_naive": 0.038346,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2022 British Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.093888,
+   "se_p": 0.077124,
+   "n_runs_p": 4,
+   "race_rate": -0.016592,
+   "n_runs_r": 28,
+   "hist_rate": null,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.032381,
+   "pred_naive": 0.093888,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2022 Canadian Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.103447,
+   "se_p": 0.071986,
+   "n_runs_p": 3,
+   "race_rate": 0.034799,
+   "n_runs_r": 47,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.032059,
+   "pred_naive": 0.103447,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2022 Dutch Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.117819,
+   "se_p": 0.04972,
+   "n_runs_p": 3,
+   "race_rate": 0.029037,
+   "n_runs_r": 14,
+   "hist_rate": null,
+   "factor_used": 0.353393,
+   "pred_scalar": 0.041636,
+   "pred_naive": 0.117819,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2022 Dutch Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.294816,
+   "se_p": 0.12021,
+   "n_runs_p": 3,
+   "race_rate": 0.006948,
+   "n_runs_r": 22,
+   "hist_rate": null,
+   "factor_used": 0.353393,
+   "pred_scalar": 0.104186,
+   "pred_naive": 0.294816,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2022 Dutch Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.109527,
+   "se_p": 0.01649,
+   "n_runs_p": 13,
+   "race_rate": 0.031278,
+   "n_runs_r": 34,
+   "hist_rate": null,
+   "factor_used": 0.353393,
+   "pred_scalar": 0.038706,
+   "pred_naive": 0.109527,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2022 French Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.123458,
+   "se_p": 0.033212,
+   "n_runs_p": 7,
+   "race_rate": 0.072695,
+   "n_runs_r": 22,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.03826,
+   "pred_naive": 0.123458,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2022 Hungarian Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.166072,
+   "se_p": 0.022049,
+   "n_runs_p": 9,
+   "race_rate": 0.075283,
+   "n_runs_r": 43,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.051466,
+   "pred_naive": 0.166072,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2022 Italian Grand Prix",
+   "season": 2022,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.144636,
+   "se_p": 0.062046,
+   "n_runs_p": 5,
+   "race_rate": 0.023042,
+   "n_runs_r": 10,
+   "hist_rate": null,
+   "factor_used": 0.323148,
+   "pred_scalar": -0.046739,
+   "pred_naive": -0.144636,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2022 Italian Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.101171,
+   "se_p": 0.045106,
+   "n_runs_p": 6,
+   "race_rate": 0.060935,
+   "n_runs_r": 30,
+   "hist_rate": null,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.032693,
+   "pred_naive": 0.101171,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2022 Mexico City Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.103395,
+   "se_p": 0.033083,
+   "n_runs_p": 5,
+   "race_rate": 0.032042,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.03566,
+   "pred_naive": 0.103395,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2022 Mexico City Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.114121,
+   "se_p": 0.108014,
+   "n_runs_p": 3,
+   "race_rate": 0.001528,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.039359,
+   "pred_naive": 0.114121,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2022 Singapore Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.273971,
+   "se_p": 0.135157,
+   "n_runs_p": 4,
+   "race_rate": -0.035497,
+   "n_runs_r": 6,
+   "hist_rate": null,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.092162,
+   "pred_naive": 0.273971,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2022 Spanish Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.213333,
+   "se_p": 0.033246,
+   "n_runs_p": 12,
+   "race_rate": 0.103811,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.297737,
+   "pred_scalar": 0.063517,
+   "pred_naive": 0.213333,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2022 Spanish Grand Prix",
+   "season": 2022,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.184866,
+   "se_p": 0.030649,
+   "n_runs_p": 8,
+   "race_rate": 0.085985,
+   "n_runs_r": 47,
+   "hist_rate": null,
+   "factor_used": 0.297737,
+   "pred_scalar": 0.055042,
+   "pred_naive": 0.184866,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2022 United States Grand Prix",
+   "season": 2022,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.03081,
+   "se_p": 0.192893,
+   "n_runs_p": 5,
+   "race_rate": 0.111195,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.009548,
+   "pred_naive": 0.03081,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2023 Abu Dhabi Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.087058,
+   "se_p": 0.015116,
+   "n_runs_p": 4,
+   "race_rate": 0.042044,
+   "n_runs_r": 19,
+   "hist_rate": 0.037712,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.02698,
+   "pred_naive": 0.087058,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2023 Bahrain Grand Prix",
+   "season": 2023,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.211305,
+   "se_p": 0.026452,
+   "n_runs_p": 19,
+   "race_rate": 0.04393,
+   "n_runs_r": 34,
+   "hist_rate": -0.000209,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.071081,
+   "pred_naive": 0.211305,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2023 British Grand Prix",
+   "season": 2023,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.068683,
+   "se_p": 0.030921,
+   "n_runs_p": 3,
+   "race_rate": 0.010233,
+   "n_runs_r": 8,
+   "hist_rate": -0.006424,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.023105,
+   "pred_naive": 0.068683,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2023 Canadian Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.068318,
+   "se_p": 0.01382,
+   "n_runs_p": 14,
+   "race_rate": 0.011302,
+   "n_runs_r": 25,
+   "hist_rate": null,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.022982,
+   "pred_naive": 0.068318,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2023 Dutch Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": -0.070837,
+   "se_p": 0.053488,
+   "n_runs_p": 3,
+   "race_rate": 0.007355,
+   "n_runs_r": 8,
+   "hist_rate": 0.006948,
+   "factor_used": 0.344893,
+   "pred_scalar": -0.024431,
+   "pred_naive": -0.070837,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2023 Dutch Grand Prix",
+   "season": 2023,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.182914,
+   "se_p": 0.044031,
+   "n_runs_p": 7,
+   "race_rate": 0.034578,
+   "n_runs_r": 32,
+   "hist_rate": 0.031278,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.063086,
+   "pred_naive": 0.182914,
+   "pred_pooled": 0.033613
+  },
+  {
+   "event": "2023 Hungarian Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.195718,
+   "se_p": 0.023742,
+   "n_runs_p": 3,
+   "race_rate": 0.076405,
+   "n_runs_r": 23,
+   "hist_rate": 0.075283,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.060654,
+   "pred_naive": 0.195718,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2023 Italian Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.056136,
+   "se_p": 0.022671,
+   "n_runs_p": 7,
+   "race_rate": 0.03175,
+   "n_runs_r": 25,
+   "hist_rate": 0.060935,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.017397,
+   "pred_naive": 0.056136,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2023 Japanese Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.228555,
+   "se_p": 0.04559,
+   "n_runs_p": 9,
+   "race_rate": 0.09382,
+   "n_runs_r": 20,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.07083,
+   "pred_naive": 0.228555,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2023 Mexico City Grand Prix",
+   "season": 2023,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.157673,
+   "se_p": 0.02517,
+   "n_runs_p": 9,
+   "race_rate": 0.075029,
+   "n_runs_r": 31,
+   "hist_rate": 0.003034,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.048863,
+   "pred_naive": 0.157673,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2023 Monaco Grand Prix",
+   "season": 2023,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.19434,
+   "se_p": 0.126886,
+   "n_runs_p": 3,
+   "race_rate": 0.032587,
+   "n_runs_r": 27,
+   "hist_rate": null,
+   "factor_used": 0.344893,
+   "pred_scalar": -0.067026,
+   "pred_naive": -0.19434,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2023 Monaco Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.186929,
+   "se_p": 0.140666,
+   "n_runs_p": 3,
+   "race_rate": 0.034012,
+   "n_runs_r": 19,
+   "hist_rate": null,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.06447,
+   "pred_naive": 0.186929,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2023 Singapore Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.149403,
+   "se_p": 0.042223,
+   "n_runs_p": 3,
+   "race_rate": 0.090097,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.0463,
+   "pred_naive": 0.149403,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2023 Spanish Grand Prix",
+   "season": 2023,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.064095,
+   "se_p": 0.101997,
+   "n_runs_p": 6,
+   "race_rate": 0.037332,
+   "n_runs_r": 17,
+   "hist_rate": 0.103811,
+   "factor_used": 0.297737,
+   "pred_scalar": 0.019083,
+   "pred_naive": 0.064095,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2023 Spanish Grand Prix",
+   "season": 2023,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.117479,
+   "se_p": 0.01243,
+   "n_runs_p": 14,
+   "race_rate": 0.060478,
+   "n_runs_r": 22,
+   "hist_rate": 0.085985,
+   "factor_used": 0.297737,
+   "pred_scalar": 0.034978,
+   "pred_naive": 0.117479,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2024 Bahrain Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.146199,
+   "se_p": 0.017806,
+   "n_runs_p": 10,
+   "race_rate": 0.029171,
+   "n_runs_r": 26,
+   "hist_rate": 0.04393,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.04918,
+   "pred_naive": 0.146199,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2024 Belgian Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.313317,
+   "se_p": 0.028705,
+   "n_runs_p": 9,
+   "race_rate": 0.086307,
+   "n_runs_r": 30,
+   "hist_rate": 0.150926,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.108061,
+   "pred_naive": 0.313317,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2024 Belgian Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.410405,
+   "se_p": 0.08571,
+   "n_runs_p": 6,
+   "race_rate": 0.099035,
+   "n_runs_r": 3,
+   "hist_rate": 0.094905,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.141546,
+   "pred_naive": 0.410405,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2024 Canadian Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.177848,
+   "se_p": 0.048822,
+   "n_runs_p": 15,
+   "race_rate": -0.006956,
+   "n_runs_r": 11,
+   "hist_rate": 0.011302,
+   "factor_used": 0.336393,
+   "pred_scalar": 0.059827,
+   "pred_naive": 0.177848,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2024 Dutch Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.133741,
+   "se_p": 0.046157,
+   "n_runs_p": 3,
+   "race_rate": 0.05234,
+   "n_runs_r": 20,
+   "hist_rate": 0.029037,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.043218,
+   "pred_naive": 0.133741,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2024 Dutch Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.096758,
+   "se_p": 0.037702,
+   "n_runs_p": 3,
+   "race_rate": 0.002238,
+   "n_runs_r": 20,
+   "hist_rate": 0.007355,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.031267,
+   "pred_naive": 0.096758,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2024 Emilia Romagna Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.10869,
+   "se_p": 0.014801,
+   "n_runs_p": 5,
+   "race_rate": 0.076257,
+   "n_runs_r": 19,
+   "hist_rate": null,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.035123,
+   "pred_naive": 0.10869,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2024 Emilia Romagna Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.173175,
+   "se_p": 0.015285,
+   "n_runs_p": 11,
+   "race_rate": 0.029912,
+   "n_runs_r": 23,
+   "hist_rate": null,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.055961,
+   "pred_naive": 0.173175,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2024 Hungarian Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.131078,
+   "se_p": 0.031979,
+   "n_runs_p": 11,
+   "race_rate": 0.104662,
+   "n_runs_r": 27,
+   "hist_rate": 0.076405,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.040622,
+   "pred_naive": 0.131078,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2024 Japanese Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.148948,
+   "se_p": 0.019523,
+   "n_runs_p": 7,
+   "race_rate": 0.064518,
+   "n_runs_r": 18,
+   "hist_rate": 0.09382,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.048132,
+   "pred_naive": 0.148948,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2024 Japanese Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.404348,
+   "se_p": 0.042087,
+   "n_runs_p": 6,
+   "race_rate": 0.035949,
+   "n_runs_r": 5,
+   "hist_rate": 0.093364,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.130664,
+   "pred_naive": 0.404348,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2024 Monaco Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.018622,
+   "se_p": 0.126166,
+   "n_runs_p": 9,
+   "race_rate": 0.034994,
+   "n_runs_r": 22,
+   "hist_rate": 0.032587,
+   "factor_used": 0.344893,
+   "pred_scalar": -0.006423,
+   "pred_naive": -0.018622,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2024 Monaco Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.205021,
+   "se_p": 0.063759,
+   "n_runs_p": 12,
+   "race_rate": 0.015328,
+   "n_runs_r": 11,
+   "hist_rate": 0.034012,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.07071,
+   "pred_naive": 0.205021,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2024 Saudi Arabian Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.070057,
+   "se_p": 0.027563,
+   "n_runs_p": 4,
+   "race_rate": 0.008911,
+   "n_runs_r": 15,
+   "hist_rate": 0.04449,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.022639,
+   "pred_naive": 0.070057,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2024 Saudi Arabian Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.037822,
+   "se_p": 0.057896,
+   "n_runs_p": 4,
+   "race_rate": 0.015042,
+   "n_runs_r": 4,
+   "hist_rate": null,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.012222,
+   "pred_naive": 0.037822,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2024 Singapore Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.208569,
+   "se_p": 0.058739,
+   "n_runs_p": 3,
+   "race_rate": 0.073707,
+   "n_runs_r": 16,
+   "hist_rate": 0.040344,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.064636,
+   "pred_naive": 0.208569,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2024 Spanish Grand Prix",
+   "season": 2024,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.161148,
+   "se_p": 0.018391,
+   "n_runs_p": 3,
+   "race_rate": 0.084355,
+   "n_runs_r": 13,
+   "hist_rate": 0.034144,
+   "factor_used": 0.285572,
+   "pred_scalar": 0.046019,
+   "pred_naive": 0.161148,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2024 Spanish Grand Prix",
+   "season": 2024,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.178758,
+   "se_p": 0.041055,
+   "n_runs_p": 8,
+   "race_rate": 0.069035,
+   "n_runs_r": 19,
+   "hist_rate": 0.037332,
+   "factor_used": 0.285572,
+   "pred_scalar": 0.051048,
+   "pred_naive": 0.178758,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2024 Spanish Grand Prix",
+   "season": 2024,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.186459,
+   "se_p": 0.02901,
+   "n_runs_p": 9,
+   "race_rate": 0.077881,
+   "n_runs_r": 30,
+   "hist_rate": 0.060478,
+   "factor_used": 0.285572,
+   "pred_scalar": 0.053247,
+   "pred_naive": 0.186459,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2025 Abu Dhabi Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.143693,
+   "se_p": 0.021759,
+   "n_runs_p": 7,
+   "race_rate": 0.050963,
+   "n_runs_r": 21,
+   "hist_rate": 0.048404,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.044531,
+   "pred_naive": 0.143693,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2025 Austrian Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.069632,
+   "se_p": 0.018729,
+   "n_runs_p": 4,
+   "race_rate": 0.051147,
+   "n_runs_r": 21,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.021579,
+   "pred_naive": 0.069632,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2025 Austrian Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.062306,
+   "se_p": 0.019141,
+   "n_runs_p": 7,
+   "race_rate": 0.066766,
+   "n_runs_r": 29,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.019309,
+   "pred_naive": 0.062306,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2025 Austrian Grand Prix",
+   "season": 2025,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.100836,
+   "se_p": 0.020973,
+   "n_runs_p": 6,
+   "race_rate": -0.011994,
+   "n_runs_r": 6,
+   "hist_rate": null,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.03125,
+   "pred_naive": 0.100836,
+   "pred_pooled": 0.035263
+  },
+  {
+   "event": "2025 Bahrain Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.22037,
+   "se_p": 0.097754,
+   "n_runs_p": 4,
+   "race_rate": 0.062299,
+   "n_runs_r": 14,
+   "hist_rate": 0.105032,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.071212,
+   "pred_naive": 0.22037,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2025 Bahrain Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.193303,
+   "se_p": 0.028994,
+   "n_runs_p": 9,
+   "race_rate": 0.130004,
+   "n_runs_r": 26,
+   "hist_rate": 0.181303,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.062465,
+   "pred_naive": 0.193303,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2025 British Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.058679,
+   "se_p": 0.037668,
+   "n_runs_p": 10,
+   "race_rate": 0.054885,
+   "n_runs_r": 11,
+   "hist_rate": -0.025623,
+   "factor_used": 0.309903,
+   "pred_scalar": 0.018185,
+   "pred_naive": 0.058679,
+   "pred_pooled": 0.054786
+  },
+  {
+   "event": "2025 Hungarian Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": 0.070894,
+   "se_p": 0.056422,
+   "n_runs_p": 3,
+   "race_rate": 0.058639,
+   "n_runs_r": 24,
+   "hist_rate": 0.083092,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.022909,
+   "pred_naive": 0.070894,
+   "pred_pooled": 0.041324
+  },
+  {
+   "event": "2025 Hungarian Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.180727,
+   "se_p": 0.033144,
+   "n_runs_p": 6,
+   "race_rate": 0.048637,
+   "n_runs_r": 21,
+   "hist_rate": 0.104662,
+   "factor_used": 0.323148,
+   "pred_scalar": 0.058402,
+   "pred_naive": 0.180727,
+   "pred_pooled": 0.05791
+  },
+  {
+   "event": "2025 Japanese Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.047628,
+   "se_p": 0.036538,
+   "n_runs_p": 4,
+   "race_rate": 0.041324,
+   "n_runs_r": 18,
+   "hist_rate": 0.14139,
+   "factor_used": 0.336393,
+   "pred_scalar": -0.016022,
+   "pred_naive": -0.047628,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2025 Mexico City Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.162755,
+   "se_p": 0.023614,
+   "n_runs_p": 19,
+   "race_rate": 0.061247,
+   "n_runs_r": 16,
+   "hist_rate": -0.009398,
+   "factor_used": 0.297737,
+   "pred_scalar": 0.048458,
+   "pred_naive": 0.162755,
+   "pred_pooled": 0.051761
+  },
+  {
+   "event": "2025 Mexico City Grand Prix",
+   "season": 2025,
+   "C": "SOFT",
+   "label": "SOFT",
+   "practice_rate": 0.116751,
+   "se_p": 0.026116,
+   "n_runs_p": 11,
+   "race_rate": 0.050889,
+   "n_runs_r": 27,
+   "hist_rate": 0.001528,
+   "factor_used": 0.297737,
+   "pred_scalar": 0.034761,
+   "pred_naive": 0.116751,
+   "pred_pooled": 0.032928
+  },
+  {
+   "event": "2025 Monaco Grand Prix",
+   "season": 2025,
+   "C": "HARD",
+   "label": "HARD",
+   "practice_rate": -0.07074,
+   "se_p": 0.092166,
+   "n_runs_p": 4,
+   "race_rate": 0.040056,
+   "n_runs_r": 35,
+   "hist_rate": 0.034994,
+   "factor_used": 0.344893,
+   "pred_scalar": -0.024398,
+   "pred_naive": -0.07074,
+   "pred_pooled": 0.050963
+  },
+  {
+   "event": "2025 Monaco Grand Prix",
+   "season": 2025,
+   "C": "MEDIUM",
+   "label": "MEDIUM",
+   "practice_rate": 0.296222,
+   "se_p": 0.131407,
+   "n_runs_p": 7,
+   "race_rate": 0.027132,
+   "n_runs_r": 19,
+   "hist_rate": 0.015328,
+   "factor_used": 0.344893,
+   "pred_scalar": 0.102165,
+   "pred_naive": 0.296222,
+   "pred_pooled": 0.05791
+  }
+ ],
+ "verdicts": {
+  "H1_frozen_scalar_beats_zero_pooled_naive": {
+   "zero": true,
+   "pooled": false,
+   "naive": true
+  },
+  "H1b_loeo_scalar_beats_zero_pooled_naive": {
+   "zero": true,
+   "pooled": false,
+   "naive": true
+  },
+  "H1c_frozen_scalar_beats_history": false,
+  "H2_nested_optimism_le_0.005": true,
+  "H3_compound_beats_scalar_in_both": {
+   "frozen_holdout": false,
+   "s2026_loeo": false
+  },
+  "H4_fp2_beats_fp1_out_of_season": {
+   "fp1_minus_fp2_rho_ci": [
+    -0.394789,
+    0.186318
+   ],
+   "holds": false
+  },
+  "H5_2026": {
+   "rule1_beats_always": false,
+   "eb_beats_rule1": false,
+   "rule1_loses_to_always": false
+  },
+  "H5_holdout": {
+   "rule1_beats_always": false,
+   "eb_beats_rule1": false,
+   "rule1_loses_to_always": false
+  },
+  "H6_2026": {
+   "shipped_coverage": 0.8,
+   "meets_85pct": false,
+   "multiple_for_95": 13.147881
+  },
+  "H6_holdout": {
+   "shipped_coverage": 0.971429,
+   "meets_85pct": true,
+   "multiple_for_95": 2.480189
+  }
+ },
+ "headline": {
+  "mae_ci_by_method__frozen_holdout_2022_2025": {
+   "zero": [
+    0.0502,
+    0.0418,
+    0.059
+   ],
+   "const": [
+    0.0311,
+    0.0246,
+    0.0383
+   ],
+   "pooled": [
+    0.0468,
+    0.0384,
+    0.0556
+   ],
+   "history": [
+    0.0394,
+    0.0314,
+    0.048
+   ],
+   "naive": [
+    0.112,
+    0.0923,
+    0.1324
+   ],
+   "scalar": [
+    0.0355,
+    0.0286,
+    0.0426
+   ],
+   "compound": [
+    0.0634,
+    0.0504,
+    0.0771
+   ],
+   "shrink50": [
+    0.0295,
+    0.0245,
+    0.0348
+   ],
+   "stack": [
+    0.0317,
+    0.0255,
+    0.0382
+   ]
+  },
+  "mae_ci_by_method__loeo_2022_2025": {
+   "zero": [
+    0.0502,
+    0.0418,
+    0.059
+   ],
+   "const": [
+    0.031,
+    0.0254,
+    0.0374
+   ],
+   "pooled": [
+    0.0319,
+    0.0268,
+    0.0377
+   ],
+   "history": [
+    0.0345,
+    0.0286,
+    0.0411
+   ],
+   "naive": [
+    0.112,
+    0.0923,
+    0.1324
+   ],
+   "scalar": [
+    0.0372,
+    0.0309,
+    0.0437
+   ],
+   "compound": [
+    0.0352,
+    0.029,
+    0.0414
+   ],
+   "shrink50": [
+    0.0313,
+    0.0264,
+    0.0367
+   ],
+   "stack": [
+    0.0316,
+    0.0267,
+    0.037
+   ]
+  },
+  "mae_ci_by_method__2026_loeo_tuned_on_eval": {
+   "zero": [
+    0.0689,
+    0.0486,
+    0.0958
+   ],
+   "const": [
+    0.0726,
+    0.0498,
+    0.1025
+   ],
+   "pooled": [
+    0.0713,
+    0.0523,
+    0.0964
+   ],
+   "history": [
+    0.0615,
+    0.0405,
+    0.0948
+   ],
+   "naive": [
+    0.0871,
+    0.0648,
+    0.1146
+   ],
+   "scalar": [
+    0.0561,
+    0.0399,
+    0.0789
+   ],
+   "compound": [
+    0.0607,
+    0.0469,
+    0.0801
+   ],
+   "shrink50": [
+    0.0584,
+    0.0409,
+    0.0861
+   ],
+   "stack": [
+    0.0592,
+    0.0399,
+    0.0893
+   ]
+  },
+  "nested_2026_mae": 0.059524
+ },
+ "audit": {
+  "script": "scripts/paper/p2_transfer.py",
+  "generated_at": "2026-10-31T13:44:46+00:00",
+  "git_commit": "c592641634caec8466a51f1f9599c8208148bb04",
+  "git_dirty_src_or_scripts": false,
+  "seed": 20260101,
+  "n_boot": 10000,
+  "python": "3.12.9",
+  "numpy": "2.5.2",
+  "pandas": "2.3.3",
+  "session_weights_shipped": {
+   "FP1": 0.5,
+   "FP2": 1.0,
+   "FP3": 0.5,
+   "S": 1.0
+  },
+  "shipped_design": {
+   "name": "shipped",
+   "keep_runs": true,
+   "drop_warmup": 1,
+   "max_gap": 3,
+   "race_sims_only": true,
+   "min_laps": 5,
+   "min_runs_per_compound": 5,
+   "sprint_is_race": true
+  },
+  "min_runs": 3,
+  "min_age_spread_laps": 2.0,
+  "inputs": {
+   "laps.parquet": {
+    "sha256_16": "e991bb77e29af443",
+    "bytes": 1508216
+   },
+   "laps_2022.parquet": {
+    "sha256_16": "8b028f6ae54b9a3a",
+    "bytes": 1873297
+   },
+   "laps_2023.parquet": {
+    "sha256_16": "77688e78f12c2d06",
+    "bytes": 1674187
+   },
+   "laps_2024.parquet": {
+    "sha256_16": "33709d45612b5856",
+    "bytes": 1854471
+   },
+   "laps_2025.parquet": {
+    "sha256_16": "5555784901af55d7",
+    "bytes": 1851572
+   },
+   "allocation.json": {
+    "sha256_16": "729bd335885c63c8",
+    "bytes": 3065
+   }
+  },
+  "holdout_seasons": [
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "runtime_s": 323.6
+ }
+}

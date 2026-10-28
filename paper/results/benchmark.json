@@ -1,0 +1,3071 @@
+{
+ "meta": {
+  "generated_by": "scripts/paper/p4_benchmark.py",
+  "python": "3.12.9",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "numpy": "2.5.2",
+  "scoringrules": "0.11.0",
+  "upstream_sha256_16": {
+   "Hamilton_2025_All_Races.csv": "ce281ece1b64c6ed",
+   "base_t.stan": "2f87a5a4d74dbd94",
+   "Extension1.stan": "6218c9b95e2bb545",
+   "All_CV_results1.csv": "8236a3e1da4df4ea"
+  },
+  "cmdstan": "2.39.0 via cmdstanpy",
+  "seeds": {
+   "table3": 1,
+   "cv_folds": 1234,
+   "bootstrap": 0,
+   "hier": 0
+  },
+  "exclusion_rule": "lap time > 1.07 x median retained lap"
+ },
+ "table3": {
+  "model": "Extension1 (compound-specific)",
+  "race": "Austrian Grand Prix",
+  "data_rows": 63,
+  "settings": {
+   "chains": 4,
+   "warmup": 5000,
+   "sampling": 5000,
+   "seed": 1,
+   "adapt_delta": 0.99,
+   "max_treedepth": 12,
+   "theirs": "3 chains x 30000 iterations (Tire_Deg_Paper_Review1.qmd)"
+  },
+  "published": {
+   "hard": {
+    "mean": 0.054,
+    "lo": 0.004,
+    "hi": 0.133
+   },
+   "medium": {
+    "mean": 0.06,
+    "lo": 0.009,
+    "hi": 0.12
+   }
+  },
+  "log_pd": {
+   "used_in_their_paper_or_code": false,
+   "mean_fuel_term_seconds": 0.8597838920470275,
+   "lppd_theirs": -217.2961083164868,
+   "lppd_with_fuel_term": -2.4355355239750276,
+   "lppd_difference": 214.86057279251176
+  },
+  "their_ramp": {
+   "v_hard": {
+    "mean": 0.05457570204686855,
+    "lo": 0.0038425215575,
+    "hi": 0.1321655355
+   },
+   "v_medium": {
+    "mean": 0.055184761968758406,
+    "lo": 0.00652843865,
+    "hi": 0.115406464
+   },
+   "gamma": {
+    "mean": 0.015491601658505001,
+    "lo": 0.011351492724999999,
+    "hi": 0.01976682465
+   },
+   "p_medium_gt_hard": 0.52815,
+   "crls_overlap": true,
+   "diff_medium_minus_hard": {
+    "mean": 0.000609059921889845,
+    "lo": -0.09136373622499999,
+    "hi": 0.08066356812499999
+   },
+   "max_rhat": 1.002383807419735,
+   "divergences": 0,
+   "seconds": 33.6
+  },
+  "corrected_fuel": {
+   "v_hard": {
+    "mean": 0.052752643920271534,
+    "lo": 0.0032797058099999997,
+    "hi": 0.13021172199999995
+   },
+   "v_medium": {
+    "mean": 0.054641914381739355,
+    "lo": 0.006797662235,
+    "hi": 0.11347656749999971
+   },
+   "gamma": {
+    "mean": 0.0163553762901,
+    "lo": 0.012071444725,
+    "hi": 0.02088705105
+   },
+   "p_medium_gt_hard": 0.53935,
+   "crls_overlap": true,
+   "diff_medium_minus_hard": {
+    "mean": 0.0018892704614678194,
+    "lo": -0.088671710975,
+    "hi": 0.08075342348299991
+   },
+   "max_rhat": 1.0022944724547747,
+   "divergences": 0,
+   "seconds": 29.0
+  },
+  "reproduces": {
+   "hard_mean_abs_diff": 0.0005757020468685481,
+   "medium_mean_abs_diff": 0.004815238031241592,
+   "hard_interval_within_0.01": true,
+   "medium_interval_within_0.01": true
+  },
+  "fuel_correction_effect": {
+   "delta_v_hard": -0.001823058126597013,
+   "delta_v_medium": -0.0005428475870190505,
+   "delta_gamma": 0.0008637746315949997,
+   "p_separation_theirs": 0.52815,
+   "p_separation_corrected": 0.53935,
+   "intervals_overlap_after_correction": true
+  }
+ },
+ "skewt_cv_austria": {
+  "folds": 17,
+  "published": {
+   "crps": 0.202,
+   "rmse_total": 1.082
+  },
+  "iter10000_theirs": {
+   "iter_total_per_chain": 10000,
+   "chains": 2,
+   "seed": 1234,
+   "fuel": "theirs",
+   "fold_seconds_mean": 594.1800354789285,
+   "divergent_transitions_total": 1131,
+   "max_rhat": 1.14795,
+   "shipped": {
+    "crps": 0.20234963023216448,
+    "rmse_total": 1.0815349702925665,
+    "rmse_mean": 0.36051165676418884,
+    "per_stint_crps": [
+     0.18537039526226487,
+     0.3145979350225652,
+     0.10708056041166336
+    ],
+    "per_stint_rmse": [
+     0.32463880377493376,
+     0.6007715780419824,
+     0.1561245884756503
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.02845224712279,
+      "crps": 0.08332187442886482,
+      "pit_below": 0.4416
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.06687564980092,
+      "crps": 0.4891639411814821,
+      "pit_below": 0.9504
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.29963247076347,
+      "crps": 0.12619477726882425,
+      "pit_below": 0.3115
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.25145449695349,
+      "crps": 0.11163411805671142,
+      "pit_below": 0.6954
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.37170159879133,
+      "crps": 0.12719155858303924,
+      "pit_below": 0.2585
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.33933733973004,
+      "crps": 0.1747161020546673,
+      "pit_below": 0.7943
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.04294494621179,
+      "crps": 0.10904330145380156,
+      "pit_below": 0.6825
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.15965344043401,
+      "crps": 0.3053647393353877,
+      "pit_below": 0.8901
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.39647207578537,
+      "crps": 0.09045764449766971,
+      "pit_below": 0.472
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.41291642024922,
+      "crps": 0.0938330338332428,
+      "pit_below": 0.372
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.39855808776437,
+      "crps": 1.180024053574182,
+      "pit_below": 0.9967
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.59338137512357,
+      "crps": 0.10886483744110773,
+      "pit_below": 0.37
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.41572013745522,
+      "crps": 0.08839905879401444,
+      "pit_below": 0.4212
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.42176884357643,
+      "crps": 0.09818570517825052,
+      "pit_below": 0.6411
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.53903601924893,
+      "crps": 0.08586788035577032,
+      "pit_below": 0.5749
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.62344925337362,
+      "crps": 0.17439236108245415,
+      "pit_below": 0.1823
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.4900412263798,
+      "crps": 0.08855779664782731,
+      "pit_below": 0.6088
+     }
+    ],
+    "pit_coverage_90": 0.8823529411764706
+   },
+   "stan_normal": {
+    "crps": 0.20376587360719414,
+    "rmse_total": 1.0808557713995646,
+    "rmse_mean": 0.3602852571331882,
+    "per_stint_crps": [
+     0.18389133275939554,
+     0.30970319145541686,
+     0.11770309660677
+    ],
+    "per_stint_rmse": [
+     0.32162202356751807,
+     0.5908716215572376,
+     0.16836212627480904
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.0502594699,
+      "crps": 0.10392313614935149,
+      "pit_below": 0.3933
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.0885392126,
+      "crps": 0.43689382191173504,
+      "pit_below": 0.946
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.33390957760001,
+      "crps": 0.16045924483470306,
+      "pit_below": 0.2746
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.27941663440001,
+      "crps": 0.10092064368355903,
+      "pit_below": 0.6025
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.39933229,
+      "crps": 0.1612641159903175,
+      "pit_below": 0.2508
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.36579105969999,
+      "crps": 0.13988703398670727,
+      "pit_below": 0.7227
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.06835770929999,
+      "crps": 0.09983623368895046,
+      "pit_below": 0.6147
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.18367457129999,
+      "crps": 0.2624129662438896,
+      "pit_below": 0.8626
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.42753736380001,
+      "crps": 0.10409931240855944,
+      "pit_below": 0.4164
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.4450895204,
+      "crps": 0.11634365325050124,
+      "pit_below": 0.3297
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.4235423778,
+      "crps": 1.139489482115781,
+      "pit_below": 0.9993
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.6242971408,
+      "crps": 0.13603750102481932,
+      "pit_below": 0.3354
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.44063920090001,
+      "crps": 0.10656116162093167,
+      "pit_below": 0.3806
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.4475754788,
+      "crps": 0.09436975487396011,
+      "pit_below": 0.5714
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.56608262670001,
+      "crps": 0.09015021220236998,
+      "pit_below": 0.5083
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.65681770799999,
+      "crps": 0.20870725335265852,
+      "pit_below": 0.1801
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.5136159629,
+      "crps": 0.08872710098392975,
+      "pit_below": 0.5428
+     }
+    ],
+    "pit_coverage_90": 0.9411764705882353
+   },
+   "normal_fixed_fuel": {
+    "crps": 0.2046511351993264,
+    "rmse_total": 1.0851646269932997,
+    "rmse_mean": 0.36172154233109993,
+    "per_stint_crps": [
+     0.184897283994096,
+     0.31371606512207617,
+     0.11534005648180705
+    ],
+    "per_stint_rmse": [
+     0.32395469983714353,
+     0.6017590488379838,
+     0.15945087831817248
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.02572972703356,
+      "crps": 0.09948380387194963,
+      "pit_below": 0.4237
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.06991918238954,
+      "crps": 0.45364402407657967,
+      "pit_below": 0.9503
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.30759203585356,
+      "crps": 0.14984579364979547,
+      "pit_below": 0.2958
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.24958887817083,
+      "crps": 0.1069304927905953,
+      "pit_below": 0.6288
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.36676425545745,
+      "crps": 0.14576657309530117,
+      "pit_below": 0.2804
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.33940186952395,
+      "crps": 0.1537130164803548,
+      "pit_below": 0.7375
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.04056818287222,
+      "crps": 0.10789843079668289,
+      "pit_below": 0.6401
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.1612028339568,
+      "crps": 0.2777788260735391,
+      "pit_below": 0.8769
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.39077655519777,
+      "crps": 0.09750030118091148,
+      "pit_below": 0.4543
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.40764358772432,
+      "crps": 0.1057924383487238,
+      "pit_below": 0.3681
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.39597196229249,
+      "crps": 1.1662403632281932,
+      "pit_below": 0.9995
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.60140172002767,
+      "crps": 0.1270860311044065,
+      "pit_below": 0.3506
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.41720059222475,
+      "crps": 0.10265095187186371,
+      "pit_below": 0.3976
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.42175374242467,
+      "crps": 0.0989726754027586,
+      "pit_below": 0.5942
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.52893185529373,
+      "crps": 0.09316769975911796,
+      "pit_below": 0.5444
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.62971552772464,
+      "crps": 0.1902708866472458,
+      "pit_below": 0.1987
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.48866701147406,
+      "crps": 0.09163806872804921,
+      "pit_below": 0.5702
+     }
+    ],
+    "pit_coverage_90": 0.8823529411764706
+   },
+   "matched_minus_mismatched_crps": -0.0014162433750296577,
+   "matched_minus_mismatched_rmse": 0.0006791988930019421,
+   "gamma_mean_over_folds": 0.016208616659584115
+  },
+  "iter2000_theirs": {
+   "iter_total_per_chain": 2000,
+   "chains": 2,
+   "seed": 1234,
+   "fuel": "theirs",
+   "fold_seconds_mean": 268.63973603529087,
+   "divergent_transitions_total": 34,
+   "max_rhat": 1.19999,
+   "shipped": {
+    "crps": 0.20346351734890364,
+    "rmse_total": 1.0927278764256414,
+    "rmse_mean": 0.3642426254752138,
+    "per_stint_crps": [
+     0.18745621056105347,
+     0.3137101674804965,
+     0.10922417400516089
+    ],
+    "per_stint_rmse": [
+     0.32907465010786635,
+     0.5999422254396616,
+     0.16371100087811363
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.01424295546838,
+      "crps": 0.08113825548281858,
+      "pit_below": 0.4565
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.05946877016359,
+      "crps": 0.4958609652704054,
+      "pit_below": 0.951
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.30738420230023,
+      "crps": 0.12429882394801901,
+      "pit_below": 0.3105
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.25780055195648,
+      "crps": 0.11438574574326822,
+      "pit_below": 0.678
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.3708150327624,
+      "crps": 0.12453800052238646,
+      "pit_below": 0.2685
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.32343372400963,
+      "crps": 0.18451547239942306,
+      "pit_below": 0.8075
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.04001966026374,
+      "crps": 0.10810158251208252,
+      "pit_below": 0.681
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.15530308405947,
+      "crps": 0.30526743726186806,
+      "pit_below": 0.9075
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.39281485371187,
+      "crps": 0.08783056224626129,
+      "pit_below": 0.478
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.43289106740943,
+      "crps": 0.09671057964525942,
+      "pit_below": 0.3405
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.4055112415576,
+      "crps": 1.1750170035893062,
+      "pit_below": 0.9925
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.60290882886754,
+      "crps": 0.10933383962820158,
+      "pit_below": 0.358
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.39131722146429,
+      "crps": 0.08825319620576104,
+      "pit_below": 0.4505
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.4304238695139,
+      "crps": 0.09504462938178901,
+      "pit_below": 0.6345
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.50993628639739,
+      "crps": 0.08892526574986159,
+      "pit_below": 0.6105
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.64754035250498,
+      "crps": 0.18775614818532255,
+      "pit_below": 0.1635
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.4956184801643,
+      "crps": 0.08614163050307032,
+      "pit_below": 0.613
+     }
+    ],
+    "pit_coverage_90": 0.8823529411764706
+   },
+   "stan_normal": {
+    "crps": 0.20479866014977466,
+    "rmse_total": 1.079512329423144,
+    "rmse_mean": 0.359837443141048,
+    "per_stint_crps": [
+     0.18578253817154047,
+     0.3116378744595835,
+     0.11697556781819995
+    ],
+    "per_stint_rmse": [
+     0.3208193652244471,
+     0.5925661406776547,
+     0.1661268235210421
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.0392786135,
+      "crps": 0.10480465319775142,
+      "pit_below": 0.397
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.0958734445,
+      "crps": 0.4347135275127451,
+      "pit_below": 0.9475
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.319884322,
+      "crps": 0.15228269566250258,
+      "pit_below": 0.3045
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.27369197300001,
+      "crps": 0.10553498937049907,
+      "pit_below": 0.6035
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.39894973599999,
+      "crps": 0.15831670553599753,
+      "pit_below": 0.263
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.3347680995,
+      "crps": 0.1590426577497472,
+      "pit_below": 0.738
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.0685822935,
+      "crps": 0.10361406935775051,
+      "pit_below": 0.608
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.189209079,
+      "crps": 0.25648158979749947,
+      "pit_below": 0.86
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.4176279655,
+      "crps": 0.09997265579574939,
+      "pit_below": 0.4165
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.467272851,
+      "crps": 0.12577880111350165,
+      "pit_below": 0.299
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.41929138750001,
+      "crps": 1.149600543321751,
+      "pit_below": 0.999
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.6217642185,
+      "crps": 0.13437958737124922,
+      "pit_below": 0.325
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.424137683,
+      "crps": 0.10522942681100148,
+      "pit_below": 0.3965
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.4607750435,
+      "crps": 0.09219504651525011,
+      "pit_below": 0.556
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.5585901365,
+      "crps": 0.0893041502277499,
+      "pit_below": 0.5105
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.66001100600002,
+      "crps": 0.2095628624424985,
+      "pit_below": 0.1785
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.52424916999999,
+      "crps": 0.08858635309449976,
+      "pit_below": 0.5345
+     }
+    ],
+    "pit_coverage_90": 0.9411764705882353
+   },
+   "normal_fixed_fuel": {
+    "crps": 0.20450337798420667,
+    "rmse_total": 1.0858916516727195,
+    "rmse_mean": 0.3619638838909065,
+    "per_stint_crps": [
+     0.1848855352913693,
+     0.31502853783297313,
+     0.11359606082827756
+    ],
+    "per_stint_rmse": [
+     0.3241384697322265,
+     0.6020028719486988,
+     0.15975030999179426
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.01750070555677,
+      "crps": 0.09657191668963425,
+      "pit_below": 0.424
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.07548285459566,
+      "crps": 0.4475939124314886,
+      "pit_below": 0.951
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.3021564352121,
+      "crps": 0.14597535396198433,
+      "pit_below": 0.309
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.23453125579684,
+      "crps": 0.11118227557861177,
+      "pit_below": 0.6365
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.36255005947461,
+      "crps": 0.14246758879255358,
+      "pit_below": 0.287
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.320477626418,
+      "crps": 0.16552216429394337,
+      "pit_below": 0.761
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.01953226544542,
+      "crps": 0.11530714402058867,
+      "pit_below": 0.6625
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.17770169618153,
+      "crps": 0.26402050426943435,
+      "pit_below": 0.87
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.37656252999304,
+      "crps": 0.09685825643740754,
+      "pit_below": 0.468
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.42440135515537,
+      "crps": 0.11282794760842932,
+      "pit_below": 0.347
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.3925206092535,
+      "crps": 1.175698322124975,
+      "pit_below": 1.0
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.59329222046264,
+      "crps": 0.1254590525370039,
+      "pit_below": 0.357
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.40171939888492,
+      "crps": 0.09908365098863937,
+      "pit_below": 0.4195
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.42887920289196,
+      "crps": 0.09366730679187746,
+      "pit_below": 0.589
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.51543123940048,
+      "crps": 0.09234840011334279,
+      "pit_below": 0.55
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.63703966493982,
+      "crps": 0.19745105317457595,
+      "pit_below": 0.1875
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.5018004169127,
+      "crps": 0.08542989307295223,
+      "pit_below": 0.5545
+     }
+    ],
+    "pit_coverage_90": 0.8823529411764706
+   },
+   "matched_minus_mismatched_crps": -0.0013351428008710198,
+   "matched_minus_mismatched_rmse": 0.013215547002497496,
+   "gamma_mean_over_folds": 0.01625351928955294
+  },
+  "iter2000_corrected": {
+   "iter_total_per_chain": 2000,
+   "chains": 2,
+   "seed": 1234,
+   "fuel": "corrected",
+   "fold_seconds_mean": 200.26441962578718,
+   "divergent_transitions_total": 8,
+   "max_rhat": 1.06391,
+   "shipped": {
+    "crps": 0.20220578967272665,
+    "rmse_total": 1.081478059770337,
+    "rmse_mean": 0.36049268659011235,
+    "per_stint_crps": [
+     0.1867067900343807,
+     0.3124650550178178,
+     0.10744552396598153
+    ],
+    "per_stint_rmse": [
+     0.3274886395827784,
+     0.5959649940006325,
+     0.15802442618692605
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.01696789796543,
+      "crps": 0.08314749442643676,
+      "pit_below": 0.452
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.06235449813953,
+      "crps": 0.48886986092409596,
+      "pit_below": 0.9525
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.30155174681745,
+      "crps": 0.12888387788927305,
+      "pit_below": 0.307
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.2577929836762,
+      "crps": 0.11341772397483986,
+      "pit_below": 0.6855
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.37907536987215,
+      "crps": 0.12976022619041339,
+      "pit_below": 0.2645
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.33125894003929,
+      "crps": 0.17616155680122506,
+      "pit_below": 0.8025
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.03661902936632,
+      "crps": 0.1102526880646937,
+      "pit_below": 0.6775
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.14429205347754,
+      "crps": 0.31201784653625464,
+      "pit_below": 0.9025
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.40075145875765,
+      "crps": 0.08858978653658461,
+      "pit_below": 0.4755
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.41813963152846,
+      "crps": 0.0925154132011281,
+      "pit_below": 0.3775
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.41690654890115,
+      "crps": 1.1610064897050574,
+      "pit_below": 0.9925
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.58748654800054,
+      "crps": 0.1104081060631882,
+      "pit_below": 0.389
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.38204475970777,
+      "crps": 0.08392188548716818,
+      "pit_below": 0.4555
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.43379076209894,
+      "crps": 0.0978854781834426,
+      "pit_below": 0.629
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.52433786784124,
+      "crps": 0.08640404826554789,
+      "pit_below": 0.583
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.63884193650571,
+      "crps": 0.18120035301010592,
+      "pit_below": 0.18
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.49443816347447,
+      "crps": 0.08781585488364305,
+      "pit_below": 0.6175
+     }
+    ],
+    "pit_coverage_90": 0.8823529411764706
+   },
+   "stan_normal": {
+    "crps": 0.20321179170284134,
+    "rmse_total": 1.0739447486885219,
+    "rmse_mean": 0.35798158289617393,
+    "per_stint_crps": [
+     0.1850136601339156,
+     0.30985021827795844,
+     0.11477149669664999
+    ],
+    "per_stint_rmse": [
+     0.3189609567559106,
+     0.5895193913658535,
+     0.16546440056675776
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.05670792299999,
+      "crps": 0.10589521547000152,
+      "pit_below": 0.391
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.10335478049998,
+      "crps": 0.42487386316224524,
+      "pit_below": 0.9405
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.3233797425,
+      "crps": 0.15711021746025286,
+      "pit_below": 0.2955
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.267349848,
+      "crps": 0.10506551716549913,
+      "pit_below": 0.599
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.403175759,
+      "crps": 0.16246064464099766,
+      "pit_below": 0.251
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.34859187199999,
+      "crps": 0.15467650290449717,
+      "pit_below": 0.738
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.071652707,
+      "crps": 0.09716151271800035,
+      "pit_below": 0.606
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.167973836,
+      "crps": 0.27290873175849945,
+      "pit_below": 0.872
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.41608061149999,
+      "crps": 0.10181304507524946,
+      "pit_below": 0.4325
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.44305416250002,
+      "crps": 0.11769565122125117,
+      "pit_below": 0.3225
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.4303864815,
+      "crps": 1.137485947247751,
+      "pit_below": 0.9995
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.61994299599999,
+      "crps": 0.1320364216469993,
+      "pit_below": 0.345
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.429989612,
+      "crps": 0.09840042836350157,
+      "pit_below": 0.385
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.4497779295,
+      "crps": 0.09395990149675001,
+      "pit_below": 0.5685
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.5713682655,
+      "crps": 0.08917853862875007,
+      "pit_below": 0.4925
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.654417308,
+      "crps": 0.20341226044749858,
+      "pit_below": 0.1955
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.5177642185,
+      "crps": 0.08890635454674974,
+      "pit_below": 0.5385
+     }
+    ],
+    "pit_coverage_90": 0.9411764705882353
+   },
+   "normal_fixed_fuel": {
+    "crps": 0.2024493305247551,
+    "rmse_total": 1.0722610355906146,
+    "rmse_mean": 0.35742034519687155,
+    "per_stint_crps": [
+     0.1846999863956207,
+     0.3100728347730503,
+     0.11257517040559425
+    ],
+    "per_stint_rmse": [
+     0.320758104047499,
+     0.5954954769759678,
+     0.15600745456714774
+    ],
+    "n_predictions": 17,
+    "laps": [
+     {
+      "stint": 1,
+      "lap": 20,
+      "actual": 70.942,
+      "mean_pred": 71.02423077432528,
+      "crps": 0.09955321919257817,
+      "pit_below": 0.41
+     },
+     {
+      "stint": 1,
+      "lap": 21,
+      "actual": 71.728,
+      "mean_pred": 71.08430592190733,
+      "crps": 0.4418003202518215,
+      "pit_below": 0.948
+     },
+     {
+      "stint": 1,
+      "lap": 22,
+      "actual": 71.07,
+      "mean_pred": 71.2975171168455,
+      "crps": 0.14590124512658362,
+      "pit_below": 0.302
+     },
+     {
+      "stint": 1,
+      "lap": 23,
+      "actual": 71.377,
+      "mean_pred": 71.23541795522614,
+      "crps": 0.11443218224703777,
+      "pit_below": 0.6525
+     },
+     {
+      "stint": 1,
+      "lap": 24,
+      "actual": 71.132,
+      "mean_pred": 71.37493372915283,
+      "crps": 0.14804571597266838,
+      "pit_below": 0.2765
+     },
+     {
+      "stint": 1,
+      "lap": 25,
+      "actual": 71.588,
+      "mean_pred": 71.33229647864168,
+      "crps": 0.15846723558303494,
+      "pit_below": 0.7655
+     },
+     {
+      "stint": 2,
+      "lap": 44,
+      "actual": 70.173,
+      "mean_pred": 70.02286330595761,
+      "crps": 0.11020369479061343,
+      "pit_below": 0.659
+     },
+     {
+      "stint": 2,
+      "lap": 45,
+      "actual": 70.61,
+      "mean_pred": 70.1666510235894,
+      "crps": 0.27316435567862574,
+      "pit_below": 0.8685
+     },
+     {
+      "stint": 2,
+      "lap": 46,
+      "actual": 70.346,
+      "mean_pred": 70.38134566961683,
+      "crps": 0.09631253863448369,
+      "pit_below": 0.4655
+     },
+     {
+      "stint": 2,
+      "lap": 47,
+      "actual": 70.282,
+      "mean_pred": 70.40563715447048,
+      "crps": 0.10194425080024624,
+      "pit_below": 0.3665
+     },
+     {
+      "stint": 2,
+      "lap": 48,
+      "actual": 71.777,
+      "mean_pred": 70.40986291916153,
+      "crps": 1.1557008497330725,
+      "pit_below": 0.9985
+     },
+     {
+      "stint": 2,
+      "lap": 49,
+      "actual": 70.432,
+      "mean_pred": 70.58362643793527,
+      "crps": 0.12311131900126021,
+      "pit_below": 0.3795
+     },
+     {
+      "stint": 3,
+      "lap": 66,
+      "actual": 69.317,
+      "mean_pred": 69.39789840217482,
+      "crps": 0.0978329397161032,
+      "pit_below": 0.419
+     },
+     {
+      "stint": 3,
+      "lap": 67,
+      "actual": 69.515,
+      "mean_pred": 69.43415472278981,
+      "crps": 0.09513071126396855,
+      "pit_below": 0.574
+     },
+     {
+      "stint": 3,
+      "lap": 68,
+      "actual": 69.574,
+      "mean_pred": 69.52491250211477,
+      "crps": 0.09285281109750836,
+      "pit_below": 0.5475
+     },
+     {
+      "stint": 3,
+      "lap": 69,
+      "actual": 69.31,
+      "mean_pred": 69.63089526119046,
+      "crps": 0.1880324108202432,
+      "pit_below": 0.194
+     },
+     {
+      "stint": 3,
+      "lap": 70,
+      "actual": 69.553,
+      "mean_pred": 69.49618655108297,
+      "crps": 0.08902697913014807,
+      "pit_below": 0.5625
+     }
+    ],
+    "pit_coverage_90": 0.9411764705882353
+   },
+   "matched_minus_mismatched_crps": -0.0010060020301146944,
+   "matched_minus_mismatched_rmse": 0.007533311081815208,
+   "gamma_mean_over_folds": 0.01708025283232353
+  },
+  "fuel_correction": {
+   "iter": 2000,
+   "crps_theirs_ramp": 0.20346351734890364,
+   "crps_corrected_fuel": 0.20220578967272665,
+   "delta_crps": -0.0012577276761769896,
+   "rmse_theirs_ramp": 1.0927278764256414,
+   "rmse_corrected_fuel": 1.081478059770337
+  }
+ },
+ "fuel_defect": {
+  "austria": {
+   "n_laps_retained": 63,
+   "race_laps": 70,
+   "max_abs_kg": 4.739130434782609,
+   "mean_abs_kg": 2.21911663216011,
+   "mean_signed_kg": 2.21911663216011,
+   "kg_at_first_retained_lap": 4.739130434782609,
+   "kg_at_last_retained_lap": 0.0,
+   "max_seconds_at_0.033_s_per_kg": 0.1563913043478261,
+   "mean_seconds_at_0.033_s_per_kg": 0.07323084886128364
+  },
+  "season": {
+   "Abu Dhabi Grand Prix": {
+    "n_laps_retained": 53,
+    "race_laps": 58,
+    "max_abs_kg": 4.6336032388663995,
+    "mean_abs_kg": 2.3993710691823877
+   },
+   "Austrian Grand Prix": {
+    "n_laps_retained": 63,
+    "race_laps": 70,
+    "max_abs_kg": 4.739130434782609,
+    "mean_abs_kg": 2.21911663216011
+   },
+   "Azerbaijan Grand Prix": {
+    "n_laps_retained": 45,
+    "race_laps": 51,
+    "max_abs_kg": 8.719999999999999,
+    "mean_abs_kg": 3.545252525252528
+   },
+   "Bahrain Grand Prix": {
+    "n_laps_retained": 50,
+    "race_laps": 57,
+    "max_abs_kg": 5.839285714285715,
+    "mean_abs_kg": 1.8296428571428567
+   },
+   "Canadian Grand Prix": {
+    "n_laps_retained": 60,
+    "race_laps": 66,
+    "max_abs_kg": 2.8138200782268683,
+    "mean_abs_kg": 1.0023641894828355
+   },
+   "Chinese Grand Prix": {
+    "n_laps_retained": 51,
+    "race_laps": 56,
+    "max_abs_kg": 3.7654545454545456,
+    "mean_abs_kg": 1.5582531194295859
+   },
+   "Emilia Romagna Grand Prix": {
+    "n_laps_retained": 51,
+    "race_laps": 63,
+    "max_abs_kg": 9.84516129032258,
+    "mean_abs_kg": 4.474446552814674
+   },
+   "Hungarian Grand Prix": {
+    "n_laps_retained": 66,
+    "race_laps": 70,
+    "max_abs_kg": 2.211594202898553,
+    "mean_abs_kg": 0.8741799263538405
+   },
+   "Italian Grand Prix": {
+    "n_laps_retained": 50,
+    "race_laps": 53,
+    "max_abs_kg": 2.395604395604394,
+    "mean_abs_kg": 1.0686106750392455
+   },
+   "Japanese Grand Prix": {
+    "n_laps_retained": 50,
+    "race_laps": 53,
+    "max_abs_kg": 2.6950549450549417,
+    "mean_abs_kg": 1.1165227629513335
+   },
+   "Las Vegas Grand Prix": {
+    "n_laps_retained": 43,
+    "race_laps": 50,
+    "max_abs_kg": 7.044217687074834,
+    "mean_abs_kg": 4.2679164689131435
+   },
+   "Mexico City Grand Prix": {
+    "n_laps_retained": 64,
+    "race_laps": 71,
+    "max_abs_kg": 3.114285714285714,
+    "mean_abs_kg": 1.1516369047619066
+   },
+   "Monaco Grand Prix": {
+    "n_laps_retained": 70,
+    "race_laps": 78,
+    "max_abs_kg": 6.359872012045926,
+    "mean_abs_kg": 3.1547309833024144
+   },
+   "Qatar Grand Prix": {
+    "n_laps_retained": 50,
+    "race_laps": 57,
+    "max_abs_kg": 8.341836734693885,
+    "mean_abs_kg": 4.009642857142857
+   },
+   "Saudi Arabian Grand Prix": {
+    "n_laps_retained": 45,
+    "race_laps": 50,
+    "max_abs_kg": 6.673469387755105,
+    "mean_abs_kg": 3.682766439909301
+   },
+   "Singapore Grand Prix": {
+    "n_laps_retained": 53,
+    "race_laps": 62,
+    "max_abs_kg": 7.3193568726355664,
+    "mean_abs_kg": 3.6515739132503784
+   },
+   "Spanish Grand Prix": {
+    "n_laps_retained": 55,
+    "race_laps": 66,
+    "max_abs_kg": 8.974643874643888,
+    "mean_abs_kg": 3.531701631701635
+   },
+   "Sao Paulo Grand Prix": {
+    "n_laps_retained": 25,
+    "race_laps": 36,
+    "max_abs_kg": 20.37261904761904,
+    "mean_abs_kg": 10.100666666666665
+   },
+   "United States Grand Prix": {
+    "n_laps_retained": 50,
+    "race_laps": 56,
+    "max_abs_kg": 6.713914656771806,
+    "mean_abs_kg": 3.289818181818181
+   }
+  },
+  "season_summary": {
+   "median_max_abs_kg": 6.359872012045926,
+   "max_max_abs_kg": 20.37261904761904
+  },
+  "ext1_refit": {
+   "delta_v_hard": -0.001823058126597013,
+   "delta_v_medium": -0.0005428475870190505,
+   "delta_gamma": 0.0008637746315949997,
+   "p_separation_theirs": 0.52815,
+   "p_separation_corrected": 0.53935,
+   "intervals_overlap_after_correction": true
+  },
+  "skewt_cv_effect": {
+   "iter": 2000,
+   "crps_theirs_ramp": 0.20346351734890364,
+   "crps_corrected_fuel": 0.20220578967272665,
+   "delta_crps": -0.0012577276761769896,
+   "rmse_theirs_ramp": 1.0927278764256414,
+   "rmse_corrected_fuel": 1.081478059770337
+  }
+ },
+ "skewt_cv_season": {
+  "Abu Dhabi Grand Prix": {
+   "published_crps": 0.1768,
+   "published_stints": 3,
+   "median_lap": 89.299,
+   "max_rhat": 1.04141,
+   "divergences": 7,
+   "fold_seconds_mean": 191.3601959668673,
+   "reproduced_crps": 0.17918768790131115,
+   "stan_normal_crps": 0.19288118589782746,
+   "reproduced_rmse_total": 0.9066302942287379,
+   "stan_normal_rmse_total": 0.9384846892764823
+  },
+  "Austrian Grand Prix": {
+   "published_crps": 0.2022,
+   "published_stints": 3,
+   "median_lap": 70.106,
+   "max_rhat": 1.19999,
+   "divergences": 34,
+   "fold_seconds_mean": 268.63973603529087,
+   "reproduced_crps": 0.20346351734890364,
+   "stan_normal_crps": 0.20479866014977466,
+   "reproduced_rmse_total": 1.0927278764256414,
+   "stan_normal_rmse_total": 1.079512329423144
+  },
+  "Azerbaijan Grand Prix": {
+   "published_crps": 0.2872,
+   "published_stints": 2,
+   "median_lap": 105.926,
+   "max_rhat": 2.0811,
+   "divergences": 56,
+   "fold_seconds_mean": 218.60056962569556,
+   "reproduced_crps": 0.28833428713842224,
+   "stan_normal_crps": 0.29126140643437387,
+   "reproduced_rmse_total": 1.064243506587161,
+   "stan_normal_rmse_total": 1.0525353936853863
+  },
+  "Bahrain Grand Prix": {
+   "published_crps": 0.1447,
+   "published_stints": 3,
+   "median_lap": 97.8355,
+   "max_rhat": 1.15091,
+   "divergences": 117,
+   "fold_seconds_mean": 78.61049134914691,
+   "reproduced_crps": 0.1455215642025184,
+   "stan_normal_crps": 0.1597759487919587,
+   "reproduced_rmse_total": 0.6996100918323187,
+   "stan_normal_rmse_total": 0.722799315096804
+  },
+  "Canadian Grand Prix": {
+   "published_crps": 0.2158,
+   "published_stints": 3,
+   "median_lap": 76.2,
+   "max_rhat": 1.04559,
+   "divergences": 4,
+   "fold_seconds_mean": 129.04593052864075,
+   "reproduced_crps": 0.21861058904501687,
+   "stan_normal_crps": 0.20311701476964453,
+   "reproduced_rmse_total": 1.0488598149506427,
+   "stan_normal_rmse_total": 1.0100087116339926
+  },
+  "Emilia Romagna Grand Prix": {
+   "published_crps": 0.2064,
+   "published_stints": 3,
+   "median_lap": 81.598,
+   "max_rhat": 1.06482,
+   "divergences": 0,
+   "fold_seconds_mean": 130.634964796213,
+   "reproduced_crps": 0.20321976641878248,
+   "stan_normal_crps": 0.2188353166822439,
+   "reproduced_rmse_total": 1.0203139444053329,
+   "stan_normal_rmse_total": 1.0724928142470609
+  },
+  "Hungarian Grand Prix": {
+   "published_crps": 0.3111,
+   "published_stints": 2,
+   "median_lap": 83.06049999999999,
+   "max_rhat": 1.03127,
+   "divergences": 0,
+   "fold_seconds_mean": 155.6497116535902,
+   "reproduced_crps": 0.3101768314986162,
+   "stan_normal_crps": 0.3061303432518578,
+   "reproduced_rmse_total": 1.1042968909238913,
+   "stan_normal_rmse_total": 1.0837179157541126
+  },
+  "Italian Grand Prix": {
+   "published_crps": 0.1284,
+   "published_stints": 2,
+   "median_lap": 83.429,
+   "max_rhat": 1.18838,
+   "divergences": 11,
+   "fold_seconds_mean": 199.56091849620526,
+   "reproduced_crps": 0.12798667855965315,
+   "stan_normal_crps": 0.13624368840015588,
+   "reproduced_rmse_total": 0.4246344791039014,
+   "stan_normal_rmse_total": 0.43519644139257757
+  },
+  "Las Vegas Grand Prix": {
+   "published_crps": 0.1991,
+   "published_stints": 2,
+   "median_lap": 95.987,
+   "max_rhat": 1.03655,
+   "divergences": 0,
+   "fold_seconds_mean": 143.45962970907038,
+   "reproduced_crps": 0.19889534086163987,
+   "stan_normal_crps": 0.22924345550332986,
+   "reproduced_rmse_total": 0.734228193700606,
+   "stan_normal_rmse_total": 0.8066663508086532
+  },
+  "Mexico City Grand Prix": {
+   "published_crps": 0.1985,
+   "published_stints": 3,
+   "median_lap": 82.32499999999999,
+   "max_rhat": 1.14092,
+   "divergences": 2,
+   "fold_seconds_mean": 257.05308932065964,
+   "reproduced_crps": 0.2018112031919441,
+   "stan_normal_crps": 0.2128425139009079,
+   "reproduced_rmse_total": 1.0706303364570278,
+   "stan_normal_rmse_total": 1.0846998349409094
+  },
+  "Monaco Grand Prix": {
+   "published_crps": 0.4021,
+   "published_stints": 3,
+   "median_lap": 75.7585,
+   "max_rhat": 1.05493,
+   "divergences": 0,
+   "fold_seconds_mean": 213.05868793936338,
+   "reproduced_crps": 0.39986446395241165,
+   "stan_normal_crps": 0.4013895758222476,
+   "reproduced_rmse_total": 1.9839647724889355,
+   "stan_normal_rmse_total": 1.9883733911578665
+  },
+  "Saudi Arabian Grand Prix": {
+   "published_crps": 0.162,
+   "published_stints": 2,
+   "median_lap": 93.81,
+   "max_rhat": 1.04383,
+   "divergences": 4,
+   "fold_seconds_mean": 172.09933174740183,
+   "reproduced_crps": 0.16482197680488547,
+   "stan_normal_crps": 0.16486206016914634,
+   "reproduced_rmse_total": 0.5259855560652837,
+   "stan_normal_rmse_total": 0.5170304368155481
+  }
+ },
+ "skewt_cv_season_matched_vs_mismatched": {
+  "n_races": 12,
+  "mean_crps_matched_skewt_draws": 0.22015782557700872,
+  "mean_crps_stan_normal_draws": 0.22678176414778906,
+  "mean_diff_matched_minus_normal": -0.0066239385707802705,
+  "races_matched_better": 10,
+  "max_abs_diff": 0.03034811464168999,
+  "note": "same posterior draws scored two ways; the shipped CV uses the matched draws"
+ },
+ "head_to_head": {
+  "exclusion_rule": "lap time > 1.07 x median retained lap of the race",
+  "austria": {
+   "ours_own_folds": 0.24094607582738678,
+   "ours_their_folds": 0.22939950983984217,
+   "ours_rmse_total_own_folds": 1.2501526423125877,
+   "ours_rmse_total_their_folds": 1.1948759425755684,
+   "theirs_paper": 0.202,
+   "theirs_repo_csv": 0.2022,
+   "bootstrap": {
+    "own_folds_16": {
+     "n_laps": 16,
+     "per_lap_mean_crps": 0.23696992275311207,
+     "stint_mean_crps": 0.24094607582738678,
+     "ci95": [
+      0.15059998987357687,
+      0.3647978407642319
+     ],
+     "p_beat_0.2022": 0.30195,
+     "their_best_inside_ci": true,
+     "largest_single_lap_share": 0.27741921744979814,
+     "bootstrap": {
+      "B": 20000,
+      "seed": 0,
+      "unit": "lap (unpaired against a constant)"
+     }
+    },
+    "their_folds_17": {
+     "n_laps": 17,
+     "per_lap_mean_crps": 0.23214766740173498,
+     "stint_mean_crps": 0.22939950983984217,
+     "ci95": [
+      0.1497739607038554,
+      0.352913980598707
+     ],
+     "p_beat_0.2022": 0.3141,
+     "their_best_inside_ci": true,
+     "largest_single_lap_share": 0.26652411277230265,
+     "bootstrap": {
+      "B": 20000,
+      "seed": 0,
+      "unit": "lap (unpaired against a constant)"
+     }
+    }
+   }
+  },
+  "austria_paired_vs_reproduced_theirs": {
+   "n_common_laps": 17,
+   "ours_mean_per_lap": 0.23214766740173498,
+   "theirs_mean_per_lap": 0.20795369316278223,
+   "mean_paired_diff": 0.02419397423895279,
+   "ci95": [
+    -0.0036281781243513865,
+    0.048713331490105594
+   ],
+   "p_ours_better_on_resample": 0.04195,
+   "laps_ours_better": 5,
+   "bootstrap": {
+    "B": 20000,
+    "seed": 0,
+    "unit": "lap, paired"
+   }
+  },
+  "exclusion_rule_effect": {
+   "rule": "actual lap time > 1.07 x median retained lap",
+   "test_laps_excluded_per_race": {
+    "Abu Dhabi Grand Prix": 0,
+    "Austrian Grand Prix": 0,
+    "Azerbaijan Grand Prix": 0,
+    "Bahrain Grand Prix": 0,
+    "Canadian Grand Prix": 0,
+    "Emilia Romagna Grand Prix": 0,
+    "Hungarian Grand Prix": 0,
+    "Italian Grand Prix": 0,
+    "Japanese Grand Prix": 0,
+    "Las Vegas Grand Prix": 0,
+    "Mexico City Grand Prix": 0,
+    "Monaco Grand Prix": 0,
+    "Saudi Arabian Grand Prix": 0,
+    "Singapore Grand Prix": 0,
+    "Spanish Grand Prix": 0
+   },
+   "races_affected": 0,
+   "note": "With their exact test laps the rule removes nothing where the count is 0; the filtered and unfiltered comparisons are then identical. The 32 s Singapore lap was outside their test set to begin with."
+  },
+  "season_vs_published": {
+   "A_own_folds_vs_published": {
+    "n_races": 15,
+    "ours_wins": 2,
+    "mean_diff_ours_minus_theirs": 0.3268799752594481,
+    "mean_diff_ci95": [
+     0.06586454697974438,
+     0.8089410042353304
+    ],
+    "median_diff": 0.10234782868220127,
+    "geometric_mean_ratio": 1.647941817115891,
+    "geometric_mean_ratio_ci95": [
+     1.2640235788762986,
+     2.4179920263327825
+    ],
+    "sign_test_p_two_sided": 0.00738525390625,
+    "wilcoxon_p_two_sided": 0.00030517578125,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "label": "our folds from our feed (the original artifact)",
+    "ours_mean": 0.5471466419261148,
+    "theirs_mean": 0.2202666666666667,
+    "ours_median": 0.31156258493542616,
+    "theirs_median": 0.2022,
+    "per_race": [
+     {
+      "race": "Abu Dhabi Grand Prix",
+      "ours": 0.2898,
+      "theirs": 0.1768
+     },
+     {
+      "race": "Austrian Grand Prix",
+      "ours": 0.2409,
+      "theirs": 0.2022
+     },
+     {
+      "race": "Azerbaijan Grand Prix",
+      "ours": 0.3203,
+      "theirs": 0.2872
+     },
+     {
+      "race": "Bahrain Grand Prix",
+      "ours": 0.3822,
+      "theirs": 0.1447
+     },
+     {
+      "race": "Canadian Grand Prix",
+      "ours": 0.3764,
+      "theirs": 0.2158
+     },
+     {
+      "race": "Emilia Romagna Grand Prix",
+      "ours": 0.3177,
+      "theirs": 0.2064
+     },
+     {
+      "race": "Hungarian Grand Prix",
+      "ours": 0.5509,
+      "theirs": 0.3111
+     },
+     {
+      "race": "Italian Grand Prix",
+      "ours": 0.1114,
+      "theirs": 0.1284
+     },
+     {
+      "race": "Japanese Grand Prix",
+      "ours": 0.2623,
+      "theirs": 0.1654
+     },
+     {
+      "race": "Las Vegas Grand Prix",
+      "ours": 0.3116,
+      "theirs": 0.1991
+     },
+     {
+      "race": "Mexico City Grand Prix",
+      "ours": 0.2636,
+      "theirs": 0.1985
+     },
+     {
+      "race": "Monaco Grand Prix",
+      "ours": 0.5044,
+      "theirs": 0.4021
+     },
+     {
+      "race": "Saudi Arabian Grand Prix",
+      "ours": 0.1911,
+      "theirs": 0.162
+     },
+     {
+      "race": "Singapore Grand Prix",
+      "ours": 3.8275,
+      "theirs": 0.2398
+     },
+     {
+      "race": "Spanish Grand Prix",
+      "ours": 0.2569,
+      "theirs": 0.2645
+     }
+    ],
+    "note": "Not like-for-like: our feed keeps laps their pipeline drops (Singapore laps > 58, the 3.83 outlier) and lacks laps theirs has."
+   },
+   "B_their_folds_vs_published": {
+    "n_races": 15,
+    "ours_wins": 2,
+    "mean_diff_ours_minus_theirs": 0.10558100898153136,
+    "mean_diff_ci95": [
+     0.06685263431461665,
+     0.14626415838332757
+    ],
+    "median_diff": 0.11132539401060523,
+    "geometric_mean_ratio": 1.4462772609252272,
+    "geometric_mean_ratio_ci95": [
+     1.2718132842686822,
+     1.6525921276800173
+    ],
+    "sign_test_p_two_sided": 0.00738525390625,
+    "wilcoxon_p_two_sided": 0.00030517578125,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "label": "their exact test laps",
+    "ours_mean": 0.32584767564819805,
+    "theirs_mean": 0.2202666666666667,
+    "ours_median": 0.31156258493542616,
+    "theirs_median": 0.2022,
+    "per_race": [
+     {
+      "race": "Abu Dhabi Grand Prix",
+      "ours": 0.2898,
+      "theirs": 0.1768
+     },
+     {
+      "race": "Austrian Grand Prix",
+      "ours": 0.2294,
+      "theirs": 0.2022
+     },
+     {
+      "race": "Azerbaijan Grand Prix",
+      "ours": 0.3172,
+      "theirs": 0.2872
+     },
+     {
+      "race": "Bahrain Grand Prix",
+      "ours": 0.3822,
+      "theirs": 0.1447
+     },
+     {
+      "race": "Canadian Grand Prix",
+      "ours": 0.3809,
+      "theirs": 0.2158
+     },
+     {
+      "race": "Emilia Romagna Grand Prix",
+      "ours": 0.3177,
+      "theirs": 0.2064
+     },
+     {
+      "race": "Hungarian Grand Prix",
+      "ours": 0.5509,
+      "theirs": 0.3111
+     },
+     {
+      "race": "Italian Grand Prix",
+      "ours": 0.1266,
+      "theirs": 0.1284
+     },
+     {
+      "race": "Japanese Grand Prix",
+      "ours": 0.2623,
+      "theirs": 0.1654
+     },
+     {
+      "race": "Las Vegas Grand Prix",
+      "ours": 0.3116,
+      "theirs": 0.1991
+     },
+     {
+      "race": "Mexico City Grand Prix",
+      "ours": 0.2697,
+      "theirs": 0.1985
+     },
+     {
+      "race": "Monaco Grand Prix",
+      "ours": 0.5715,
+      "theirs": 0.4021
+     },
+     {
+      "race": "Saudi Arabian Grand Prix",
+      "ours": 0.1911,
+      "theirs": 0.162
+     },
+     {
+      "race": "Singapore Grand Prix",
+      "ours": 0.4298,
+      "theirs": 0.2398
+     },
+     {
+      "race": "Spanish Grand Prix",
+      "ours": 0.2569,
+      "theirs": 0.2645
+     }
+    ]
+   }
+  },
+  "C_common_laps_vs_reproduced": {
+   "n_races": 12,
+   "ours_wins": 1,
+   "mean_diff_ours_minus_theirs": 0.10555835400123188,
+   "mean_diff_ci95": [
+    0.062069338274943084,
+    0.15099452429555832
+   ],
+   "median_diff": 0.09581805677457068,
+   "geometric_mean_ratio": 1.432921272171741,
+   "geometric_mean_ratio_ci95": [
+    1.250612760736658,
+    1.664771763472259
+   ],
+   "sign_test_p_two_sided": 0.00634765625,
+   "wilcoxon_p_two_sided": 0.0009765625,
+   "bootstrap": {
+    "B": 20000,
+    "seed": 0,
+    "unit": "race"
+   },
+   "label": "both models on the laps both can score, no exclusion",
+   "ours_mean": 0.3282272037361114,
+   "theirs_mean": 0.22266884973487952,
+   "ours_median": 0.3143690822559869,
+   "theirs_median": 0.20276244533134458,
+   "n_laps_total": 163,
+   "per_race": [
+    {
+     "race": "Abu Dhabi Grand Prix",
+     "n_laps": 11,
+     "ours": 0.2898,
+     "theirs": 0.2109
+    },
+    {
+     "race": "Austrian Grand Prix",
+     "n_laps": 17,
+     "ours": 0.2294,
+     "theirs": 0.2035
+    },
+    {
+     "race": "Azerbaijan Grand Prix",
+     "n_laps": 12,
+     "ours": 0.3172,
+     "theirs": 0.2883
+    },
+    {
+     "race": "Bahrain Grand Prix",
+     "n_laps": 13,
+     "ours": 0.3822,
+     "theirs": 0.1455
+    },
+    {
+     "race": "Canadian Grand Prix",
+     "n_laps": 15,
+     "ours": 0.3809,
+     "theirs": 0.2186
+    },
+    {
+     "race": "Emilia Romagna Grand Prix",
+     "n_laps": 12,
+     "ours": 0.3177,
+     "theirs": 0.2021
+    },
+    {
+     "race": "Hungarian Grand Prix",
+     "n_laps": 16,
+     "ours": 0.5509,
+     "theirs": 0.3102
+    },
+    {
+     "race": "Italian Grand Prix",
+     "n_laps": 13,
+     "ours": 0.1266,
+     "theirs": 0.128
+    },
+    {
+     "race": "Las Vegas Grand Prix",
+     "n_laps": 11,
+     "ours": 0.3116,
+     "theirs": 0.1989
+    },
+    {
+     "race": "Mexico City Grand Prix",
+     "n_laps": 15,
+     "ours": 0.2697,
+     "theirs": 0.2014
+    },
+    {
+     "race": "Monaco Grand Prix",
+     "n_laps": 17,
+     "ours": 0.5715,
+     "theirs": 0.3999
+    },
+    {
+     "race": "Saudi Arabian Grand Prix",
+     "n_laps": 11,
+     "ours": 0.1911,
+     "theirs": 0.1648
+    }
+   ]
+  },
+  "D_common_laps_vs_reproduced_excl_107pct": {
+   "n_races": 12,
+   "ours_wins": 1,
+   "mean_diff_ours_minus_theirs": 0.10555835400123188,
+   "mean_diff_ci95": [
+    0.062069338274943084,
+    0.15099452429555832
+   ],
+   "median_diff": 0.09581805677457068,
+   "geometric_mean_ratio": 1.432921272171741,
+   "geometric_mean_ratio_ci95": [
+    1.250612760736658,
+    1.664771763472259
+   ],
+   "sign_test_p_two_sided": 0.00634765625,
+   "wilcoxon_p_two_sided": 0.0009765625,
+   "bootstrap": {
+    "B": 20000,
+    "seed": 0,
+    "unit": "race"
+   },
+   "label": "as C, after the pre-specified 107% exclusion applied to both",
+   "ours_mean": 0.3282272037361114,
+   "theirs_mean": 0.22266884973487952,
+   "ours_median": 0.3143690822559869,
+   "theirs_median": 0.20276244533134458,
+   "n_laps_total": 163,
+   "per_race": [
+    {
+     "race": "Abu Dhabi Grand Prix",
+     "n_laps": 11,
+     "ours": 0.2898,
+     "theirs": 0.2109
+    },
+    {
+     "race": "Austrian Grand Prix",
+     "n_laps": 17,
+     "ours": 0.2294,
+     "theirs": 0.2035
+    },
+    {
+     "race": "Azerbaijan Grand Prix",
+     "n_laps": 12,
+     "ours": 0.3172,
+     "theirs": 0.2883
+    },
+    {
+     "race": "Bahrain Grand Prix",
+     "n_laps": 13,
+     "ours": 0.3822,
+     "theirs": 0.1455
+    },
+    {
+     "race": "Canadian Grand Prix",
+     "n_laps": 15,
+     "ours": 0.3809,
+     "theirs": 0.2186
+    },
+    {
+     "race": "Emilia Romagna Grand Prix",
+     "n_laps": 12,
+     "ours": 0.3177,
+     "theirs": 0.2021
+    },
+    {
+     "race": "Hungarian Grand Prix",
+     "n_laps": 16,
+     "ours": 0.5509,
+     "theirs": 0.3102
+    },
+    {
+     "race": "Italian Grand Prix",
+     "n_laps": 13,
+     "ours": 0.1266,
+     "theirs": 0.128
+    },
+    {
+     "race": "Las Vegas Grand Prix",
+     "n_laps": 11,
+     "ours": 0.3116,
+     "theirs": 0.1989
+    },
+    {
+     "race": "Mexico City Grand Prix",
+     "n_laps": 15,
+     "ours": 0.2697,
+     "theirs": 0.2014
+    },
+    {
+     "race": "Monaco Grand Prix",
+     "n_laps": 17,
+     "ours": 0.5715,
+     "theirs": 0.3999
+    },
+    {
+     "race": "Saudi Arabian Grand Prix",
+     "n_laps": 11,
+     "ours": 0.1911,
+     "theirs": 0.1648
+    }
+   ]
+  },
+  "their_model_reproduction": {
+   "n_races": 12,
+   "mean_reproduced": 0.22015782557700872,
+   "mean_published": 0.219525,
+   "corr": 0.9997025158239952,
+   "mean_abs_diff": 0.0017923120284915421,
+   "per_race": [
+    {
+     "race": "Abu Dhabi Grand Prix",
+     "reproduced": 0.1792,
+     "published": 0.1768
+    },
+    {
+     "race": "Austrian Grand Prix",
+     "reproduced": 0.2035,
+     "published": 0.2022
+    },
+    {
+     "race": "Azerbaijan Grand Prix",
+     "reproduced": 0.2883,
+     "published": 0.2872
+    },
+    {
+     "race": "Bahrain Grand Prix",
+     "reproduced": 0.1455,
+     "published": 0.1447
+    },
+    {
+     "race": "Canadian Grand Prix",
+     "reproduced": 0.2186,
+     "published": 0.2158
+    },
+    {
+     "race": "Emilia Romagna Grand Prix",
+     "reproduced": 0.2032,
+     "published": 0.2064
+    },
+    {
+     "race": "Hungarian Grand Prix",
+     "reproduced": 0.3102,
+     "published": 0.3111
+    },
+    {
+     "race": "Italian Grand Prix",
+     "reproduced": 0.128,
+     "published": 0.1284
+    },
+    {
+     "race": "Las Vegas Grand Prix",
+     "reproduced": 0.1989,
+     "published": 0.1991
+    },
+    {
+     "race": "Mexico City Grand Prix",
+     "reproduced": 0.2018,
+     "published": 0.1985
+    },
+    {
+     "race": "Monaco Grand Prix",
+     "reproduced": 0.3999,
+     "published": 0.4021
+    },
+    {
+     "race": "Saudi Arabian Grand Prix",
+     "reproduced": 0.1648,
+     "published": 0.162
+    }
+   ]
+  }
+ },
+ "journal_table4": {
+  "source": {
+   "citation": "Cappello C, Hoegh A (2026). A state-space approach to modeling tire degradation in formula 1 racing. Journal of Sports Analytics 12(0): 1-13.",
+   "doi": "10.1177/22150218261446170",
+   "licence": "Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0), as printed on the first page of the article",
+   "table": "Table 4, 'Cross-race CV results. Overall means do not include the Singapore grand prix.'",
+   "printed_page": 10
+  },
+  "task": "one-step-ahead lap-time forecast of Hamilton's laps under their rolling-origin CV; journal numbers are Cappello & Hoegh's per-race fits, ours is the field-pooled forecaster",
+  "coverage": {
+   "journal_races": 19,
+   "ours_scored": 15,
+   "journal_races_we_did_not_score": [
+    "Chinese Grand Prix",
+    "Qatar Grand Prix",
+    "Sao Paulo Grand Prix",
+    "United States Grand Prix"
+   ],
+   "stint_counts_equal_journal": 14,
+   "races_where_stint_counts_differ": [
+    "Abu Dhabi Grand Prix"
+   ],
+   "why": "not in our cached 2025 race feed (data/processed/laps_2025.parquet), so we cannot score them",
+   "journal_excludes": [
+    "Australian (wet)",
+    "British (wet)",
+    "Belgian (incomplete timing)",
+    "Miami (incomplete timing)",
+    "Dutch (DNF)",
+    "last four Singapore laps"
+   ],
+   "we_score_but_journal_excludes": [],
+   "note": "Race sets differ, so means over the journal's 19 are not like-for-like; all summaries here are over the races both cover."
+  },
+  "csv_vs_journal": {
+   "n_races": 19,
+   "max_abs_diff_at_3dp": 0.0,
+   "all_equal_at_3dp": true,
+   "stint_counts_equal_everywhere": true,
+   "note": "repo CSV (All_CV_results1.csv, transcribed in tyredeg.config) vs journal Table 4 SSM CRPS"
+  },
+  "table4_internal_checks": {
+   "n_races": 19,
+   "caption_says_mean_excludes": "Singapore Grand Prix",
+   "rmspe_ssm": {
+    "printed": 0.409,
+    "mean_all_19": 0.40873684210526323,
+    "mean_excl_singapore_18": 0.4092777777777778
+   },
+   "rmspe_ar1": {
+    "printed": 0.479,
+    "mean_all_19": 0.4787368421052632,
+    "mean_excl_singapore_18": 0.48577777777777775
+   },
+   "crps_ssm": {
+    "printed": 0.238,
+    "mean_all_19": 0.23799999999999996,
+    "mean_excl_singapore_18": 0.2378888888888889
+   },
+   "crps_ar1": {
+    "printed": 0.3,
+    "mean_all_19": 0.29957894736842106,
+    "mean_excl_singapore_18": 0.3033888888888889
+   },
+   "printed_mean_matches": {
+    "rmspe_ssm": "all_19",
+    "rmspe_ar1": "all_19",
+    "crps_ssm": "all_19",
+    "crps_ar1": "all_19"
+   },
+   "ssm_beats_ar1": {
+    "rmspe": 15,
+    "crps": 16,
+    "of": 19,
+    "printed": {
+     "ssm_better_rmspe": "15 of 19 (journal p. 8)",
+     "ssm_better_crps": "16 of 19 (journal p. 8)"
+    }
+   }
+  },
+  "per_race": [
+   {
+    "race": "Abu Dhabi Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 2,
+    "ours_crps": 0.28984970356545314,
+    "ours_rmspe": 0.4786420809125903,
+    "journal_crps_ssm": 0.177,
+    "journal_crps_ar1": 0.228,
+    "journal_rmspe_ssm": 0.298,
+    "journal_rmspe_ar1": 0.351,
+    "ours_own_folds_crps": 0.28984970356545314
+   },
+   {
+    "race": "Austrian Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 3,
+    "ours_crps": 0.22939950983984217,
+    "ours_rmspe": 0.3982919808585228,
+    "journal_crps_ssm": 0.202,
+    "journal_crps_ar1": 0.289,
+    "journal_rmspe_ssm": 0.36,
+    "journal_rmspe_ar1": 0.493,
+    "ours_own_folds_crps": 0.24094607582738678
+   },
+   {
+    "race": "Azerbaijan Grand Prix",
+    "journal_stints": 2,
+    "our_stints": 2,
+    "ours_crps": 0.31717557957654774,
+    "ours_rmspe": 0.568023344334939,
+    "journal_crps_ssm": 0.287,
+    "journal_crps_ar1": 0.346,
+    "journal_rmspe_ssm": 0.527,
+    "journal_rmspe_ar1": 0.582,
+    "ours_own_folds_crps": 0.32034825489986596
+   },
+   {
+    "race": "Bahrain Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 3,
+    "ours_crps": 0.3822475352207855,
+    "ours_rmspe": 0.5854386033498812,
+    "journal_crps_ssm": 0.145,
+    "journal_crps_ar1": 0.201,
+    "journal_rmspe_ssm": 0.228,
+    "journal_rmspe_ar1": 0.302,
+    "ours_own_folds_crps": 0.3822475352207855
+   },
+   {
+    "race": "Canadian Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 3,
+    "ours_crps": 0.3808614648244996,
+    "ours_rmspe": 0.5277927184095718,
+    "journal_crps_ssm": 0.216,
+    "journal_crps_ar1": 0.229,
+    "journal_rmspe_ssm": 0.348,
+    "journal_rmspe_ar1": 0.368,
+    "ours_own_folds_crps": 0.376369638607263
+   },
+   {
+    "race": "Emilia Romagna Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 3,
+    "ours_crps": 0.31772539401060523,
+    "ours_rmspe": 0.5386669192576604,
+    "journal_crps_ssm": 0.206,
+    "journal_crps_ar1": 0.279,
+    "journal_rmspe_ssm": 0.348,
+    "journal_rmspe_ar1": 0.464,
+    "ours_own_folds_crps": 0.31772539401060523
+   },
+   {
+    "race": "Hungarian Grand Prix",
+    "journal_stints": 2,
+    "our_stints": 2,
+    "ours_crps": 0.5509254414793971,
+    "ours_rmspe": 0.8989051391795025,
+    "journal_crps_ssm": 0.311,
+    "journal_crps_ar1": 0.389,
+    "journal_rmspe_ssm": 0.55,
+    "journal_rmspe_ar1": 0.682,
+    "ours_own_folds_crps": 0.5509254414793971
+   },
+   {
+    "race": "Italian Grand Prix",
+    "journal_stints": 2,
+    "our_stints": 2,
+    "ours_crps": 0.12658259080053513,
+    "ours_rmspe": 0.21420377911280136,
+    "journal_crps_ssm": 0.128,
+    "journal_crps_ar1": 0.152,
+    "journal_rmspe_ssm": 0.21,
+    "journal_rmspe_ar1": 0.256,
+    "ours_own_folds_crps": 0.11138259755011001
+   },
+   {
+    "race": "Japanese Grand Prix",
+    "journal_stints": 2,
+    "our_stints": 2,
+    "ours_crps": 0.26233922116235964,
+    "ours_rmspe": 0.4123478350961572,
+    "journal_crps_ssm": 0.165,
+    "journal_crps_ar1": 0.184,
+    "journal_rmspe_ssm": 0.292,
+    "journal_rmspe_ar1": 0.319,
+    "ours_own_folds_crps": 0.26233922116235964
+   },
+   {
+    "race": "Las Vegas Grand Prix",
+    "journal_stints": 2,
+    "our_stints": 2,
+    "ours_crps": 0.31156258493542616,
+    "ours_rmspe": 0.5237105690568438,
+    "journal_crps_ssm": 0.199,
+    "journal_crps_ar1": 0.392,
+    "journal_rmspe_ssm": 0.368,
+    "journal_rmspe_ar1": 0.617,
+    "ours_own_folds_crps": 0.31156258493542616
+   },
+   {
+    "race": "Mexico City Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 3,
+    "ours_crps": 0.26974306745518134,
+    "ours_rmspe": 0.4594492767836276,
+    "journal_crps_ssm": 0.199,
+    "journal_crps_ar1": 0.218,
+    "journal_rmspe_ssm": 0.352,
+    "journal_rmspe_ar1": 0.342,
+    "ours_own_folds_crps": 0.26356740283334085
+   },
+   {
+    "race": "Monaco Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 3,
+    "ours_crps": 0.5715099627124395,
+    "ours_rmspe": 0.8853951021987307,
+    "journal_crps_ssm": 0.402,
+    "journal_crps_ar1": 0.481,
+    "journal_rmspe_ssm": 0.661,
+    "journal_rmspe_ar1": 0.815,
+    "ours_own_folds_crps": 0.5044478286822013
+   },
+   {
+    "race": "Saudi Arabian Grand Prix",
+    "journal_stints": 2,
+    "our_stints": 2,
+    "ours_crps": 0.1911436104126245,
+    "ours_rmspe": 0.30609420553593225,
+    "journal_crps_ssm": 0.162,
+    "journal_crps_ar1": 0.163,
+    "journal_rmspe_ssm": 0.258,
+    "journal_rmspe_ar1": 0.262,
+    "ours_own_folds_crps": 0.1911436104126245
+   },
+   {
+    "race": "Singapore Grand Prix",
+    "journal_stints": 3,
+    "our_stints": 3,
+    "ours_crps": 0.42976457491330056,
+    "ours_rmspe": 0.669957983717476,
+    "journal_crps_ssm": 0.24,
+    "journal_crps_ar1": 0.231,
+    "journal_rmspe_ssm": 0.399,
+    "journal_rmspe_ar1": 0.352,
+    "ours_own_folds_crps": 3.827459445890929
+   },
+   {
+    "race": "Spanish Grand Prix",
+    "journal_stints": 4,
+    "our_stints": 4,
+    "ours_crps": 0.2568848938139731,
+    "ours_rmspe": 0.39380364144065994,
+    "journal_crps_ssm": 0.265,
+    "journal_crps_ar1": 0.431,
+    "journal_rmspe_ssm": 0.426,
+    "journal_rmspe_ar1": 0.637,
+    "ours_own_folds_crps": 0.2568848938139731
+   }
+  ],
+  "common_races": {
+   "n_races": 15,
+   "crps_vs_ssm": {
+    "n_races": 15,
+    "ours_wins": 2,
+    "mean_diff_ours_minus_theirs": 0.10558100898153136,
+    "mean_diff_ci95": [
+     0.06683769867655576,
+     0.14621219031896748
+    ],
+    "median_diff": 0.11172539401060524,
+    "sign_test_p_two_sided": 0.00738525390625,
+    "wilcoxon_p_two_sided": 0.00030517578125,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.32584767564819805,
+    "theirs_mean": 0.22026666666666667,
+    "ours_median": 0.31156258493542616,
+    "theirs_median": 0.202
+   },
+   "crps_vs_ar1": {
+    "n_races": 15,
+    "ours_wins": 5,
+    "mean_diff_ours_minus_theirs": 0.044981008981531366,
+    "mean_diff_ci95": [
+     -0.0069590637004969995,
+     0.09470016821934056
+    ],
+    "median_diff": 0.05174306745518134,
+    "sign_test_p_two_sided": 0.30175781249999994,
+    "wilcoxon_p_two_sided": 0.12054443359375,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.32584767564819805,
+    "theirs_mean": 0.2808666666666666,
+    "ours_median": 0.31156258493542616,
+    "theirs_median": 0.231
+   },
+   "rmspe_vs_ssm": {
+    "n_races": 15,
+    "ours_wins": 1,
+    "mean_diff_ours_minus_theirs": 0.1490482119496598,
+    "mean_diff_ci95": [
+     0.09264349143700755,
+     0.20893229080174444
+    ],
+    "median_diff": 0.15571056905684377,
+    "sign_test_p_two_sided": 0.0009765625,
+    "wilcoxon_p_two_sided": 0.00018310546875,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.5240482119496597,
+    "theirs_mean": 0.375,
+    "ours_median": 0.5237105690568438,
+    "theirs_median": 0.352
+   },
+   "rmspe_vs_ar1": {
+    "n_races": 15,
+    "ours_wins": 5,
+    "mean_diff_ours_minus_theirs": 0.06791487861632645,
+    "mean_diff_ci95": [
+     -0.005334449828828309,
+     0.13968690980588772
+    ],
+    "median_diff": 0.07466691925766039,
+    "sign_test_p_two_sided": 0.30175781249999994,
+    "wilcoxon_p_two_sided": 0.0946044921875,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.5240482119496597,
+    "theirs_mean": 0.4561333333333334,
+    "ours_median": 0.5237105690568438,
+    "theirs_median": 0.368
+   },
+   "own_folds_crps_vs_ssm": {
+    "n_races": 15,
+    "ours_wins": 2,
+    "mean_diff_ours_minus_theirs": 0.32687997525944806,
+    "mean_diff_ci95": [
+     0.0658643656197082,
+     0.8088569363003634
+    ],
+    "median_diff": 0.10244782868220126,
+    "sign_test_p_two_sided": 0.00738525390625,
+    "wilcoxon_p_two_sided": 0.00030517578125,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.5471466419261148,
+    "theirs_mean": 0.22026666666666667,
+    "ours_median": 0.31156258493542616,
+    "theirs_median": 0.202
+   },
+   "own_folds_crps_vs_ar1": {
+    "n_races": 15,
+    "ours_wins": 5,
+    "mean_diff_ours_minus_theirs": 0.26627997525944813,
+    "mean_diff_ci95": [
+     -0.007988122336962483,
+     0.7627774119861052
+    ],
+    "median_diff": 0.03872539401060521,
+    "sign_test_p_two_sided": 0.30175781249999994,
+    "wilcoxon_p_two_sided": 0.207763671875,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.5471466419261148,
+    "theirs_mean": 0.2808666666666666,
+    "ours_median": 0.31156258493542616,
+    "theirs_median": 0.231
+   },
+   "journal_ssm_beats_ar1_on_these_races": {
+    "crps": 14,
+    "rmspe": 13,
+    "of": 15
+   }
+  },
+  "common_races_excl_singapore": {
+   "n_races": 14,
+   "crps_vs_ssm": {
+    "n_races": 14,
+    "ours_wins": 2,
+    "mean_diff_ours_minus_theirs": 0.09956789712926213,
+    "mean_diff_ci95": [
+     0.060259075386562326,
+     0.1407791915514417
+    ],
+    "median_diff": 0.10453230758648244,
+    "sign_test_p_two_sided": 0.012939453125,
+    "wilcoxon_p_two_sided": 0.0006103515625,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.318425039986405,
+    "theirs_mean": 0.21885714285714286,
+    "ours_median": 0.3007061442504396,
+    "theirs_median": 0.2005
+   },
+   "crps_vs_ar1": {
+    "n_races": 14,
+    "ours_wins": 5,
+    "mean_diff_ours_minus_theirs": 0.033996468557833566,
+    "mean_diff_ci95": [
+     -0.016845145490569487,
+     0.08297046163316198
+    ],
+    "median_diff": 0.045234230732893274,
+    "sign_test_p_two_sided": 0.4239501953125,
+    "wilcoxon_p_two_sided": 0.216552734375,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.318425039986405,
+    "theirs_mean": 0.2844285714285714,
+    "ours_median": 0.3007061442504396,
+    "theirs_median": 0.254
+   },
+   "rmspe_vs_ssm": {
+    "n_races": 14,
+    "ours_wins": 1,
+    "mean_diff_ours_minus_theirs": 0.1403403711091015,
+    "mean_diff_ci95": [
+     0.08336080138257727,
+     0.20156351496736172
+    ],
+    "median_diff": 0.1380292020765005,
+    "sign_test_p_two_sided": 0.0018310546875,
+    "wilcoxon_p_two_sided": 0.0003662109375,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.5136260853948157,
+    "theirs_mean": 0.3732857142857143,
+    "ours_median": 0.501176324984717,
+    "theirs_median": 0.35
+   },
+   "rmspe_vs_ar1": {
+    "n_races": 14,
+    "ours_wins": 5,
+    "mean_diff_ours_minus_theirs": 0.05005465682338721,
+    "mean_diff_ci95": [
+     -0.020142228315800762,
+     0.11765214816270005
+    ],
+    "median_diff": 0.0725310107281956,
+    "sign_test_p_two_sided": 0.4239501953125,
+    "wilcoxon_p_two_sided": 0.172607421875,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.5136260853948157,
+    "theirs_mean": 0.4635714285714286,
+    "ours_median": 0.501176324984717,
+    "theirs_median": 0.41600000000000004
+   },
+   "own_folds_crps_vs_ssm": {
+    "n_races": 14,
+    "ours_wins": 2,
+    "mean_diff_ours_minus_theirs": 0.09398144164291374,
+    "mean_diff_ci95": [
+     0.05612880104033653,
+     0.13464618018326543
+    ],
+    "median_diff": 0.09989352492228044,
+    "sign_test_p_two_sided": 0.012939453125,
+    "wilcoxon_p_two_sided": 0.0006103515625,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.31283858450005664,
+    "theirs_mean": 0.21885714285714286,
+    "ours_median": 0.3007061442504396,
+    "theirs_median": 0.2005
+   },
+   "own_folds_crps_vs_ar1": {
+    "n_races": 14,
+    "ours_wins": 5,
+    "mean_diff_ours_minus_theirs": 0.028410013071485163,
+    "mean_diff_ci95": [
+     -0.020643385344516936,
+     0.07706363985012053
+    ],
+    "median_diff": 0.033434502211614855,
+    "sign_test_p_two_sided": 0.4239501953125,
+    "wilcoxon_p_two_sided": 0.3575439453125,
+    "bootstrap": {
+     "B": 20000,
+     "seed": 0,
+     "unit": "race"
+    },
+    "ours_mean": 0.31283858450005664,
+    "theirs_mean": 0.2844285714285714,
+    "ours_median": 0.3007061442504396,
+    "theirs_median": 0.254
+   },
+   "journal_ssm_beats_ar1_on_these_races": {
+    "crps": 14,
+    "rmspe": 13,
+    "of": 14
+   }
+  }
+ },
+ "gamma": {
+  "theirs_ext1_their_ramp": {
+   "mean": 0.015491601658505001,
+   "lo": 0.011351492724999999,
+   "hi": 0.01976682465
+  },
+  "theirs_ext1_corrected_fuel": {
+   "mean": 0.0163553762901,
+   "lo": 0.012071444725,
+   "hi": 0.02088705105
+  },
+  "theirs_skewt_full_race": {
+   "mean_over_cv_folds": 0.016208616659584115,
+   "note": "posterior mean of gamma averaged over the 17 CV training windows (skew-t, their ramp)"
+  },
+  "ours_hierarchical": {
+   "Austrian Grand Prix 2025 | shipped_prior_sd0.02": {
+    "gamma_mean": 0.02010124221625,
+    "gamma_ci95": [
+     0.01334768725,
+     0.027000148125
+    ],
+    "start_kg": 110.0,
+    "mean_if_rescaled_to_110kg": 0.02010124221625,
+    "seed": 0,
+    "driver_forecast": "HAM"
+   },
+   "Austrian Grand Prix 2025 | diffuse_prior_sd1": {
+    "gamma_mean": 0.0195301963045625,
+    "gamma_ci95": [
+     0.012542342974999999,
+     0.026726635224999996
+    ],
+    "start_kg": 110.0,
+    "mean_if_rescaled_to_110kg": 0.0195301963045625,
+    "seed": 0,
+    "driver_forecast": "HAM"
+   },
+   "Bahrain Grand Prix 2024, 110 kg start (correct) | shipped_prior_sd0.02": {
+    "gamma_mean": 0.035631807588125,
+    "gamma_ci95": [
+     0.031982484075000005,
+     0.039167779925
+    ],
+    "start_kg": 110.0,
+    "mean_if_rescaled_to_110kg": 0.035631807588125,
+    "seed": 0,
+    "driver_forecast": "HAM"
+   },
+   "Bahrain Grand Prix 2024, 110 kg start (correct) | diffuse_prior_sd1": {
+    "gamma_mean": 0.035582989795,
+    "gamma_ci95": [
+     0.031686058450000006,
+     0.039363183825
+    ],
+    "start_kg": 110.0,
+    "mean_if_rescaled_to_110kg": 0.035582989795,
+    "seed": 0,
+    "driver_forecast": "HAM"
+   },
+   "Bahrain Grand Prix 2024, 70 kg start (the bug) | shipped_prior_sd0.02": {
+    "gamma_mean": 0.05574148500625,
+    "gamma_ci95": [
+     0.05007053495,
+     0.06155030325
+    ],
+    "start_kg": 70.0,
+    "mean_if_rescaled_to_110kg": 0.03547185409488637,
+    "seed": 0,
+    "driver_forecast": "HAM"
+   },
+   "Bahrain Grand Prix 2024, 70 kg start (the bug) | diffuse_prior_sd1": {
+    "gamma_mean": 0.056310585501875,
+    "gamma_ci95": [
+     0.050198121549999995,
+     0.06211816745
+    ],
+    "start_kg": 70.0,
+    "mean_if_rescaled_to_110kg": 0.035834008955738635,
+    "seed": 0,
+    "driver_forecast": "HAM"
+   }
+  },
+  "physical_range_s_per_kg": [
+   0.03,
+   0.035
+  ]
+ },
+ "crps_crosscheck_python": {
+  "normal_vs_integral": 1.9250461225084337e-09,
+  "t_vs_integral": 1.0824674490095276e-15,
+  "ensemble_vs_energy_form": 1.1102230246251565e-16,
+  "ensemble_vs_closed_form_mean": 0.00034309186374095746,
+  "anchor": 2.7755575615628914e-17
+ },
+ "runtime_seconds": 124.3
+}

@@ -1,0 +1,1245 @@
+{
+  "meta": {
+    "script": "scripts/10_pit_loss_by_status.py",
+    "module": "src/tyredeg/paper/pit_loss_eval.py",
+    "generated_utc": "2026-10-31T13:07:33+00:00",
+    "git_head": "a000eefd509cda7571039c2bf42860f3aec2629d",
+    "python": "3.12.9",
+    "numpy": "2.5.2",
+    "pandas": "2.3.3",
+    "seed": 20260930,
+    "params": {
+      "n_boot": 2000,
+      "plausible_green_range_s": [
+        12.0,
+        40.0
+      ],
+      "by_status_bounds_s": [
+        -20.0,
+        60.0
+      ],
+      "min_stops": 30,
+      "min_races": 8,
+      "max_single_race_share": 0.25,
+      "interval": "95% percentile cluster bootstrap over races"
+    },
+    "input_files": {
+      "strategy_race_laps.parquet": "63153443b87ebd6bac2f30c1ee0560a92bd5be5be4867b3ee2f914c6355ad65f"
+    }
+  },
+  "sample": {
+    "n_races": 105,
+    "seasons": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "n_stops_all_categories": 3325
+  },
+  "by_category": {
+    "green": {
+      "n_stops": 2426,
+      "n_races": 103,
+      "n_seasons": 5,
+      "median_s": 22.5,
+      "median_ci95": [
+        22.06,
+        22.97
+      ],
+      "mean_s": 23.43,
+      "max_single_race_share": 0.026
+    },
+    "yellow": {
+      "n_stops": 162,
+      "n_races": 43,
+      "n_seasons": 5,
+      "median_s": 26.06,
+      "median_ci95": [
+        23.26,
+        28.06
+      ],
+      "mean_s": 27.94,
+      "max_single_race_share": 0.13,
+      "ratio_to_green": 1.159,
+      "ratio_ci95": [
+        1.034,
+        1.254
+      ],
+      "usable_as_default": true
+    },
+    "vsc": {
+      "n_stops": 235,
+      "n_races": 39,
+      "n_seasons": 5,
+      "median_s": 20.93,
+      "median_ci95": [
+        18.22,
+        25.0
+      ],
+      "mean_s": 23.22,
+      "max_single_race_share": 0.085,
+      "ratio_to_green": 0.93,
+      "ratio_ci95": [
+        0.807,
+        1.089
+      ],
+      "usable_as_default": true
+    },
+    "safety_car": {
+      "n_stops": 348,
+      "n_races": 40,
+      "n_seasons": 5,
+      "median_s": 19.87,
+      "median_ci95": [
+        15.07,
+        24.88
+      ],
+      "mean_s": 20.8,
+      "max_single_race_share": 0.101,
+      "ratio_to_green": 0.883,
+      "ratio_ci95": [
+        0.666,
+        1.125
+      ],
+      "usable_as_default": true
+    }
+  },
+  "truncation_effect": {
+    "old_filter": "0 < loss < 45 (green: 12-40 s)",
+    "new_filter": "-20 <= loss <= 60, all categories",
+    "vsc": {
+      "old": {
+        "n_stops": 222,
+        "median_s": 20.14,
+        "green_median_s": 22.46,
+        "ratio": 0.897,
+        "ratio_ci95": [
+          0.797,
+          1.016
+        ]
+      },
+      "new": {
+        "n_stops": 235,
+        "median_s": 20.93,
+        "green_median_s": 22.5,
+        "ratio": 0.93,
+        "ratio_ci95": [
+          0.807,
+          1.089
+        ]
+      },
+      "stops_at_or_below_zero": 0,
+      "stops_above_45": 15,
+      "stops_outside_sanity_filter": 2,
+      "unfiltered": {
+        "n_stops": 237,
+        "median_s": 21.14,
+        "green_median_s": 22.5,
+        "ratio": 0.94,
+        "ratio_ci95": [
+          0.808,
+          1.094
+        ]
+      }
+    },
+    "safety_car": {
+      "old": {
+        "n_stops": 270,
+        "median_s": 19.55,
+        "green_median_s": 22.46,
+        "ratio": 0.87,
+        "ratio_ci95": [
+          0.709,
+          1.039
+        ]
+      },
+      "new": {
+        "n_stops": 348,
+        "median_s": 19.87,
+        "green_median_s": 22.5,
+        "ratio": 0.883,
+        "ratio_ci95": [
+          0.666,
+          1.125
+        ]
+      },
+      "stops_at_or_below_zero": 45,
+      "stops_above_45": 152,
+      "stops_outside_sanity_filter": 119,
+      "unfiltered": {
+        "n_stops": 467,
+        "median_s": 24.98,
+        "green_median_s": 22.5,
+        "ratio": 1.11,
+        "ratio_ci95": [
+          0.791,
+          1.986
+        ]
+      }
+    }
+  },
+  "by_season": {
+    "2022": {
+      "green": {
+        "n": 483,
+        "median_s": 22.79
+      },
+      "vsc": {
+        "n": 48,
+        "median_s": 17.36,
+        "ratio": 0.762
+      },
+      "safety_car": {
+        "n": 87,
+        "median_s": 22.16,
+        "ratio": 0.972
+      }
+    },
+    "2023": {
+      "green": {
+        "n": 564,
+        "median_s": 22.86
+      },
+      "vsc": {
+        "n": 30,
+        "median_s": 20.73,
+        "ratio": 0.907
+      },
+      "safety_car": {
+        "n": 51,
+        "median_s": 15.65,
+        "ratio": 0.685
+      }
+    },
+    "2024": {
+      "green": {
+        "n": 599,
+        "median_s": 22.71
+      },
+      "vsc": {
+        "n": 24,
+        "median_s": 22.47,
+        "ratio": 0.989
+      },
+      "safety_car": {
+        "n": 54,
+        "median_s": 19.35,
+        "ratio": 0.852
+      }
+    },
+    "2025": {
+      "green": {
+        "n": 522,
+        "median_s": 22.12
+      },
+      "vsc": {
+        "n": 38,
+        "median_s": 18.25,
+        "ratio": 0.825
+      },
+      "safety_car": {
+        "n": 90,
+        "median_s": 15.88,
+        "ratio": 0.718
+      }
+    },
+    "2026": {
+      "green": {
+        "n": 258,
+        "median_s": 21.88
+      },
+      "vsc": {
+        "n": 95,
+        "median_s": 23.36,
+        "ratio": 1.068
+      },
+      "safety_car": {
+        "n": 66,
+        "median_s": 34.95,
+        "ratio": 1.597
+      }
+    }
+  },
+  "within_race_ratio": {
+    "vsc": {
+      "n_races": 29,
+      "median_of_race_ratios": 0.986,
+      "ci95": [
+        0.713,
+        1.114
+      ],
+      "stop_weighted_mean_ratio": 0.982,
+      "min": 0.525,
+      "max": 1.982
+    },
+    "safety_car": {
+      "n_races": 33,
+      "median_of_race_ratios": 0.767,
+      "ci95": [
+        0.658,
+        0.934
+      ],
+      "stop_weighted_mean_ratio": 0.946,
+      "min": -0.21,
+      "max": 2.325
+    }
+  },
+  "queue": {
+    "green": {
+      "1": {
+        "n": 1030,
+        "median_s": 22.39
+      },
+      "2": {
+        "n": 738,
+        "median_s": 22.49
+      },
+      "3": {
+        "n": 330,
+        "median_s": 22.3
+      },
+      "4": {
+        "n": 144,
+        "median_s": 22.74
+      },
+      "5": {
+        "n": 45,
+        "median_s": 22.61
+      },
+      "6+": {
+        "n": 139,
+        "median_s": 25.17
+      }
+    },
+    "safety_car": {
+      "1": {
+        "n": 30,
+        "median_s": 18.03
+      },
+      "2": {
+        "n": 49,
+        "median_s": 14.5
+      },
+      "3": {
+        "n": 32,
+        "median_s": 26.82
+      },
+      "4": {
+        "n": 32,
+        "median_s": 18.24
+      },
+      "5": {
+        "n": 10,
+        "median_s": 24.14
+      },
+      "6+": {
+        "n": 195,
+        "median_s": 20.3
+      }
+    },
+    "vsc": {
+      "1": {
+        "n": 42,
+        "median_s": 26.32
+      },
+      "2": {
+        "n": 31,
+        "median_s": 21.61
+      },
+      "3": {
+        "n": 39,
+        "median_s": 22.49
+      },
+      "4": {
+        "n": 32,
+        "median_s": 20.99
+      },
+      "5": {
+        "n": 20,
+        "median_s": 23.69
+      },
+      "6+": {
+        "n": 71,
+        "median_s": 16.72
+      }
+    }
+  },
+  "reference_comparison": {
+    "old_reference": {
+      "n": 2387,
+      "median_s": 22.93,
+      "by_race_third": {
+        "first third": {
+          "n": 866,
+          "median_s": 23.73
+        },
+        "middle third": {
+          "n": 1135,
+          "median_s": 22.55
+        },
+        "last third": {
+          "n": 386,
+          "median_s": 21.38
+        }
+      },
+      "slope_s_per_race_fraction": -3.84
+    },
+    "new_reference": {
+      "n": 2370,
+      "median_s": 22.46,
+      "by_race_third": {
+        "first third": {
+          "n": 901,
+          "median_s": 22.18
+        },
+        "middle third": {
+          "n": 1116,
+          "median_s": 22.5
+        },
+        "last third": {
+          "n": 353,
+          "median_s": 23.05
+        }
+      },
+      "slope_s_per_race_fraction": 1.61
+    },
+    "reading": "slope is the change in measured loss from a stop on lap 0 to one on the last lap. A pit lane does not know what lap it is, so a non-zero slope is bias from fuel burn and track evolution leaking into the reference."
+  },
+  "circuit_stability": {
+    "n_race_estimates": 100,
+    "n_circuits_with_2plus_seasons": 24,
+    "between_season_sd_s": {
+      "median": 0.85,
+      "mean": 1.43,
+      "p90": 3.32
+    },
+    "between_season_range_s_median": 1.89,
+    "median_within_race_bootstrap_sd_s": 0.48,
+    "between_circuit_sd_s": 2.72,
+    "table": [
+      {
+        "season": 2022,
+        "event": "United States Grand Prix",
+        "circuit": "austin",
+        "pit_loss_s": 20.49,
+        "n": 26,
+        "sd": 0.6
+      },
+      {
+        "season": 2023,
+        "event": "United States Grand Prix",
+        "circuit": "austin",
+        "pit_loss_s": 20.66,
+        "n": 36,
+        "sd": 0.49
+      },
+      {
+        "season": 2024,
+        "event": "United States Grand Prix",
+        "circuit": "austin",
+        "pit_loss_s": 21.29,
+        "n": 21,
+        "sd": 0.49
+      },
+      {
+        "season": 2025,
+        "event": "United States Grand Prix",
+        "circuit": "austin",
+        "pit_loss_s": 21.53,
+        "n": 18,
+        "sd": 0.44
+      },
+      {
+        "season": 2022,
+        "event": "Azerbaijan Grand Prix",
+        "circuit": "baku",
+        "pit_loss_s": 23.69,
+        "n": 9,
+        "sd": 0.85
+      },
+      {
+        "season": 2023,
+        "event": "Azerbaijan Grand Prix",
+        "circuit": "baku",
+        "pit_loss_s": 21.48,
+        "n": 10,
+        "sd": 0.49
+      },
+      {
+        "season": 2024,
+        "event": "Azerbaijan Grand Prix",
+        "circuit": "baku",
+        "pit_loss_s": 21.99,
+        "n": 17,
+        "sd": 0.53
+      },
+      {
+        "season": 2025,
+        "event": "Azerbaijan Grand Prix",
+        "circuit": "baku",
+        "pit_loss_s": 21.39,
+        "n": 15,
+        "sd": 0.43
+      },
+      {
+        "season": 2022,
+        "event": "Spanish Grand Prix",
+        "circuit": "barcelona",
+        "pit_loss_s": 22.57,
+        "n": 51,
+        "sd": 0.24
+      },
+      {
+        "season": 2023,
+        "event": "Spanish Grand Prix",
+        "circuit": "barcelona",
+        "pit_loss_s": 23.62,
+        "n": 43,
+        "sd": 0.32
+      },
+      {
+        "season": 2024,
+        "event": "Spanish Grand Prix",
+        "circuit": "barcelona",
+        "pit_loss_s": 22.54,
+        "n": 42,
+        "sd": 0.26
+      },
+      {
+        "season": 2025,
+        "event": "Spanish Grand Prix",
+        "circuit": "barcelona",
+        "pit_loss_s": 22.5,
+        "n": 39,
+        "sd": 0.37
+      },
+      {
+        "season": 2026,
+        "event": "Barcelona Grand Prix",
+        "circuit": "barcelona",
+        "pit_loss_s": 24.14,
+        "n": 39,
+        "sd": 0.31
+      },
+      {
+        "season": 2022,
+        "event": "Hungarian Grand Prix",
+        "circuit": "budapest",
+        "pit_loss_s": 23.34,
+        "n": 31,
+        "sd": 0.67
+      },
+      {
+        "season": 2023,
+        "event": "Hungarian Grand Prix",
+        "circuit": "budapest",
+        "pit_loss_s": 21.62,
+        "n": 36,
+        "sd": 0.55
+      },
+      {
+        "season": 2024,
+        "event": "Hungarian Grand Prix",
+        "circuit": "budapest",
+        "pit_loss_s": 20.36,
+        "n": 40,
+        "sd": 0.3
+      },
+      {
+        "season": 2025,
+        "event": "Hungarian Grand Prix",
+        "circuit": "budapest",
+        "pit_loss_s": 21.07,
+        "n": 29,
+        "sd": 0.49
+      },
+      {
+        "season": 2026,
+        "event": "Hungarian Grand Prix",
+        "circuit": "budapest",
+        "pit_loss_s": 22.22,
+        "n": 34,
+        "sd": 0.35
+      },
+      {
+        "season": 2022,
+        "event": "Emilia Romagna Grand Prix",
+        "circuit": "imola",
+        "pit_loss_s": 34.56,
+        "n": 19,
+        "sd": 1.71
+      },
+      {
+        "season": 2024,
+        "event": "Emilia Romagna Grand Prix",
+        "circuit": "imola",
+        "pit_loss_s": 27.52,
+        "n": 25,
+        "sd": 0.45
+      },
+      {
+        "season": 2025,
+        "event": "Emilia Romagna Grand Prix",
+        "circuit": "imola",
+        "pit_loss_s": 27.41,
+        "n": 11,
+        "sd": 0.52
+      },
+      {
+        "season": 2022,
+        "event": "Saudi Arabian Grand Prix",
+        "circuit": "jeddah",
+        "pit_loss_s": 20.75,
+        "n": 4,
+        "sd": 1.8
+      },
+      {
+        "season": 2023,
+        "event": "Saudi Arabian Grand Prix",
+        "circuit": "jeddah",
+        "pit_loss_s": 20.92,
+        "n": 10,
+        "sd": 1.26
+      },
+      {
+        "season": 2024,
+        "event": "Saudi Arabian Grand Prix",
+        "circuit": "jeddah",
+        "pit_loss_s": 21.62,
+        "n": 4,
+        "sd": 0.85
+      },
+      {
+        "season": 2025,
+        "event": "Saudi Arabian Grand Prix",
+        "circuit": "jeddah",
+        "pit_loss_s": 20.51,
+        "n": 16,
+        "sd": 0.61
+      },
+      {
+        "season": 2023,
+        "event": "Las Vegas Grand Prix",
+        "circuit": "las vegas",
+        "pit_loss_s": 24.2,
+        "n": 14,
+        "sd": 0.82
+      },
+      {
+        "season": 2024,
+        "event": "Las Vegas Grand Prix",
+        "circuit": "las vegas",
+        "pit_loss_s": 22.76,
+        "n": 39,
+        "sd": 0.59
+      },
+      {
+        "season": 2025,
+        "event": "Las Vegas Grand Prix",
+        "circuit": "las vegas",
+        "pit_loss_s": 22.65,
+        "n": 15,
+        "sd": 0.73
+      },
+      {
+        "season": 2022,
+        "event": "French Grand Prix",
+        "circuit": "le castellet",
+        "pit_loss_s": 28.23,
+        "n": 6,
+        "sd": 1.7
+      },
+      {
+        "season": 2023,
+        "event": "Qatar Grand Prix",
+        "circuit": "lusail",
+        "pit_loss_s": 27.79,
+        "n": 40,
+        "sd": 0.42
+      },
+      {
+        "season": 2024,
+        "event": "Qatar Grand Prix",
+        "circuit": "lusail",
+        "pit_loss_s": 27.31,
+        "n": 6,
+        "sd": 2.08
+      },
+      {
+        "season": 2025,
+        "event": "Qatar Grand Prix",
+        "circuit": "lusail",
+        "pit_loss_s": 27.11,
+        "n": 21,
+        "sd": 0.26
+      },
+      {
+        "season": 2022,
+        "event": "Singapore Grand Prix",
+        "circuit": "marina bay",
+        "pit_loss_s": 37.78,
+        "n": 3,
+        "sd": 1.7
+      },
+      {
+        "season": 2023,
+        "event": "Singapore Grand Prix",
+        "circuit": "marina bay",
+        "pit_loss_s": 29.55,
+        "n": 3,
+        "sd": 0.91
+      },
+      {
+        "season": 2024,
+        "event": "Singapore Grand Prix",
+        "circuit": "marina bay",
+        "pit_loss_s": 29.94,
+        "n": 22,
+        "sd": 0.86
+      },
+      {
+        "season": 2025,
+        "event": "Singapore Grand Prix",
+        "circuit": "marina bay",
+        "pit_loss_s": 23.08,
+        "n": 22,
+        "sd": 0.69
+      },
+      {
+        "season": 2022,
+        "event": "Australian Grand Prix",
+        "circuit": "melbourne",
+        "pit_loss_s": 21.4,
+        "n": 12,
+        "sd": 0.48
+      },
+      {
+        "season": 2024,
+        "event": "Australian Grand Prix",
+        "circuit": "melbourne",
+        "pit_loss_s": 21.09,
+        "n": 30,
+        "sd": 0.4
+      },
+      {
+        "season": 2026,
+        "event": "Australian Grand Prix",
+        "circuit": "melbourne",
+        "pit_loss_s": 24.41,
+        "n": 8,
+        "sd": 2.17
+      },
+      {
+        "season": 2022,
+        "event": "Mexico City Grand Prix",
+        "circuit": "mexico city",
+        "pit_loss_s": 23.48,
+        "n": 23,
+        "sd": 0.3
+      },
+      {
+        "season": 2023,
+        "event": "Mexico City Grand Prix",
+        "circuit": "mexico city",
+        "pit_loss_s": 22.39,
+        "n": 16,
+        "sd": 0.47
+      },
+      {
+        "season": 2024,
+        "event": "Mexico City Grand Prix",
+        "circuit": "mexico city",
+        "pit_loss_s": 23.5,
+        "n": 20,
+        "sd": 0.5
+      },
+      {
+        "season": 2025,
+        "event": "Mexico City Grand Prix",
+        "circuit": "mexico city",
+        "pit_loss_s": 22.25,
+        "n": 26,
+        "sd": 0.43
+      },
+      {
+        "season": 2022,
+        "event": "Miami Grand Prix",
+        "circuit": "miami",
+        "pit_loss_s": 21.34,
+        "n": 14,
+        "sd": 0.71
+      },
+      {
+        "season": 2023,
+        "event": "Miami Grand Prix",
+        "circuit": "miami",
+        "pit_loss_s": 19.7,
+        "n": 19,
+        "sd": 0.3
+      },
+      {
+        "season": 2024,
+        "event": "Miami Grand Prix",
+        "circuit": "miami",
+        "pit_loss_s": 19.44,
+        "n": 12,
+        "sd": 0.74
+      },
+      {
+        "season": 2025,
+        "event": "Miami Grand Prix",
+        "circuit": "miami",
+        "pit_loss_s": 18.29,
+        "n": 9,
+        "sd": 0.45
+      },
+      {
+        "season": 2026,
+        "event": "Miami Grand Prix",
+        "circuit": "miami",
+        "pit_loss_s": 19.67,
+        "n": 20,
+        "sd": 0.45
+      },
+      {
+        "season": 2022,
+        "event": "Monaco Grand Prix",
+        "circuit": "monaco",
+        "pit_loss_s": 22.4,
+        "n": 13,
+        "sd": 1.07
+      },
+      {
+        "season": 2023,
+        "event": "Monaco Grand Prix",
+        "circuit": "monaco",
+        "pit_loss_s": 22.04,
+        "n": 15,
+        "sd": 2.34
+      },
+      {
+        "season": 2024,
+        "event": "Monaco Grand Prix",
+        "circuit": "monaco",
+        "pit_loss_s": 20.71,
+        "n": 5,
+        "sd": 4.71
+      },
+      {
+        "season": 2025,
+        "event": "Monaco Grand Prix",
+        "circuit": "monaco",
+        "pit_loss_s": 17.86,
+        "n": 35,
+        "sd": 0.38
+      },
+      {
+        "season": 2026,
+        "event": "Monaco Grand Prix",
+        "circuit": "monaco",
+        "pit_loss_s": 21.43,
+        "n": 19,
+        "sd": 0.67
+      },
+      {
+        "season": 2022,
+        "event": "Canadian Grand Prix",
+        "circuit": "montreal",
+        "pit_loss_s": 18.92,
+        "n": 10,
+        "sd": 0.65
+      },
+      {
+        "season": 2023,
+        "event": "Canadian Grand Prix",
+        "circuit": "montreal",
+        "pit_loss_s": 20.7,
+        "n": 14,
+        "sd": 0.43
+      },
+      {
+        "season": 2024,
+        "event": "Canadian Grand Prix",
+        "circuit": "montreal",
+        "pit_loss_s": 25.87,
+        "n": 17,
+        "sd": 0.2
+      },
+      {
+        "season": 2025,
+        "event": "Canadian Grand Prix",
+        "circuit": "montreal",
+        "pit_loss_s": 19.36,
+        "n": 28,
+        "sd": 0.35
+      },
+      {
+        "season": 2026,
+        "event": "Canadian Grand Prix",
+        "circuit": "montreal",
+        "pit_loss_s": 25.6,
+        "n": 15,
+        "sd": 1.26
+      },
+      {
+        "season": 2022,
+        "event": "Italian Grand Prix",
+        "circuit": "monza",
+        "pit_loss_s": 25.83,
+        "n": 19,
+        "sd": 0.64
+      },
+      {
+        "season": 2023,
+        "event": "Italian Grand Prix",
+        "circuit": "monza",
+        "pit_loss_s": 25.32,
+        "n": 25,
+        "sd": 0.32
+      },
+      {
+        "season": 2024,
+        "event": "Italian Grand Prix",
+        "circuit": "monza",
+        "pit_loss_s": 25.98,
+        "n": 30,
+        "sd": 0.29
+      },
+      {
+        "season": 2025,
+        "event": "Italian Grand Prix",
+        "circuit": "monza",
+        "pit_loss_s": 25.43,
+        "n": 18,
+        "sd": 0.32
+      },
+      {
+        "season": 2022,
+        "event": "Bahrain Grand Prix",
+        "circuit": "sakhir",
+        "pit_loss_s": 23.85,
+        "n": 33,
+        "sd": 0.5
+      },
+      {
+        "season": 2023,
+        "event": "Bahrain Grand Prix",
+        "circuit": "sakhir",
+        "pit_loss_s": 25.01,
+        "n": 43,
+        "sd": 0.27
+      },
+      {
+        "season": 2024,
+        "event": "Bahrain Grand Prix",
+        "circuit": "sakhir",
+        "pit_loss_s": 24.66,
+        "n": 37,
+        "sd": 0.26
+      },
+      {
+        "season": 2025,
+        "event": "Bahrain Grand Prix",
+        "circuit": "sakhir",
+        "pit_loss_s": 23.15,
+        "n": 27,
+        "sd": 0.37
+      },
+      {
+        "season": 2022,
+        "event": "S\u00e3o Paulo Grand Prix",
+        "circuit": "sao paulo",
+        "pit_loss_s": 21.88,
+        "n": 36,
+        "sd": 0.26
+      },
+      {
+        "season": 2023,
+        "event": "S\u00e3o Paulo Grand Prix",
+        "circuit": "sao paulo",
+        "pit_loss_s": 21.73,
+        "n": 33,
+        "sd": 0.38
+      },
+      {
+        "season": 2025,
+        "event": "S\u00e3o Paulo Grand Prix",
+        "circuit": "sao paulo",
+        "pit_loss_s": 22.33,
+        "n": 33,
+        "sd": 0.41
+      },
+      {
+        "season": 2024,
+        "event": "Chinese Grand Prix",
+        "circuit": "shanghai",
+        "pit_loss_s": 22.89,
+        "n": 21,
+        "sd": 0.24
+      },
+      {
+        "season": 2025,
+        "event": "Chinese Grand Prix",
+        "circuit": "shanghai",
+        "pit_loss_s": 22.65,
+        "n": 23,
+        "sd": 0.38
+      },
+      {
+        "season": 2022,
+        "event": "British Grand Prix",
+        "circuit": "silverstone",
+        "pit_loss_s": 22.42,
+        "n": 18,
+        "sd": 0.83
+      },
+      {
+        "season": 2023,
+        "event": "British Grand Prix",
+        "circuit": "silverstone",
+        "pit_loss_s": 20.4,
+        "n": 10,
+        "sd": 0.57
+      },
+      {
+        "season": 2024,
+        "event": "British Grand Prix",
+        "circuit": "silverstone",
+        "pit_loss_s": 23.99,
+        "n": 40,
+        "sd": 0.9
+      },
+      {
+        "season": 2025,
+        "event": "British Grand Prix",
+        "circuit": "silverstone",
+        "pit_loss_s": 18.88,
+        "n": 12,
+        "sd": 0.59
+      },
+      {
+        "season": 2026,
+        "event": "British Grand Prix",
+        "circuit": "silverstone",
+        "pit_loss_s": 21.22,
+        "n": 21,
+        "sd": 1.28
+      },
+      {
+        "season": 2022,
+        "event": "Belgian Grand Prix",
+        "circuit": "spa-francorchamps",
+        "pit_loss_s": 18.26,
+        "n": 36,
+        "sd": 0.29
+      },
+      {
+        "season": 2023,
+        "event": "Belgian Grand Prix",
+        "circuit": "spa-francorchamps",
+        "pit_loss_s": 18.9,
+        "n": 37,
+        "sd": 0.36
+      },
+      {
+        "season": 2024,
+        "event": "Belgian Grand Prix",
+        "circuit": "spa-francorchamps",
+        "pit_loss_s": 18.57,
+        "n": 32,
+        "sd": 0.21
+      },
+      {
+        "season": 2025,
+        "event": "Belgian Grand Prix",
+        "circuit": "spa-francorchamps",
+        "pit_loss_s": 22.57,
+        "n": 26,
+        "sd": 1.16
+      },
+      {
+        "season": 2026,
+        "event": "Belgian Grand Prix",
+        "circuit": "spa-francorchamps",
+        "pit_loss_s": 21.97,
+        "n": 9,
+        "sd": 1.91
+      },
+      {
+        "season": 2022,
+        "event": "Austrian Grand Prix",
+        "circuit": "spielberg",
+        "pit_loss_s": 21.74,
+        "n": 35,
+        "sd": 0.36
+      },
+      {
+        "season": 2023,
+        "event": "Austrian Grand Prix",
+        "circuit": "spielberg",
+        "pit_loss_s": 21.94,
+        "n": 27,
+        "sd": 0.69
+      },
+      {
+        "season": 2024,
+        "event": "Austrian Grand Prix",
+        "circuit": "spielberg",
+        "pit_loss_s": 21.3,
+        "n": 44,
+        "sd": 0.31
+      },
+      {
+        "season": 2025,
+        "event": "Austrian Grand Prix",
+        "circuit": "spielberg",
+        "pit_loss_s": 21.63,
+        "n": 30,
+        "sd": 0.21
+      },
+      {
+        "season": 2026,
+        "event": "Austrian Grand Prix",
+        "circuit": "spielberg",
+        "pit_loss_s": 21.56,
+        "n": 33,
+        "sd": 0.29
+      },
+      {
+        "season": 2022,
+        "event": "Japanese Grand Prix",
+        "circuit": "suzuka",
+        "pit_loss_s": 23.47,
+        "n": 21,
+        "sd": 1.02
+      },
+      {
+        "season": 2023,
+        "event": "Japanese Grand Prix",
+        "circuit": "suzuka",
+        "pit_loss_s": 22.95,
+        "n": 27,
+        "sd": 0.26
+      },
+      {
+        "season": 2024,
+        "event": "Japanese Grand Prix",
+        "circuit": "suzuka",
+        "pit_loss_s": 21.54,
+        "n": 35,
+        "sd": 0.35
+      },
+      {
+        "season": 2025,
+        "event": "Japanese Grand Prix",
+        "circuit": "suzuka",
+        "pit_loss_s": 23.36,
+        "n": 21,
+        "sd": 0.62
+      },
+      {
+        "season": 2026,
+        "event": "Japanese Grand Prix",
+        "circuit": "suzuka",
+        "pit_loss_s": 22.59,
+        "n": 10,
+        "sd": 0.64
+      },
+      {
+        "season": 2022,
+        "event": "Abu Dhabi Grand Prix",
+        "circuit": "yas island",
+        "pit_loss_s": 23.52,
+        "n": 27,
+        "sd": 0.35
+      },
+      {
+        "season": 2023,
+        "event": "Abu Dhabi Grand Prix",
+        "circuit": "yas island",
+        "pit_loss_s": 22.25,
+        "n": 37,
+        "sd": 0.35
+      },
+      {
+        "season": 2024,
+        "event": "Abu Dhabi Grand Prix",
+        "circuit": "yas island",
+        "pit_loss_s": 22.49,
+        "n": 20,
+        "sd": 0.81
+      },
+      {
+        "season": 2025,
+        "event": "Abu Dhabi Grand Prix",
+        "circuit": "yas island",
+        "pit_loss_s": 22.41,
+        "n": 27,
+        "sd": 0.41
+      },
+      {
+        "season": 2022,
+        "event": "Dutch Grand Prix",
+        "circuit": "zandvoort",
+        "pit_loss_s": 22.6,
+        "n": 30,
+        "sd": 0.37
+      },
+      {
+        "season": 2023,
+        "event": "Dutch Grand Prix",
+        "circuit": "zandvoort",
+        "pit_loss_s": 25.83,
+        "n": 56,
+        "sd": 1.72
+      },
+      {
+        "season": 2024,
+        "event": "Dutch Grand Prix",
+        "circuit": "zandvoort",
+        "pit_loss_s": 22.75,
+        "n": 26,
+        "sd": 0.26
+      },
+      {
+        "season": 2025,
+        "event": "Dutch Grand Prix",
+        "circuit": "zandvoort",
+        "pit_loss_s": 17.56,
+        "n": 8,
+        "sd": 0.88
+      },
+      {
+        "season": 2026,
+        "event": "Dutch Grand Prix",
+        "circuit": "zandvoort",
+        "pit_loss_s": 19.73,
+        "n": 35,
+        "sd": 0.34
+      }
+    ]
+  },
+  "console_default": {
+    "fraction": 0.883,
+    "category": "safety_car",
+    "vsc_ratio": 0.93,
+    "safety_car_ratio": 0.883,
+    "basis": "all seasons, cluster bootstrap over races",
+    "safety_car_usable": true,
+    "filter_sensitivity": {
+      "safety_car_ratio_old_filter": 0.87,
+      "safety_car_ratio_wide_filter": 0.883,
+      "safety_car_ratio_no_filter": 1.11,
+      "safety_car_stops_outside_sanity_filter": 119,
+      "reading": "The safety-car ratio depends on the filter: about a quarter of safety-car stops measure more than 60 s (the non-pitting reference is itself erratic under a safety car), and keeping them moves the ratio above 1. The reported fraction is the wide-filter median ratio; treat it as 'somewhat cheaper than green, not well determined', which its interval says too."
+    },
+    "note": "The intervals include 1.0: a neutralised stop is at most modestly cheaper than a green one, not the 55% cheaper the first version of the console assumed, and the safety-car figure is sensitive to the outlier filter (see filter_sensitivity)."
+  },
+  "limitations": [
+    "A stop's loss is measured against the median of cars that did not stop on those laps; under a neutralisation that median is itself set by the neutralisation.",
+    "Lap status is per lap, not per sector: a lap that is part green and part neutralised is filed under the neutralisation.",
+    "The optimiser minimises total time and has no concept of track position, which is why teams actually pit under a safety car."
+  ]
+}

@@ -1,0 +1,4194 @@
+{
+ "quick_mode": false,
+ "dataset": {
+  "n_laps_total": 23856,
+  "n_events_in_file": 14,
+  "events_in_file": [
+   "Australian Grand Prix",
+   "Austrian Grand Prix",
+   "Barcelona Grand Prix",
+   "Belgian Grand Prix",
+   "British Grand Prix",
+   "Canadian Grand Prix",
+   "Chinese Grand Prix",
+   "Dutch Grand Prix",
+   "Hungarian Grand Prix",
+   "Italian Grand Prix",
+   "Japanese Grand Prix",
+   "Miami Grand Prix",
+   "Monaco Grand Prix",
+   "Spanish Grand Prix"
+  ],
+  "race_events_in_file": [
+   "Australian Grand Prix",
+   "Austrian Grand Prix",
+   "Barcelona Grand Prix",
+   "Belgian Grand Prix",
+   "British Grand Prix",
+   "Canadian Grand Prix",
+   "Chinese Grand Prix",
+   "Dutch Grand Prix",
+   "Hungarian Grand Prix",
+   "Italian Grand Prix",
+   "Japanese Grand Prix",
+   "Miami Grand Prix",
+   "Monaco Grand Prix"
+  ],
+  "events_with_no_race_laps": [
+   "Spanish Grand Prix"
+  ],
+  "laps_by_session": {
+   "FP1": 4795,
+   "FP2": 3039,
+   "FP3": 1828,
+   "R": 12300,
+   "S": 1894
+  },
+  "race_fit": {
+   "sessions": [
+    "R"
+   ],
+   "n_events": 13,
+   "events": [
+    "Australian Grand Prix",
+    "Austrian Grand Prix",
+    "Barcelona Grand Prix",
+    "Belgian Grand Prix",
+    "British Grand Prix",
+    "Canadian Grand Prix",
+    "Chinese Grand Prix",
+    "Dutch Grand Prix",
+    "Hungarian Grand Prix",
+    "Italian Grand Prix",
+    "Japanese Grand Prix",
+    "Miami Grand Prix",
+    "Monaco Grand Prix"
+   ],
+   "n_laps": 11039,
+   "n_runs": 820,
+   "n_drivers": 23
+  },
+  "laps_by_event_session": {
+   "Australian Grand Prix": {
+    "FP1": 285,
+    "FP2": 329,
+    "FP3": 166,
+    "R": 834
+   },
+   "Austrian Grand Prix": {
+    "FP1": 299,
+    "FP2": 371,
+    "FP3": 234,
+    "R": 1157
+   },
+   "Barcelona Grand Prix": {
+    "FP1": 311,
+    "FP2": 341,
+    "FP3": 130,
+    "R": 1029
+   },
+   "Belgian Grand Prix": {
+    "FP1": 230,
+    "FP2": 140,
+    "FP3": 189,
+    "R": 682
+   },
+   "British Grand Prix": {
+    "FP1": 378,
+    "R": 824,
+    "S": 325
+   },
+   "Canadian Grand Prix": {
+    "FP1": 342,
+    "R": 935,
+    "S": 435
+   },
+   "Chinese Grand Prix": {
+    "FP1": 294,
+    "R": 738,
+    "S": 296
+   },
+   "Dutch Grand Prix": {
+    "FP1": 435,
+    "R": 1090,
+    "S": 480
+   },
+   "Hungarian Grand Prix": {
+    "FP1": 313,
+    "FP2": 378,
+    "FP3": 214,
+    "R": 1252
+   },
+   "Italian Grand Prix": {
+    "FP1": 346,
+    "FP2": 412,
+    "FP3": 225,
+    "R": 889
+   },
+   "Japanese Grand Prix": {
+    "FP1": 347,
+    "FP2": 330,
+    "FP3": 241,
+    "R": 918
+   },
+   "Miami Grand Prix": {
+    "FP1": 472,
+    "R": 791,
+    "S": 358
+   },
+   "Monaco Grand Prix": {
+    "FP1": 413,
+    "FP2": 488,
+    "FP3": 346,
+    "R": 1161
+   },
+   "Spanish Grand Prix": {
+    "FP1": 330,
+    "FP2": 250,
+    "FP3": 83
+   }
+  }
+ },
+ "shipped_fit": {
+  "specification": "within (event, lap); compound offset + compound x tyre-age slope + traffic; random circuit slope, driver-in-event intercept, run intercept, run slope; REML",
+  "rates_s_per_lap": {
+   "C1": {
+    "mean": 0.08237,
+    "lo": 0.04133,
+    "hi": 0.12342,
+    "n_runs": 55,
+    "n_laps": 801
+   },
+   "C2": {
+    "mean": 0.05324,
+    "lo": 0.02568,
+    "hi": 0.0808,
+    "n_runs": 191,
+    "n_laps": 2836
+   },
+   "C3": {
+    "mean": 0.05024,
+    "lo": 0.02409,
+    "hi": 0.07639,
+    "n_runs": 242,
+    "n_laps": 3316
+   },
+   "C4": {
+    "mean": 0.04205,
+    "lo": 0.01545,
+    "hi": 0.06864,
+    "n_runs": 223,
+    "n_laps": 2943
+   },
+   "C5": {
+    "mean": 0.02172,
+    "lo": -0.00682,
+    "hi": 0.05026,
+    "n_runs": 109,
+    "n_laps": 1143
+   }
+  },
+  "monotone_softer_degrades_faster": false,
+  "separated_pairs_nonoverlap": [],
+  "adjacent_contrasts_s_per_lap": {
+   "C2-C1": {
+    "mean": -0.02914,
+    "lo": -0.06394,
+    "hi": 0.00567
+   },
+   "C3-C2": {
+    "mean": -0.003,
+    "lo": -0.02143,
+    "hi": 0.01543
+   },
+   "C4-C3": {
+    "mean": -0.00819,
+    "lo": -0.02102,
+    "hi": 0.00464
+   },
+   "C5-C4": {
+    "mean": -0.02032,
+    "lo": -0.03626,
+    "hi": -0.00438
+   }
+  },
+  "variance_sd": {
+   "circuit_slope": 0.04367,
+   "driver_event": 1.16643,
+   "run": 0.28421,
+   "run_slope": 0.0315,
+   "resid": 0.55553
+  },
+  "convergence": {
+   "engine": "reml (Woodbury, bounded variance ratios, L-BFGS-B)",
+   "converged": true,
+   "n_starts": 3,
+   "start_deviance_spread": 0.0,
+   "n_starts_at_optimum": 3,
+   "grad_max_abs": 0.001567,
+   "hessian_pd": true,
+   "hessian_min_eig": 138.75605,
+   "boundary_components": [],
+   "boundary_slopes_nonnegative": true,
+   "variance_components": [
+    "circuit_slope",
+    "driver_event",
+    "run",
+    "run_slope"
+   ],
+   "all_ok": true
+  },
+  "n_obs": 11039,
+  "n_drivers": 23,
+  "total_loss_20_laps_s": {
+   "C1": 1.647,
+   "C2": 1.065,
+   "C3": 1.005,
+   "C4": 0.841,
+   "C5": 0.434
+  }
+ },
+ "engine_agreement": {
+  "specification": "circuit random slope + driver-in-event + run intercept",
+  "engine_seconds": 1.01,
+  "statsmodels_seconds": 4.14,
+  "statsmodels_converged": true,
+  "statsmodels_attempts": [
+   {
+    "method": "lbfgs",
+    "converged": true,
+    "llf": -10502.48345,
+    "hessian_not_pd": false,
+    "boundary_warning": false
+   }
+  ],
+  "engine_converged": true,
+  "max_abs_rate_difference": 7e-06,
+  "max_abs_se_difference": 0.000101,
+  "max_abs_variance_sd_difference": {
+   "circuit_slope": 4.9e-05,
+   "driver_event": 0.000298,
+   "run": 1.1e-05,
+   "resid": 5e-06
+  },
+  "rates_engine": {
+   "C1": 0.088986,
+   "C2": 0.053423,
+   "C3": 0.053827,
+   "C4": 0.033726,
+   "C5": 0.018565
+  },
+  "rates_statsmodels": {
+   "C1": 0.088985,
+   "C2": 0.053416,
+   "C3": 0.053821,
+   "C4": 0.03372,
+   "C5": 0.01856
+  }
+ },
+ "old_fit_reproduction": {
+  "unscaled_lbfgs": {
+   "converged": false,
+   "circuit_slope_sd_s_per_lap": 0.099424,
+   "reml_loglik_comparable_within_row_only": -10917.544752,
+   "warnings": [
+    "Gradient optimization failed, |grad| = 76.859839",
+    "Maximum Likelihood optimization failed to converge. Check mle_retvals",
+    "MixedLM optimization failed, trying a different optimizer may help.",
+    "The Hessian matrix at the estimated parameter values is not positive definite.",
+    "The MLE may be on the boundary of the parameter space."
+   ]
+  },
+  "rescaled_lbfgs": {
+   "converged": true,
+   "circuit_slope_sd_s_per_lap": 0.035818,
+   "reml_loglik_comparable_within_row_only": -10896.562627,
+   "warnings": []
+  },
+  "note": "Same model, same data. The unscaled L-BFGS fit stops early with a flagged non-converged, non-positive-definite result; the rescaled fit converges to a circuit-slope SD far smaller."
+ },
+ "inference_comparison": {
+  "rates": {
+   "A_lap_level_no_circuit": {
+    "C1": {
+     "mean": 0.07109,
+     "lo": 0.05864,
+     "hi": 0.08355,
+     "width": 0.02491
+    },
+    "C2": {
+     "mean": 0.06052,
+     "lo": 0.05499,
+     "hi": 0.06604,
+     "width": 0.01106
+    },
+    "C3": {
+     "mean": 0.05262,
+     "lo": 0.04926,
+     "hi": 0.05599,
+     "width": 0.00674
+    },
+    "C4": {
+     "mean": 0.02156,
+     "lo": 0.01742,
+     "hi": 0.02569,
+     "width": 0.00827
+    },
+    "C5": {
+     "mean": 0.01117,
+     "lo": 0.00575,
+     "hi": 0.01659,
+     "width": 0.01084
+    },
+    "_sd": {
+     "driver_event": 1.21357
+    },
+    "_deviance": -8999.2
+   },
+   "B_lap_level_circuit": {
+    "C1": {
+     "mean": 0.08207,
+     "lo": 0.05549,
+     "hi": 0.10865,
+     "width": 0.05317
+    },
+    "C2": {
+     "mean": 0.05167,
+     "lo": 0.03074,
+     "hi": 0.07259,
+     "width": 0.04184
+    },
+    "C3": {
+     "mean": 0.04581,
+     "lo": 0.02557,
+     "hi": 0.06606,
+     "width": 0.04049
+    },
+    "C4": {
+     "mean": 0.03051,
+     "lo": 0.01011,
+     "hi": 0.0509,
+     "width": 0.04078
+    },
+    "C5": {
+     "mean": 0.01266,
+     "lo": -0.00813,
+     "hi": 0.03345,
+     "width": 0.04159
+    },
+    "_sd": {
+     "circuit_slope": 0.03581,
+     "driver_event": 1.20122
+    },
+    "_deviance": -9502.98
+   },
+   "C_run_intercept": {
+    "C1": {
+     "mean": 0.08899,
+     "lo": 0.0546,
+     "hi": 0.12338,
+     "width": 0.06878
+    },
+    "C2": {
+     "mean": 0.05342,
+     "lo": 0.02932,
+     "hi": 0.07753,
+     "width": 0.04821
+    },
+    "C3": {
+     "mean": 0.05383,
+     "lo": 0.03066,
+     "hi": 0.077,
+     "width": 0.04634
+    },
+    "C4": {
+     "mean": 0.03373,
+     "lo": 0.01036,
+     "hi": 0.05709,
+     "width": 0.04673
+    },
+    "C5": {
+     "mean": 0.01856,
+     "lo": -0.00551,
+     "hi": 0.04264,
+     "width": 0.04815
+    },
+    "_sd": {
+     "circuit_slope": 0.04012,
+     "driver_event": 1.17727,
+     "run": 0.30677
+    },
+    "_deviance": -10291.14
+   },
+   "D_run_intercept_and_slope_SHIPPED": {
+    "C1": {
+     "mean": 0.08237,
+     "lo": 0.04133,
+     "hi": 0.12342,
+     "width": 0.08209
+    },
+    "C2": {
+     "mean": 0.05324,
+     "lo": 0.02568,
+     "hi": 0.0808,
+     "width": 0.05512
+    },
+    "C3": {
+     "mean": 0.05024,
+     "lo": 0.02409,
+     "hi": 0.07639,
+     "width": 0.05229
+    },
+    "C4": {
+     "mean": 0.04205,
+     "lo": 0.01545,
+     "hi": 0.06864,
+     "width": 0.05319
+    },
+    "C5": {
+     "mean": 0.02172,
+     "lo": -0.00681,
+     "hi": 0.05026,
+     "width": 0.05708
+    },
+    "_sd": {
+     "circuit_slope": 0.04367,
+     "driver_event": 1.16643,
+     "run": 0.28421,
+     "run_slope": 0.0315
+    },
+    "_deviance": -10461.32
+   },
+   "E_FE_OLS_cluster_by_run": {
+    "C1": {
+     "mean": 0.07129,
+     "lo": 0.05967,
+     "hi": 0.08292,
+     "width": 0.02325
+    },
+    "C2": {
+     "mean": 0.06056,
+     "lo": 0.05009,
+     "hi": 0.07103,
+     "width": 0.02094
+    },
+    "C3": {
+     "mean": 0.05268,
+     "lo": 0.04575,
+     "hi": 0.05962,
+     "width": 0.01387
+    },
+    "C4": {
+     "mean": 0.02169,
+     "lo": 0.01352,
+     "hi": 0.02987,
+     "width": 0.01634
+    },
+    "C5": {
+     "mean": 0.01127,
+     "lo": -0.00419,
+     "hi": 0.02674,
+     "width": 0.03093
+    }
+   },
+   "F_FE_OLS_cluster_by_event_t12": {
+    "C1": {
+     "mean": 0.07129,
+     "lo": 0.0592,
+     "hi": 0.08338,
+     "width": 0.02418
+    },
+    "C2": {
+     "mean": 0.06056,
+     "lo": 0.03271,
+     "hi": 0.0884,
+     "width": 0.05569
+    },
+    "C3": {
+     "mean": 0.05268,
+     "lo": 0.03647,
+     "hi": 0.06889,
+     "width": 0.03242
+    },
+    "C4": {
+     "mean": 0.02169,
+     "lo": -0.00021,
+     "hi": 0.0436,
+     "width": 0.04381
+    },
+    "C5": {
+     "mean": 0.01127,
+     "lo": -0.01524,
+     "hi": 0.03778,
+     "width": 0.05302
+    }
+   }
+  },
+  "width_ratio_vs_B": {
+   "A_lap_level_no_circuit": {
+    "C1": 0.468,
+    "C2": 0.264,
+    "C3": 0.166,
+    "C4": 0.203,
+    "C5": 0.261
+   },
+   "C_run_intercept": {
+    "C1": 1.294,
+    "C2": 1.152,
+    "C3": 1.144,
+    "C4": 1.146,
+    "C5": 1.158
+   },
+   "D_run_intercept_and_slope_SHIPPED": {
+    "C1": 1.544,
+    "C2": 1.317,
+    "C3": 1.291,
+    "C4": 1.304,
+    "C5": 1.372
+   },
+   "E_FE_OLS_cluster_by_run": {
+    "C1": 0.437,
+    "C2": 0.5,
+    "C3": 0.343,
+    "C4": 0.401,
+    "C5": 0.744
+   },
+   "F_FE_OLS_cluster_by_event_t12": {
+    "C1": 0.455,
+    "C2": 1.331,
+    "C3": 0.801,
+    "C4": 1.074,
+    "C5": 1.275
+   }
+  },
+  "residual_lag1_autocorrelation_within_runs": {
+   "B_lap_level_circuit": 0.361,
+   "C_run_intercept": 0.256,
+   "D_run_intercept_and_slope_SHIPPED": 0.23
+  },
+  "reading": "Widths relative to the lap-level circuit model (B). Run-level terms and cluster-robust errors answer 'how many independent observations are there'."
+ },
+ "circuit_effect": {
+  "model": "random circuit slope + driver-in-event + run intercept + run slope; REML; null = same without the circuit slope",
+  "circuit_slope_sd_s_per_lap": {
+   "estimate": 0.04367,
+   "profile_likelihood_95": [
+    0.03058,
+    0.07303
+   ],
+   "parametric_bootstrap_percentile_95": [
+    0.02402,
+    0.06285
+   ],
+   "bootstrap_mean": 0.04261,
+   "n_boot": 400
+  },
+  "profile_grid": {
+   "grid_sd_per_lap": [
+    0.0,
+    0.01092,
+    0.02183,
+    0.03275,
+    0.04367,
+    0.05895,
+    0.07642,
+    0.10044,
+    0.13101
+   ],
+   "delta_deviance": [
+    172.815,
+    63.016,
+    12.334,
+    1.739,
+    -0.0,
+    1.277,
+    4.458,
+    8.846,
+    13.905
+   ]
+  },
+  "lr_test": {
+   "reml_lr_statistic": 172.815,
+   "p_parametric_bootstrap": 0.002,
+   "n_bootstrap": 500,
+   "p_floor_note": "with B replicates the smallest attainable p is 1/(B+1)",
+   "p_chibar2_50_50_mixture": 0.0,
+   "bootstrap_lr_quantiles_95_99": [
+    2.2,
+    3.396
+   ],
+   "null_sd_estimates_on_boundary_share": 0.45
+  },
+  "effect_in_seconds_over_20_lap_stint": {
+   "circuit_sd": {
+    "seconds": 0.873,
+    "profile_95": [
+     0.612,
+     1.461
+    ]
+   },
+   "circuit_central_95_range_seconds": 3.424,
+   "sd_of_the_five_compound_rates_s_per_lap": 0.02192,
+   "sd_of_compound_rates_seconds": 0.438,
+   "compound_differences": {
+    "C2-C1": {
+     "s_per_lap": {
+      "mean": -0.02914,
+      "lo": -0.06394,
+      "hi": 0.00567
+     },
+     "seconds_over_20_laps": {
+      "est": -0.583,
+      "lo": -1.279,
+      "hi": 0.113
+     }
+    },
+    "C3-C1": {
+     "s_per_lap": {
+      "mean": -0.03213,
+      "lo": -0.07017,
+      "hi": 0.0059
+     },
+     "seconds_over_20_laps": {
+      "est": -0.643,
+      "lo": -1.403,
+      "hi": 0.118
+     }
+    },
+    "C4-C1": {
+     "s_per_lap": {
+      "mean": -0.04033,
+      "lo": -0.07871,
+      "hi": -0.00194
+     },
+     "seconds_over_20_laps": {
+      "est": -0.807,
+      "lo": -1.574,
+      "hi": -0.039
+     }
+    },
+    "C5-C1": {
+     "s_per_lap": {
+      "mean": -0.06065,
+      "lo": -0.10081,
+      "hi": -0.02048
+     },
+     "seconds_over_20_laps": {
+      "est": -1.213,
+      "lo": -2.016,
+      "hi": -0.41
+     }
+    },
+    "C3-C2": {
+     "s_per_lap": {
+      "mean": -0.003,
+      "lo": -0.02143,
+      "hi": 0.01543
+     },
+     "seconds_over_20_laps": {
+      "est": -0.06,
+      "lo": -0.429,
+      "hi": 0.309
+     }
+    },
+    "C4-C2": {
+     "s_per_lap": {
+      "mean": -0.01119,
+      "lo": -0.03014,
+      "hi": 0.00776
+     },
+     "seconds_over_20_laps": {
+      "est": -0.224,
+      "lo": -0.603,
+      "hi": 0.155
+     }
+    },
+    "C5-C2": {
+     "s_per_lap": {
+      "mean": -0.03151,
+      "lo": -0.05409,
+      "hi": -0.00893
+     },
+     "seconds_over_20_laps": {
+      "est": -0.63,
+      "lo": -1.082,
+      "hi": -0.179
+     }
+    },
+    "C4-C3": {
+     "s_per_lap": {
+      "mean": -0.00819,
+      "lo": -0.02102,
+      "hi": 0.00464
+     },
+     "seconds_over_20_laps": {
+      "est": -0.164,
+      "lo": -0.42,
+      "hi": 0.093
+     }
+    },
+    "C5-C3": {
+     "s_per_lap": {
+      "mean": -0.02851,
+      "lo": -0.04422,
+      "hi": -0.01281
+     },
+     "seconds_over_20_laps": {
+      "est": -0.57,
+      "lo": -0.884,
+      "hi": -0.256
+     }
+    },
+    "C5-C4": {
+     "s_per_lap": {
+      "mean": -0.02032,
+      "lo": -0.03626,
+      "hi": -0.00438
+     },
+     "seconds_over_20_laps": {
+      "est": -0.406,
+      "lo": -0.725,
+      "hi": -0.088
+     }
+    }
+   },
+   "adjacent_compound_pairs": [
+    "C2-C1",
+    "C3-C2",
+    "C4-C3",
+    "C5-C4"
+   ]
+  },
+  "shrunken_predictions_not_an_effect_size": {
+   "range_s_per_lap": 0.1576,
+   "per_event": {
+    "Australian Grand Prix": 0.0057,
+    "Austrian Grand Prix": 0.0313,
+    "Barcelona Grand Prix": 0.0977,
+    "Belgian Grand Prix": -0.0027,
+    "British Grand Prix": 0.0112,
+    "Canadian Grand Prix": -0.0599,
+    "Chinese Grand Prix": -0.0235,
+    "Dutch Grand Prix": 0.0082,
+    "Hungarian Grand Prix": 0.0374,
+    "Italian Grand Prix": -0.0346,
+    "Japanese Grand Prix": -0.0566,
+    "Miami Grand Prix": -0.0016,
+    "Monaco Grand Prix": -0.0125
+   },
+   "why": "predicted random effects are shrunk toward zero; their range neither estimates nor bounds the true circuit SD"
+  },
+  "bootstrap_seconds": 122.9,
+  "converged_full_fit": true,
+  "fit_on_boundary": []
+ },
+ "compound_within_event": {
+  "pooled_random_circuit": {
+   "trend_s_per_lap_per_step_softer": {
+    "mean": -0.0116,
+    "lo": -0.01785,
+    "hi": -0.00535,
+    "p_two_sided": 0.000273
+   },
+   "contrast_vs_C3_s_per_lap": {
+    "C1": {
+     "mean": 0.03213,
+     "lo": -0.0059,
+     "hi": 0.07017
+    },
+    "C2": {
+     "mean": 0.003,
+     "lo": -0.01543,
+     "hi": 0.02143
+    },
+    "C4": {
+     "mean": -0.00819,
+     "lo": -0.02102,
+     "hi": 0.00464
+    },
+    "C5": {
+     "mean": -0.02851,
+     "lo": -0.04422,
+     "hi": -0.01281
+    }
+   },
+   "label_rank_contrast_s_per_lap": {
+    "MEDIUM_minus_HARD": {
+     "mean": -0.00586,
+     "lo": -0.01723,
+     "hi": 0.00552
+    },
+    "SOFT_minus_HARD": {
+     "mean": -0.0255,
+     "lo": -0.03879,
+     "hi": -0.01222
+    },
+    "SOFT_minus_MEDIUM": {
+     "mean": -0.01965,
+     "lo": -0.03388,
+     "hi": -0.00541
+    }
+   }
+  },
+  "within_event_fixed_circuit": {
+   "trend_s_per_lap_per_step_softer": {
+    "mean": -0.01135,
+    "lo": -0.01782,
+    "hi": -0.00489,
+    "p_two_sided": 0.000578
+   },
+   "contrast_vs_C3_s_per_lap": {
+    "C1": {
+     "mean": 0.03979,
+     "lo": -0.00152,
+     "hi": 0.0811
+    },
+    "C2": {
+     "mean": 0.00255,
+     "lo": -0.01661,
+     "hi": 0.02172
+    },
+    "C4": {
+     "mean": -0.00732,
+     "lo": -0.02025,
+     "hi": 0.00561
+    },
+    "C5": {
+     "mean": -0.02771,
+     "lo": -0.04354,
+     "hi": -0.01187
+    }
+   },
+   "label_rank_contrast_s_per_lap": {
+    "MEDIUM_minus_HARD": {
+     "mean": -0.00497,
+     "lo": -0.01643,
+     "hi": 0.0065
+    },
+    "SOFT_minus_HARD": {
+     "mean": -0.0249,
+     "lo": -0.03829,
+     "hi": -0.01152
+    },
+    "SOFT_minus_MEDIUM": {
+     "mean": -0.01994,
+     "lo": -0.03426,
+     "hi": -0.00561
+    }
+   }
+  },
+  "reading": {
+   "expected_sign_if_physics_holds": "positive",
+   "pooled_trend_sign": "negative",
+   "within_event_trend_sign": "negative",
+   "within_event_interval_excludes_zero": true
+  }
+ },
+ "per_race_separation": {
+  "benchmark_width_s_per_lap": 0.129,
+  "protocols": {
+   "min_runs_1_lap_level": {
+    "n_cells": 38,
+    "n_adjacent_pairs": 25,
+    "cells_tighter_than_benchmark": 35,
+    "median_tightening_ratio": 4.41,
+    "max_tightening_ratio": 9.08,
+    "pairs_separated_non_overlap_any_direction": 11,
+    "pairs_separated_non_overlap_correct_direction": 2,
+    "pairs_separated_non_overlap_wrong_direction": 9,
+    "pairs_separated_by_difference_test_any_direction": 13,
+    "pairs_separated_by_difference_test_correct_direction": 2
+   },
+   "min_runs_1_run_level": {
+    "n_cells": 38,
+    "n_adjacent_pairs": 25,
+    "cells_tighter_than_benchmark": 30,
+    "median_tightening_ratio": 2.09,
+    "max_tightening_ratio": 6.15,
+    "pairs_separated_non_overlap_any_direction": 4,
+    "pairs_separated_non_overlap_correct_direction": 1,
+    "pairs_separated_non_overlap_wrong_direction": 3,
+    "pairs_separated_by_difference_test_any_direction": 7,
+    "pairs_separated_by_difference_test_correct_direction": 2
+   },
+   "min_runs_3_lap_level": {
+    "n_cells": 36,
+    "n_adjacent_pairs": 23,
+    "cells_tighter_than_benchmark": 35,
+    "median_tightening_ratio": 4.57,
+    "max_tightening_ratio": 9.08,
+    "pairs_separated_non_overlap_any_direction": 10,
+    "pairs_separated_non_overlap_correct_direction": 1,
+    "pairs_separated_non_overlap_wrong_direction": 9,
+    "pairs_separated_by_difference_test_any_direction": 12,
+    "pairs_separated_by_difference_test_correct_direction": 1
+   },
+   "min_runs_3_run_level": {
+    "n_cells": 36,
+    "n_adjacent_pairs": 23,
+    "cells_tighter_than_benchmark": 30,
+    "median_tightening_ratio": 2.14,
+    "max_tightening_ratio": 6.15,
+    "pairs_separated_non_overlap_any_direction": 3,
+    "pairs_separated_non_overlap_correct_direction": 0,
+    "pairs_separated_non_overlap_wrong_direction": 3,
+    "pairs_separated_by_difference_test_any_direction": 6,
+    "pairs_separated_by_difference_test_correct_direction": 1
+   },
+   "min_runs_5_lap_level": {
+    "n_cells": 34,
+    "n_adjacent_pairs": 21,
+    "cells_tighter_than_benchmark": 33,
+    "median_tightening_ratio": 4.76,
+    "max_tightening_ratio": 9.08,
+    "pairs_separated_non_overlap_any_direction": 9,
+    "pairs_separated_non_overlap_correct_direction": 1,
+    "pairs_separated_non_overlap_wrong_direction": 8,
+    "pairs_separated_by_difference_test_any_direction": 11,
+    "pairs_separated_by_difference_test_correct_direction": 1
+   },
+   "min_runs_5_run_level": {
+    "n_cells": 34,
+    "n_adjacent_pairs": 21,
+    "cells_tighter_than_benchmark": 29,
+    "median_tightening_ratio": 2.25,
+    "max_tightening_ratio": 6.15,
+    "pairs_separated_non_overlap_any_direction": 3,
+    "pairs_separated_non_overlap_correct_direction": 0,
+    "pairs_separated_non_overlap_wrong_direction": 3,
+    "pairs_separated_by_difference_test_any_direction": 6,
+    "pairs_separated_by_difference_test_correct_direction": 1
+   },
+   "min_runs_8_lap_level": {
+    "n_cells": 33,
+    "n_adjacent_pairs": 20,
+    "cells_tighter_than_benchmark": 32,
+    "median_tightening_ratio": 5.08,
+    "max_tightening_ratio": 9.08,
+    "pairs_separated_non_overlap_any_direction": 8,
+    "pairs_separated_non_overlap_correct_direction": 1,
+    "pairs_separated_non_overlap_wrong_direction": 7,
+    "pairs_separated_by_difference_test_any_direction": 10,
+    "pairs_separated_by_difference_test_correct_direction": 1
+   },
+   "min_runs_8_run_level": {
+    "n_cells": 33,
+    "n_adjacent_pairs": 20,
+    "cells_tighter_than_benchmark": 28,
+    "median_tightening_ratio": 2.25,
+    "max_tightening_ratio": 6.04,
+    "pairs_separated_non_overlap_any_direction": 3,
+    "pairs_separated_non_overlap_correct_direction": 0,
+    "pairs_separated_non_overlap_wrong_direction": 3,
+    "pairs_separated_by_difference_test_any_direction": 5,
+    "pairs_separated_by_difference_test_correct_direction": 1
+   }
+  },
+  "cells_min_runs_3_run_level": [
+   {
+    "event": "Australian Grand Prix",
+    "compound": "C3",
+    "n_runs": 30,
+    "rate": 0.05995,
+    "lo": 0.044,
+    "hi": 0.0759,
+    "width": 0.0319
+   },
+   {
+    "event": "Australian Grand Prix",
+    "compound": "C4",
+    "n_runs": 20,
+    "rate": 0.01209,
+    "lo": -0.02552,
+    "hi": 0.04971,
+    "width": 0.07523
+   },
+   {
+    "event": "Australian Grand Prix",
+    "compound": "C5",
+    "n_runs": 8,
+    "rate": 0.01811,
+    "lo": -0.01858,
+    "hi": 0.0548,
+    "width": 0.07338
+   },
+   {
+    "event": "Austrian Grand Prix",
+    "compound": "C3",
+    "n_runs": 34,
+    "rate": 0.0816,
+    "lo": 0.07091,
+    "hi": 0.09228,
+    "width": 0.02137
+   },
+   {
+    "event": "Austrian Grand Prix",
+    "compound": "C4",
+    "n_runs": 30,
+    "rate": 0.08733,
+    "lo": 0.06816,
+    "hi": 0.1065,
+    "width": 0.03835
+   },
+   {
+    "event": "Austrian Grand Prix",
+    "compound": "C5",
+    "n_runs": 8,
+    "rate": 0.01266,
+    "lo": -0.01771,
+    "hi": 0.04304,
+    "width": 0.06075
+   },
+   {
+    "event": "Barcelona Grand Prix",
+    "compound": "C2",
+    "n_runs": 37,
+    "rate": 0.16635,
+    "lo": 0.14025,
+    "hi": 0.19244,
+    "width": 0.05219
+   },
+   {
+    "event": "Barcelona Grand Prix",
+    "compound": "C3",
+    "n_runs": 18,
+    "rate": 0.16965,
+    "lo": 0.11932,
+    "hi": 0.21997,
+    "width": 0.10065
+   },
+   {
+    "event": "Barcelona Grand Prix",
+    "compound": "C4",
+    "n_runs": 9,
+    "rate": 0.11731,
+    "lo": 0.03227,
+    "hi": 0.20234,
+    "width": 0.17006
+   },
+   {
+    "event": "Belgian Grand Prix",
+    "compound": "C2",
+    "n_runs": 25,
+    "rate": 0.05304,
+    "lo": 0.00329,
+    "hi": 0.10278,
+    "width": 0.09949
+   },
+   {
+    "event": "Belgian Grand Prix",
+    "compound": "C3",
+    "n_runs": 12,
+    "rate": 0.03143,
+    "lo": -0.16926,
+    "hi": 0.23212,
+    "width": 0.40138
+   },
+   {
+    "event": "Belgian Grand Prix",
+    "compound": "C4",
+    "n_runs": 3,
+    "rate": 0.11348,
+    "lo": -0.02691,
+    "hi": 0.25388,
+    "width": 0.28079
+   },
+   {
+    "event": "British Grand Prix",
+    "compound": "C1",
+    "n_runs": 36,
+    "rate": 0.09311,
+    "lo": 0.07663,
+    "hi": 0.10958,
+    "width": 0.03296
+   },
+   {
+    "event": "British Grand Prix",
+    "compound": "C2",
+    "n_runs": 30,
+    "rate": 0.05105,
+    "lo": 0.02771,
+    "hi": 0.07439,
+    "width": 0.04667
+   },
+   {
+    "event": "Canadian Grand Prix",
+    "compound": "C3",
+    "n_runs": 10,
+    "rate": -0.05803,
+    "lo": -0.14014,
+    "hi": 0.02409,
+    "width": 0.16423
+   },
+   {
+    "event": "Canadian Grand Prix",
+    "compound": "C4",
+    "n_runs": 65,
+    "rate": -0.01706,
+    "lo": -0.03192,
+    "hi": -0.00221,
+    "width": 0.02971
+   },
+   {
+    "event": "Canadian Grand Prix",
+    "compound": "C5",
+    "n_runs": 40,
+    "rate": -0.01914,
+    "lo": -0.04171,
+    "hi": 0.00343,
+    "width": 0.04514
+   },
+   {
+    "event": "Chinese Grand Prix",
+    "compound": "C2",
+    "n_runs": 42,
+    "rate": 0.04338,
+    "lo": 0.00393,
+    "hi": 0.08284,
+    "width": 0.07891
+   },
+   {
+    "event": "Chinese Grand Prix",
+    "compound": "C3",
+    "n_runs": 14,
+    "rate": 0.01542,
+    "lo": -0.06744,
+    "hi": 0.09828,
+    "width": 0.16571
+   },
+   {
+    "event": "Dutch Grand Prix",
+    "compound": "C2",
+    "n_runs": 33,
+    "rate": 0.06228,
+    "lo": 0.04867,
+    "hi": 0.07589,
+    "width": 0.02722
+   },
+   {
+    "event": "Dutch Grand Prix",
+    "compound": "C3",
+    "n_runs": 13,
+    "rate": 0.07843,
+    "lo": 0.04932,
+    "hi": 0.10753,
+    "width": 0.05822
+   },
+   {
+    "event": "Dutch Grand Prix",
+    "compound": "C4",
+    "n_runs": 24,
+    "rate": 0.04389,
+    "lo": 0.01972,
+    "hi": 0.06805,
+    "width": 0.04833
+   },
+   {
+    "event": "Hungarian Grand Prix",
+    "compound": "C3",
+    "n_runs": 46,
+    "rate": 0.09122,
+    "lo": 0.07264,
+    "hi": 0.1098,
+    "width": 0.03716
+   },
+   {
+    "event": "Hungarian Grand Prix",
+    "compound": "C4",
+    "n_runs": 20,
+    "rate": 0.09087,
+    "lo": 0.05656,
+    "hi": 0.12519,
+    "width": 0.06863
+   },
+   {
+    "event": "Hungarian Grand Prix",
+    "compound": "C5",
+    "n_runs": 25,
+    "rate": 0.05694,
+    "lo": 0.02825,
+    "hi": 0.08562,
+    "width": 0.05738
+   },
+   {
+    "event": "Italian Grand Prix",
+    "compound": "C3",
+    "n_runs": 22,
+    "rate": -0.00932,
+    "lo": -0.0408,
+    "hi": 0.02215,
+    "width": 0.06295
+   },
+   {
+    "event": "Italian Grand Prix",
+    "compound": "C4",
+    "n_runs": 16,
+    "rate": -0.00829,
+    "lo": -0.03833,
+    "hi": 0.02176,
+    "width": 0.06008
+   },
+   {
+    "event": "Italian Grand Prix",
+    "compound": "C5",
+    "n_runs": 4,
+    "rate": 0.04464,
+    "lo": -0.00375,
+    "hi": 0.09303,
+    "width": 0.09677
+   },
+   {
+    "event": "Japanese Grand Prix",
+    "compound": "C1",
+    "n_runs": 19,
+    "rate": 0.02308,
+    "lo": -0.02122,
+    "hi": 0.06739,
+    "width": 0.08862
+   },
+   {
+    "event": "Japanese Grand Prix",
+    "compound": "C2",
+    "n_runs": 24,
+    "rate": -0.23032,
+    "lo": -0.36502,
+    "hi": -0.09562,
+    "width": 0.26939
+   },
+   {
+    "event": "Miami Grand Prix",
+    "compound": "C3",
+    "n_runs": 30,
+    "rate": 0.03027,
+    "lo": 0.01979,
+    "hi": 0.04076,
+    "width": 0.02097
+   },
+   {
+    "event": "Miami Grand Prix",
+    "compound": "C4",
+    "n_runs": 17,
+    "rate": 0.0504,
+    "lo": 0.03637,
+    "hi": 0.06442,
+    "width": 0.02805
+   },
+   {
+    "event": "Miami Grand Prix",
+    "compound": "C5",
+    "n_runs": 5,
+    "rate": 0.00779,
+    "lo": -0.02395,
+    "hi": 0.03954,
+    "width": 0.06348
+   },
+   {
+    "event": "Monaco Grand Prix",
+    "compound": "C3",
+    "n_runs": 12,
+    "rate": 0.03232,
+    "lo": 0.01149,
+    "hi": 0.05315,
+    "width": 0.04166
+   },
+   {
+    "event": "Monaco Grand Prix",
+    "compound": "C4",
+    "n_runs": 18,
+    "rate": 0.02556,
+    "lo": 0.00311,
+    "hi": 0.04802,
+    "width": 0.04491
+   },
+   {
+    "event": "Monaco Grand Prix",
+    "compound": "C5",
+    "n_runs": 19,
+    "rate": 0.00131,
+    "lo": -0.03035,
+    "hi": 0.03297,
+    "width": 0.06331
+   }
+  ],
+  "caveat": "The benchmark width is one driver's three stints at one race; ours is a whole field's stints at one race. Width is not like for like, and the benchmark's own tightening is partly just more data. The adjacent-pair counts are within-event and so are free of the compound-circuit confound."
+ },
+ "rate_calibration": {
+  "simulation_based_calibration": {
+   "n_datasets": 400,
+   "compounds": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5"
+   ],
+   "coverage_of_true_rate": {
+    "0.50": {
+     "pooled": 0.4765,
+     "per_parameter": [
+      0.4625,
+      0.4525,
+      0.4875,
+      0.4675,
+      0.5125
+     ]
+    },
+    "0.80": {
+     "pooled": 0.7755,
+     "per_parameter": [
+      0.7875,
+      0.7675,
+      0.785,
+      0.7525,
+      0.785
+     ]
+    },
+    "0.90": {
+     "pooled": 0.8635,
+     "per_parameter": [
+      0.8825,
+      0.85,
+      0.8825,
+      0.85,
+      0.8525
+     ]
+    },
+    "0.95": {
+     "pooled": 0.9095,
+     "per_parameter": [
+      0.9125,
+      0.9075,
+      0.9075,
+      0.9125,
+      0.9075
+     ]
+    }
+   },
+   "mean_bias_s_per_lap": {
+    "C1": 0.00122,
+    "C2": -0.00056,
+    "C3": -0.00053,
+    "C4": -0.00069,
+    "C5": -0.00065
+   },
+   "mc_se_at_95_nominal": 0.0109,
+   "what_it_tests": "the estimator against data drawn from the fitted model itself; it cannot detect misspecification"
+  },
+  "leave_one_event_out": {
+   "n_cells": 36,
+   "variants": {
+    "full_predictive": {
+     "coverage": {
+      "0.50": {
+       "coverage": 0.528,
+       "k": 19,
+       "n": 36,
+       "wilson_95": [
+        0.37,
+        0.68
+       ]
+      },
+      "0.80": {
+       "coverage": 0.778,
+       "k": 28,
+       "n": 36,
+       "wilson_95": [
+        0.619,
+        0.883
+       ]
+      },
+      "0.90": {
+       "coverage": 0.889,
+       "k": 32,
+       "n": 36,
+       "wilson_95": [
+        0.747,
+        0.956
+       ]
+      },
+      "0.95": {
+       "coverage": 0.917,
+       "k": 33,
+       "n": 36,
+       "wilson_95": [
+        0.782,
+        0.971
+       ]
+      }
+     },
+     "z_mean": 0.008,
+     "z_sd": 1.262
+    },
+    "no_event_sampling_variance": {
+     "coverage": {
+      "0.50": {
+       "coverage": 0.5,
+       "k": 18,
+       "n": 36,
+       "wilson_95": [
+        0.345,
+        0.655
+       ]
+      },
+      "0.80": {
+       "coverage": 0.75,
+       "k": 27,
+       "n": 36,
+       "wilson_95": [
+        0.589,
+        0.862
+       ]
+      },
+      "0.90": {
+       "coverage": 0.861,
+       "k": 31,
+       "n": 36,
+       "wilson_95": [
+        0.713,
+        0.939
+       ]
+      },
+      "0.95": {
+       "coverage": 0.861,
+       "k": 31,
+       "n": 36,
+       "wilson_95": [
+        0.713,
+        0.939
+       ]
+      }
+     },
+     "z_mean": -0.045,
+     "z_sd": 1.76
+    },
+    "no_circuit_variance": {
+     "coverage": {
+      "0.50": {
+       "coverage": 0.25,
+       "k": 9,
+       "n": 36,
+       "wilson_95": [
+        0.138,
+        0.411
+       ]
+      },
+      "0.80": {
+       "coverage": 0.528,
+       "k": 19,
+       "n": 36,
+       "wilson_95": [
+        0.37,
+        0.68
+       ]
+      },
+      "0.90": {
+       "coverage": 0.583,
+       "k": 21,
+       "n": 36,
+       "wilson_95": [
+        0.422,
+        0.729
+       ]
+      },
+      "0.95": {
+       "coverage": 0.639,
+       "k": 23,
+       "n": 36,
+       "wilson_95": [
+        0.476,
+        0.775
+       ]
+      }
+     },
+     "z_mean": 0.042,
+     "z_sd": 2.276
+    }
+   },
+   "cells": [
+    {
+     "event": "Australian Grand Prix",
+     "compound": "C3",
+     "own": 0.05995,
+     "own_se": 0.00814,
+     "pooled": 0.04756,
+     "pooled_se": 0.01482,
+     "tau": 0.0466,
+     "n_runs": 30
+    },
+    {
+     "event": "Australian Grand Prix",
+     "compound": "C4",
+     "own": 0.01209,
+     "own_se": 0.01919,
+     "pooled": 0.04325,
+     "pooled_se": 0.01499,
+     "tau": 0.0466,
+     "n_runs": 20
+    },
+    {
+     "event": "Australian Grand Prix",
+     "compound": "C5",
+     "own": 0.01811,
+     "own_se": 0.01872,
+     "pooled": 0.02238,
+     "pooled_se": 0.01615,
+     "tau": 0.0466,
+     "n_runs": 8
+    },
+    {
+     "event": "Austrian Grand Prix",
+     "compound": "C3",
+     "own": 0.0816,
+     "own_se": 0.00545,
+     "pooled": 0.04742,
+     "pooled_se": 0.01439,
+     "tau": 0.04491,
+     "n_runs": 34
+    },
+    {
+     "event": "Austrian Grand Prix",
+     "compound": "C4",
+     "own": 0.08733,
+     "own_se": 0.00978,
+     "pooled": 0.03784,
+     "pooled_se": 0.01459,
+     "tau": 0.04491,
+     "n_runs": 30
+    },
+    {
+     "event": "Austrian Grand Prix",
+     "compound": "C5",
+     "own": 0.01266,
+     "own_se": 0.0155,
+     "pooled": 0.02187,
+     "pooled_se": 0.01563,
+     "tau": 0.04491,
+     "n_runs": 8
+    },
+    {
+     "event": "Barcelona Grand Prix",
+     "compound": "C2",
+     "own": 0.16635,
+     "own_se": 0.01331,
+     "pooled": 0.04434,
+     "pooled_se": 0.01187,
+     "tau": 0.03062,
+     "n_runs": 37
+    },
+    {
+     "event": "Barcelona Grand Prix",
+     "compound": "C3",
+     "own": 0.16965,
+     "own_se": 0.02568,
+     "pooled": 0.04371,
+     "pooled_se": 0.01036,
+     "tau": 0.03062,
+     "n_runs": 18
+    },
+    {
+     "event": "Barcelona Grand Prix",
+     "compound": "C4",
+     "own": 0.11731,
+     "own_se": 0.04338,
+     "pooled": 0.03555,
+     "pooled_se": 0.0106,
+     "tau": 0.03062,
+     "n_runs": 9
+    },
+    {
+     "event": "Belgian Grand Prix",
+     "compound": "C2",
+     "own": 0.05304,
+     "own_se": 0.02538,
+     "pooled": 0.05281,
+     "pooled_se": 0.01518,
+     "tau": 0.04565,
+     "n_runs": 25
+    },
+    {
+     "event": "Belgian Grand Prix",
+     "compound": "C3",
+     "own": 0.03143,
+     "own_se": 0.10239,
+     "pooled": 0.05053,
+     "pooled_se": 0.01426,
+     "tau": 0.04565,
+     "n_runs": 12
+    },
+    {
+     "event": "Belgian Grand Prix",
+     "compound": "C4",
+     "own": 0.11348,
+     "own_se": 0.07163,
+     "pooled": 0.04136,
+     "pooled_se": 0.01449,
+     "tau": 0.04565,
+     "n_runs": 3
+    },
+    {
+     "event": "British Grand Prix",
+     "compound": "C1",
+     "own": 0.09311,
+     "own_se": 0.00841,
+     "pooled": 0.03496,
+     "pooled_se": 0.06278,
+     "tau": 0.0439,
+     "n_runs": 36
+    },
+    {
+     "event": "British Grand Prix",
+     "compound": "C2",
+     "own": 0.05105,
+     "own_se": 0.01191,
+     "pooled": 0.05635,
+     "pooled_se": 0.0151,
+     "tau": 0.0439,
+     "n_runs": 30
+    },
+    {
+     "event": "Canadian Grand Prix",
+     "compound": "C3",
+     "own": -0.05803,
+     "own_se": 0.0419,
+     "pooled": 0.05654,
+     "pooled_se": 0.01294,
+     "tau": 0.04019,
+     "n_runs": 10
+    },
+    {
+     "event": "Canadian Grand Prix",
+     "compound": "C4",
+     "own": -0.01706,
+     "own_se": 0.00758,
+     "pooled": 0.04923,
+     "pooled_se": 0.01337,
+     "tau": 0.04019,
+     "n_runs": 65
+    },
+    {
+     "event": "Canadian Grand Prix",
+     "compound": "C5",
+     "own": -0.01914,
+     "own_se": 0.01152,
+     "pooled": 0.02328,
+     "pooled_se": 0.01484,
+     "tau": 0.04019,
+     "n_runs": 40
+    },
+    {
+     "event": "Chinese Grand Prix",
+     "compound": "C2",
+     "own": 0.04338,
+     "own_se": 0.02013,
+     "pooled": 0.053,
+     "pooled_se": 0.01516,
+     "tau": 0.04502,
+     "n_runs": 42
+    },
+    {
+     "event": "Chinese Grand Prix",
+     "compound": "C3",
+     "own": 0.01542,
+     "own_se": 0.04227,
+     "pooled": 0.05353,
+     "pooled_se": 0.01424,
+     "tau": 0.04502,
+     "n_runs": 14
+    },
+    {
+     "event": "Dutch Grand Prix",
+     "compound": "C2",
+     "own": 0.06228,
+     "own_se": 0.00694,
+     "pooled": 0.05315,
+     "pooled_se": 0.01669,
+     "tau": 0.04636,
+     "n_runs": 33
+    },
+    {
+     "event": "Dutch Grand Prix",
+     "compound": "C3",
+     "own": 0.07843,
+     "own_se": 0.01485,
+     "pooled": 0.04707,
+     "pooled_se": 0.0148,
+     "tau": 0.04636,
+     "n_runs": 13
+    },
+    {
+     "event": "Dutch Grand Prix",
+     "compound": "C4",
+     "own": 0.04389,
+     "own_se": 0.01233,
+     "pooled": 0.04232,
+     "pooled_se": 0.01521,
+     "tau": 0.04636,
+     "n_runs": 24
+    },
+    {
+     "event": "Hungarian Grand Prix",
+     "compound": "C3",
+     "own": 0.09122,
+     "own_se": 0.00948,
+     "pooled": 0.04625,
+     "pooled_se": 0.01408,
+     "tau": 0.04404,
+     "n_runs": 46
+    },
+    {
+     "event": "Hungarian Grand Prix",
+     "compound": "C4",
+     "own": 0.09087,
+     "own_se": 0.01751,
+     "pooled": 0.03818,
+     "pooled_se": 0.01425,
+     "tau": 0.04404,
+     "n_runs": 20
+    },
+    {
+     "event": "Hungarian Grand Prix",
+     "compound": "C5",
+     "own": 0.05694,
+     "own_se": 0.01464,
+     "pooled": 0.0186,
+     "pooled_se": 0.01562,
+     "tau": 0.04404,
+     "n_runs": 25
+    },
+    {
+     "event": "Italian Grand Prix",
+     "compound": "C3",
+     "own": -0.00932,
+     "own_se": 0.01606,
+     "pooled": 0.054,
+     "pooled_se": 0.01414,
+     "tau": 0.04436,
+     "n_runs": 22
+    },
+    {
+     "event": "Italian Grand Prix",
+     "compound": "C4",
+     "own": -0.00829,
+     "own_se": 0.01533,
+     "pooled": 0.04526,
+     "pooled_se": 0.01442,
+     "tau": 0.04436,
+     "n_runs": 16
+    },
+    {
+     "event": "Italian Grand Prix",
+     "compound": "C5",
+     "own": 0.04464,
+     "own_se": 0.02469,
+     "pooled": 0.02443,
+     "pooled_se": 0.01541,
+     "tau": 0.04436,
+     "n_runs": 4
+    },
+    {
+     "event": "Japanese Grand Prix",
+     "compound": "C1",
+     "own": 0.02308,
+     "own_se": 0.02261,
+     "pooled": 0.09187,
+     "pooled_se": 0.02145,
+     "tau": 0.04022,
+     "n_runs": 19
+    },
+    {
+     "event": "Japanese Grand Prix",
+     "compound": "C2",
+     "own": -0.23032,
+     "own_se": 0.06872,
+     "pooled": 0.05917,
+     "pooled_se": 0.01343,
+     "tau": 0.04022,
+     "n_runs": 24
+    },
+    {
+     "event": "Miami Grand Prix",
+     "compound": "C3",
+     "own": 0.03027,
+     "own_se": 0.00535,
+     "pooled": 0.05292,
+     "pooled_se": 0.01446,
+     "tau": 0.04541,
+     "n_runs": 30
+    },
+    {
+     "event": "Miami Grand Prix",
+     "compound": "C4",
+     "own": 0.0504,
+     "own_se": 0.00716,
+     "pooled": 0.03857,
+     "pooled_se": 0.01471,
+     "tau": 0.04541,
+     "n_runs": 17
+    },
+    {
+     "event": "Miami Grand Prix",
+     "compound": "C5",
+     "own": 0.00779,
+     "own_se": 0.0162,
+     "pooled": 0.01974,
+     "pooled_se": 0.0157,
+     "tau": 0.04541,
+     "n_runs": 5
+    },
+    {
+     "event": "Monaco Grand Prix",
+     "compound": "C3",
+     "own": 0.03232,
+     "own_se": 0.01063,
+     "pooled": 0.05091,
+     "pooled_se": 0.01514,
+     "tau": 0.04775,
+     "n_runs": 12
+    },
+    {
+     "event": "Monaco Grand Prix",
+     "compound": "C4",
+     "own": 0.02556,
+     "own_se": 0.01146,
+     "pooled": 0.04516,
+     "pooled_se": 0.0154,
+     "tau": 0.04775,
+     "n_runs": 18
+    },
+    {
+     "event": "Monaco Grand Prix",
+     "compound": "C5",
+     "own": 0.00131,
+     "own_se": 0.01615,
+     "pooled": 0.02516,
+     "pooled_se": 0.01654,
+     "tau": 0.04775,
+     "n_runs": 19
+    }
+   ],
+   "headline": "variants.full_predictive.coverage['0.80']"
+  }
+ },
+ "lap_level_calibration": {
+  "what": "held-out LAPS inside their predictive interval, leave-one-run-out; dominated by lap scatter, says little about the rates",
+  "n_laps": 11039,
+  "n_runs": 820,
+  "coverage": {
+   "0.50": 0.4881,
+   "0.60": 0.5838,
+   "0.70": 0.6891,
+   "0.80": 0.8059,
+   "0.90": 0.9162,
+   "0.95": 0.957,
+   "0.99": 0.9879
+  },
+  "coverage_80": 0.8059,
+  "verdict": "well calibrated"
+ },
+ "ablation": {
+  "rows": {
+   "C1": {
+    "naive_run_clustered": {
+     "mean": -0.03515,
+     "lo": -0.06523,
+     "hi": -0.00507
+    },
+    "naive_iid": {
+     "mean": -0.03515,
+     "lo": -0.04645,
+     "hi": -0.02384
+    },
+    "practitioner_fuel_corrected_within_stint": {
+     "mean": 0.03358,
+     "lo": 0.02543,
+     "hi": 0.04173
+    },
+    "practitioner_s_per_kg_030_to_035": [
+     0.02941,
+     0.03637
+    ],
+    "deconfounded": {
+     "mean": 0.08237,
+     "lo": 0.04133,
+     "hi": 0.12342
+    },
+    "n_runs": 55
+   },
+   "C2": {
+    "naive_run_clustered": {
+     "mean": 0.20068,
+     "lo": 0.11628,
+     "hi": 0.28507
+    },
+    "naive_iid": {
+     "mean": 0.20068,
+     "lo": 0.15336,
+     "hi": 0.24799
+    },
+    "practitioner_fuel_corrected_within_stint": {
+     "mean": 0.03818,
+     "lo": 0.03097,
+     "hi": 0.04539
+    },
+    "practitioner_s_per_kg_030_to_035": [
+     0.03441,
+     0.04069
+    ],
+    "deconfounded": {
+     "mean": 0.05324,
+     "lo": 0.02568,
+     "hi": 0.0808
+    },
+    "n_runs": 191
+   },
+   "C3": {
+    "naive_run_clustered": {
+     "mean": -0.03666,
+     "lo": -0.09317,
+     "hi": 0.01985
+    },
+    "naive_iid": {
+     "mean": -0.03666,
+     "lo": -0.0639,
+     "hi": -0.00942
+    },
+    "practitioner_fuel_corrected_within_stint": {
+     "mean": 0.04814,
+     "lo": 0.0381,
+     "hi": 0.05819
+    },
+    "practitioner_s_per_kg_030_to_035": [
+     0.04472,
+     0.05043
+    ],
+    "deconfounded": {
+     "mean": 0.05024,
+     "lo": 0.02409,
+     "hi": 0.07639
+    },
+    "n_runs": 242
+   },
+   "C4": {
+    "naive_run_clustered": {
+     "mean": 0.01586,
+     "lo": -0.0473,
+     "hi": 0.07901
+    },
+    "naive_iid": {
+     "mean": 0.01586,
+     "lo": -0.00851,
+     "hi": 0.04022
+    },
+    "practitioner_fuel_corrected_within_stint": {
+     "mean": 0.03303,
+     "lo": 0.02688,
+     "hi": 0.03917
+    },
+    "practitioner_s_per_kg_030_to_035": [
+     0.02992,
+     0.0351
+    ],
+    "deconfounded": {
+     "mean": 0.04205,
+     "lo": 0.01545,
+     "hi": 0.06864
+    },
+    "n_runs": 223
+   },
+   "C5": {
+    "naive_run_clustered": {
+     "mean": -0.06993,
+     "lo": -0.13293,
+     "hi": -0.00693
+    },
+    "naive_iid": {
+     "mean": -0.06993,
+     "lo": -0.104,
+     "hi": -0.03586
+    },
+    "practitioner_fuel_corrected_within_stint": {
+     "mean": 0.0163,
+     "lo": 0.00338,
+     "hi": 0.02922
+    },
+    "practitioner_s_per_kg_030_to_035": [
+     0.01333,
+     0.01828
+    ],
+    "deconfounded": {
+     "mean": 0.02172,
+     "lo": -0.00682,
+     "hi": 0.05026
+    },
+    "n_runs": 109
+   }
+  },
+  "naive_negative_compounds": [
+   "C1",
+   "C3",
+   "C5"
+  ],
+  "abs_gap_deconfounded_vs_practitioner_s_per_lap": {
+   "C1": 0.04879,
+   "C2": 0.01506,
+   "C3": 0.0021,
+   "C4": 0.00902,
+   "C5": 0.00542
+  },
+  "fuel_s_per_kg_central": 0.033,
+  "same_laps_same_compound_grouping": true,
+  "practitioner_definition": "fuel-corrected lap time on tyre age, within driver x stint (fixed effects), per physical compound, run-clustered SE; track evolution and traffic NOT controlled"
+ },
+ "season_robustness": {
+  "2022": {
+   "n_events": 18,
+   "n_laps": 13637,
+   "n_runs": 1038,
+   "rates_pooled_label_s_per_lap": {
+    "HARD": {
+     "mean": 0.04419,
+     "lo": 0.02271,
+     "hi": 0.06568,
+     "n_runs": 383
+    },
+    "MEDIUM": {
+     "mean": 0.05867,
+     "lo": 0.03707,
+     "hi": 0.08027,
+     "n_runs": 431
+    },
+    "SOFT": {
+     "mean": 0.06536,
+     "lo": 0.04175,
+     "hi": 0.08897,
+     "n_runs": 224
+    }
+   },
+   "monotone_softer_degrades_faster": true,
+   "circuit_slope_sd_s_per_lap": 0.04302,
+   "within_event_label_contrast_s_per_lap": {
+    "MEDIUM_minus_HARD": {
+     "mean": 0.01418,
+     "lo": 0.00399,
+     "hi": 0.02437
+    },
+    "SOFT_minus_HARD": {
+     "mean": 0.02043,
+     "lo": 0.00605,
+     "hi": 0.03481
+    }
+   },
+   "trend_per_step_softer": {
+    "within_event": {
+     "mean": 0.01094,
+     "lo": 0.00399,
+     "hi": 0.01788
+    },
+    "pooled_random_circuit": {
+     "mean": 0.0113,
+     "lo": 0.00445,
+     "hi": 0.01815
+    }
+   },
+   "convergence_all_ok": true,
+   "fit_seconds": 6.9
+  },
+  "2023": {
+   "n_events": 16,
+   "n_laps": 13536,
+   "n_runs": 860,
+   "rates_pooled_label_s_per_lap": {
+    "HARD": {
+     "mean": 0.05499,
+     "lo": 0.03876,
+     "hi": 0.07123,
+     "n_runs": 449
+    },
+    "MEDIUM": {
+     "mean": 0.05721,
+     "lo": 0.03978,
+     "hi": 0.07464,
+     "n_runs": 287
+    },
+    "SOFT": {
+     "mean": 0.0596,
+     "lo": 0.03843,
+     "hi": 0.08077,
+     "n_runs": 124
+    }
+   },
+   "monotone_softer_degrades_faster": true,
+   "circuit_slope_sd_s_per_lap": 0.03092,
+   "within_event_label_contrast_s_per_lap": {
+    "MEDIUM_minus_HARD": {
+     "mean": 0.00265,
+     "lo": -0.00731,
+     "hi": 0.01262
+    },
+    "SOFT_minus_HARD": {
+     "mean": 0.00462,
+     "lo": -0.0119,
+     "hi": 0.02114
+    }
+   },
+   "trend_per_step_softer": {
+    "within_event": {
+     "mean": 0.00244,
+     "lo": -0.00459,
+     "hi": 0.00947
+    },
+    "pooled_random_circuit": {
+     "mean": 0.00227,
+     "lo": -0.00465,
+     "hi": 0.00919
+    }
+   },
+   "convergence_all_ok": true,
+   "fit_seconds": 5.4
+  },
+  "2024": {
+   "n_events": 18,
+   "n_laps": 15942,
+   "n_runs": 857,
+   "rates_pooled_label_s_per_lap": {
+    "HARD": {
+     "mean": 0.06251,
+     "lo": 0.0493,
+     "hi": 0.07572,
+     "n_runs": 446
+    },
+    "MEDIUM": {
+     "mean": 0.06,
+     "lo": 0.04557,
+     "hi": 0.07443,
+     "n_runs": 310
+    },
+    "SOFT": {
+     "mean": 0.06457,
+     "lo": 0.04539,
+     "hi": 0.08376,
+     "n_runs": 101
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.02579,
+   "within_event_label_contrast_s_per_lap": {
+    "MEDIUM_minus_HARD": {
+     "mean": -0.00178,
+     "lo": -0.01074,
+     "hi": 0.00718
+    },
+    "SOFT_minus_HARD": {
+     "mean": 0.00271,
+     "lo": -0.01288,
+     "hi": 0.01831
+    }
+   },
+   "trend_per_step_softer": {
+    "within_event": {
+     "mean": 6e-05,
+     "lo": -0.00637,
+     "hi": 0.00649
+    },
+    "pooled_random_circuit": {
+     "mean": -0.00044,
+     "lo": -0.00683,
+     "hi": 0.00596
+    }
+   },
+   "convergence_all_ok": true,
+   "fit_seconds": 6.2
+  },
+  "2025": {
+   "n_events": 17,
+   "n_laps": 15279,
+   "n_runs": 872,
+   "rates_pooled_label_s_per_lap": {
+    "HARD": {
+     "mean": 0.05008,
+     "lo": 0.037,
+     "hi": 0.06316,
+     "n_runs": 370
+    },
+    "MEDIUM": {
+     "mean": 0.05233,
+     "lo": 0.03859,
+     "hi": 0.06606,
+     "n_runs": 355
+    },
+    "SOFT": {
+     "mean": 0.07186,
+     "lo": 0.05262,
+     "hi": 0.0911,
+     "n_runs": 147
+    }
+   },
+   "monotone_softer_degrades_faster": true,
+   "circuit_slope_sd_s_per_lap": 0.02347,
+   "within_event_label_contrast_s_per_lap": {
+    "MEDIUM_minus_HARD": {
+     "mean": -0.0005,
+     "lo": -0.01061,
+     "hi": 0.00962
+    },
+    "SOFT_minus_HARD": {
+     "mean": 0.01675,
+     "lo": -0.00118,
+     "hi": 0.03467
+    }
+   },
+   "trend_per_step_softer": {
+    "within_event": {
+     "mean": 0.00481,
+     "lo": -0.00311,
+     "hi": 0.01272
+    },
+    "pooled_random_circuit": {
+     "mean": 0.00751,
+     "lo": -0.00016,
+     "hi": 0.01517
+    }
+   },
+   "convergence_all_ok": true,
+   "fit_seconds": 6.0
+  },
+  "2026": {
+   "n_events": 13,
+   "n_laps": 11039,
+   "n_runs": 820,
+   "rates_pooled_label_s_per_lap": {
+    "HARD": {
+     "mean": 0.0542,
+     "lo": 0.02905,
+     "hi": 0.07934,
+     "n_runs": 376
+    },
+    "MEDIUM": {
+     "mean": 0.04802,
+     "lo": 0.02208,
+     "hi": 0.07396,
+     "n_runs": 297
+    },
+    "SOFT": {
+     "mean": 0.02908,
+     "lo": 0.00208,
+     "hi": 0.05608,
+     "n_runs": 147
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.04389,
+   "within_event_label_contrast_s_per_lap": {
+    "MEDIUM_minus_HARD": {
+     "mean": -0.00529,
+     "lo": -0.01677,
+     "hi": 0.0062
+    },
+    "SOFT_minus_HARD": {
+     "mean": -0.02452,
+     "lo": -0.03792,
+     "hi": -0.01112
+    }
+   },
+   "trend_per_step_softer": {
+    "within_event": {
+     "mean": -0.01124,
+     "lo": -0.01772,
+     "hi": -0.00477
+    },
+    "pooled_random_circuit": {
+     "mean": -0.01162,
+     "lo": -0.01805,
+     "hi": -0.0052
+    }
+   },
+   "convergence_all_ok": true,
+   "fit_seconds": 5.3
+  }
+ },
+ "power": {
+  "params_per_lap": {
+   "circuit_sd": 0.04367,
+   "run_slope_sd": 0.0315,
+   "run_sd": 0.2842,
+   "driver_sd": 1.1664,
+   "sigma": 0.5555
+  },
+  "design_notes": "13 circuits, 20-lap stints, 3 stints per driver-event, two compounds; balanced = both at every circuit, split = disjoint circuits",
+  "n_sims_per_point": 100,
+  "curves": {
+   "balanced_effect_0.006": {
+    "n_stints": [
+     52,
+     104,
+     208,
+     416,
+     832,
+     1248,
+     1664,
+     2496
+    ],
+    "power_wald_z": [
+     0.1,
+     0.16,
+     0.18,
+     0.35,
+     0.67,
+     0.81,
+     0.87,
+     0.98
+    ],
+    "power_t_df12": [
+     0.03,
+     0.11,
+     0.11,
+     0.27,
+     0.55,
+     0.75,
+     0.82,
+     0.97
+    ],
+    "power_analytic_known_variance": [
+     0.088,
+     0.126,
+     0.205,
+     0.361,
+     0.621,
+     0.793,
+     0.894,
+     0.975
+    ],
+    "mc_se_at_50pct": 0.05,
+    "crossing_80pct_wald_z": {
+     "crossing": 1212.374,
+     "mc_se": 132.335,
+     "mc_ci95": [
+      1018.987733,
+      1512.208519
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "crossing_80pct_t_df12": {
+     "crossing": 1532.698,
+     "mc_se": 180.159,
+     "mc_ci95": [
+      1193.023202,
+      1820.987518
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "failed_refits": 6,
+    "crossing_is_at_or_below_smallest_grid_point": false
+   },
+   "split_effect_0.006": {
+    "n_stints": [
+     52,
+     832,
+     2496
+    ],
+    "power_wald_z": [
+     0.09,
+     0.08,
+     0.07
+    ],
+    "power_t_df12": [
+     0.07,
+     0.06,
+     0.05
+    ],
+    "power_analytic_known_variance": [
+     0.056,
+     0.057,
+     0.057
+    ],
+    "mc_se_at_50pct": 0.05,
+    "crossing_80pct_wald_z": {
+     "crossing": null,
+     "mc_se": null,
+     "mc_ci95": null,
+     "share_of_resamples_never_reaching_target": 1.0
+    },
+    "crossing_80pct_t_df12": {
+     "crossing": null,
+     "mc_se": null,
+     "mc_ci95": null,
+     "share_of_resamples_never_reaching_target": 1.0
+    },
+    "failed_refits": 4,
+    "crossing_is_at_or_below_smallest_grid_point": false
+   },
+   "balanced_effect_0.02": {
+    "n_stints": [
+     52,
+     104,
+     208,
+     416,
+     832,
+     1248,
+     1664,
+     2496
+    ],
+    "power_wald_z": [
+     0.32,
+     0.76,
+     0.98,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "power_t_df12": [
+     0.27,
+     0.67,
+     0.97,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "power_analytic_known_variance": [
+     0.472,
+     0.762,
+     0.966,
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "mc_se_at_50pct": 0.05,
+    "crossing_80pct_wald_z": {
+     "crossing": 117.969,
+     "mc_se": 11.555,
+     "mc_ci95": [
+      98.597486,
+      139.082255
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "crossing_80pct_t_df12": {
+     "crossing": 140.436,
+     "mc_se": 9.839,
+     "mc_ci95": [
+      116.718362,
+      155.007831
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "failed_refits": 5,
+    "crossing_is_at_or_below_smallest_grid_point": false
+   },
+   "split_effect_0.02": {
+    "n_stints": [
+     52,
+     832,
+     2496
+    ],
+    "power_wald_z": [
+     0.22,
+     0.15,
+     0.13
+    ],
+    "power_t_df12": [
+     0.18,
+     0.09,
+     0.11
+    ],
+    "power_analytic_known_variance": [
+     0.117,
+     0.13,
+     0.13
+    ],
+    "mc_se_at_50pct": 0.05,
+    "crossing_80pct_wald_z": {
+     "crossing": null,
+     "mc_se": null,
+     "mc_ci95": null,
+     "share_of_resamples_never_reaching_target": 1.0
+    },
+    "crossing_80pct_t_df12": {
+     "crossing": null,
+     "mc_se": null,
+     "mc_ci95": null,
+     "share_of_resamples_never_reaching_target": 1.0
+    },
+    "failed_refits": 3,
+    "crossing_is_at_or_below_smallest_grid_point": false
+   }
+  },
+  "analytic_crossing_known_variance": {
+   "balanced_effect_0.006": 1272.8,
+   "split_effect_0.006": null,
+   "balanced_effect_0.02": 115.8,
+   "split_effect_0.02": null
+  },
+  "type_I_error_at_zero_effect": {
+   "balanced": {
+    "n_stints": 832,
+    "reject_rate_wald_z": 0.08,
+    "reject_rate_t_df12": 0.05,
+    "n_sims": 100,
+    "nominal": 0.05
+   },
+   "split": {
+    "n_stints": 832,
+    "reject_rate_wald_z": 0.08,
+    "reject_rate_t_df12": 0.07,
+    "n_sims": 100,
+    "nominal": 0.05
+   }
+  },
+  "ceiling_split_design_power": {
+   "0.006": 0.057,
+   "0.02": 0.131
+  },
+  "min_detectable_effect_80pct_s_per_lap": {
+   "n_stints": 832,
+   "balanced": 0.0074,
+   "split": 0.0685
+  },
+  "original_welch_calculation": {
+   "grid_point_returned_by_n_for": 512,
+   "interpolated_crossing": 310.8,
+   "grid": [
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512
+   ],
+   "power": [
+    0.0,
+    0.032,
+    0.05,
+    0.083,
+    0.153,
+    0.28,
+    0.45,
+    0.733,
+    0.972
+   ],
+   "noise_used_s": 0.462127,
+   "what_it_ignores": "circuit variance, stint-level wear variation, run correlation"
+  },
+  "seconds": 287.0
+ },
+ "audit": {
+  "script": "scripts/paper/p3_model.py",
+  "generated_at": "2026-10-30T17:09:29+00:00",
+  "git_commit": "ca48a2039958a3599a56e48514ef1bca930ac619",
+  "git_dirty_src_or_scripts": true,
+  "seed": 20261030,
+  "python": "3.12.9",
+  "numpy": "2.5.2",
+  "pandas": "2.3.3",
+  "scipy": "1.18.1",
+  "statsmodels": "0.15.0",
+  "inputs": {
+   "laps_2022.parquet": {
+    "sha256_16": "8b028f6ae54b9a3a",
+    "bytes": 1873297
+   },
+   "laps_2023.parquet": {
+    "sha256_16": "77688e78f12c2d06",
+    "bytes": 1674187
+   },
+   "laps_2024.parquet": {
+    "sha256_16": "33709d45612b5856",
+    "bytes": 1854471
+   },
+   "laps_2025.parquet": {
+    "sha256_16": "5555784901af55d7",
+    "bytes": 1851572
+   },
+   "laps.parquet": {
+    "sha256_16": "e991bb77e29af443",
+    "bytes": 1508216
+   }
+  },
+  "replicates": {
+   "circuit_lr_null": 500,
+   "circuit_alt_and_sbc": 400,
+   "power_per_point": 100
+  },
+  "workers": 6,
+  "section_seconds": {
+   "engine_agreement": 5.1,
+   "old_fit_reproduction": 1.6,
+   "inference_comparison": 4.8,
+   "circuit_effect": 140.0,
+   "compound_within_event": 6.3,
+   "per_race_separation": 5.6,
+   "rate_calibration": 7.7,
+   "lap_level_calibration": 3.5,
+   "ablation": 0.1,
+   "season_robustness": 29.9,
+   "power": 287.1
+  },
+  "total_seconds": 493.8,
+  "command": "python scripts/paper/p3_model.py"
+ },
+ "circuit_vs_event": {
+  "design": {
+   "seasons": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "n_laps": 69395,
+   "n_runs": 4445,
+   "n_events": 82,
+   "n_circuits": 23,
+   "circuits_with_repeat_visits": 20,
+   "events_per_circuit_median": 4.0,
+   "compounds": "physical C numbers (2022-25 from Pirelli nomination history, 2026 from allocation.json)"
+  },
+  "sd_s_per_lap": {
+   "circuit_persistent": {
+    "estimate": 0.02471,
+    "profile_95": [
+     0.01693,
+     0.03657
+    ],
+    "bootstrap_95": [
+     0.0132,
+     0.03421
+    ]
+   },
+   "event_specific": {
+    "estimate": 0.02397,
+    "profile_95": [
+     0.02075,
+     0.02887
+    ],
+    "bootstrap_95": [
+     0.01895,
+     0.02855
+    ]
+   },
+   "run_slope": 0.03804,
+   "run_intercept": 0.29304,
+   "driver_event": 0.74586,
+   "resid": 0.46643
+  },
+  "persistent_share_of_slope_variance": {
+   "estimate": 0.515,
+   "bootstrap_95": [
+    0.216,
+    0.726
+   ]
+  },
+  "circuit_component_test": {
+   "reml_lr": 21.327,
+   "p_parametric_bootstrap": 0.002,
+   "n_bootstrap": 500,
+   "p_floor": 0.002,
+   "p_chibar2": 2e-06,
+   "bootstrap_lr_95_99": [
+    2.262,
+    4.718
+   ],
+   "distinguishable_from_zero": true
+  },
+  "event_component_test": {
+   "reml_lr": 257.228,
+   "p_chibar2": 0.0
+  },
+  "seconds_over_20_laps": {
+   "circuit_persistent": 0.494,
+   "event_specific": 0.479,
+   "circuit_persistent_profile_95": [
+    0.339,
+    0.731
+   ],
+   "event_specific_profile_95": [
+    0.415,
+    0.577
+   ]
+  },
+  "compound_rates_pooled_s_per_lap": {
+   "C1": {
+    "mean": 0.05562,
+    "lo": 0.04084,
+    "hi": 0.07041
+   },
+   "C2": {
+    "mean": 0.04737,
+    "lo": 0.03453,
+    "hi": 0.0602
+   },
+   "C3": {
+    "mean": 0.05828,
+    "lo": 0.04609,
+    "hi": 0.07047
+   },
+   "C4": {
+    "mean": 0.05899,
+    "lo": 0.04627,
+    "hi": 0.0717
+   },
+   "C5": {
+    "mean": 0.05314,
+    "lo": 0.03828,
+    "hi": 0.068
+   }
+  },
+  "compound_rate_sd_s_per_lap": 0.0047,
+  "compound_vs_variance": {
+   "compound_sd_raw": {
+    "bootstrap_95": [
+     0.00309,
+     0.00874
+    ],
+    "median": 0.0057
+   },
+   "compound_sd_noise_corrected": {
+    "bootstrap_95": [
+     0.0,
+     0.00532
+    ],
+    "median": 0.0
+   },
+   "circuit_minus_compound_raw": {
+    "bootstrap_95": [
+     0.00684,
+     0.02971
+    ],
+    "median": 0.01819,
+    "p_circuit_greater": 0.996
+   },
+   "circuit_minus_compound_corrected": {
+    "bootstrap_95": [
+     0.01037,
+     0.03421
+    ],
+    "median": 0.02342,
+    "p_circuit_greater": 1.0
+   },
+   "event_minus_compound_raw": {
+    "bootstrap_95": [
+     0.01259,
+     0.02368
+    ],
+    "median": 0.01821,
+    "p_event_greater": 1.0
+   }
+  },
+  "sensitivity": {
+   "without_2025": {
+    "circuit_sd": 0.02547,
+    "event_sd": 0.02472,
+    "share_circuit": 0.515,
+    "n_laps": 54154,
+    "n_events": 65
+   },
+   "verified_nominations_only": {
+    "circuit_sd": 0.02458,
+    "event_sd": 0.02443,
+    "share_circuit": 0.503,
+    "n_laps": 67587,
+    "n_events": 80
+   }
+  },
+  "convergence": {
+   "converged": true,
+   "hessian_pd": true,
+   "boundary_components": [],
+   "start_deviances": [
+    -90090.177,
+    -90090.177,
+    -90090.177
+   ]
+  },
+  "bootstrap_seconds": 1310.0
+ },
+ "season_c_rates": {
+  "2022": {
+   "n_events": 18,
+   "n_laps": 13637,
+   "n_runs": 1038,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.05492,
+     "lo": 0.02515,
+     "hi": 0.08468,
+     "n_runs": 32
+    },
+    "C2": {
+     "mean": 0.04275,
+     "lo": 0.01976,
+     "hi": 0.06574,
+     "n_runs": 326
+    },
+    "C3": {
+     "mean": 0.05408,
+     "lo": 0.03125,
+     "hi": 0.07691,
+     "n_runs": 504
+    },
+    "C4": {
+     "mean": 0.0764,
+     "lo": 0.05094,
+     "hi": 0.10186,
+     "n_runs": 166
+    },
+    "C5": {
+     "mean": 0.13512,
+     "lo": 0.06613,
+     "hi": 0.20411,
+     "n_runs": 10
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.04594,
+   "convergence_all_ok": true
+  },
+  "2023": {
+   "n_events": 16,
+   "n_laps": 13536,
+   "n_runs": 860,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.05898,
+     "lo": 0.03838,
+     "hi": 0.07958,
+     "n_runs": 95
+    },
+    "C2": {
+     "mean": 0.05321,
+     "lo": 0.03402,
+     "hi": 0.0724,
+     "n_runs": 135
+    },
+    "C3": {
+     "mean": 0.05655,
+     "lo": 0.04006,
+     "hi": 0.07305,
+     "n_runs": 434
+    },
+    "C4": {
+     "mean": 0.05414,
+     "lo": 0.035,
+     "hi": 0.07328,
+     "n_runs": 186
+    },
+    "C5": {
+     "mean": 0.15163,
+     "lo": 0.09586,
+     "hi": 0.2074,
+     "n_runs": 10
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.03032,
+   "convergence_all_ok": true
+  },
+  "2024": {
+   "n_events": 18,
+   "n_laps": 15942,
+   "n_runs": 857,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.06559,
+     "lo": 0.04703,
+     "hi": 0.08415,
+     "n_runs": 112
+    },
+    "C2": {
+     "mean": 0.05417,
+     "lo": 0.03666,
+     "hi": 0.07169,
+     "n_runs": 117
+    },
+    "C3": {
+     "mean": 0.06433,
+     "lo": 0.05071,
+     "hi": 0.07796,
+     "n_runs": 414
+    },
+    "C4": {
+     "mean": 0.06012,
+     "lo": 0.0444,
+     "hi": 0.07583,
+     "n_runs": 199
+    },
+    "C5": {
+     "mean": 0.05534,
+     "lo": 0.02248,
+     "hi": 0.08821,
+     "n_runs": 15
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.0252,
+   "convergence_all_ok": true
+  },
+  "2025": {
+   "n_events": 17,
+   "n_laps": 15241,
+   "n_runs": 870,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.05437,
+     "lo": 0.01855,
+     "hi": 0.09019,
+     "n_runs": 33
+    },
+    "C2": {
+     "mean": 0.04516,
+     "lo": 0.0223,
+     "hi": 0.06802,
+     "n_runs": 94
+    },
+    "C3": {
+     "mean": 0.05458,
+     "lo": 0.03823,
+     "hi": 0.07093,
+     "n_runs": 264
+    },
+    "C4": {
+     "mean": 0.05376,
+     "lo": 0.03752,
+     "hi": 0.06999,
+     "n_runs": 334
+    },
+    "C5": {
+     "mean": 0.05667,
+     "lo": 0.03717,
+     "hi": 0.07617,
+     "n_runs": 145
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.02778,
+   "convergence_all_ok": true
+  },
+  "2026": {
+   "n_events": 13,
+   "n_laps": 11039,
+   "n_runs": 820,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.08237,
+     "lo": 0.04133,
+     "hi": 0.12342,
+     "n_runs": 55
+    },
+    "C2": {
+     "mean": 0.05324,
+     "lo": 0.02568,
+     "hi": 0.0808,
+     "n_runs": 191
+    },
+    "C3": {
+     "mean": 0.05024,
+     "lo": 0.02409,
+     "hi": 0.07639,
+     "n_runs": 242
+    },
+    "C4": {
+     "mean": 0.04205,
+     "lo": 0.01545,
+     "hi": 0.06864,
+     "n_runs": 223
+    },
+    "C5": {
+     "mean": 0.02172,
+     "lo": -0.00682,
+     "hi": 0.05026,
+     "n_runs": 109
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.04367,
+   "convergence_all_ok": true
+  }
+ },
+ "min_detectable_effect": {
+  "n_runs_by_compound": {
+   "C1": 55,
+   "C2": 191,
+   "C3": 242,
+   "C4": 223,
+   "C5": 109
+  },
+  "n_balanced_stints": 832,
+  "analytic_known_variance": {
+   "balanced": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00265,
+      "mde_80_s_per_lap": 0.0074
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00265,
+      "mde_80_s_per_lap": 0.0074
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00265,
+      "mde_80_s_per_lap": 0.0074
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.0036,
+      "mde_80_s_per_lap": 0.0101
+     }
+    }
+   },
+   "split": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.02444,
+      "mde_80_s_per_lap": 0.0685
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.01722,
+      "mde_80_s_per_lap": 0.0482
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.04072,
+      "mde_80_s_per_lap": 0.1141
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.04079,
+      "mde_80_s_per_lap": 0.1143
+     }
+    }
+   },
+   "realistic_C1_C2": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00341,
+      "mde_80_s_per_lap": 0.0096
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00341,
+      "mde_80_s_per_lap": 0.0096
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00342,
+      "mde_80_s_per_lap": 0.0096
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00465,
+      "mde_80_s_per_lap": 0.013
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 246,
+     "point": {
+      "se_s_per_lap": 0.00625,
+      "mde_80_s_per_lap": 0.0175
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00624,
+      "mde_80_s_per_lap": 0.0175
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00625,
+      "mde_80_s_per_lap": 0.0175
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00851,
+      "mde_80_s_per_lap": 0.0238
+     }
+    }
+   },
+   "realistic_C2_C3": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00313,
+      "mde_80_s_per_lap": 0.0088
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00312,
+      "mde_80_s_per_lap": 0.0088
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00313,
+      "mde_80_s_per_lap": 0.0088
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00426,
+      "mde_80_s_per_lap": 0.0119
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 433,
+     "point": {
+      "se_s_per_lap": 0.00432,
+      "mde_80_s_per_lap": 0.0121
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00431,
+      "mde_80_s_per_lap": 0.0121
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00433,
+      "mde_80_s_per_lap": 0.0121
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00588,
+      "mde_80_s_per_lap": 0.0165
+     }
+    }
+   },
+   "realistic_C3_C4": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00271,
+      "mde_80_s_per_lap": 0.0076
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.0027,
+      "mde_80_s_per_lap": 0.0076
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00271,
+      "mde_80_s_per_lap": 0.0076
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00368,
+      "mde_80_s_per_lap": 0.0103
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 465,
+     "point": {
+      "se_s_per_lap": 0.00367,
+      "mde_80_s_per_lap": 0.0103
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00367,
+      "mde_80_s_per_lap": 0.0103
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00367,
+      "mde_80_s_per_lap": 0.0103
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.005,
+      "mde_80_s_per_lap": 0.014
+     }
+    }
+   },
+   "realistic_C4_C5": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00287,
+      "mde_80_s_per_lap": 0.008
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00287,
+      "mde_80_s_per_lap": 0.008
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00287,
+      "mde_80_s_per_lap": 0.008
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.0039,
+      "mde_80_s_per_lap": 0.0109
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 332,
+     "point": {
+      "se_s_per_lap": 0.00458,
+      "mde_80_s_per_lap": 0.0128
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00457,
+      "mde_80_s_per_lap": 0.0128
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00458,
+      "mde_80_s_per_lap": 0.0128
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00623,
+      "mde_80_s_per_lap": 0.0175
+     }
+    }
+   }
+  },
+  "simulated_refit": {
+   "balanced": {
+    "n_stints": 832,
+    "reps": 1000,
+    "effects": [
+     0.0044,
+     0.0063,
+     0.0081,
+     0.0111,
+     0.0148
+    ],
+    "power_wald_z": [
+     0.367,
+     0.694,
+     0.855,
+     0.986,
+     0.999
+    ],
+    "power_mc_se": [
+     0.015,
+     0.015,
+     0.011,
+     0.004,
+     0.001
+    ],
+    "power_t_df12": [
+     0.285,
+     0.614,
+     0.808,
+     0.97,
+     0.999
+    ],
+    "mde_80_wald_z": {
+     "crossing": 0.007,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.007236,
+      0.007643
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "mde_80_t_df12": {
+     "crossing": 0.008,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.007811,
+      0.008328
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "n_failed_fits": 44
+   },
+   "realistic_C1_C2": {
+    "n_stints": 246,
+    "reps": 1000,
+    "effects": [
+     0.0105,
+     0.0149,
+     0.0193,
+     0.0263,
+     0.035
+    ],
+    "power_wald_z": [
+     0.416,
+     0.658,
+     0.863,
+     0.986,
+     1.0
+    ],
+    "power_mc_se": [
+     0.016,
+     0.015,
+     0.011,
+     0.004,
+     0.0
+    ],
+    "power_t_df12": [
+     0.208,
+     0.438,
+     0.711,
+     0.948,
+     0.999
+    ],
+    "mde_80_wald_z": {
+     "crossing": 0.018,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.017422,
+      0.018224
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "mde_80_t_df12": {
+     "crossing": 0.022,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.021127,
+      0.022159
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "n_failed_fits": 35
+   },
+   "realistic_C3_C4": {
+    "n_stints": 465,
+    "reps": 1000,
+    "effects": [
+     0.0062,
+     0.0088,
+     0.0113,
+     0.0155,
+     0.0206
+    ],
+    "power_wald_z": [
+     0.391,
+     0.656,
+     0.869,
+     0.989,
+     0.999
+    ],
+    "power_mc_se": [
+     0.015,
+     0.015,
+     0.011,
+     0.003,
+     0.001
+    ],
+    "power_t_df12": [
+     0.314,
+     0.587,
+     0.82,
+     0.974,
+     0.999
+    ],
+    "mde_80_wald_z": {
+     "crossing": 0.01,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.010222,
+      0.010626
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "mde_80_t_df12": {
+     "crossing": 0.011,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.010828,
+      0.011397
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "n_failed_fits": 42
+   }
+  },
+  "note": "mde_80 = smallest compound gap (s/lap) with 80% power; analytic uses known variances (a lower bound on the detectable gap), simulated refits them. 'crossing' keys are effects, not stints.",
+  "seconds": 646.0
+ },
+ "audit_additions": {
+  "min_detectable_effect": {
+   "script": "scripts/paper/p3_model.py",
+   "generated_at": "2026-10-31T14:21:25+00:00",
+   "git_commit": "f210c888ea94a3cc77970e341c5b8407f9153e3b",
+   "git_dirty_src_or_scripts": false,
+   "seed": 20261030,
+   "python": "3.12.9",
+   "numpy": "2.5.2",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "statsmodels": "0.15.0",
+   "inputs": {
+    "laps_2022.parquet": {
+     "sha256_16": "8b028f6ae54b9a3a",
+     "bytes": 1873297
+    },
+    "laps_2023.parquet": {
+     "sha256_16": "77688e78f12c2d06",
+     "bytes": 1674187
+    },
+    "laps_2024.parquet": {
+     "sha256_16": "33709d45612b5856",
+     "bytes": 1854471
+    },
+    "laps_2025.parquet": {
+     "sha256_16": "5555784901af55d7",
+     "bytes": 1851572
+    },
+    "laps.parquet": {
+     "sha256_16": "e991bb77e29af443",
+     "bytes": 1508216
+    }
+   },
+   "replicates": {
+    "circuit_lr_null": 500,
+    "circuit_alt_and_sbc": 400,
+    "power_per_point": 100,
+    "nested_circuit_lr_null": 500,
+    "nested_alt": 500,
+    "event_cluster_bootstrap_2026": 500,
+    "power_extended_per_point": 1000,
+    "type_I_error": 2000
+   },
+   "workers": 11,
+   "section_seconds": {
+    "min_detectable_effect": 646.0
+   },
+   "total_seconds": 648.1,
+   "command": "python scripts/paper/p3_model.py --only min_detectable_effect"
+  },
+  "compound_spread_2026+power_extended": {
+   "script": "scripts/paper/p3_model.py",
+   "generated_at": "2026-10-31T18:23:32+00:00",
+   "git_commit": "0a3114a129a12f86a8a1c65bcd3d7dbf061d9e6e",
+   "git_dirty_src_or_scripts": true,
+   "seed": 20261030,
+   "python": "3.12.9",
+   "numpy": "2.5.2",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "statsmodels": "0.15.0",
+   "inputs": {
+    "laps_2022.parquet": {
+     "sha256_16": "8b028f6ae54b9a3a",
+     "bytes": 1873297
+    },
+    "laps_2023.parquet": {
+     "sha256_16": "77688e78f12c2d06",
+     "bytes": 1674187
+    },
+    "laps_2024.parquet": {
+     "sha256_16": "33709d45612b5856",
+     "bytes": 1854471
+    },
+    "laps_2025.parquet": {
+     "sha256_16": "5555784901af55d7",
+     "bytes": 1851572
+    },
+    "laps.parquet": {
+     "sha256_16": "e991bb77e29af443",
+     "bytes": 1508216
+    }
+   },
+   "replicates": {
+    "circuit_lr_null": 500,
+    "circuit_alt_and_sbc": 400,
+    "power_per_point": 100,
+    "nested_circuit_lr_null": 500,
+    "nested_alt": 500,
+    "event_cluster_bootstrap_2026": 500,
+    "power_extended_per_point": 1000,
+    "type_I_error": 2000
+   },
+   "workers": 10,
+   "section_seconds": {
+    "compound_spread_2026": 79.9,
+    "power_extended": 53.2
+   },
+   "total_seconds": 135.2,
+   "command": "python scripts/paper/p3_model.py --only compound_spread_2026 power_extended"
+  }
+ },
+ "compound_spread_2026": {
+  "circuit_sd_s_per_lap": 0.04367,
+  "compound_rate_sd_raw": 0.02192,
+  "compound_rate_sd_noise_corrected": 0.01543,
+  "parametric_bootstrap": {
+   "compound_sd_raw": {
+    "bootstrap_95": [
+     0.01036,
+     0.0396
+    ],
+    "median": 0.02331
+   },
+   "compound_sd_noise_corrected": {
+    "bootstrap_95": [
+     0.0,
+     0.03691
+    ],
+    "median": 0.0177
+   },
+   "circuit_minus_compound_raw": {
+    "bootstrap_95": [
+     -0.00475,
+     0.04356
+    ],
+    "median": 0.01947,
+    "p_circuit_greater": 0.927
+   },
+   "circuit_minus_compound_corrected": {
+    "bootstrap_95": [
+     -0.00247,
+     0.05703
+    ],
+    "median": 0.02544,
+    "p_circuit_greater": 0.955
+   }
+  },
+  "event_cluster_bootstrap": {
+   "n_bootstrap": 500,
+   "n_used": 448,
+   "share_dropped_missing_compound_or_unconverged": 0.104,
+   "circuit_sd": {
+    "bootstrap_95": [
+     0.01742,
+     0.06465
+    ],
+    "median": 0.0401
+   },
+   "compound_sd_raw": {
+    "bootstrap_95": [
+     0.01155,
+     0.02758
+    ],
+    "median": 0.02131
+   },
+   "compound_sd_noise_corrected": {
+    "bootstrap_95": [
+     0.0,
+     0.02397
+    ],
+    "median": 0.01436
+   },
+   "circuit_minus_compound_raw": {
+    "bootstrap_95": [
+     -0.00605,
+     0.04434
+    ],
+    "median": 0.01975,
+    "p_gt_0": 0.906
+   },
+   "circuit_minus_compound_corrected": {
+    "bootstrap_95": [
+     -0.00404,
+     0.05889
+    ],
+    "median": 0.02762,
+    "p_gt_0": 0.953
+   },
+   "note": "Races redrawn with replacement; a repeated race counts as two blocks. Resamples missing a compound (C1 runs at only two races) are dropped and counted."
+  },
+  "jackknife_leave_one_event_out": {
+   "circuit_minus_compound_raw": {
+    "estimate": 0.02175,
+    "jackknife_se": 0.01757,
+    "ci95_normal": [
+     -0.01268,
+     0.05618
+    ]
+   },
+   "circuit_minus_compound_corrected": {
+    "estimate": 0.02823,
+    "jackknife_se": 0.02411,
+    "ci95_normal": [
+     -0.01901,
+     0.07548
+    ]
+   },
+   "n_events": 13
+  },
+  "note": "In 2026 each circuit hosts one race, so this circuit SD is race-to-race variance."
+ },
+ "power_extended": {
+  "params_per_lap": {
+   "point": {
+    "circuit_sd": 0.04367,
+    "run_slope_sd": 0.0315
+   },
+   "circuit_sd_low": {
+    "circuit_sd": 0.03058,
+    "run_slope_sd": 0.0315
+   },
+   "circuit_sd_high": {
+    "circuit_sd": 0.07303,
+    "run_slope_sd": 0.0315
+   },
+   "circuit_high_and_run_slope_x1.5": {
+    "circuit_sd": 0.07303,
+    "run_slope_sd": 0.04725
+   }
+  },
+  "design_notes": "13 events with the actual 2026 Pirelli nominations; 20-lap stints; N counts stints of the two compared compounds; balanced = both at every circuit; split = disjoint circuits",
+  "analytic_crossing_80pct_stints": {
+   "effect_0.006": {
+    "balanced": {
+     "point": 1270.0,
+     "circuit_sd_low": 1270.0,
+     "circuit_sd_high": 1270.0,
+     "circuit_high_and_run_slope_x1.5": 2352.0
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 2116.0,
+     "circuit_sd_low": 2115.0,
+     "circuit_sd_high": 2116.0,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C2_C3": {
+     "point": 1778.0,
+     "circuit_sd_low": 1776.0,
+     "circuit_sd_high": 1779.0,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C3_C4": {
+     "point": 1341.0,
+     "circuit_sd_low": 1341.0,
+     "circuit_sd_high": 1341.0,
+     "circuit_high_and_run_slope_x1.5": 2483.0
+    },
+    "realistic_C4_C5": {
+     "point": 1491.0,
+     "circuit_sd_low": 1490.0,
+     "circuit_sd_high": 1491.0,
+     "circuit_high_and_run_slope_x1.5": null
+    }
+   },
+   "effect_0.01": {
+    "balanced": {
+     "point": 457.0,
+     "circuit_sd_low": 457.0,
+     "circuit_sd_high": 457.0,
+     "circuit_high_and_run_slope_x1.5": 847.0
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 761.0,
+     "circuit_sd_low": 761.0,
+     "circuit_sd_high": 762.0,
+     "circuit_high_and_run_slope_x1.5": 1411.0
+    },
+    "realistic_C2_C3": {
+     "point": 638.0,
+     "circuit_sd_low": 636.0,
+     "circuit_sd_high": 639.0,
+     "circuit_high_and_run_slope_x1.5": 1183.0
+    },
+    "realistic_C3_C4": {
+     "point": 488.0,
+     "circuit_sd_low": 488.0,
+     "circuit_sd_high": 489.0,
+     "circuit_high_and_run_slope_x1.5": 886.0
+    },
+    "realistic_C4_C5": {
+     "point": 536.0,
+     "circuit_sd_low": 536.0,
+     "circuit_sd_high": 537.0,
+     "circuit_high_and_run_slope_x1.5": 994.0
+    }
+   },
+   "effect_0.02": {
+    "balanced": {
+     "point": 114.0,
+     "circuit_sd_low": 114.0,
+     "circuit_sd_high": 114.0,
+     "circuit_high_and_run_slope_x1.5": 212.0
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 190.0,
+     "circuit_sd_low": 189.0,
+     "circuit_sd_high": 190.0,
+     "circuit_high_and_run_slope_x1.5": 352.0
+    },
+    "realistic_C2_C3": {
+     "point": 164.0,
+     "circuit_sd_low": 162.0,
+     "circuit_sd_high": 165.0,
+     "circuit_high_and_run_slope_x1.5": 295.0
+    },
+    "realistic_C3_C4": {
+     "point": 126.0,
+     "circuit_sd_low": 126.0,
+     "circuit_sd_high": 126.0,
+     "circuit_high_and_run_slope_x1.5": 216.0
+    },
+    "realistic_C4_C5": {
+     "point": 128.0,
+     "circuit_sd_low": 127.0,
+     "circuit_sd_high": 128.0,
+     "circuit_high_and_run_slope_x1.5": 240.0
+    }
+   },
+   "effect_0.03": {
+    "balanced": {
+     "point": 52.0,
+     "circuit_sd_low": 52.0,
+     "circuit_sd_high": 52.0,
+     "circuit_high_and_run_slope_x1.5": 94.0
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 86.0,
+     "circuit_sd_low": 85.0,
+     "circuit_sd_high": 86.0,
+     "circuit_high_and_run_slope_x1.5": 156.0
+    },
+    "realistic_C2_C3": {
+     "point": 69.0,
+     "circuit_sd_low": 67.0,
+     "circuit_sd_high": 70.0,
+     "circuit_high_and_run_slope_x1.5": 138.0
+    },
+    "realistic_C3_C4": {
+     "point": 58.0,
+     "circuit_sd_low": 57.0,
+     "circuit_sd_high": 58.0,
+     "circuit_high_and_run_slope_x1.5": 107.0
+    },
+    "realistic_C4_C5": {
+     "point": 57.0,
+     "circuit_sd_low": 56.0,
+     "circuit_sd_high": 57.0,
+     "circuit_high_and_run_slope_x1.5": 105.0
+    }
+   }
+  },
+  "analytic_se_floor_split_design_s_per_lap": {
+   "point": 0.02422,
+   "circuit_sd_low": 0.01696,
+   "circuit_sd_high": 0.04051,
+   "circuit_high_and_run_slope_x1.5": 0.04051
+  },
+  "split_design_power_ceiling": {
+   "effect_0.006": {
+    "point": 0.057,
+    "circuit_sd_low": 0.064,
+    "circuit_sd_high": 0.053,
+    "circuit_high_and_run_slope_x1.5": 0.053
+   },
+   "effect_0.01": {
+    "point": 0.07,
+    "circuit_sd_low": 0.091,
+    "circuit_sd_high": 0.057,
+    "circuit_high_and_run_slope_x1.5": 0.057
+   },
+   "effect_0.02": {
+    "point": 0.131,
+    "circuit_sd_low": 0.218,
+    "circuit_sd_high": 0.078,
+    "circuit_high_and_run_slope_x1.5": 0.078
+   },
+   "effect_0.03": {
+    "point": 0.236,
+    "circuit_sd_low": 0.424,
+    "circuit_sd_high": 0.115,
+    "circuit_high_and_run_slope_x1.5": 0.115
+   }
+  },
+  "simulated": {
+   "effect_0.006": {
+    "balanced": {
+     "n_stints": [
+      754,
+      1274,
+      1898,
+      2782
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.561,
+      0.803,
+      0.919,
+      0.98
+     ],
+     "power_mc_se": [
+      0.016,
+      0.013,
+      0.009,
+      0.004
+     ],
+     "power_t_df12": [
+      0.477,
+      0.739,
+      0.885,
+      0.971
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 1265.743,
+      "mc_se": 38.132,
+      "mc_ci95": [
+       1208.877831,
+       1352.576586
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 1504.885,
+      "mc_se": 37.493,
+      "mc_ci95": [
+       1427.691002,
+       1575.210715
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      1274,
+      2106,
+      3172
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.584,
+      0.791,
+      0.921
+     ],
+     "power_mc_se": [
+      0.016,
+      0.013,
+      0.009
+     ],
+     "power_t_df12": [
+      0.341,
+      0.589,
+      0.817
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 2166.57,
+      "mc_se": 70.913,
+      "mc_ci95": [
+       2038.055229,
+       2301.620024
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 3076.597,
+      "mc_se": 51.772,
+      "mc_ci95": [
+       2963.804321,
+       3164.474342
+      ],
+      "share_of_resamples_never_reaching_target": 0.075
+     }
+    }
+   },
+   "effect_0.01": {
+    "balanced": {
+     "n_stints": [
+      286,
+      468,
+      676,
+      1014
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.582,
+      0.819,
+      0.934,
+      0.979
+     ],
+     "power_mc_se": [
+      0.016,
+      0.012,
+      0.008,
+      0.005
+     ],
+     "power_t_df12": [
+      0.5,
+      0.756,
+      0.899,
+      0.974
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 449.883,
+      "mc_se": 11.03,
+      "mc_ci95": [
+       431.117337,
+       474.786228
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 524.064,
+      "mc_se": 13.91,
+      "mc_ci95": [
+       495.534641,
+       548.206248
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      468,
+      754,
+      1144,
+      1664
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.62,
+      0.797,
+      0.918,
+      0.985
+     ],
+     "power_mc_se": [
+      0.015,
+      0.013,
+      0.009,
+      0.004
+     ],
+     "power_t_df12": [
+      0.377,
+      0.591,
+      0.79,
+      0.948
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 761.834,
+      "mc_se": 27.377,
+      "mc_ci95": [
+       716.360817,
+       822.340421
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 1171.454,
+      "mc_se": 30.077,
+      "mc_ci95": [
+       1112.627216,
+       1224.440071
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    }
+   },
+   "effect_0.02": {
+    "balanced": {
+     "n_stints": [
+      78,
+      104,
+      182,
+      260
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.607,
+      0.762,
+      0.956,
+      0.989
+     ],
+     "power_mc_se": [
+      0.015,
+      0.013,
+      0.006,
+      0.003
+     ],
+     "power_t_df12": [
+      0.533,
+      0.697,
+      0.931,
+      0.973
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 116.048,
+      "mc_se": 3.672,
+      "mc_ci95": [
+       108.159559,
+       122.426477
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 133.049,
+      "mc_se": 2.894,
+      "mc_ci95": [
+       127.440244,
+       138.159281
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      104,
+      182,
+      286,
+      416
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.552,
+      0.799,
+      0.931,
+      0.982
+     ],
+     "power_mc_se": [
+      0.016,
+      0.013,
+      0.008,
+      0.004
+     ],
+     "power_t_df12": [
+      0.316,
+      0.575,
+      0.805,
+      0.923
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 182.624,
+      "mc_se": 6.275,
+      "mc_ci95": [
+       173.07453,
+       196.239831
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 283.204,
+      "mc_se": 7.682,
+      "mc_ci95": [
+       271.003995,
+       301.306334
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    }
+   },
+   "effect_0.03": {
+    "balanced": {
+     "n_stints": [
+      52,
+      78,
+      104
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.804,
+      0.938,
+      0.981
+     ],
+     "power_mc_se": [
+      0.013,
+      0.008,
+      0.004
+     ],
+     "power_t_df12": [
+      0.747,
+      0.903,
+      0.971
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 52.0,
+      "mc_se": 0.835,
+      "mc_ci95": [
+       52.0,
+       54.908738
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 59.68,
+      "mc_se": 1.516,
+      "mc_ci95": [
+       56.424619,
+       62.370295
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      52,
+      78,
+      130,
+      182
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.562,
+      0.799,
+      0.935,
+      0.983
+     ],
+     "power_mc_se": [
+      0.016,
+      0.013,
+      0.008,
+      0.004
+     ],
+     "power_t_df12": [
+      0.338,
+      0.597,
+      0.802,
+      0.951
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 78.294,
+      "mc_se": 2.48,
+      "mc_ci95": [
+       75.277848,
+       84.691833
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 129.354,
+      "mc_se": 3.66,
+      "mc_ci95": [
+       122.041088,
+       135.948653
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    }
+   }
+  },
+  "simulation_cap_stints": 3500,
+  "simulated_points_skipped_above_cap": [
+   {
+    "design": "realistic_C1_C2",
+    "effect": 0.006,
+    "n_stints": 4654
+   }
+  ],
+  "type_I_error_at_zero_effect": {
+   "balanced": {
+    "n_stints": 832,
+    "reps": 2000,
+    "wald_z_reject_rate": 0.054,
+    "wald_z_mc_se": 0.005,
+    "t_df12_reject_rate": 0.032,
+    "nominal": 0.05
+   },
+   "realistic_C1_C2": {
+    "n_stints": 832,
+    "reps": 2000,
+    "wald_z_reject_rate": 0.047,
+    "wald_z_mc_se": 0.005,
+    "t_df12_reject_rate": 0.009,
+    "nominal": 0.05
+   }
+  },
+  "analytic_grid_stints": [
+   52,
+   104,
+   208,
+   416,
+   832,
+   1664,
+   2496
+  ],
+  "seconds": 53.2
+ }
+}
