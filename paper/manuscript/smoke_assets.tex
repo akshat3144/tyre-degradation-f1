@@ -1,0 +1,30 @@
+% Smoke document: every generated asset must compile. Build with
+%   cd paper/manuscript && pdflatex -interaction=nonstopmode smoke_assets.tex
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\input{generated/numbers.tex}
+\begin{document}
+\setlength{\parindent}{0pt}
+Race degradation is \RaceToPracticeRatio{} of practice degradation
+(95\% interval [\RaceToPracticeRatioLo, \RaceToPracticeRatioHi]); the circuit
+SD is \CircuitSD{} s/lap, about \CircuitSDsPerTwenty{} s over a 20-lap stint,
+and $\Delta=\LevelGapMS$ in math mode.
+
+\begin{table}\centering\small\caption{Data.}\input{generated/tab_data.tex}\end{table}
+\begin{table}\centering\small\caption{Rates.}\input{generated/tab_rates.tex}\end{table}
+\begin{table}\centering\footnotesize\caption{Race vs practice.}\input{generated/tab_race_practice.tex}\end{table}
+\begin{table}\centering\small\caption{Forecast.}\input{generated/tab_forecast.tex}\end{table}
+\begin{table}\centering\small\caption{Benchmark.}\input{generated/tab_benchmark.tex}\end{table}
+\begin{table}\centering\small\caption{Reproduction.}\input{generated/tab_repro.tex}\end{table}
+\begin{table}\centering\footnotesize\caption{Strategy.}\input{generated/tab_strategy.tex}\end{table}
+
+\includegraphics[width=\linewidth]{figures/fig_sign_error.pdf}\par
+\includegraphics[width=\linewidth]{figures/fig_circuit_decomposition.pdf}\par
+\includegraphics[width=\linewidth]{figures/fig_circuit_rates.pdf}\par
+\includegraphics[width=\linewidth]{figures/fig_race_practice.pdf}\par
+\includegraphics[width=\linewidth]{figures/fig_power.pdf}\par
+\includegraphics[width=\linewidth]{figures/fig_forecast.pdf}
+\end{document}

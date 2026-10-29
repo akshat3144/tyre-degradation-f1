@@ -1,0 +1,18 @@
+\begin{tabular}{@{}lrrlr@{}}
+\toprule
+Forecast & MAE & 95\% CI & MAE minus scaled & MAE, 2026 \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Adopted}} \\
+Scaled practice forecast & 0.0355 & [0.0286, 0.0426] & -- & 0.0561 \\
+\multicolumn{5}{@{}l}{\textit{Baselines}} \\
+Naive (Sunday = Friday) & 0.1120 & [0.0923, 0.1324] & \ensuremath{+}0.0765 [0.0588, 0.0949] & 0.0871 \\
+Zero & 0.0502 & [0.0418, 0.0590] & \ensuremath{+}0.0147 [0.0039, 0.0258] & 0.0689 \\
+Pooled race rate & 0.0468 & [0.0384, 0.0556] & \ensuremath{+}0.0113 [\ensuremath{-}0.0004, 0.0229] & 0.0713 \\
+Constant (other weekends' median) & 0.0311 & [0.0246, 0.0383] & \ensuremath{-}0.0045 [\ensuremath{-}0.0136, 0.0044] & 0.0726 \\
+Previous season, same circuit & 0.0394 & [0.0314, 0.0480] & \ensuremath{+}0.0039 [\ensuremath{-}0.0072, 0.0149] & 0.0615 \\
+\multicolumn{5}{@{}l}{\textit{Tried, not adopted}} \\
+Compound-specific factor & 0.0634 & [0.0504, 0.0771] & \ensuremath{+}0.0279 [0.0161, 0.0407] & 0.0607 \\
+50\% shrink toward constant & 0.0295 & [0.0245, 0.0348] & \ensuremath{-}0.0060 [\ensuremath{-}0.0129, 0.0010] & 0.0584 \\
+Stack of baselines & 0.0317 & [0.0255, 0.0382] & \ensuremath{-}0.0039 [\ensuremath{-}0.0130, 0.0053] & 0.0592 \\
+\bottomrule
+\end{tabular}
