@@ -16,6 +16,7 @@ only booktabs.
   tab_repro         T6b reproduction of their Table 3 and the fuel correction
   tab_strategy      T7  strategy evaluation against baselines, out of time
   tab_seasons       T8  circuit-slope SD and within-event compound trend by season
+  tab_inference     T9  interval widths under alternative inference (laps, runs, clusters)
 """
 
 from __future__ import annotations
@@ -316,7 +317,29 @@ def t8_seasons():
     return tabular("@{}lrrl@{}", ["Season", "Circuits", "Circuit-slope SD (s/lap)", "Within-event trend per step softer"], rows)
 
 
+def t9_inference():
+    """95% interval width of each 2026 compound rate under six ways of counting independent information."""
+    ic = get(MODEL, "inference_comparison")
+    rows_spec = [
+        ("A_lap_level_no_circuit", "Laps independent, no circuit slope"),
+        ("B_lap_level_circuit", "Laps independent, circuit slope"),
+        ("C_run_intercept", "Circuit slope, run intercepts"),
+        ("D_run_intercept_and_slope_SHIPPED", "Circuit slope, run intercepts and slopes (ours)"),
+        ("E_FE_OLS_cluster_by_run", "Fixed effects, errors clustered by run"),
+        ("F_FE_OLS_cluster_by_event_t12", "Fixed effects, errors clustered by event, $t_{12}$"),
+    ]
+    lag = ic["residual_lag1_autocorrelation_within_runs"]
+    rows = []
+    for key, label in rows_spec:
+        r = ic["rates"][key]
+        rows.append([label, *[fmt_num(r[c]["width"], 3) for c in COMPOUNDS],
+                     fmt_num(lag[key], 2) if key in lag else DASH])
+    return tabular("@{}l" + "r" * (len(COMPOUNDS) + 1) + "@{}",
+                   ["Inference", *COMPOUNDS, "Lag-1 autocorr."], rows)
+
+
 TABLES = {
+    "tab_inference": t9_inference,
     "tab_data": t1_data,
     "tab_rates": t2_rates,
     "tab_race_practice": t4_race_practice,

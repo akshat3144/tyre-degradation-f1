@@ -610,6 +610,17 @@ def build() -> list[Macro]:
     add("LevelGapMSAbsMin", MGMT, *ms, "gap_ci95", 1, places=3, absval=True)
     add("LevelGapMSAbsMax", MGMT, *ms, "gap_ci95", 0, places=3, absval=True)
 
+    # the abstract rounds to three places; these are the same JSON values as the
+    # four-place macros above (all positive, so the magnitude is the value)
+    sdp = [*cv, "sd_s_per_lap", "circuit_persistent"]
+    add("PersistSDAbs", MODEL, *sdp, "estimate", places=3, absval=True)
+    add("PersistSDLoAbs", MODEL, *sdp, "profile_95", 0, places=3, absval=True)
+    add("PersistSDHiAbs", MODEL, *sdp, "profile_95", 1, places=3, absval=True)
+    add("EventSDAbs", MODEL, *cv, "sd_s_per_lap", "event_specific", "estimate", places=3, absval=True)
+    add("PooledCompoundSDAbs", MODEL, *cv, "compound_rate_sd_s_per_lap", places=3, absval=True)
+    add("MaeScalarAbs", TRANS, *sb, "scalar", "mae", places=3, absval=True)
+    add("MaeConstantAbs", TRANS, *sb, "const", "mae", places=3, absval=True)
+
     # ---------------------------------------------------------------- coverage guard
     missing = []
     skipped = 0
