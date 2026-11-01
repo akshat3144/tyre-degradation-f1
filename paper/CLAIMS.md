@@ -1,6 +1,6 @@
 # CLAIMS: evidence registry for the paper
 
-Generated 2026-10-30 from `paper/results/*.json` and `data/artifacts/*.json`. Every number below is wrapped in a check that `scripts/paper/check_claims.py` re-reads from the JSON (run by `tests/test_claims_registry.py`). If a result file is regenerated and a number moves, the test fails and this file must be updated: that is the point.
+Generated 2026-10-30 (`model.json` and `recovery.json` regenerated 2026-11-01) from `paper/results/*.json` and `data/artifacts/*.json`. Every number below is wrapped in a check that `scripts/paper/check_claims.py` re-reads from the JSON (run by `tests/test_claims_registry.py`). If a result file is regenerated and a number moves, the test fails and this file must be updated: that is the point.
 
 How to read an entry: **Claim** (what the paper may say, with n and a 95% interval), **Source** (JSON path), **Script** (what produces it), **Caveat** (what a referee will say). Machine-readable checks sit in the `claims` blocks; a path is a list of JSON keys/indexes. Rounding is stated per check (`places`).
 
@@ -8,20 +8,22 @@ How to read an entry: **Claim** (what the paper may say, with n and a 95% interv
 
 **Entries marked `[READS REGENERATED FILES]`** read `pit_loss.json`, `strategy.json` or `transfer.json`, which were regenerated on 30 Oct 2026 after the strategy-layer, pit-loss and transfer-stacking fixes (strategy evaluation made out-of-time, stint floors rebuilt, wide pit-loss filter, leakage fix in the stacked baseline). Their quoted numbers were re-verified against the regenerated files.
 
+**2026-11-01 RE-ANALYSIS:** exact within-(event, lap) demeaning of compound columns replaced the approximate construction; the approximate one leaked slopes/offsets between compounds mixed on a lap (2026 C1 0.082 -> 0.041; pooled compound SD 0.0047 -> 0.0134; pooled rates now ordered by softness from C2 to C5). All model.json sections rerun; see model.json `exact_vs_approximate` and `recovery.json`. `paper/results/recovery.json` is the recovery study (simulated data with known truth): Eq. 1 with exact demeaning is unbiased under random and pace-dependent stops, and about -0.009 s/lap with 0.79 coverage under wear-triggered stops.
+
 
 ## A. Claims the paper can make
 
-### A1. Degradation varies persistently by circuit, about as much as it varies race to race, and far more than by compound
+### A1. Degradation varies persistently by circuit, about as much as it varies race to race, and about twice as much as by compound
 
-**Claim (primary, pooled 2022-2026).** A nested REML model with a persistent circuit random slope and an event-within-circuit random slope, fitted to 82 races at 23 circuits (20 with repeat visits; 69,395 race laps in 4,445 runs; physical C-number compounds), gives a persistent circuit slope SD of 0.0247 s/lap (95% profile-likelihood interval [0.0169, 0.0366]; parametric bootstrap [0.0132, 0.0342]), about 0.49 s over a 20-lap run (profile [0.34, 0.73]), and a race-specific (event within circuit) SD of 0.0240 s/lap (profile [0.0208, 0.0289]; bootstrap [0.0190, 0.0285]), about 0.48 s over 20 laps. The persistent share of slope variance is 0.52 (bootstrap [0.22, 0.73]). The persistent component is clearly present (REML likelihood-ratio 21.3; parametric-bootstrap p = 0.002 from 500 replicates, the floor 1/(B+1); do not quote 'p < 1e-5') and so is the race-specific one (LR 257.2). Both far exceed the compound differences: the SD of the five pooled compound rates (C1 to C5, 0.047 to 0.059 s/lap) is 0.0047 (bootstrap [0.0031, 0.0087]); the persistent circuit SD minus the compound SD has a bootstrap median of 0.0182 ([0.0068, 0.0297]) with bootstrap probability 0.996 that it is positive. Dropping 2025 (C-number re-specification) or keeping only verified nominations leaves the persistent SD at 0.0255 and 0.0246.
+**Claim (primary, pooled 2022-2026).** A nested REML model with a persistent circuit random slope and an event-within-circuit random slope, fitted to 82 races at 23 circuits (20 with repeat visits; 69,395 race laps in 4,445 runs; physical C-number compounds), gives a persistent circuit slope SD of 0.0278 s/lap (95% profile-likelihood interval [0.0197, 0.0405]; parametric bootstrap [0.0157, 0.0380]), about 0.56 s over a 20-lap run (profile [0.39, 0.81]), and a race-specific (event within circuit) SD of 0.0240 s/lap (profile [0.0208, 0.0290]; bootstrap [0.0191, 0.0288]), about 0.48 s over 20 laps. The persistent share of slope variance is 0.57 (bootstrap [0.28, 0.75]). The persistent component is clearly present (REML likelihood-ratio 27.0; parametric-bootstrap p = 0.002 from 500 replicates, the floor 1/(B+1); do not quote 'p < 1e-5') and so is the race-specific one (LR 258.5). Both exceed the compound spread, by about a factor of two: the SD of the five pooled compound rates (C1 to C5, 0.044 to 0.073 s/lap, rising with softness from C2 to C5) is 0.0134 (bootstrap [0.0111, 0.0156]); the persistent circuit SD minus the compound SD has a bootstrap median of 0.0137 ([0.0022, 0.0253]) with bootstrap probability 0.992 that it is positive. Dropping 2025 (C-number re-specification) or keeping only verified nominations leaves the persistent SD at 0.0285 and 0.0277.
 
-**Claim (secondary, 2026 only).** In 2026 every circuit was raced once, so the circuit slope SD (0.0437 s/lap; profile [0.0306, 0.0730]; bootstrap [0.0240, 0.0629]; about 0.87 s over 20 laps; LR 172.8, bootstrap p = 0.002; n = 13 circuits, 11,039 race laps, 55 to 242 runs per compound) mixes the persistent and race-specific components; do not read it as a property of the track.
+**Claim (secondary, 2026 only).** In 2026 every circuit was raced once, so the circuit slope SD (0.0498 s/lap; profile [0.0354, 0.0810]; bootstrap [0.0284, 0.0708]; about 1.00 s over 20 laps; LR 220.8, bootstrap p = 0.002; n = 13 circuits, 11,039 race laps, 55 to 242 runs per compound) mixes the persistent and race-specific components; do not read it as a property of the track.
 
 **Source.** `paper/results/model.json -> circuit_vs_event` (primary), `-> circuit_effect` (2026 only)
 
 **Script.** scripts/paper/p3_model.py (`tyredeg.paper.model_checks.circuit_vs_event`, `circuit_effect`)
 
-**Caveat.** The persistent share is imprecise (bootstrap [0.22, 0.73]) and the circuit-component p-value sits at the bootstrap floor. C numbers are comparable within a season's range, not strictly across the 2025 re-specification; the 2022-2025 mapping comes from Pirelli nominations (80 of 82 events verified against two sources). The pooled fit keeps compounds C1 to C5 only, so it omits 38 laps in 2 runs on the C6 soft tyre of the 2025 Monaco race; the label-based season fits keep them (season rows of Table 1 sum to 69,433 laps in 4,447 runs against 69,395 in 4,445). Compounds are nested in circuits (Pirelli nominates by track), so circuit and compound effects are only partly separable. The compound-rate SD is a different kind of quantity from a variance component and includes sampling noise (noise-corrected upper bound 0.0053); the comparison is of spreads, with the bootstrap difference carrying the uncertainty. The persistent component does not say why: surface, layout and climate are candidate causes we do not identify. The per-circuit offsets of the 2026 fit are shrunken predictions: their range (0.158 s/lap) is NOT an effect size.
+**Caveat.** The persistent share is imprecise (bootstrap [0.28, 0.75]) and the circuit-component p-value sits at the bootstrap floor. C numbers are comparable within a season's range, not strictly across the 2025 re-specification; the 2022-2025 mapping comes from Pirelli nominations (80 of 82 events verified against two sources). The pooled fit keeps compounds C1 to C5 only, so it omits 38 laps in 2 runs on the C6 soft tyre of the 2025 Monaco race; the label-based season fits keep them (season rows of Table 1 sum to 69,433 laps in 4,447 runs against 69,395 in 4,445). Compounds are nested in circuits (Pirelli nominates by track), so circuit and compound effects are only partly separable. The compound-rate SD is a different kind of quantity from a variance component and includes sampling noise (noise-corrected upper bound 0.0143); the comparison is of spreads, with the bootstrap difference carrying the uncertainty. The persistent component does not say why: surface, layout and climate are candidate causes we do not identify. The per-circuit offsets of the 2026 fit are shrunken predictions: their range (0.191 s/lap) is NOT an effect size.
 
 ```claims
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "design", "n_events"], "value": 82, "places": 0}
@@ -29,105 +31,105 @@ How to read an entry: **Claim** (what the paper may say, with n and a 95% interv
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "design", "circuits_with_repeat_visits"], "value": 20, "places": 0}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "design", "n_laps"], "value": 69395, "places": 0}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "design", "n_runs"], "value": 4445, "places": 0}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "estimate"], "value": 0.0247, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "profile_95", 0], "value": 0.0169, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "profile_95", 1], "value": 0.0366, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "bootstrap_95", 0], "value": 0.0132, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "bootstrap_95", 1], "value": 0.0342, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "estimate"], "value": 0.0278, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "profile_95", 0], "value": 0.0197, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "profile_95", 1], "value": 0.0405, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "bootstrap_95", 0], "value": 0.0157, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "circuit_persistent", "bootstrap_95", 1], "value": 0.038, "places": 4}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "estimate"], "value": 0.024, "places": 4}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "profile_95", 0], "value": 0.0208, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "profile_95", 1], "value": 0.0289, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "bootstrap_95", 0], "value": 0.019, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "bootstrap_95", 1], "value": 0.0285, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "persistent_share_of_slope_variance", "estimate"], "value": 0.52, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "persistent_share_of_slope_variance", "bootstrap_95", 0], "value": 0.22, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "persistent_share_of_slope_variance", "bootstrap_95", 1], "value": 0.73, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "circuit_persistent"], "value": 0.49, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "circuit_persistent_profile_95", 0], "value": 0.34, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "circuit_persistent_profile_95", 1], "value": 0.73, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "profile_95", 1], "value": 0.029, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "bootstrap_95", 0], "value": 0.0191, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sd_s_per_lap", "event_specific", "bootstrap_95", 1], "value": 0.0288, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "persistent_share_of_slope_variance", "estimate"], "value": 0.57, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "persistent_share_of_slope_variance", "bootstrap_95", 0], "value": 0.28, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "persistent_share_of_slope_variance", "bootstrap_95", 1], "value": 0.75, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "circuit_persistent"], "value": 0.56, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "circuit_persistent_profile_95", 0], "value": 0.39, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "circuit_persistent_profile_95", 1], "value": 0.81, "places": 2}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "event_specific"], "value": 0.48, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "event_specific_profile_95", 0], "value": 0.41, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "event_specific_profile_95", 0], "value": 0.42, "places": 2}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "seconds_over_20_laps", "event_specific_profile_95", 1], "value": 0.58, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "circuit_component_test", "reml_lr"], "value": 21.3, "places": 1}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "circuit_component_test", "reml_lr"], "value": 27.0, "places": 1}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "circuit_component_test", "p_parametric_bootstrap"], "value": 0.002, "places": 3}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "circuit_component_test", "n_bootstrap"], "value": 500, "places": 0}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "event_component_test", "reml_lr"], "value": 257.2, "places": 1}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C1", "mean"], "value": 0.056, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C2", "mean"], "value": 0.047, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C3", "mean"], "value": 0.058, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C4", "mean"], "value": 0.059, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C5", "mean"], "value": 0.053, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rate_sd_s_per_lap"], "value": 0.0047, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "compound_sd_raw", "bootstrap_95", 0], "value": 0.0031, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "compound_sd_raw", "bootstrap_95", 1], "value": 0.0087, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "compound_sd_noise_corrected", "bootstrap_95", 1], "value": 0.0053, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "median"], "value": 0.0182, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "bootstrap_95", 0], "value": 0.0068, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "bootstrap_95", 1], "value": 0.0297, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "p_circuit_greater"], "value": 0.996, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sensitivity", "without_2025", "circuit_sd"], "value": 0.0255, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sensitivity", "verified_nominations_only", "circuit_sd"], "value": 0.0246, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "event_component_test", "reml_lr"], "value": 258.5, "places": 1}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C1", "mean"], "value": 0.044, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C2", "mean"], "value": 0.043, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C3", "mean"], "value": 0.06, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C4", "mean"], "value": 0.066, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rates_pooled_s_per_lap", "C5", "mean"], "value": 0.073, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_rate_sd_s_per_lap"], "value": 0.0134, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "compound_sd_raw", "bootstrap_95", 0], "value": 0.0111, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "compound_sd_raw", "bootstrap_95", 1], "value": 0.0156, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "compound_sd_noise_corrected", "bootstrap_95", 1], "value": 0.0143, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "median"], "value": 0.0137, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "bootstrap_95", 0], "value": 0.0022, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "bootstrap_95", 1], "value": 0.0253, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "compound_vs_variance", "circuit_minus_compound_raw", "p_circuit_greater"], "value": 0.992, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sensitivity", "without_2025", "circuit_sd"], "value": 0.0285, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_vs_event", "sensitivity", "verified_nominations_only", "circuit_sd"], "value": 0.0277, "places": 4}
 {"file": "paper/results/model.json", "path": ["circuit_vs_event", "sensitivity", "verified_nominations_only", "n_events"], "value": 80, "places": 0}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "estimate"], "value": 0.0437, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 0], "value": 0.0306, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 1], "value": 0.073, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "parametric_bootstrap_percentile_95", 0], "value": 0.024, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "parametric_bootstrap_percentile_95", 1], "value": 0.0629, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "effect_in_seconds_over_20_lap_stint", "circuit_sd", "seconds"], "value": 0.87, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "effect_in_seconds_over_20_lap_stint", "circuit_sd", "profile_95", 0], "value": 0.61, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "effect_in_seconds_over_20_lap_stint", "circuit_sd", "profile_95", 1], "value": 1.46, "places": 2}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "lr_test", "reml_lr_statistic"], "value": 172.8, "places": 1}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "estimate"], "value": 0.0498, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 0], "value": 0.0354, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 1], "value": 0.081, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "parametric_bootstrap_percentile_95", 0], "value": 0.0284, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "parametric_bootstrap_percentile_95", 1], "value": 0.0708, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "effect_in_seconds_over_20_lap_stint", "circuit_sd", "seconds"], "value": 1.0, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "effect_in_seconds_over_20_lap_stint", "circuit_sd", "profile_95", 0], "value": 0.71, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "effect_in_seconds_over_20_lap_stint", "circuit_sd", "profile_95", 1], "value": 1.62, "places": 2}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "lr_test", "reml_lr_statistic"], "value": 220.8, "places": 1}
 {"file": "paper/results/model.json", "path": ["circuit_effect", "lr_test", "p_parametric_bootstrap"], "value": 0.002, "places": 3}
 {"file": "paper/results/model.json", "path": ["circuit_effect", "lr_test", "n_bootstrap"], "value": 500, "places": 0}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "n_runs"], "value": 55, "places": 0}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "n_runs"], "value": 242, "places": 0}
 ```
 
-### A2. Per-compound rates, and the 2026 reversal
+### A2. Per-compound rates
 
-**Claim.** Race degradation per physical compound, 2026, deconfounded within (event, lap), s/lap with 95% intervals: C1 0.0824 [0.0413, 0.1234] (n = 55 runs); C2 0.0532 [0.0257, 0.0808] (n = 191 runs); C3 0.0502 [0.0241, 0.0764] (n = 242 runs); C4 0.0420 [0.0155, 0.0686] (n = 223 runs); C5 0.0217 [-0.0068, 0.0503] (n = 109 runs). The ordering is C1 > C2 > C3 > C4 > C5, i.e. the HARDEST tyre degrades fastest. No adjacent pair separates at 95% on the pooled fit (`separated_pairs` has 0 entries; only C5 vs C4 has a contrast whose interval excludes zero: -0.0203 [-0.0363, -0.0044]). Within event, softer compounds degrade SLOWER in 2026: -0.0114 s/lap per step softer [-0.0178, -0.0049]. This is season-specific: 2022 shows the textbook sign (+0.0109 [+0.0040, +0.0179]), 2023-2025 are indistinguishable from zero.
+**Claim.** Race degradation per physical compound, 2026, with every fixed-effect column demeaned exactly within (event, lap), s/lap with 95% intervals: C1 0.0410 [0.0079, 0.0742] (n = 55 runs); C2 0.0373 [0.0081, 0.0665] (n = 191 runs); C3 0.0544 [0.0258, 0.0830] (n = 242 runs); C4 0.0633 [0.0346, 0.0921] (n = 223 runs); C5 0.0385 [0.0090, 0.0680] (n = 109 runs). The ordering is C4 > C3 > C1 > C5 > C2, not monotone in hardness (`monotone_softer_degrades_faster` is False). No pair of rate intervals separates at 95% (`separated_pairs` has 0 entries); the adjacent contrasts, which share the random effects, exclude zero for C3-C2 (+0.0171 [+0.0041, +0.0300]), C4-C3 (+0.0089 [+0.0026, +0.0153]) and C5-C4 (-0.0248 [-0.0332, -0.0164]), not for C2-C1 (-0.0037 [-0.0216, +0.0141]). Within event, the 2026 trend per step softer is about zero: -0.0010 s/lap [-0.0047, +0.0028]. Pooled over 2022-2026 (82 races, nested model, C-number compounds) the rates are C1 0.044, C2 0.043, C3 0.060, C4 0.066, C5 0.073 s/lap, rising with softness from C2 to C5; C1 and C2 are indistinguishable (C2-C1 -0.0016 [-0.0062, +0.0031]). By season, the within-event trend per step softer (HARD/MEDIUM/SOFT labels) is +0.0238 [+0.0201, +0.0274] in 2022, +0.0101 [+0.0072, +0.0131] in 2023, +0.0020 [-0.0005, +0.0046] in 2024, +0.0127 [+0.0096, +0.0159] in 2025 and -0.0009 [-0.0046, +0.0029] in 2026.
 
-**Source.** `paper/results/model.json -> shipped_fit, compound_within_event, season_robustness; data/artifacts/degradation.json -> separated_pairs`
+**Source.** `paper/results/model.json -> shipped_fit, compound_within_event, season_robustness, circuit_vs_event (pooled rates), detectable_from_fit (pooled contrasts), exact_vs_approximate; data/artifacts/degradation.json -> separated_pairs`
 
 **Script.** scripts/paper/p3_model.py; scripts/03_fit_model.py (artifact)
 
-**Caveat.** Do NOT claim the 2026 reversal is driver tyre-management (see A8 and B1). Cause unexplained; candidates are compound x race-phase pace offsets, selection in who stays on which tyre, and a 2026-specific regime. C-numbers are ordinal within a season's range and were re-specified each year.
+**Caveat.** The earlier reading that softer compounds degrade slower in 2026 came from the approximate column construction and no longer holds (B6; `exact_vs_approximate`). Do NOT claim C5 below C4 in 2026 is driver tyre-management (see A8 and B1). Cause unexplained; candidates are compound x race-phase pace offsets and selection in who stays on which tyre. C-numbers are ordinal within a season's range and were re-specified each year.
 
 ```claims
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "mean"], "value": 0.0824, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "lo"], "value": 0.0413, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "hi"], "value": 0.1234, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "mean"], "value": 0.041, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "lo"], "value": 0.0079, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "hi"], "value": 0.0742, "places": 4}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "n_runs"], "value": 55, "places": 0}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "mean"], "value": 0.0532, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "lo"], "value": 0.0257, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "hi"], "value": 0.0808, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "mean"], "value": 0.0373, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "lo"], "value": 0.0081, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "hi"], "value": 0.0665, "places": 4}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "n_runs"], "value": 191, "places": 0}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "mean"], "value": 0.0502, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "lo"], "value": 0.0241, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "hi"], "value": 0.0764, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "mean"], "value": 0.0544, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "lo"], "value": 0.0258, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "hi"], "value": 0.083, "places": 4}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "n_runs"], "value": 242, "places": 0}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "mean"], "value": 0.042, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "lo"], "value": 0.0155, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "hi"], "value": 0.0686, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "mean"], "value": 0.0633, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "lo"], "value": 0.0346, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "hi"], "value": 0.0921, "places": 4}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "n_runs"], "value": 223, "places": 0}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "mean"], "value": 0.0217, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "lo"], "value": -0.0068, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "hi"], "value": 0.0503, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "mean"], "value": 0.0385, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "lo"], "value": 0.009, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "hi"], "value": 0.068, "places": 4}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "n_runs"], "value": 109, "places": 0}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "adjacent_contrasts_s_per_lap", "C5-C4", "mean"], "value": -0.0203, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "adjacent_contrasts_s_per_lap", "C5-C4", "lo"], "value": -0.0363, "places": 4}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "adjacent_contrasts_s_per_lap", "C5-C4", "hi"], "value": -0.0044, "places": 4}
-{"file": "paper/results/model.json", "path": ["compound_within_event", "within_event_fixed_circuit", "trend_s_per_lap_per_step_softer", "mean"], "value": -0.0114, "places": 4}
-{"file": "paper/results/model.json", "path": ["compound_within_event", "within_event_fixed_circuit", "trend_s_per_lap_per_step_softer", "lo"], "value": -0.0178, "places": 4}
-{"file": "paper/results/model.json", "path": ["compound_within_event", "within_event_fixed_circuit", "trend_s_per_lap_per_step_softer", "hi"], "value": -0.0049, "places": 4}
-{"file": "paper/results/model.json", "path": ["season_robustness", "2022", "trend_per_step_softer", "within_event", "mean"], "value": 0.0109, "places": 4}
-{"file": "paper/results/model.json", "path": ["season_robustness", "2022", "trend_per_step_softer", "within_event", "lo"], "value": 0.004, "places": 4}
-{"file": "paper/results/model.json", "path": ["season_robustness", "2022", "trend_per_step_softer", "within_event", "hi"], "value": 0.0179, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "adjacent_contrasts_s_per_lap", "C5-C4", "mean"], "value": -0.0248, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "adjacent_contrasts_s_per_lap", "C5-C4", "lo"], "value": -0.0332, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "adjacent_contrasts_s_per_lap", "C5-C4", "hi"], "value": -0.0164, "places": 4}
+{"file": "paper/results/model.json", "path": ["compound_within_event", "within_event_fixed_circuit", "trend_s_per_lap_per_step_softer", "mean"], "value": -0.001, "places": 4}
+{"file": "paper/results/model.json", "path": ["compound_within_event", "within_event_fixed_circuit", "trend_s_per_lap_per_step_softer", "lo"], "value": -0.0047, "places": 4}
+{"file": "paper/results/model.json", "path": ["compound_within_event", "within_event_fixed_circuit", "trend_s_per_lap_per_step_softer", "hi"], "value": 0.0028, "places": 4}
+{"file": "paper/results/model.json", "path": ["season_robustness", "2022", "trend_per_step_softer", "within_event", "mean"], "value": 0.0238, "places": 4}
+{"file": "paper/results/model.json", "path": ["season_robustness", "2022", "trend_per_step_softer", "within_event", "lo"], "value": 0.0201, "places": 4}
+{"file": "paper/results/model.json", "path": ["season_robustness", "2022", "trend_per_step_softer", "within_event", "hi"], "value": 0.0274, "places": 4}
 ```
 
 ### A3. Naive vs fuel-corrected vs deconfounded
 
-**Claim.** Same laps, same physical-compound grouping, three estimators (s/lap): C1 naive -0.035 / fuel-corrected +0.034 / deconfounded +0.082; C2 naive +0.201 / fuel-corrected +0.038 / deconfounded +0.053; C3 naive -0.037 / fuel-corrected +0.048 / deconfounded +0.050; C4 naive +0.016 / fuel-corrected +0.033 / deconfounded +0.042; C5 naive -0.070 / fuel-corrected +0.016 / deconfounded +0.022. The naive no-controls slope has the wrong sign on 3 of 5 compounds (C1, C3, C5; the sign list is checked below). The fuel-corrected within-stint 'practitioner' regression is much closer to ours, differing by 0.049 s/lap at C1 and 0.002 at C3. Fuel coefficient used: 0.033 s/kg.
+**Claim.** Same laps, same physical-compound grouping, three estimators (s/lap): C1 naive -0.035 / fuel-corrected +0.034 / deconfounded +0.041; C2 naive +0.201 / fuel-corrected +0.038 / deconfounded +0.037; C3 naive -0.037 / fuel-corrected +0.048 / deconfounded +0.054; C4 naive +0.016 / fuel-corrected +0.033 / deconfounded +0.063; C5 naive -0.070 / fuel-corrected +0.016 / deconfounded +0.039. The naive no-controls slope has the wrong sign on 3 of 5 compounds (C1, C3, C5; the sign list is checked below). The fuel-corrected within-stint 'practitioner' regression is much closer to ours, differing by 0.007 s/lap at C1 and 0.006 at C3 (largest gap 0.030 at C4). Fuel coefficient used: 0.033 s/kg.
 
 **Source.** `paper/results/model.json -> ablation; data/artifacts/ablation.json (same numbers)`
 
@@ -138,130 +140,130 @@ How to read an entry: **Claim** (what the paper may say, with n and a 95% interv
 ```claims
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C1", "naive_run_clustered", "mean"], "value": -0.035, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C1", "practitioner_fuel_corrected_within_stint", "mean"], "value": 0.034, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "rows", "C1", "deconfounded", "mean"], "value": 0.082, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "rows", "C1", "deconfounded", "mean"], "value": 0.041, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C2", "naive_run_clustered", "mean"], "value": 0.201, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C2", "practitioner_fuel_corrected_within_stint", "mean"], "value": 0.038, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "rows", "C2", "deconfounded", "mean"], "value": 0.053, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "rows", "C2", "deconfounded", "mean"], "value": 0.037, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C3", "naive_run_clustered", "mean"], "value": -0.037, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C3", "practitioner_fuel_corrected_within_stint", "mean"], "value": 0.048, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "rows", "C3", "deconfounded", "mean"], "value": 0.05, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "rows", "C3", "deconfounded", "mean"], "value": 0.054, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C4", "naive_run_clustered", "mean"], "value": 0.016, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C4", "practitioner_fuel_corrected_within_stint", "mean"], "value": 0.033, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "rows", "C4", "deconfounded", "mean"], "value": 0.042, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "rows", "C4", "deconfounded", "mean"], "value": 0.063, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C5", "naive_run_clustered", "mean"], "value": -0.07, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C5", "practitioner_fuel_corrected_within_stint", "mean"], "value": 0.016, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "rows", "C5", "deconfounded", "mean"], "value": 0.022, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C1"], "value": 0.049, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C3"], "value": 0.002, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "rows", "C5", "deconfounded", "mean"], "value": 0.039, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C1"], "value": 0.007, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C3"], "value": 0.006, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "fuel_s_per_kg_central"], "value": 0.033, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "naive_negative_compounds"], "equals": ["C1", "C3", "C5"]}
 ```
 
 ### A4. Why the shipped intervals are wider than a lap-level fit
 
-**Claim.** Treating laps as independent understates uncertainty. Interval width relative to a lap-level circuit model: no-circuit lap-level model 0.17x (C3) to 0.47x (C1); the shipped model (run intercept and run slope) is 1.29x (C3) to 1.54x (C1) wider; residual lag-1 autocorrelation within runs 0.36 (lap-level circuit model) falling to 0.23 (shipped).
+**Claim.** Treating laps as independent understates uncertainty. Interval width relative to a lap-level circuit model: no-circuit lap-level model 0.15x (C3) to 0.43x (C1); the shipped model (run intercept and run slope) is 1.32x (C1) to 1.39x (C5) wider; residual lag-1 autocorrelation within runs 0.36 (lap-level circuit model) falling to 0.22 (shipped).
 
 **Source.** `paper/results/model.json -> inference_comparison`
 
 **Script.** scripts/paper/p3_model.py
 
-**Caveat.** Cluster-robust OLS comparators (E, F) disagree with each other; the shipped REML is one defensible choice, not the unique one. Engine agrees with statsmodels to 7e-6 s/lap in rates (model.json -> engine_agreement).
+**Caveat.** Cluster-robust OLS comparators (E, F) disagree with each other; the shipped REML is one defensible choice, not the unique one. Engine agrees with statsmodels to 4e-6 s/lap in rates (model.json -> engine_agreement).
 
 ```claims
-{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "A_lap_level_no_circuit", "C3"], "value": 0.17, "places": 2}
-{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "A_lap_level_no_circuit", "C1"], "value": 0.47, "places": 2}
-{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "D_run_intercept_and_slope_SHIPPED", "C3"], "value": 1.29, "places": 2}
-{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "D_run_intercept_and_slope_SHIPPED", "C1"], "value": 1.54, "places": 2}
+{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "A_lap_level_no_circuit", "C3"], "value": 0.15, "places": 2}
+{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "A_lap_level_no_circuit", "C1"], "value": 0.43, "places": 2}
+{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "D_run_intercept_and_slope_SHIPPED", "C3"], "value": 1.38, "places": 2}
+{"file": "paper/results/model.json", "path": ["inference_comparison", "width_ratio_vs_B", "D_run_intercept_and_slope_SHIPPED", "C1"], "value": 1.32, "places": 2}
 {"file": "paper/results/model.json", "path": ["inference_comparison", "residual_lag1_autocorrelation_within_runs", "B_lap_level_circuit"], "value": 0.36, "places": 2}
-{"file": "paper/results/model.json", "path": ["inference_comparison", "residual_lag1_autocorrelation_within_runs", "D_run_intercept_and_slope_SHIPPED"], "value": 0.23, "places": 2}
+{"file": "paper/results/model.json", "path": ["inference_comparison", "residual_lag1_autocorrelation_within_runs", "D_run_intercept_and_slope_SHIPPED"], "value": 0.22, "places": 2}
 ```
 
 ### A5. Calibration of the rate intervals
 
-**Claim.** Leave-one-circuit-out coverage of each circuit's own fitted rate by the pooled model's predictive interval: nominal 80% -> 0.778 (28/36 cells, Wilson 95% [0.62, 0.88]); nominal 95% -> 0.917. Dropping the circuit variance collapses 80% coverage to 0.528. Simulation-based calibration (400 datasets, data drawn from the fitted model): pooled coverage at 80% 0.775. Lap-level held-out coverage at 80% is 0.806 but lap scatter dominates, so it is an easy bar.
+**Claim.** Leave-one-circuit-out coverage of each circuit's own fitted rate by the pooled model's predictive interval: nominal 80% -> 0.667 (24/36 cells, Wilson 95% [0.50, 0.80]); nominal 95% -> 0.889. Dropping the circuit variance collapses 80% coverage to 0.389. Simulation-based calibration (400 datasets, data drawn from the fitted model): pooled coverage at 80% 0.762. Lap-level held-out coverage at 80% is 0.806 but lap scatter dominates, so it is an easy bar.
 
 **Source.** `paper/results/model.json -> rate_calibration, lap_level_calibration; data/artifacts/calibration.json`
 
 **Script.** scripts/paper/p3_model.py; scripts/04_validate.py (artifact)
 
-**Caveat.** Quote the per-circuit coverage (about 78%, n = 36 cells, Wilson interval wide) and not the 80.6% lap-level figure as the headline. SBC only checks the estimator against its own model, so it cannot detect misspecification.
+**Caveat.** Quote the per-circuit coverage (about 67%, n = 36 cells, Wilson interval wide; the 80% intervals under-cover, and the Wilson upper bound only reaches 0.80) and not the 80.6% lap-level figure as the headline. SBC only checks the estimator against its own model, so it cannot detect misspecification.
 
 ```claims
-{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "coverage"], "value": 0.778, "places": 3}
-{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "k"], "value": 28, "places": 0}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "coverage"], "value": 0.667, "places": 3}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "k"], "value": 24.0, "places": 0}
 {"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "n"], "value": 36, "places": 0}
-{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "wilson_95", 0], "value": 0.62, "places": 2}
-{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "wilson_95", 1], "value": 0.88, "places": 2}
-{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.95", "coverage"], "value": 0.917, "places": 3}
-{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "no_circuit_variance", "coverage", "0.80", "coverage"], "value": 0.528, "places": 3}
-{"file": "paper/results/model.json", "path": ["rate_calibration", "simulation_based_calibration", "coverage_of_true_rate", "0.80", "pooled"], "value": 0.775, "places": 3}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "wilson_95", 0], "value": 0.5, "places": 2}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "wilson_95", 1], "value": 0.8, "places": 2}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.95", "coverage"], "value": 0.889, "places": 3}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "no_circuit_variance", "coverage", "0.80", "coverage"], "value": 0.389, "places": 3}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "simulation_based_calibration", "coverage_of_true_rate", "0.80", "pooled"], "value": 0.762, "places": 3}
 {"file": "paper/results/model.json", "path": ["lap_level_calibration", "coverage_80"], "value": 0.806, "places": 3}
 ```
 
 ### A6. Power: what public timing data can separate
 
-**Claim.** Under Pirelli's actual 2026 nominations (the "realistic" design: stints only on the compounds each event nominated; C3 is nominated everywhere, so any two compounds are linked by a chain of within-event contrasts) and the runs we hold, the minimum detectable compound gap at 80% power is 0.0175 s/lap for C1 against C2 (246 runs, the weakest-linked adjacent pair; simulation that refits the variances gives 0.018, Monte-Carlo 95% [0.0174, 0.0182], and 0.022 with a t reference on 12 df) and 0.0103 to 0.0128 s/lap for the other adjacent pairs (C2-C3 0.0121, C3-C4 0.0103, C4-C5 0.0128). Moving the circuit-SD to either end of its profile interval leaves the realistic figure unchanged (0.0175); raising the run-slope SD by 50% lifts it to 0.0238. A balanced design (both compounds at every circuit) at 832 stints detects 0.0074 (0.0101 under the stressed run-slope SD); a split design (disjoint circuits) at 832 stints only 0.0685 (0.0482 to 0.1141 over the circuit-SD interval). Compounds at disjoint circuits cannot be separated whatever the sample: circuit variance enters the contrast, so power has a ceiling (0.057 at 0.006 s/lap rising to 0.236 at 0.03 s/lap). Runs needed for 80% power (analytic): 0.006 s/lap needs 2,116 realistic C1-C2 runs (1,270 balanced); 0.01 needs 761 (457); 0.02 needs 190 (114); 0.03 needs 86 (52). Simulations that refit the variances match: e.g. 0.006 realistic 2,167 (Monte-Carlo 95% [2,038, 2,302]), balanced 1,266 [1,209, 1,353]; simulated points were run up to 3,500 runs (one point, realistic at 0.006 s/lap with 4,654 runs, was above the cap and is covered by the analytic curve). At zero effect the Wald z test rejects in 0.054 (balanced) and 0.047 (realistic) of 2,000 replicates (Monte-Carlo SE 0.005), close to the nominal 0.05.
+**Claim.** Under Pirelli's actual 2026 nominations (the "realistic" design: stints only on the compounds each event nominated; C3 is nominated everywhere, so any two compounds are linked by a chain of within-event contrasts) and the runs we hold, the minimum detectable compound gap at 80% power is 0.0190 s/lap for C1 against C2 (246 runs, the weakest-linked adjacent pair; simulation that refits the variances gives 0.019, Monte-Carlo 95% [0.0188, 0.0196], and 0.023 with a t reference on 12 df) and 0.0111 to 0.0139 s/lap for the other adjacent pairs (C2-C3 0.0131, C3-C4 0.0111, C4-C5 0.0139). Moving the circuit-SD to either end of its profile interval leaves the realistic figure essentially unchanged (0.0189 to 0.0190); raising the run-slope SD by 50% lifts it to 0.0262. A balanced design (both compounds at every circuit) at 832 stints detects 0.0080 (0.0111 under the stressed run-slope SD); a split design (disjoint circuits) at 832 stints only 0.0781 (0.0558 to 0.1265 over the circuit-SD interval). Compounds at disjoint circuits cannot be separated whatever the sample: circuit variance enters the contrast, so power has a ceiling (0.055 at 0.006 s/lap rising to 0.192 at 0.03 s/lap). Runs needed for 80% power (analytic): 0.006 s/lap needs 2,482 realistic C1-C2 runs (1,489 balanced); 0.01 needs 893 (536); 0.02 needs 223 (134); 0.03 needs 99 (60). Simulations that refit the variances match at 0.02: realistic 220 (Monte-Carlo 95% [210, 233]), balanced 138 [128, 147]; simulated points were run up to 2,000 runs (the 0.006 s/lap points above that cap, balanced at 2,236 and 3,276 runs and realistic at 2,470 to 5,460, are covered by the analytic curve). At zero effect the Wald z test rejects in 0.056 (balanced) and 0.050 (realistic) of 2,000 replicates (Monte-Carlo SE 0.005), close to the nominal 0.05.
 
-**Source.** `paper/results/model.json -> min_detectable_effect` (final); `-> power_extended` (produced by `p3_model.py --only compound_spread_2026 power_extended`); `data/artifacts/power.json` (0.006 s/lap, 3 runs: the benchmark study). The first power analysis (`-> power`, 100 simulations per point, balanced-versus-split only; 1212 runs for 0.006 s/lap balanced) is superseded in the text and kept only in B8.
+**Source.** `paper/results/model.json -> min_detectable_effect` (final); `-> power_extended` (produced by `p3_model.py --only compound_spread_2026 power_extended`); `data/artifacts/power.json` (0.006 s/lap, 3 runs: the benchmark study). The first power analysis (`-> power`, 100 simulations per point, balanced-versus-split only; 1702 runs for 0.006 s/lap balanced) is superseded in the text and kept only in B8.
 
 **Script.** scripts/paper/p3_model.py (`tyredeg.paper.model_checks.min_detectable_effect`, `.power_extended`; `tyredeg.validation.power`)
 
-**Caveat.** All power figures come from the fitted model (simulated data), not from observed compound differences, and say what the design could detect, not what is there. "Analytic" uses the generalised-least-squares covariance at known variances (a lower bound on the detectable gap: no Monte-Carlo error); "simulated" refits the variances and applies the Wald test used in the paper, with Monte-Carlo error. The Wald z test holds its nominal size here (0.054 and 0.047 at nominal 0.05); the t(12) reference is conservative (0.032 and 0.009), so its minimum detectable effect is larger. The realistic design reuses the 2026 Pirelli nominations (supplementary table) and 20-lap stints; it does not model pit strategy or who runs which compound within an event. The run counts are driver-stints of the two compared compounds, not all runs.
+**Caveat.** All power figures come from the fitted model (simulated data), not from observed compound differences, and say what the design could detect, not what is there. "Analytic" uses the generalised-least-squares covariance at known variances (a lower bound on the detectable gap: no Monte-Carlo error); "simulated" refits the variances and applies the Wald test used in the paper, with Monte-Carlo error. The Wald z test holds its nominal size here (0.056 and 0.050 at nominal 0.05); the t(12) reference is conservative (0.032 and 0.011), so its minimum detectable effect is larger. The realistic design reuses the 2026 Pirelli nominations (supplementary table) and 20-lap stints; it does not model pit strategy or who runs which compound within an event. The run counts are driver-stints of the two compared compounds, not all runs.
 
 ```claims
 {"file": "paper/results/model.json", "path": ["dataset", "race_fit", "n_runs"], "value": 820, "places": 0}
 {"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "n_stints"], "value": 246, "places": 0}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.0175, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C2_C3", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.0121, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C3_C4", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.0103, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C4_C5", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.0128, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "circuit_sd_low", "mde_80_s_per_lap"], "value": 0.0175, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "circuit_sd_high", "mde_80_s_per_lap"], "value": 0.0175, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "circuit_high_and_run_slope_x1.5", "mde_80_s_per_lap"], "value": 0.0238, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.019, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C2_C3", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.0131, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C3_C4", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.0111, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C4_C5", "at_actual_pair_runs", "point", "mde_80_s_per_lap"], "value": 0.0139, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "circuit_sd_low", "mde_80_s_per_lap"], "value": 0.0189, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "circuit_sd_high", "mde_80_s_per_lap"], "value": 0.019, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "realistic_C1_C2", "at_actual_pair_runs", "circuit_high_and_run_slope_x1.5", "mde_80_s_per_lap"], "value": 0.0262, "places": 4}
 {"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "balanced", "at_N_832", "n_stints"], "value": 832, "places": 0}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "balanced", "at_N_832", "point", "mde_80_s_per_lap"], "value": 0.0074, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "balanced", "at_N_832", "circuit_high_and_run_slope_x1.5", "mde_80_s_per_lap"], "value": 0.0101, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "split", "at_N_832", "point", "mde_80_s_per_lap"], "value": 0.0685, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "split", "at_N_832", "circuit_sd_low", "mde_80_s_per_lap"], "value": 0.0482, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "split", "at_N_832", "circuit_sd_high", "mde_80_s_per_lap"], "value": 0.1141, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_wald_z", "crossing"], "value": 0.018, "places": 3}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_wald_z", "mc_ci95", 0], "value": 0.0174, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_wald_z", "mc_ci95", 1], "value": 0.0182, "places": 4}
-{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_t_df12", "crossing"], "value": 0.022, "places": 3}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "balanced", "at_N_832", "point", "mde_80_s_per_lap"], "value": 0.008, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "balanced", "at_N_832", "circuit_high_and_run_slope_x1.5", "mde_80_s_per_lap"], "value": 0.0111, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "split", "at_N_832", "point", "mde_80_s_per_lap"], "value": 0.0781, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "split", "at_N_832", "circuit_sd_low", "mde_80_s_per_lap"], "value": 0.0558, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "analytic_known_variance", "split", "at_N_832", "circuit_sd_high", "mde_80_s_per_lap"], "value": 0.1265, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_wald_z", "crossing"], "value": 0.019, "places": 3}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_wald_z", "mc_ci95", 0], "value": 0.0188, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_wald_z", "mc_ci95", 1], "value": 0.0196, "places": 4}
+{"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "mde_80_t_df12", "crossing"], "value": 0.023, "places": 3}
 {"file": "paper/results/model.json", "path": ["min_detectable_effect", "simulated_refit", "realistic_C1_C2", "reps"], "value": 1000, "places": 0}
 ```
 
-Pending: the keys below do not exist until the long run merges `power_extended` into model.json; the checker skips them until then. Once the key exists a line without a value FAILS and asks for `python scripts/paper/check_claims.py --promote-pending`, which fills in the rounded values and moves the lines into a checked `claims` block. Lines with `equals` are checked as soon as the key exists. make_numbers.py reads the rounding from the `places` here.
+The `power_extended` keys below were merged into model.json by the 2026-11-01 rerun and are checked like the rest; before they existed the checker skipped them. Once the key exists a line without a value FAILS and asks for `python scripts/paper/check_claims.py --promote-pending`, which fills in the rounded values and moves the lines into a checked `claims` block. Lines with `equals` are checked as soon as the key exists. make_numbers.py reads the rounding from the `places` here.
 
 ```claims
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.006", "balanced", "point"], "places": 0, "value": 1270.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.006", "realistic_C1_C2", "point"], "places": 0, "value": 2116.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.006", "balanced", "point"], "places": 0, "value": 1489.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.006", "realistic_C1_C2", "point"], "places": 0, "value": 2482.0}
 {"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.006", "split", "point"], "equals": null}
-{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.006", "point"], "places": 3, "value": 0.057}
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.01", "balanced", "point"], "places": 0, "value": 457.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.01", "realistic_C1_C2", "point"], "places": 0, "value": 761.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.006", "point"], "places": 3, "value": 0.055}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.01", "balanced", "point"], "places": 0, "value": 536.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.01", "realistic_C1_C2", "point"], "places": 0, "value": 893.0}
 {"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.01", "split", "point"], "equals": null}
-{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.01", "point"], "places": 3, "value": 0.07}
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.02", "balanced", "point"], "places": 0, "value": 114.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.02", "realistic_C1_C2", "point"], "places": 0, "value": 190.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.01", "point"], "places": 3, "value": 0.065}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.02", "balanced", "point"], "places": 0, "value": 134.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.02", "realistic_C1_C2", "point"], "places": 0, "value": 223.0}
 {"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.02", "split", "point"], "equals": null}
-{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.02", "point"], "places": 3, "value": 0.131}
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.03", "balanced", "point"], "places": 0, "value": 52.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.03", "realistic_C1_C2", "point"], "places": 0, "value": 86.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.02", "point"], "places": 3, "value": 0.112}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.03", "balanced", "point"], "places": 0, "value": 60.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.03", "realistic_C1_C2", "point"], "places": 0, "value": 99.0}
 {"file": "paper/results/model.json", "path": ["power_extended", "analytic_crossing_80pct_stints", "effect_0.03", "split", "point"], "equals": null}
-{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.03", "point"], "places": 3, "value": 0.236}
-{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.03", "circuit_sd_low"], "places": 3, "value": 0.424}
-{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "balanced", "crossing_80_wald_z", "crossing"], "places": 0, "value": 116.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "balanced", "crossing_80_wald_z", "mc_ci95", 0], "places": 0, "value": 108.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "balanced", "crossing_80_wald_z", "mc_ci95", 1], "places": 0, "value": 122.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "realistic_C1_C2", "crossing_80_wald_z", "crossing"], "places": 0, "value": 183.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "realistic_C1_C2", "crossing_80_wald_z", "mc_ci95", 0], "places": 0, "value": 173.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "realistic_C1_C2", "crossing_80_wald_z", "mc_ci95", 1], "places": 0, "value": 196.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.03", "point"], "places": 3, "value": 0.192}
+{"file": "paper/results/model.json", "path": ["power_extended", "split_design_power_ceiling", "effect_0.03", "circuit_sd_low"], "places": 3, "value": 0.333}
+{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "balanced", "crossing_80_wald_z", "crossing"], "places": 0, "value": 138.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "balanced", "crossing_80_wald_z", "mc_ci95", 0], "places": 0, "value": 128.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "balanced", "crossing_80_wald_z", "mc_ci95", 1], "places": 0, "value": 147.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "realistic_C1_C2", "crossing_80_wald_z", "crossing"], "places": 0, "value": 220.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "realistic_C1_C2", "crossing_80_wald_z", "mc_ci95", 0], "places": 0, "value": 210.0}
+{"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "realistic_C1_C2", "crossing_80_wald_z", "mc_ci95", 1], "places": 0, "value": 233.0}
 {"file": "paper/results/model.json", "path": ["power_extended", "simulated", "effect_0.02", "balanced", "reps"], "places": 0, "value": 1000.0}
-{"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "balanced", "wald_z_reject_rate"], "places": 3, "value": 0.054}
+{"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "balanced", "wald_z_reject_rate"], "places": 3, "value": 0.056}
 {"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "balanced", "t_df12_reject_rate"], "places": 3, "value": 0.032}
-{"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "realistic_C1_C2", "wald_z_reject_rate"], "places": 3, "value": 0.047}
-{"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "realistic_C1_C2", "t_df12_reject_rate"], "places": 3, "value": 0.009}
+{"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "realistic_C1_C2", "wald_z_reject_rate"], "places": 3, "value": 0.05}
+{"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "realistic_C1_C2", "t_df12_reject_rate"], "places": 3, "value": 0.011}
 {"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "balanced", "reps"], "places": 0, "value": 2000.0}
 {"file": "paper/results/model.json", "path": ["power_extended", "type_I_error_at_zero_effect", "balanced", "wald_z_mc_se"], "places": 3, "value": 0.005}
 ```
@@ -678,16 +680,16 @@ OLD: dropping the first lap of each run and bridging gaps cut practice-to-race e
 
 ### B5. 'Circuit spread 0.146 beats compound spread 0.112; LR 385, p = 4e-86'
 
-OLD: circuit spread 0.146 s/lap against compound spread 0.112; LR = 385, p = 4e-86. RE-ANALYSIS: the 0.146 was a range of shrunken predictions (now 0.158), not an effect size; the converged fit gives circuit SD 0.0437 [0.031, 0.073], LR 172.8, bootstrap p 0.002. The earlier fit had not converged (unscaled L-BFGS SD 0.099, converged False; rescaled 0.036). See A1.
+OLD: circuit spread 0.146 s/lap against compound spread 0.112; LR = 385, p = 4e-86. RE-ANALYSIS: the 0.146 was a range of shrunken predictions (now 0.191), not an effect size; the converged fit gives circuit SD 0.0498 [0.035, 0.081], LR 220.8, bootstrap p 0.002 (0.0437 [0.031, 0.073], LR 172.8 before the exact demeaning of 2026-11-01). The earlier fit had not converged (unscaled L-BFGS SD 0.099, converged False; rescaled 0.036). See A1.
 
 **Source.** `paper/results/model.json -> circuit_effect, old_fit_reproduction`
 
 ```claims
-{"file": "paper/results/model.json", "path": ["circuit_effect", "shrunken_predictions_not_an_effect_size", "range_s_per_lap"], "value": 0.158, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "estimate"], "value": 0.0437, "places": 4}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 0], "value": 0.031, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 1], "value": 0.073, "places": 3}
-{"file": "paper/results/model.json", "path": ["circuit_effect", "lr_test", "reml_lr_statistic"], "value": 172.8, "places": 1}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "shrunken_predictions_not_an_effect_size", "range_s_per_lap"], "value": 0.191, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "estimate"], "value": 0.0498, "places": 4}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 0], "value": 0.035, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "circuit_slope_sd_s_per_lap", "profile_likelihood_95", 1], "value": 0.081, "places": 3}
+{"file": "paper/results/model.json", "path": ["circuit_effect", "lr_test", "reml_lr_statistic"], "value": 220.8, "places": 1}
 {"file": "paper/results/model.json", "path": ["circuit_effect", "lr_test", "p_parametric_bootstrap"], "value": 0.002, "places": 3}
 {"file": "paper/results/model.json", "path": ["old_fit_reproduction", "unscaled_lbfgs", "circuit_slope_sd_s_per_lap"], "value": 0.099, "places": 3}
 {"file": "paper/results/model.json", "path": ["old_fit_reproduction", "unscaled_lbfgs", "converged"], "equals": false}
@@ -696,64 +698,64 @@ OLD: circuit spread 0.146 s/lap against compound spread 0.112; LR = 385, p = 4e-
 
 ### B6. 'Five distinct rates, in strict order, no crossings' (and the old C1-C5 values)
 
-OLD: C1-C5 rates 0.084 / 0.050 / 0.044 / 0.029 / 0.011 'in strict order, no crossings, five distinct rates'. RE-ANALYSIS: converged rates 0.082 / 0.053 / 0.050 / 0.042 / 0.022; the 95% intervals overlap pairwise (`separated_pairs_nonoverlap` has 0 entries); `monotone_softer_degrades_faster` = False.
+OLD: C1-C5 rates 0.084 / 0.050 / 0.044 / 0.029 / 0.011 'in strict order, no crossings, five distinct rates'. RE-ANALYSIS: converged rates 0.082 / 0.053 / 0.050 / 0.042 / 0.022 (approximate column construction); with exact within-(event, lap) demeaning (2026-11-01) 0.041 / 0.037 / 0.054 / 0.063 / 0.039; the 95% intervals overlap pairwise (`separated_pairs_nonoverlap` has 0 entries); `monotone_softer_degrades_faster` = False.
 
 **Source.** `paper/results/model.json -> shipped_fit`
 
 ```claims
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "mean"], "value": 0.082, "places": 3}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "mean"], "value": 0.053, "places": 3}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "mean"], "value": 0.05, "places": 3}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "mean"], "value": 0.042, "places": 3}
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "mean"], "value": 0.022, "places": 3}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "mean"], "value": 0.041, "places": 3}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C2", "mean"], "value": 0.037, "places": 3}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C3", "mean"], "value": 0.054, "places": 3}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C4", "mean"], "value": 0.063, "places": 3}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C5", "mean"], "value": 0.039, "places": 3}
 {"file": "paper/results/model.json", "path": ["shipped_fit", "monotone_softer_degrades_faster"], "equals": false}
 ```
 
 ### B7. '11 of 25 pairs separated' and '4.4x tighter intervals'
 
-OLD: '11 of 25 adjacent compound pairs separate race by race', '4.4x tighter than the published model, up to 9.1x'. RE-ANALYSIS: lap-level, 11 of 25 pairs separate but only 2 in the physical direction (9 the wrong way). With run-level terms: 4 of 25, 1 in the physical direction. The tightening ratio is 4.41x median (max 9.08x) at lap level but 2.09x (max 6.15x) once runs are the unit; and the comparison is not like for like (one driver's three stints against a field's).
+OLD: '11 of 25 adjacent compound pairs separate race by race', '4.4x tighter than the published model, up to 9.1x'. RE-ANALYSIS: lap-level, 11 of 25 pairs separate but only 2 in the physical direction (9 the wrong way); with exact demeaning (2026-11-01) 7 of 25 separate, 2 in the physical direction (5 the wrong way). With run-level terms: 4 of 25, 1 in the physical direction; now 3 of 25, 1. The tightening ratio is 4.66x median (max 10.3x) at lap level but 2.47x (max 5.43x) once runs are the unit (4.41x, max 9.08x, and 2.09x, max 6.15x, before 2026-11-01); and the comparison is not like for like (one driver's three stints against a field's).
 
 **Source.** `paper/results/model.json -> per_race_separation`
 
 ```claims
-{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "pairs_separated_non_overlap_any_direction"], "value": 11, "places": 0}
+{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "pairs_separated_non_overlap_any_direction"], "value": 7.0, "places": 0}
 {"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "n_adjacent_pairs"], "value": 25, "places": 0}
 {"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "pairs_separated_non_overlap_correct_direction"], "value": 2, "places": 0}
-{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "pairs_separated_non_overlap_wrong_direction"], "value": 9, "places": 0}
-{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_run_level", "pairs_separated_non_overlap_any_direction"], "value": 4, "places": 0}
+{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "pairs_separated_non_overlap_wrong_direction"], "value": 5.0, "places": 0}
+{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_run_level", "pairs_separated_non_overlap_any_direction"], "value": 3.0, "places": 0}
 {"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_run_level", "pairs_separated_non_overlap_correct_direction"], "value": 1, "places": 0}
-{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "median_tightening_ratio"], "value": 4.41, "places": 2}
-{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "max_tightening_ratio"], "value": 9.08, "places": 2}
-{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_run_level", "median_tightening_ratio"], "value": 2.09, "places": 2}
-{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_run_level", "max_tightening_ratio"], "value": 6.15, "places": 2}
+{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "median_tightening_ratio"], "value": 4.66, "places": 2}
+{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_lap_level", "max_tightening_ratio"], "value": 10.3, "places": 2}
+{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_run_level", "median_tightening_ratio"], "value": 2.47, "places": 2}
+{"file": "paper/results/model.json", "path": ["per_race_separation", "protocols", "min_runs_1_run_level", "max_tightening_ratio"], "value": 5.43, "places": 2}
 ```
 
 ### B8. 'Power: 512 needed, we have 820'
 
-OLD: separating two compounds 0.006 s/lap apart needs 512 driver-stints; we have 820. RE-ANALYSIS: the 512 was a grid point from a Welch-t calculation that ignores circuit and run variance (interpolated crossing 310.8). The mixed-model simulation needs 1212 stints balanced, and a split design never reaches 80% (ceiling 0.057). See A6.
+OLD: separating two compounds 0.006 s/lap apart needs 512 driver-stints; we have 820. RE-ANALYSIS: the 512 was a grid point from a Welch-t calculation that ignores circuit and run variance (interpolated crossing 310.8). The mixed-model analysis needs 1702 stints balanced (1212 before the exact demeaning of 2026-11-01), and a split design never reaches 80% (ceiling 0.055; 0.057 before). See A6.
 
 **Source.** `paper/results/model.json -> power`
 
 ```claims
 {"file": "paper/results/model.json", "path": ["power", "original_welch_calculation", "interpolated_crossing"], "value": 310.8, "places": 1}
-{"file": "paper/results/model.json", "path": ["power", "curves", "balanced_effect_0.006", "crossing_80pct_wald_z", "crossing"], "value": 1212.0, "places": 0}
-{"file": "paper/results/model.json", "path": ["power", "ceiling_split_design_power", "0.006"], "value": 0.057, "places": 3}
+{"file": "paper/results/model.json", "path": ["power", "curves", "balanced_effect_0.006", "crossing_80pct_wald_z", "crossing"], "value": 1702.0, "places": 0}
+{"file": "paper/results/model.json", "path": ["power", "ceiling_split_design_power", "0.006"], "value": 0.055, "places": 3}
 ```
 
 ### B9. '80.6% coverage at nominal 80%' as the calibration headline
 
-OLD: '80% intervals cover 80.6% empirically' presented as honest uncertainty. RE-ANALYSIS: that is held-out LAP coverage (0.8059), dominated by lap scatter. For the rates themselves, leave-one-circuit-out coverage is 0.778 (n = 36). See A5.
+OLD: '80% intervals cover 80.6% empirically' presented as honest uncertainty. RE-ANALYSIS: that is held-out LAP coverage (0.8059), dominated by lap scatter. For the rates themselves, leave-one-circuit-out coverage is 0.667 (n = 36; 0.778 before the exact demeaning of 2026-11-01). See A5.
 
 **Source.** `paper/results/model.json -> lap_level_calibration, rate_calibration`
 
 ```claims
 {"file": "paper/results/model.json", "path": ["lap_level_calibration", "coverage_80"], "value": 0.8059, "places": 4}
-{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "coverage"], "value": 0.778, "places": 3}
+{"file": "paper/results/model.json", "path": ["rate_calibration", "leave_one_event_out", "variants", "full_predictive", "coverage", "0.80", "coverage"], "value": 0.667, "places": 3}
 ```
 
 ### B10. Naive vs deconfounded table (label-keyed)
 
-OLD table (label-keyed): HARD naive +0.075 / deconfounded +0.072; MEDIUM -0.122 / +0.029; SOFT -0.082 / +0.003 ('two of four compounds the naive fit says the tyre gets faster'). RE-ANALYSIS: that compared a label-pooled naive fit with C-number deconfounded fits, which is not like for like. The three-way table on physical compounds (A3) has naive -0.035 / -0.037 / -0.070 negative at C1/C3/C5, but a fuel-corrected practitioner fit lands within 0.002-0.049 s/lap of ours.
+OLD table (label-keyed): HARD naive +0.075 / deconfounded +0.072; MEDIUM -0.122 / +0.029; SOFT -0.082 / +0.003 ('two of four compounds the naive fit says the tyre gets faster'). RE-ANALYSIS: that compared a label-pooled naive fit with C-number deconfounded fits, which is not like for like. The three-way table on physical compounds (A3) has naive -0.035 / -0.037 / -0.070 negative at C1/C3/C5, but a fuel-corrected practitioner fit lands within 0.001-0.030 s/lap of ours (0.002-0.049 before the exact demeaning of 2026-11-01).
 
 **Source.** `paper/results/model.json -> ablation`
 
@@ -761,8 +763,8 @@ OLD table (label-keyed): HARD naive +0.075 / deconfounded +0.072; MEDIUM -0.122 
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C1", "naive_run_clustered", "mean"], "value": -0.035, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C3", "naive_run_clustered", "mean"], "value": -0.037, "places": 3}
 {"file": "paper/results/model.json", "path": ["ablation", "rows", "C5", "naive_run_clustered", "mean"], "value": -0.07, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C3"], "value": 0.002, "places": 3}
-{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C1"], "value": 0.049, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C3"], "value": 0.006, "places": 3}
+{"file": "paper/results/model.json", "path": ["ablation", "abs_gap_deconfounded_vs_practitioner_s_per_lap", "C1"], "value": 0.007, "places": 3}
 ```
 
 ### B11. 'Strategy call matches teams at 10 of 11 races'
@@ -843,8 +845,8 @@ OLD: 19,708 clean laps. NOW: 23856 clean 2026 laps (14 events in the file); 142,
 | Objection | What the data says | Where |
 | --- | --- | --- |
 | "Circuit and compound are confounded: Pirelli nominates by track." | True, and it caps what a pooled fit can say. Within-event contrasts (compounds co-running at one race) are free of the circuit confound; power for compounds run at disjoint circuits is capped near 0.06 (A6). Per-race separation counts are within-event (B7). | `model.json` -> `power`, `per_race_separation` |
-| "One season, 13 circuits for the circuit SD." | Correct for the 2026-only fit, whose SD (0.044) mixes persistent and race-specific variation because each circuit is raced once; single seasons give 0.023 to 0.043 (`season_robustness`). The pooled 2022-2026 nested model (23 circuits, 20 with repeat visits) separates them: persistent 0.025 [0.017, 0.037], race-specific 0.024 [0.021, 0.029] (A1). | `model.json` -> `circuit_vs_event`, `season_robustness` |
-| "The softer-degrades-slower reversal is an artefact." | It is season-specific (2022 has the textbook sign; 2023-2025 are flat) and persists within event. We do not know the cause; nursing is not established (A8, A9). Candidate artefacts: compound x race-phase pace offsets, selection in who stays out, 2026 regulations. | `model.json` -> `compound_within_event`, `season_robustness` |
+| "One season, 13 circuits for the circuit SD." | Correct for the 2026-only fit, whose SD (0.050) mixes persistent and race-specific variation because each circuit is raced once; single seasons give 0.023 to 0.046 (`season_robustness`). The pooled 2022-2026 nested model (23 circuits, 20 with repeat visits) separates them: persistent 0.028 [0.020, 0.041], race-specific 0.024 [0.021, 0.029] (A1). | `model.json` -> `circuit_vs_event`, `season_robustness` |
+| "The softer-degrades-slower reversal is an artefact." | It was, in the earlier fit: the approximate column construction leaked slopes and offsets between compounds mixed on a lap (2026 C1 0.082 -> 0.041; B6). With exact within-(event, lap) demeaning the 2026 within-event trend is about zero (-0.0010 [-0.0047, +0.0028]) and pooled rates rise with softness from C2 to C5; C5 below C4 in 2026 is unexplained. Within-event seasonal trends are positive in 2022, 2023 and 2025, about zero in 2024 and 2026 (A2). Nursing is not established (A8, A9). | `model.json` -> `compound_within_event`, `season_robustness` |
 | "Race and practice slopes differ in estimator, set state and fuel." | The headline gap (A7) uses one estimator and used sets in both contexts (start-age matching and the intersection design are reported as robustness rows); a practice-vs-practice placebo shows what the design can fake. The cross-sectional race estimator is not identified and is not cited. | `management.json` -> `referee_additions`, `post_review_additions`, `analysis_tiers` |
 | "Forking paths: the management analysis was changed after review." | Disclosed in `post_review_additions.provenance` and `referee_additions.provenance`: the matching specs were added after an independent review, fixed before being run, and are not in the original pre-registration. The 74-spec multiverse is published; 70 of 74 betas are negative, 37 have CIs excluding zero. | `management.json` -> `multiverse_summary` |
 | "The strategy layer assumes a 0.6 s fresh-tyre pace step." | It does, and the data do not pin it down. The 2026 race-within-driver estimate has the softer tyre faster by only about -0.17 s/step (the wrong sign) and the practice estimate has an interval from -0.55 to 1.71; 2022-2025 race gives 0.18. The estimates disagree in sign across seasons, so the assumed value cannot be validated from public data. See the checks below. | `strategy.json` -> `pace_step_estimation`, `pace_step_sensitivity` |
@@ -852,7 +854,7 @@ OLD: 19,708 clean laps. NOW: 23856 clean 2026 laps (14 events in the file); 142,
 | "The strategy evaluation leaks future races." | It did, in the baselines' pit loss, lap-rule threshold and stint bounds. The headline is now out of time: only earlier races feed those. The degradation-rate sources are still leave-one-race-out (`out_of_time.still_leave_one_race_out`). The older form is kept as `leave_one_race_out_sensitivity`. | `strategy.json` -> `out_of_time`, `leave_one_race_out_sensitivity` |
 | "The optimiser ignores track position, traffic and the undercut." | Yes, and the console says so. A stop-count call is the coarsest thing a plan says (A12). | `pit_loss.json` -> `limitations` |
 | "Benchmark comparison is unfair to them (or to you)." | It is a different task. We lose their task (A13). Their reproduction has correlation 0.9997 with their per-race CSV over 12 races, so the loss is not a replication artefact. | `benchmark.json` -> `head_to_head` |
-| "Residual autocorrelation within runs." | 0.23 in the shipped model (down from 0.36 lap-level), handled with run intercepts and slopes; cluster-robust OLS comparators are reported in A4. | `model.json` -> `inference_comparison` |
+| "Residual autocorrelation within runs." | 0.22 in the shipped model (down from 0.36 lap-level), handled with run intercepts and slopes; cluster-robust OLS comparators are reported in A4. | `model.json` -> `inference_comparison` |
 | "Telemetry came from a different source than the one you planned." | Yes: F1 live-timing returned HTTP 401, so OpenF1 was used, switched after proxies and tests were frozen. The cross-check against the one FastF1-cached event is in `cross_check_sources`. | `telemetry.json` -> `meta.data_source`, `access.probe` |
 | "Practice-to-race forecast: you tuned on 2026." | The out-of-season frozen holdout is the evidence (A10); the 2026 optimism of the tuned number is 0.0035 s/lap. | `transfer.json` -> `nested`, `holdout_frozen` |
 
@@ -861,14 +863,14 @@ OLD: 19,708 clean laps. NOW: 23856 clean 2026 laps (14 events in the file); 142,
 {"file": "paper/results/strategy.json", "path": ["pace_step_estimation", "2022-25", "race_within_driver_lap", "softer_faster_by_s_per_step"], "value": 0.178, "places": 3}
 {"file": "paper/results/strategy.json", "path": ["pace_step_estimation", "2026", "practice", "ci95_softer_faster_by", 0], "value": -0.55, "places": 2}
 {"file": "paper/results/strategy.json", "path": ["pace_step_estimation", "2026", "practice", "ci95_softer_faster_by", 1], "value": 1.71, "places": 2}
-{"file": "paper/results/model.json", "path": ["season_robustness", "2025", "circuit_slope_sd_s_per_lap"], "value": 0.0235, "places": 4}
-{"file": "paper/results/model.json", "path": ["season_robustness", "2026", "circuit_slope_sd_s_per_lap"], "value": 0.0439, "places": 4}
+{"file": "paper/results/model.json", "path": ["season_robustness", "2025", "circuit_slope_sd_s_per_lap"], "value": 0.0227, "places": 4}
+{"file": "paper/results/model.json", "path": ["season_robustness", "2026", "circuit_slope_sd_s_per_lap"], "value": 0.046, "places": 4}
 {"file": "paper/results/management.json", "path": ["multiverse_summary", "n_specs"], "value": 74, "places": 0}
 {"file": "paper/results/management.json", "path": ["multiverse_summary", "n_beta_negative"], "value": 70, "places": 0}
 {"file": "paper/results/management.json", "path": ["multiverse_summary", "n_ci_excludes_zero_negative"], "value": 37, "places": 0}
 {"file": "paper/results/telemetry.json", "path": ["access", "probe", "hosts", "livetiming.formula1.com (FastF1 primary)", "http_status"], "value": 401, "places": 0}
 {"file": "paper/results/telemetry.json", "path": ["access", "probe", "hosts", "api.openf1.org", "http_status"], "value": 200, "places": 0}
-{"file": "paper/results/model.json", "path": ["inference_comparison", "residual_lag1_autocorrelation_within_runs", "D_run_intercept_and_slope_SHIPPED"], "value": 0.23, "places": 2}
+{"file": "paper/results/model.json", "path": ["inference_comparison", "residual_lag1_autocorrelation_within_runs", "D_run_intercept_and_slope_SHIPPED"], "value": 0.22, "places": 2}
 ```
 
 Literature context for the objections above (all opened; see `paper/refs/NOTES.md`): compound x race-phase confounding of

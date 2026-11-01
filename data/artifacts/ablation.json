@@ -10,9 +10,9 @@
         "hi": -0.005065866023542344
       },
       "deconfounded": {
-        "mean": 0.08237373164121486,
-        "lo": 0.041326060985090944,
-        "hi": 0.12342140229733878
+        "mean": 0.041044184991060974,
+        "lo": 0.007913627135693449,
+        "hi": 0.0741747428464285
       },
       "published": null,
       "practitioner": {
@@ -30,9 +30,9 @@
         "hi": 0.2850698697247252
       },
       "deconfounded": {
-        "mean": 0.053238532633224846,
-        "lo": 0.025679687235048636,
-        "hi": 0.08079737803140105
+        "mean": 0.037324999955593664,
+        "lo": 0.008148750672804201,
+        "hi": 0.06650124923838313
       },
       "published": null,
       "practitioner": {
@@ -50,9 +50,9 @@
         "hi": 0.019850019352295738
       },
       "deconfounded": {
-        "mean": 0.050238877986984606,
-        "lo": 0.02409100195163683,
-        "hi": 0.07638675402233239
+        "mean": 0.054385408065891726,
+        "lo": 0.02576768201669622,
+        "hi": 0.08300313411508722
       },
       "published": {
         "mean": 0.054,
@@ -74,9 +74,9 @@
         "hi": 0.07901005418707752
       },
       "deconfounded": {
-        "mean": 0.04204812409057375,
-        "lo": 0.015452089911155445,
-        "hi": 0.06864415826999205
+        "mean": 0.06332934146761982,
+        "lo": 0.03459139908167157,
+        "hi": 0.09206728385356806
       },
       "published": null,
       "practitioner": {
@@ -94,9 +94,9 @@
         "hi": -0.006926967765761377
       },
       "deconfounded": {
-        "mean": 0.021724811496190467,
-        "lo": -0.006815296635639356,
-        "hi": 0.050264919628020294
+        "mean": 0.03850715962118087,
+        "lo": 0.009044036570776279,
+        "hi": 0.06797028267158546
       },
       "published": null,
       "practitioner": {
@@ -106,5 +106,5 @@
       }
     }
   ],
-  "caption": "All three estimates use the same laps and the same physical-compound grouping. The naive slope has no controls, so fuel burn and track evolution -- which both make laps faster -- cancel part of the rise from wear. On 3 of 5 compounds the naive slope comes out NEGATIVE (C5 at -0.070 s/lap), a tyre getting faster as it wears. The fuel-corrected within-stint regression is the fairer comparator; it differs from ours by up to 0.049 s/lap (C1)."
+  "caption": "All three estimates use the same laps and the same physical-compound grouping. The naive slope has no controls, so fuel burn and track evolution -- which both make laps faster -- cancel part of the rise from wear. On 3 of 5 compounds the naive slope comes out NEGATIVE (C5 at -0.070 s/lap), a tyre getting faster as it wears. The fuel-corrected within-stint regression is the fairer comparator; it differs from ours by up to 0.030 s/lap (C4)."
 }

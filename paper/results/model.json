@@ -150,40 +150,41 @@
   }
  },
  "shipped_fit": {
-  "specification": "within (event, lap); compound offset + compound x tyre-age slope + traffic; random circuit slope, driver-in-event intercept, run intercept, run slope; REML",
+  "specification": "within (event, lap) transform of lap time and of every fixed-effect column (exact_within); compound offset + compound x tyre-age slope + traffic; random circuit slope, driver-in-event intercept, run intercept, run slope; REML",
+  "exact_within": true,
   "rates_s_per_lap": {
    "C1": {
-    "mean": 0.08237,
-    "lo": 0.04133,
-    "hi": 0.12342,
+    "mean": 0.04104,
+    "lo": 0.00791,
+    "hi": 0.07417,
     "n_runs": 55,
     "n_laps": 801
    },
    "C2": {
-    "mean": 0.05324,
-    "lo": 0.02568,
-    "hi": 0.0808,
+    "mean": 0.03733,
+    "lo": 0.00815,
+    "hi": 0.0665,
     "n_runs": 191,
     "n_laps": 2836
    },
    "C3": {
-    "mean": 0.05024,
-    "lo": 0.02409,
-    "hi": 0.07639,
+    "mean": 0.05439,
+    "lo": 0.02577,
+    "hi": 0.083,
     "n_runs": 242,
     "n_laps": 3316
    },
    "C4": {
-    "mean": 0.04205,
-    "lo": 0.01545,
-    "hi": 0.06864,
+    "mean": 0.06333,
+    "lo": 0.03459,
+    "hi": 0.09207,
     "n_runs": 223,
     "n_laps": 2943
    },
    "C5": {
-    "mean": 0.02172,
-    "lo": -0.00682,
-    "hi": 0.05026,
+    "mean": 0.03851,
+    "lo": 0.00904,
+    "hi": 0.06797,
     "n_runs": 109,
     "n_laps": 1143
    }
@@ -192,32 +193,32 @@
   "separated_pairs_nonoverlap": [],
   "adjacent_contrasts_s_per_lap": {
    "C2-C1": {
-    "mean": -0.02914,
-    "lo": -0.06394,
-    "hi": 0.00567
+    "mean": -0.00372,
+    "lo": -0.02156,
+    "hi": 0.01413
    },
    "C3-C2": {
-    "mean": -0.003,
-    "lo": -0.02143,
-    "hi": 0.01543
+    "mean": 0.01706,
+    "lo": 0.00411,
+    "hi": 0.03001
    },
    "C4-C3": {
-    "mean": -0.00819,
-    "lo": -0.02102,
-    "hi": 0.00464
+    "mean": 0.00894,
+    "lo": 0.0026,
+    "hi": 0.01529
    },
    "C5-C4": {
-    "mean": -0.02032,
-    "lo": -0.03626,
-    "hi": -0.00438
+    "mean": -0.02482,
+    "lo": -0.0332,
+    "hi": -0.01645
    }
   },
   "variance_sd": {
-   "circuit_slope": 0.04367,
-   "driver_event": 1.16643,
-   "run": 0.28421,
-   "run_slope": 0.0315,
-   "resid": 0.55553
+   "circuit_slope": 0.04982,
+   "driver_event": 1.15165,
+   "run": 0.30286,
+   "run_slope": 0.03534,
+   "resid": 0.55236
   },
   "convergence": {
    "engine": "reml (Woodbury, bounded variance ratios, L-BFGS-B)",
@@ -225,9 +226,9 @@
    "n_starts": 3,
    "start_deviance_spread": 0.0,
    "n_starts_at_optimum": 3,
-   "grad_max_abs": 0.001567,
+   "grad_max_abs": 0.00262,
    "hessian_pd": true,
-   "hessian_min_eig": 138.75605,
+   "hessian_min_eig": 117.804957,
    "boundary_components": [],
    "boundary_slopes_nonnegative": true,
    "variance_components": [
@@ -241,49 +242,49 @@
   "n_obs": 11039,
   "n_drivers": 23,
   "total_loss_20_laps_s": {
-   "C1": 1.647,
-   "C2": 1.065,
-   "C3": 1.005,
-   "C4": 0.841,
-   "C5": 0.434
+   "C1": 0.821,
+   "C2": 0.747,
+   "C3": 1.088,
+   "C4": 1.267,
+   "C5": 0.77
   }
  },
  "engine_agreement": {
   "specification": "circuit random slope + driver-in-event + run intercept",
-  "engine_seconds": 1.01,
-  "statsmodels_seconds": 4.14,
+  "engine_seconds": 0.5,
+  "statsmodels_seconds": 1.76,
   "statsmodels_converged": true,
   "statsmodels_attempts": [
    {
     "method": "lbfgs",
     "converged": true,
-    "llf": -10502.48345,
+    "llf": -10515.322924,
     "hessian_not_pd": false,
     "boundary_warning": false
    }
   ],
   "engine_converged": true,
-  "max_abs_rate_difference": 7e-06,
-  "max_abs_se_difference": 0.000101,
+  "max_abs_rate_difference": 4e-06,
+  "max_abs_se_difference": 6.2e-05,
   "max_abs_variance_sd_difference": {
-   "circuit_slope": 4.9e-05,
-   "driver_event": 0.000298,
-   "run": 1.1e-05,
-   "resid": 5e-06
+   "circuit_slope": 3.3e-05,
+   "driver_event": 3.3e-05,
+   "run": 1e-05,
+   "resid": 2e-06
   },
   "rates_engine": {
-   "C1": 0.088986,
-   "C2": 0.053423,
-   "C3": 0.053827,
-   "C4": 0.033726,
-   "C5": 0.018565
+   "C1": 0.050603,
+   "C2": 0.043091,
+   "C3": 0.05464,
+   "C4": 0.05001,
+   "C5": 0.032095
   },
   "rates_statsmodels": {
-   "C1": 0.088985,
-   "C2": 0.053416,
-   "C3": 0.053821,
-   "C4": 0.03372,
-   "C5": 0.01856
+   "C1": 0.0506,
+   "C2": 0.043087,
+   "C3": 0.054638,
+   "C4": 0.050008,
+   "C5": 0.032093
   }
  },
  "old_fit_reproduction": {
@@ -311,444 +312,444 @@
   "rates": {
    "A_lap_level_no_circuit": {
     "C1": {
-     "mean": 0.07109,
-     "lo": 0.05864,
-     "hi": 0.08355,
-     "width": 0.02491
+     "mean": 0.05746,
+     "lo": 0.04663,
+     "hi": 0.0683,
+     "width": 0.02168
     },
     "C2": {
-     "mean": 0.06052,
-     "lo": 0.05499,
-     "hi": 0.06604,
-     "width": 0.01106
+     "mean": 0.05182,
+     "lo": 0.04704,
+     "hi": 0.05661,
+     "width": 0.00957
     },
     "C3": {
-     "mean": 0.05262,
-     "lo": 0.04926,
-     "hi": 0.05599,
-     "width": 0.00674
+     "mean": 0.04425,
+     "lo": 0.04115,
+     "hi": 0.04735,
+     "width": 0.0062
     },
     "C4": {
-     "mean": 0.02156,
-     "lo": 0.01742,
-     "hi": 0.02569,
-     "width": 0.00827
+     "mean": 0.03183,
+     "lo": 0.0285,
+     "hi": 0.03517,
+     "width": 0.00667
     },
     "C5": {
-     "mean": 0.01117,
-     "lo": 0.00575,
-     "hi": 0.01659,
-     "width": 0.01084
+     "mean": 0.01727,
+     "lo": 0.01217,
+     "hi": 0.02237,
+     "width": 0.0102
     },
     "_sd": {
-     "driver_event": 1.21357
+     "driver_event": 1.21354
     },
-    "_deviance": -8999.2
+    "_deviance": -8792.27
    },
    "B_lap_level_circuit": {
     "C1": {
-     "mean": 0.08207,
-     "lo": 0.05549,
-     "hi": 0.10865,
-     "width": 0.05317
+     "mean": 0.04019,
+     "lo": 0.01508,
+     "hi": 0.0653,
+     "width": 0.05022
     },
     "C2": {
-     "mean": 0.05167,
-     "lo": 0.03074,
-     "hi": 0.07259,
-     "width": 0.04184
+     "mean": 0.03672,
+     "lo": 0.01553,
+     "hi": 0.05792,
+     "width": 0.04239
     },
     "C3": {
-     "mean": 0.04581,
-     "lo": 0.02557,
-     "hi": 0.06606,
-     "width": 0.04049
+     "mean": 0.04994,
+     "lo": 0.02918,
+     "hi": 0.0707,
+     "width": 0.04152
     },
     "C4": {
-     "mean": 0.03051,
-     "lo": 0.01011,
-     "hi": 0.0509,
-     "width": 0.04078
+     "mean": 0.04901,
+     "lo": 0.02819,
+     "hi": 0.06984,
+     "width": 0.04166
     },
     "C5": {
-     "mean": 0.01266,
-     "lo": -0.00813,
-     "hi": 0.03345,
-     "width": 0.04159
+     "mean": 0.03167,
+     "lo": 0.01044,
+     "hi": 0.05291,
+     "width": 0.04248
     },
     "_sd": {
-     "circuit_slope": 0.03581,
-     "driver_event": 1.20122
+     "circuit_slope": 0.03679,
+     "driver_event": 1.19776
     },
-    "_deviance": -9502.98
+    "_deviance": -9400.19
    },
    "C_run_intercept": {
     "C1": {
-     "mean": 0.08899,
-     "lo": 0.0546,
-     "hi": 0.12338,
-     "width": 0.06878
+     "mean": 0.0506,
+     "lo": 0.02079,
+     "hi": 0.08042,
+     "width": 0.05963
     },
     "C2": {
-     "mean": 0.05342,
-     "lo": 0.02932,
-     "hi": 0.07753,
-     "width": 0.04821
+     "mean": 0.04309,
+     "lo": 0.01776,
+     "hi": 0.06842,
+     "width": 0.05067
     },
     "C3": {
-     "mean": 0.05383,
-     "lo": 0.03066,
-     "hi": 0.077,
-     "width": 0.04634
+     "mean": 0.05464,
+     "lo": 0.02977,
+     "hi": 0.07951,
+     "width": 0.04974
     },
     "C4": {
-     "mean": 0.03373,
-     "lo": 0.01036,
-     "hi": 0.05709,
-     "width": 0.04673
+     "mean": 0.05001,
+     "lo": 0.02506,
+     "hi": 0.07496,
+     "width": 0.04991
     },
     "C5": {
-     "mean": 0.01856,
-     "lo": -0.00551,
-     "hi": 0.04264,
-     "width": 0.04815
+     "mean": 0.03209,
+     "lo": 0.00674,
+     "hi": 0.05745,
+     "width": 0.05072
     },
     "_sd": {
-     "circuit_slope": 0.04012,
-     "driver_event": 1.17727,
-     "run": 0.30677
+     "circuit_slope": 0.04359,
+     "driver_event": 1.16755,
+     "run": 0.32006
     },
-    "_deviance": -10291.14
+    "_deviance": -10268.3
    },
    "D_run_intercept_and_slope_SHIPPED": {
     "C1": {
-     "mean": 0.08237,
-     "lo": 0.04133,
-     "hi": 0.12342,
-     "width": 0.08209
+     "mean": 0.04104,
+     "lo": 0.00791,
+     "hi": 0.07417,
+     "width": 0.06626
     },
     "C2": {
-     "mean": 0.05324,
-     "lo": 0.02568,
-     "hi": 0.0808,
-     "width": 0.05512
+     "mean": 0.03733,
+     "lo": 0.00815,
+     "hi": 0.0665,
+     "width": 0.05835
     },
     "C3": {
-     "mean": 0.05024,
-     "lo": 0.02409,
-     "hi": 0.07639,
-     "width": 0.05229
+     "mean": 0.05439,
+     "lo": 0.02577,
+     "hi": 0.083,
+     "width": 0.05723
     },
     "C4": {
-     "mean": 0.04205,
-     "lo": 0.01545,
-     "hi": 0.06864,
-     "width": 0.05319
+     "mean": 0.06333,
+     "lo": 0.03459,
+     "hi": 0.09207,
+     "width": 0.05747
     },
     "C5": {
-     "mean": 0.02172,
-     "lo": -0.00681,
-     "hi": 0.05026,
-     "width": 0.05708
+     "mean": 0.03851,
+     "lo": 0.00904,
+     "hi": 0.06797,
+     "width": 0.05892
     },
     "_sd": {
-     "circuit_slope": 0.04367,
-     "driver_event": 1.16643,
-     "run": 0.28421,
-     "run_slope": 0.0315
+     "circuit_slope": 0.04982,
+     "driver_event": 1.15165,
+     "run": 0.30286,
+     "run_slope": 0.03534
     },
-    "_deviance": -10461.32
+    "_deviance": -10497.32
    },
    "E_FE_OLS_cluster_by_run": {
     "C1": {
-     "mean": 0.07129,
-     "lo": 0.05967,
-     "hi": 0.08292,
-     "width": 0.02325
+     "mean": 0.0563,
+     "lo": 0.04439,
+     "hi": 0.06821,
+     "width": 0.02383
     },
     "C2": {
-     "mean": 0.06056,
-     "lo": 0.05009,
-     "hi": 0.07103,
-     "width": 0.02094
+     "mean": 0.05181,
+     "lo": 0.04304,
+     "hi": 0.06058,
+     "width": 0.01754
     },
     "C3": {
-     "mean": 0.05268,
-     "lo": 0.04575,
-     "hi": 0.05962,
-     "width": 0.01387
+     "mean": 0.04395,
+     "lo": 0.03543,
+     "hi": 0.05248,
+     "width": 0.01705
     },
     "C4": {
-     "mean": 0.02169,
-     "lo": 0.01352,
-     "hi": 0.02987,
-     "width": 0.01634
+     "mean": 0.03224,
+     "lo": 0.02404,
+     "hi": 0.04044,
+     "width": 0.0164
     },
     "C5": {
-     "mean": 0.01127,
-     "lo": -0.00419,
-     "hi": 0.02674,
-     "width": 0.03093
+     "mean": 0.01981,
+     "lo": 0.00781,
+     "hi": 0.03182,
+     "width": 0.02401
     }
    },
    "F_FE_OLS_cluster_by_event_t12": {
     "C1": {
-     "mean": 0.07129,
-     "lo": 0.0592,
-     "hi": 0.08338,
-     "width": 0.02418
+     "mean": 0.0563,
+     "lo": 0.02856,
+     "hi": 0.08405,
+     "width": 0.05549
     },
     "C2": {
-     "mean": 0.06056,
-     "lo": 0.03271,
-     "hi": 0.0884,
-     "width": 0.05569
+     "mean": 0.05181,
+     "lo": 0.02521,
+     "hi": 0.07841,
+     "width": 0.05321
     },
     "C3": {
-     "mean": 0.05268,
-     "lo": 0.03647,
-     "hi": 0.06889,
-     "width": 0.03242
+     "mean": 0.04395,
+     "lo": 0.02198,
+     "hi": 0.06593,
+     "width": 0.04395
     },
     "C4": {
-     "mean": 0.02169,
-     "lo": -0.00021,
-     "hi": 0.0436,
-     "width": 0.04381
+     "mean": 0.03224,
+     "lo": 0.01347,
+     "hi": 0.05102,
+     "width": 0.03755
     },
     "C5": {
-     "mean": 0.01127,
-     "lo": -0.01524,
-     "hi": 0.03778,
-     "width": 0.05302
+     "mean": 0.01981,
+     "lo": -0.00147,
+     "hi": 0.04109,
+     "width": 0.04256
     }
    }
   },
   "width_ratio_vs_B": {
    "A_lap_level_no_circuit": {
-    "C1": 0.468,
-    "C2": 0.264,
-    "C3": 0.166,
-    "C4": 0.203,
-    "C5": 0.261
+    "C1": 0.432,
+    "C2": 0.226,
+    "C3": 0.149,
+    "C4": 0.16,
+    "C5": 0.24
    },
    "C_run_intercept": {
-    "C1": 1.294,
-    "C2": 1.152,
-    "C3": 1.144,
-    "C4": 1.146,
-    "C5": 1.158
+    "C1": 1.187,
+    "C2": 1.195,
+    "C3": 1.198,
+    "C4": 1.198,
+    "C5": 1.194
    },
    "D_run_intercept_and_slope_SHIPPED": {
-    "C1": 1.544,
-    "C2": 1.317,
-    "C3": 1.291,
-    "C4": 1.304,
-    "C5": 1.372
+    "C1": 1.319,
+    "C2": 1.377,
+    "C3": 1.378,
+    "C4": 1.38,
+    "C5": 1.387
    },
    "E_FE_OLS_cluster_by_run": {
-    "C1": 0.437,
-    "C2": 0.5,
-    "C3": 0.343,
-    "C4": 0.401,
-    "C5": 0.744
+    "C1": 0.475,
+    "C2": 0.414,
+    "C3": 0.411,
+    "C4": 0.394,
+    "C5": 0.565
    },
    "F_FE_OLS_cluster_by_event_t12": {
-    "C1": 0.455,
-    "C2": 1.331,
-    "C3": 0.801,
-    "C4": 1.074,
-    "C5": 1.275
+    "C1": 1.105,
+    "C2": 1.255,
+    "C3": 1.059,
+    "C4": 0.901,
+    "C5": 1.002
    }
   },
   "residual_lag1_autocorrelation_within_runs": {
-   "B_lap_level_circuit": 0.361,
+   "B_lap_level_circuit": 0.365,
    "C_run_intercept": 0.256,
-   "D_run_intercept_and_slope_SHIPPED": 0.23
+   "D_run_intercept_and_slope_SHIPPED": 0.224
   },
   "reading": "Widths relative to the lap-level circuit model (B). Run-level terms and cluster-robust errors answer 'how many independent observations are there'."
  },
  "circuit_effect": {
   "model": "random circuit slope + driver-in-event + run intercept + run slope; REML; null = same without the circuit slope",
   "circuit_slope_sd_s_per_lap": {
-   "estimate": 0.04367,
+   "estimate": 0.04982,
    "profile_likelihood_95": [
-    0.03058,
-    0.07303
+    0.03543,
+    0.08102
    ],
    "parametric_bootstrap_percentile_95": [
-    0.02402,
-    0.06285
+    0.02845,
+    0.07079
    ],
-   "bootstrap_mean": 0.04261,
+   "bootstrap_mean": 0.04859,
    "n_boot": 400
   },
   "profile_grid": {
    "grid_sd_per_lap": [
     0.0,
-    0.01092,
-    0.02183,
-    0.03275,
-    0.04367,
-    0.05895,
-    0.07642,
-    0.10044,
-    0.13101
+    0.01245,
+    0.02491,
+    0.03736,
+    0.04982,
+    0.06725,
+    0.08718,
+    0.11458,
+    0.14945
    ],
    "delta_deviance": [
-    172.815,
-    63.016,
-    12.334,
-    1.739,
+    220.822,
+    73.626,
+    14.071,
+    1.964,
     -0.0,
-    1.277,
-    4.458,
-    8.846,
-    13.905
+    1.58,
+    4.852,
+    9.496,
+    14.752
    ]
   },
   "lr_test": {
-   "reml_lr_statistic": 172.815,
+   "reml_lr_statistic": 220.822,
    "p_parametric_bootstrap": 0.002,
    "n_bootstrap": 500,
    "p_floor_note": "with B replicates the smallest attainable p is 1/(B+1)",
    "p_chibar2_50_50_mixture": 0.0,
    "bootstrap_lr_quantiles_95_99": [
-    2.2,
-    3.396
+    2.062,
+    3.941
    ],
-   "null_sd_estimates_on_boundary_share": 0.45
+   "null_sd_estimates_on_boundary_share": 0.452
   },
   "effect_in_seconds_over_20_lap_stint": {
    "circuit_sd": {
-    "seconds": 0.873,
+    "seconds": 0.996,
     "profile_95": [
-     0.612,
-     1.461
+     0.709,
+     1.62
     ]
    },
-   "circuit_central_95_range_seconds": 3.424,
-   "sd_of_the_five_compound_rates_s_per_lap": 0.02192,
-   "sd_of_compound_rates_seconds": 0.438,
+   "circuit_central_95_range_seconds": 3.905,
+   "sd_of_the_five_compound_rates_s_per_lap": 0.01143,
+   "sd_of_compound_rates_seconds": 0.229,
    "compound_differences": {
     "C2-C1": {
      "s_per_lap": {
-      "mean": -0.02914,
-      "lo": -0.06394,
-      "hi": 0.00567
+      "mean": -0.00372,
+      "lo": -0.02156,
+      "hi": 0.01413
      },
      "seconds_over_20_laps": {
-      "est": -0.583,
-      "lo": -1.279,
-      "hi": 0.113
+      "est": -0.074,
+      "lo": -0.431,
+      "hi": 0.283
      }
     },
     "C3-C1": {
      "s_per_lap": {
-      "mean": -0.03213,
-      "lo": -0.07017,
-      "hi": 0.0059
+      "mean": 0.01334,
+      "lo": -0.00836,
+      "hi": 0.03504
      },
      "seconds_over_20_laps": {
-      "est": -0.643,
-      "lo": -1.403,
-      "hi": 0.118
+      "est": 0.267,
+      "lo": -0.167,
+      "hi": 0.701
      }
     },
     "C4-C1": {
      "s_per_lap": {
-      "mean": -0.04033,
-      "lo": -0.07871,
-      "hi": -0.00194
+      "mean": 0.02229,
+      "lo": 0.00035,
+      "hi": 0.04422
      },
      "seconds_over_20_laps": {
-      "est": -0.807,
-      "lo": -1.574,
-      "hi": -0.039
+      "est": 0.446,
+      "lo": 0.007,
+      "hi": 0.884
      }
     },
     "C5-C1": {
      "s_per_lap": {
-      "mean": -0.06065,
-      "lo": -0.10081,
-      "hi": -0.02048
+      "mean": -0.00254,
+      "lo": -0.02557,
+      "hi": 0.0205
      },
      "seconds_over_20_laps": {
-      "est": -1.213,
-      "lo": -2.016,
-      "hi": -0.41
+      "est": -0.051,
+      "lo": -0.511,
+      "hi": 0.41
      }
     },
     "C3-C2": {
      "s_per_lap": {
-      "mean": -0.003,
-      "lo": -0.02143,
-      "hi": 0.01543
+      "mean": 0.01706,
+      "lo": 0.00411,
+      "hi": 0.03001
      },
      "seconds_over_20_laps": {
-      "est": -0.06,
-      "lo": -0.429,
-      "hi": 0.309
+      "est": 0.341,
+      "lo": 0.082,
+      "hi": 0.6
      }
     },
     "C4-C2": {
      "s_per_lap": {
-      "mean": -0.01119,
-      "lo": -0.03014,
-      "hi": 0.00776
+      "mean": 0.026,
+      "lo": 0.01269,
+      "hi": 0.03931
      },
      "seconds_over_20_laps": {
-      "est": -0.224,
-      "lo": -0.603,
-      "hi": 0.155
+      "est": 0.52,
+      "lo": 0.254,
+      "hi": 0.786
      }
     },
     "C5-C2": {
      "s_per_lap": {
-      "mean": -0.03151,
-      "lo": -0.05409,
-      "hi": -0.00893
+      "mean": 0.00118,
+      "lo": -0.01389,
+      "hi": 0.01625
      },
      "seconds_over_20_laps": {
-      "est": -0.63,
-      "lo": -1.082,
-      "hi": -0.179
+      "est": 0.024,
+      "lo": -0.278,
+      "hi": 0.325
      }
     },
     "C4-C3": {
      "s_per_lap": {
-      "mean": -0.00819,
-      "lo": -0.02102,
-      "hi": 0.00464
+      "mean": 0.00894,
+      "lo": 0.0026,
+      "hi": 0.01529
      },
      "seconds_over_20_laps": {
-      "est": -0.164,
-      "lo": -0.42,
-      "hi": 0.093
+      "est": 0.179,
+      "lo": 0.052,
+      "hi": 0.306
      }
     },
     "C5-C3": {
      "s_per_lap": {
-      "mean": -0.02851,
-      "lo": -0.04422,
-      "hi": -0.01281
+      "mean": -0.01588,
+      "lo": -0.02477,
+      "hi": -0.00699
      },
      "seconds_over_20_laps": {
-      "est": -0.57,
-      "lo": -0.884,
-      "hi": -0.256
+      "est": -0.318,
+      "lo": -0.495,
+      "hi": -0.14
      }
     },
     "C5-C4": {
      "s_per_lap": {
-      "mean": -0.02032,
-      "lo": -0.03626,
-      "hi": -0.00438
+      "mean": -0.02482,
+      "lo": -0.0332,
+      "hi": -0.01645
      },
      "seconds_over_20_laps": {
-      "est": -0.406,
-      "lo": -0.725,
-      "hi": -0.088
+      "est": -0.496,
+      "lo": -0.664,
+      "hi": -0.329
      }
     }
    },
@@ -760,120 +761,120 @@
    ]
   },
   "shrunken_predictions_not_an_effect_size": {
-   "range_s_per_lap": 0.1576,
+   "range_s_per_lap": 0.1912,
    "per_event": {
-    "Australian Grand Prix": 0.0057,
-    "Austrian Grand Prix": 0.0313,
-    "Barcelona Grand Prix": 0.0977,
-    "Belgian Grand Prix": -0.0027,
-    "British Grand Prix": 0.0112,
-    "Canadian Grand Prix": -0.0599,
-    "Chinese Grand Prix": -0.0235,
-    "Dutch Grand Prix": 0.0082,
-    "Hungarian Grand Prix": 0.0374,
-    "Italian Grand Prix": -0.0346,
-    "Japanese Grand Prix": -0.0566,
-    "Miami Grand Prix": -0.0016,
-    "Monaco Grand Prix": -0.0125
+    "Australian Grand Prix": 0.0021,
+    "Austrian Grand Prix": 0.021,
+    "Barcelona Grand Prix": 0.1087,
+    "Belgian Grand Prix": 0.0119,
+    "British Grand Prix": 0.0458,
+    "Canadian Grand Prix": -0.0825,
+    "Chinese Grand Prix": -0.008,
+    "Dutch Grand Prix": 0.0144,
+    "Hungarian Grand Prix": 0.0268,
+    "Italian Grand Prix": -0.0452,
+    "Japanese Grand Prix": -0.0443,
+    "Miami Grand Prix": -0.0209,
+    "Monaco Grand Prix": -0.0298
    },
    "why": "predicted random effects are shrunk toward zero; their range neither estimates nor bounds the true circuit SD"
   },
-  "bootstrap_seconds": 122.9,
+  "bootstrap_seconds": 18.9,
   "converged_full_fit": true,
   "fit_on_boundary": []
  },
  "compound_within_event": {
   "pooled_random_circuit": {
    "trend_s_per_lap_per_step_softer": {
-    "mean": -0.0116,
-    "lo": -0.01785,
-    "hi": -0.00535,
-    "p_two_sided": 0.000273
+    "mean": -0.00118,
+    "lo": -0.00494,
+    "hi": 0.00257,
+    "p_two_sided": 0.537
    },
    "contrast_vs_C3_s_per_lap": {
     "C1": {
-     "mean": 0.03213,
-     "lo": -0.0059,
-     "hi": 0.07017
+     "mean": -0.01334,
+     "lo": -0.03504,
+     "hi": 0.00836
     },
     "C2": {
-     "mean": 0.003,
-     "lo": -0.01543,
-     "hi": 0.02143
+     "mean": -0.01706,
+     "lo": -0.03001,
+     "hi": -0.00411
     },
     "C4": {
-     "mean": -0.00819,
-     "lo": -0.02102,
-     "hi": 0.00464
+     "mean": 0.00894,
+     "lo": 0.0026,
+     "hi": 0.01529
     },
     "C5": {
-     "mean": -0.02851,
-     "lo": -0.04422,
-     "hi": -0.01281
+     "mean": -0.01588,
+     "lo": -0.02477,
+     "hi": -0.00699
     }
    },
    "label_rank_contrast_s_per_lap": {
     "MEDIUM_minus_HARD": {
-     "mean": -0.00586,
-     "lo": -0.01723,
-     "hi": 0.00552
+     "mean": 0.01117,
+     "lo": 0.0059,
+     "hi": 0.01644
     },
     "SOFT_minus_HARD": {
-     "mean": -0.0255,
-     "lo": -0.03879,
-     "hi": -0.01222
+     "mean": -0.00938,
+     "lo": -0.01725,
+     "hi": -0.0015
     },
     "SOFT_minus_MEDIUM": {
-     "mean": -0.01965,
-     "lo": -0.03388,
-     "hi": -0.00541
+     "mean": -0.02054,
+     "lo": -0.02752,
+     "hi": -0.01357
     }
    }
   },
   "within_event_fixed_circuit": {
    "trend_s_per_lap_per_step_softer": {
-    "mean": -0.01135,
-    "lo": -0.01782,
-    "hi": -0.00489,
-    "p_two_sided": 0.000578
+    "mean": -0.00096,
+    "lo": -0.00475,
+    "hi": 0.00283,
+    "p_two_sided": 0.62
    },
    "contrast_vs_C3_s_per_lap": {
     "C1": {
-     "mean": 0.03979,
-     "lo": -0.00152,
-     "hi": 0.0811
+     "mean": -0.01429,
+     "lo": -0.03655,
+     "hi": 0.00797
     },
     "C2": {
-     "mean": 0.00255,
-     "lo": -0.01661,
-     "hi": 0.02172
+     "mean": -0.01876,
+     "lo": -0.03199,
+     "hi": -0.00554
     },
     "C4": {
-     "mean": -0.00732,
-     "lo": -0.02025,
-     "hi": 0.00561
+     "mean": 0.00922,
+     "lo": 0.00286,
+     "hi": 0.01558
     },
     "C5": {
-     "mean": -0.02771,
-     "lo": -0.04354,
-     "hi": -0.01187
+     "mean": -0.0156,
+     "lo": -0.02452,
+     "hi": -0.00669
     }
    },
    "label_rank_contrast_s_per_lap": {
     "MEDIUM_minus_HARD": {
-     "mean": -0.00497,
-     "lo": -0.01643,
-     "hi": 0.0065
+     "mean": 0.01134,
+     "lo": 0.00605,
+     "hi": 0.01663
     },
     "SOFT_minus_HARD": {
-     "mean": -0.0249,
-     "lo": -0.03829,
-     "hi": -0.01152
+     "mean": -0.0092,
+     "lo": -0.0171,
+     "hi": -0.0013
     },
     "SOFT_minus_MEDIUM": {
-     "mean": -0.01994,
-     "lo": -0.03426,
-     "hi": -0.00561
+     "mean": -0.02054,
+     "lo": -0.02753,
+     "hi": -0.01355
     }
    }
   },
@@ -881,7 +882,7 @@
    "expected_sign_if_physics_holds": "positive",
    "pooled_trend_sign": "negative",
    "within_event_trend_sign": "negative",
-   "within_event_interval_excludes_zero": true
+   "within_event_interval_excludes_zero": false
   }
  },
  "per_race_separation": {
@@ -890,98 +891,98 @@
    "min_runs_1_lap_level": {
     "n_cells": 38,
     "n_adjacent_pairs": 25,
-    "cells_tighter_than_benchmark": 35,
-    "median_tightening_ratio": 4.41,
-    "max_tightening_ratio": 9.08,
-    "pairs_separated_non_overlap_any_direction": 11,
+    "cells_tighter_than_benchmark": 36,
+    "median_tightening_ratio": 4.66,
+    "max_tightening_ratio": 10.3,
+    "pairs_separated_non_overlap_any_direction": 7,
     "pairs_separated_non_overlap_correct_direction": 2,
-    "pairs_separated_non_overlap_wrong_direction": 9,
-    "pairs_separated_by_difference_test_any_direction": 13,
-    "pairs_separated_by_difference_test_correct_direction": 2
+    "pairs_separated_non_overlap_wrong_direction": 5,
+    "pairs_separated_by_difference_test_any_direction": 12,
+    "pairs_separated_by_difference_test_correct_direction": 7
    },
    "min_runs_1_run_level": {
     "n_cells": 38,
     "n_adjacent_pairs": 25,
-    "cells_tighter_than_benchmark": 30,
-    "median_tightening_ratio": 2.09,
-    "max_tightening_ratio": 6.15,
-    "pairs_separated_non_overlap_any_direction": 4,
+    "cells_tighter_than_benchmark": 34,
+    "median_tightening_ratio": 2.47,
+    "max_tightening_ratio": 5.43,
+    "pairs_separated_non_overlap_any_direction": 3,
     "pairs_separated_non_overlap_correct_direction": 1,
-    "pairs_separated_non_overlap_wrong_direction": 3,
-    "pairs_separated_by_difference_test_any_direction": 7,
-    "pairs_separated_by_difference_test_correct_direction": 2
+    "pairs_separated_non_overlap_wrong_direction": 2,
+    "pairs_separated_by_difference_test_any_direction": 9,
+    "pairs_separated_by_difference_test_correct_direction": 5
    },
    "min_runs_3_lap_level": {
     "n_cells": 36,
     "n_adjacent_pairs": 23,
-    "cells_tighter_than_benchmark": 35,
-    "median_tightening_ratio": 4.57,
-    "max_tightening_ratio": 9.08,
-    "pairs_separated_non_overlap_any_direction": 10,
-    "pairs_separated_non_overlap_correct_direction": 1,
-    "pairs_separated_non_overlap_wrong_direction": 9,
-    "pairs_separated_by_difference_test_any_direction": 12,
-    "pairs_separated_by_difference_test_correct_direction": 1
+    "cells_tighter_than_benchmark": 36,
+    "median_tightening_ratio": 4.97,
+    "max_tightening_ratio": 10.3,
+    "pairs_separated_non_overlap_any_direction": 7,
+    "pairs_separated_non_overlap_correct_direction": 2,
+    "pairs_separated_non_overlap_wrong_direction": 5,
+    "pairs_separated_by_difference_test_any_direction": 11,
+    "pairs_separated_by_difference_test_correct_direction": 6
    },
    "min_runs_3_run_level": {
     "n_cells": 36,
     "n_adjacent_pairs": 23,
-    "cells_tighter_than_benchmark": 30,
-    "median_tightening_ratio": 2.14,
-    "max_tightening_ratio": 6.15,
-    "pairs_separated_non_overlap_any_direction": 3,
-    "pairs_separated_non_overlap_correct_direction": 0,
-    "pairs_separated_non_overlap_wrong_direction": 3,
-    "pairs_separated_by_difference_test_any_direction": 6,
-    "pairs_separated_by_difference_test_correct_direction": 1
+    "cells_tighter_than_benchmark": 34,
+    "median_tightening_ratio": 2.73,
+    "max_tightening_ratio": 5.43,
+    "pairs_separated_non_overlap_any_direction": 4,
+    "pairs_separated_non_overlap_correct_direction": 2,
+    "pairs_separated_non_overlap_wrong_direction": 2,
+    "pairs_separated_by_difference_test_any_direction": 9,
+    "pairs_separated_by_difference_test_correct_direction": 5
    },
    "min_runs_5_lap_level": {
     "n_cells": 34,
     "n_adjacent_pairs": 21,
-    "cells_tighter_than_benchmark": 33,
-    "median_tightening_ratio": 4.76,
-    "max_tightening_ratio": 9.08,
-    "pairs_separated_non_overlap_any_direction": 9,
+    "cells_tighter_than_benchmark": 34,
+    "median_tightening_ratio": 4.98,
+    "max_tightening_ratio": 11.13,
+    "pairs_separated_non_overlap_any_direction": 6,
     "pairs_separated_non_overlap_correct_direction": 1,
-    "pairs_separated_non_overlap_wrong_direction": 8,
-    "pairs_separated_by_difference_test_any_direction": 11,
-    "pairs_separated_by_difference_test_correct_direction": 1
+    "pairs_separated_non_overlap_wrong_direction": 5,
+    "pairs_separated_by_difference_test_any_direction": 10,
+    "pairs_separated_by_difference_test_correct_direction": 5
    },
    "min_runs_5_run_level": {
     "n_cells": 34,
     "n_adjacent_pairs": 21,
-    "cells_tighter_than_benchmark": 29,
-    "median_tightening_ratio": 2.25,
-    "max_tightening_ratio": 6.15,
+    "cells_tighter_than_benchmark": 34,
+    "median_tightening_ratio": 2.81,
+    "max_tightening_ratio": 5.43,
     "pairs_separated_non_overlap_any_direction": 3,
-    "pairs_separated_non_overlap_correct_direction": 0,
-    "pairs_separated_non_overlap_wrong_direction": 3,
-    "pairs_separated_by_difference_test_any_direction": 6,
-    "pairs_separated_by_difference_test_correct_direction": 1
+    "pairs_separated_non_overlap_correct_direction": 1,
+    "pairs_separated_non_overlap_wrong_direction": 2,
+    "pairs_separated_by_difference_test_any_direction": 8,
+    "pairs_separated_by_difference_test_correct_direction": 4
    },
    "min_runs_8_lap_level": {
     "n_cells": 33,
     "n_adjacent_pairs": 20,
-    "cells_tighter_than_benchmark": 32,
-    "median_tightening_ratio": 5.08,
-    "max_tightening_ratio": 9.08,
-    "pairs_separated_non_overlap_any_direction": 8,
+    "cells_tighter_than_benchmark": 33,
+    "median_tightening_ratio": 5.03,
+    "max_tightening_ratio": 11.13,
+    "pairs_separated_non_overlap_any_direction": 6,
     "pairs_separated_non_overlap_correct_direction": 1,
-    "pairs_separated_non_overlap_wrong_direction": 7,
+    "pairs_separated_non_overlap_wrong_direction": 5,
     "pairs_separated_by_difference_test_any_direction": 10,
-    "pairs_separated_by_difference_test_correct_direction": 1
+    "pairs_separated_by_difference_test_correct_direction": 5
    },
    "min_runs_8_run_level": {
     "n_cells": 33,
     "n_adjacent_pairs": 20,
-    "cells_tighter_than_benchmark": 28,
-    "median_tightening_ratio": 2.25,
-    "max_tightening_ratio": 6.04,
+    "cells_tighter_than_benchmark": 33,
+    "median_tightening_ratio": 2.87,
+    "max_tightening_ratio": 5.43,
     "pairs_separated_non_overlap_any_direction": 3,
-    "pairs_separated_non_overlap_correct_direction": 0,
-    "pairs_separated_non_overlap_wrong_direction": 3,
-    "pairs_separated_by_difference_test_any_direction": 5,
-    "pairs_separated_by_difference_test_correct_direction": 1
+    "pairs_separated_non_overlap_correct_direction": 1,
+    "pairs_separated_non_overlap_wrong_direction": 2,
+    "pairs_separated_by_difference_test_any_direction": 9,
+    "pairs_separated_by_difference_test_correct_direction": 5
    }
   },
   "cells_min_runs_3_run_level": [
@@ -989,325 +990,325 @@
     "event": "Australian Grand Prix",
     "compound": "C3",
     "n_runs": 30,
-    "rate": 0.05995,
-    "lo": 0.044,
-    "hi": 0.0759,
-    "width": 0.0319
+    "rate": 0.06668,
+    "lo": 0.0475,
+    "hi": 0.08587,
+    "width": 0.03837
    },
    {
     "event": "Australian Grand Prix",
     "compound": "C4",
     "n_runs": 20,
-    "rate": 0.01209,
-    "lo": -0.02552,
-    "hi": 0.04971,
-    "width": 0.07523
+    "rate": 0.05844,
+    "lo": 0.02795,
+    "hi": 0.08893,
+    "width": 0.06098
    },
    {
     "event": "Australian Grand Prix",
     "compound": "C5",
     "n_runs": 8,
-    "rate": 0.01811,
-    "lo": -0.01858,
-    "hi": 0.0548,
-    "width": 0.07338
+    "rate": 0.09888,
+    "lo": 0.06767,
+    "hi": 0.13009,
+    "width": 0.06242
    },
    {
     "event": "Austrian Grand Prix",
     "compound": "C3",
     "n_runs": 34,
-    "rate": 0.0816,
-    "lo": 0.07091,
-    "hi": 0.09228,
-    "width": 0.02137
+    "rate": 0.08209,
+    "lo": 0.0702,
+    "hi": 0.09398,
+    "width": 0.02378
    },
    {
     "event": "Austrian Grand Prix",
     "compound": "C4",
     "n_runs": 30,
-    "rate": 0.08733,
-    "lo": 0.06816,
-    "hi": 0.1065,
-    "width": 0.03835
+    "rate": 0.06939,
+    "lo": 0.05346,
+    "hi": 0.08533,
+    "width": 0.03187
    },
    {
     "event": "Austrian Grand Prix",
     "compound": "C5",
     "n_runs": 8,
-    "rate": 0.01266,
-    "lo": -0.01771,
-    "hi": 0.04304,
-    "width": 0.06075
+    "rate": 0.03359,
+    "lo": 0.01281,
+    "hi": 0.05436,
+    "width": 0.04155
    },
    {
     "event": "Barcelona Grand Prix",
     "compound": "C2",
     "n_runs": 37,
-    "rate": 0.16635,
-    "lo": 0.14025,
-    "hi": 0.19244,
-    "width": 0.05219
+    "rate": 0.15021,
+    "lo": 0.12676,
+    "hi": 0.17366,
+    "width": 0.0469
    },
    {
     "event": "Barcelona Grand Prix",
     "compound": "C3",
     "n_runs": 18,
-    "rate": 0.16965,
-    "lo": 0.11932,
-    "hi": 0.21997,
-    "width": 0.10065
+    "rate": 0.17815,
+    "lo": 0.14822,
+    "hi": 0.20808,
+    "width": 0.05986
    },
    {
     "event": "Barcelona Grand Prix",
     "compound": "C4",
     "n_runs": 9,
-    "rate": 0.11731,
-    "lo": 0.03227,
-    "hi": 0.20234,
-    "width": 0.17006
+    "rate": 0.20073,
+    "lo": 0.15369,
+    "hi": 0.24778,
+    "width": 0.0941
    },
    {
     "event": "Belgian Grand Prix",
     "compound": "C2",
     "n_runs": 25,
-    "rate": 0.05304,
-    "lo": 0.00329,
-    "hi": 0.10278,
-    "width": 0.09949
+    "rate": 0.05846,
+    "lo": 0.00358,
+    "hi": 0.11333,
+    "width": 0.10976
    },
    {
     "event": "Belgian Grand Prix",
     "compound": "C3",
     "n_runs": 12,
-    "rate": 0.03143,
-    "lo": -0.16926,
-    "hi": 0.23212,
-    "width": 0.40138
+    "rate": 0.07168,
+    "lo": 0.00047,
+    "hi": 0.14289,
+    "width": 0.14241
    },
    {
     "event": "Belgian Grand Prix",
     "compound": "C4",
     "n_runs": 3,
-    "rate": 0.11348,
-    "lo": -0.02691,
-    "hi": 0.25388,
-    "width": 0.28079
+    "rate": 0.09729,
+    "lo": 0.03015,
+    "hi": 0.16443,
+    "width": 0.13428
    },
    {
     "event": "British Grand Prix",
     "compound": "C1",
     "n_runs": 36,
-    "rate": 0.09311,
-    "lo": 0.07663,
-    "hi": 0.10958,
-    "width": 0.03296
+    "rate": 0.10962,
+    "lo": 0.09341,
+    "hi": 0.12583,
+    "width": 0.03242
    },
    {
     "event": "British Grand Prix",
     "compound": "C2",
     "n_runs": 30,
-    "rate": 0.05105,
-    "lo": 0.02771,
-    "hi": 0.07439,
-    "width": 0.04667
+    "rate": 0.04745,
+    "lo": 0.02573,
+    "hi": 0.06918,
+    "width": 0.04345
    },
    {
     "event": "Canadian Grand Prix",
     "compound": "C3",
     "n_runs": 10,
-    "rate": -0.05803,
-    "lo": -0.14014,
-    "hi": 0.02409,
-    "width": 0.16423
+    "rate": -0.01898,
+    "lo": -0.04741,
+    "hi": 0.00945,
+    "width": 0.05686
    },
    {
     "event": "Canadian Grand Prix",
     "compound": "C4",
     "n_runs": 65,
-    "rate": -0.01706,
-    "lo": -0.03192,
-    "hi": -0.00221,
-    "width": 0.02971
+    "rate": -0.01776,
+    "lo": -0.03101,
+    "hi": -0.00451,
+    "width": 0.02649
    },
    {
     "event": "Canadian Grand Prix",
     "compound": "C5",
     "n_runs": 40,
-    "rate": -0.01914,
-    "lo": -0.04171,
-    "hi": 0.00343,
-    "width": 0.04514
+    "rate": -0.02264,
+    "lo": -0.0409,
+    "hi": -0.00438,
+    "width": 0.03652
    },
    {
     "event": "Chinese Grand Prix",
     "compound": "C2",
     "n_runs": 42,
-    "rate": 0.04338,
-    "lo": 0.00393,
-    "hi": 0.08284,
-    "width": 0.07891
+    "rate": 0.03752,
+    "lo": 0.0177,
+    "hi": 0.05734,
+    "width": 0.03964
    },
    {
     "event": "Chinese Grand Prix",
     "compound": "C3",
     "n_runs": 14,
-    "rate": 0.01542,
-    "lo": -0.06744,
-    "hi": 0.09828,
-    "width": 0.16571
+    "rate": 0.10771,
+    "lo": 0.07354,
+    "hi": 0.14189,
+    "width": 0.06835
    },
    {
     "event": "Dutch Grand Prix",
     "compound": "C2",
     "n_runs": 33,
-    "rate": 0.06228,
-    "lo": 0.04867,
-    "hi": 0.07589,
-    "width": 0.02722
+    "rate": 0.05966,
+    "lo": 0.04674,
+    "hi": 0.07259,
+    "width": 0.02585
    },
    {
     "event": "Dutch Grand Prix",
     "compound": "C3",
     "n_runs": 13,
-    "rate": 0.07843,
-    "lo": 0.04932,
-    "hi": 0.10753,
-    "width": 0.05822
+    "rate": 0.07611,
+    "lo": 0.0538,
+    "hi": 0.09843,
+    "width": 0.04463
    },
    {
     "event": "Dutch Grand Prix",
     "compound": "C4",
     "n_runs": 24,
-    "rate": 0.04389,
-    "lo": 0.01972,
-    "hi": 0.06805,
-    "width": 0.04833
+    "rate": 0.05281,
+    "lo": 0.03278,
+    "hi": 0.07284,
+    "width": 0.04006
    },
    {
     "event": "Hungarian Grand Prix",
     "compound": "C3",
     "n_runs": 46,
-    "rate": 0.09122,
-    "lo": 0.07264,
-    "hi": 0.1098,
-    "width": 0.03716
+    "rate": 0.0904,
+    "lo": 0.07333,
+    "hi": 0.10747,
+    "width": 0.03414
    },
    {
     "event": "Hungarian Grand Prix",
     "compound": "C4",
     "n_runs": 20,
-    "rate": 0.09087,
-    "lo": 0.05656,
-    "hi": 0.12519,
-    "width": 0.06863
+    "rate": 0.08183,
+    "lo": 0.05582,
+    "hi": 0.10784,
+    "width": 0.05202
    },
    {
     "event": "Hungarian Grand Prix",
     "compound": "C5",
     "n_runs": 25,
-    "rate": 0.05694,
-    "lo": 0.02825,
-    "hi": 0.08562,
-    "width": 0.05738
+    "rate": 0.04848,
+    "lo": 0.02642,
+    "hi": 0.07054,
+    "width": 0.04413
    },
    {
     "event": "Italian Grand Prix",
     "compound": "C3",
     "n_runs": 22,
-    "rate": -0.00932,
-    "lo": -0.0408,
-    "hi": 0.02215,
-    "width": 0.06295
+    "rate": 0.00649,
+    "lo": -0.01454,
+    "hi": 0.02753,
+    "width": 0.04207
    },
    {
     "event": "Italian Grand Prix",
     "compound": "C4",
     "n_runs": 16,
-    "rate": -0.00829,
-    "lo": -0.03833,
-    "hi": 0.02176,
-    "width": 0.06008
+    "rate": 0.01168,
+    "lo": -0.00995,
+    "hi": 0.03331,
+    "width": 0.04326
    },
    {
     "event": "Italian Grand Prix",
     "compound": "C5",
     "n_runs": 4,
-    "rate": 0.04464,
-    "lo": -0.00375,
-    "hi": 0.09303,
-    "width": 0.09677
+    "rate": 0.06445,
+    "lo": 0.03535,
+    "hi": 0.09355,
+    "width": 0.0582
    },
    {
     "event": "Japanese Grand Prix",
     "compound": "C1",
     "n_runs": 19,
-    "rate": 0.02308,
-    "lo": -0.02122,
-    "hi": 0.06739,
-    "width": 0.08862
+    "rate": -0.01517,
+    "lo": -0.07172,
+    "hi": 0.04138,
+    "width": 0.11311
    },
    {
     "event": "Japanese Grand Prix",
     "compound": "C2",
     "n_runs": 24,
-    "rate": -0.23032,
-    "lo": -0.36502,
-    "hi": -0.09562,
-    "width": 0.26939
+    "rate": -0.00453,
+    "lo": -0.06344,
+    "hi": 0.05438,
+    "width": 0.11782
    },
    {
     "event": "Miami Grand Prix",
     "compound": "C3",
     "n_runs": 30,
-    "rate": 0.03027,
-    "lo": 0.01979,
-    "hi": 0.04076,
-    "width": 0.02097
+    "rate": -0.05549,
+    "lo": -0.08177,
+    "hi": -0.02921,
+    "width": 0.05256
    },
    {
     "event": "Miami Grand Prix",
     "compound": "C4",
     "n_runs": 17,
-    "rate": 0.0504,
-    "lo": 0.03637,
-    "hi": 0.06442,
-    "width": 0.02805
+    "rate": -0.02513,
+    "lo": -0.05788,
+    "hi": 0.00763,
+    "width": 0.06551
    },
    {
     "event": "Miami Grand Prix",
     "compound": "C5",
     "n_runs": 5,
-    "rate": 0.00779,
-    "lo": -0.02395,
-    "hi": 0.03954,
-    "width": 0.06348
+    "rate": -0.05713,
+    "lo": -0.11644,
+    "hi": 0.00219,
+    "width": 0.11863
    },
    {
     "event": "Monaco Grand Prix",
     "compound": "C3",
     "n_runs": 12,
-    "rate": 0.03232,
-    "lo": 0.01149,
-    "hi": 0.05315,
-    "width": 0.04166
+    "rate": 0.01688,
+    "lo": -0.00699,
+    "hi": 0.04075,
+    "width": 0.04774
    },
    {
     "event": "Monaco Grand Prix",
     "compound": "C4",
     "n_runs": 18,
-    "rate": 0.02556,
-    "lo": 0.00311,
-    "hi": 0.04802,
-    "width": 0.04491
+    "rate": 0.03615,
+    "lo": 0.01368,
+    "hi": 0.05862,
+    "width": 0.04494
    },
    {
     "event": "Monaco Grand Prix",
     "compound": "C5",
     "n_runs": 19,
-    "rate": 0.00131,
-    "lo": -0.03035,
-    "hi": 0.03297,
-    "width": 0.06331
+    "rate": -0.02869,
+    "lo": -0.05716,
+    "hi": -0.00022,
+    "width": 0.05694
    }
   ],
   "caveat": "The benchmark width is one driver's three stints at one race; ours is a whole field's stints at one race. Width is not like for like, and the benchmark's own tightening is partly just more data. The adjacent-pair counts are within-event and so are free of the compound-circuit confound."
@@ -1324,52 +1325,52 @@
    ],
    "coverage_of_true_rate": {
     "0.50": {
-     "pooled": 0.4765,
+     "pooled": 0.468,
      "per_parameter": [
-      0.4625,
-      0.4525,
-      0.4875,
-      0.4675,
-      0.5125
+      0.475,
+      0.445,
+      0.4725,
+      0.4775,
+      0.47
      ]
     },
     "0.80": {
-     "pooled": 0.7755,
+     "pooled": 0.762,
      "per_parameter": [
-      0.7875,
-      0.7675,
-      0.785,
-      0.7525,
-      0.785
+      0.79,
+      0.75,
+      0.7575,
+      0.755,
+      0.7575
      ]
     },
     "0.90": {
-     "pooled": 0.8635,
+     "pooled": 0.8645,
      "per_parameter": [
-      0.8825,
+      0.8775,
       0.85,
-      0.8825,
-      0.85,
-      0.8525
+      0.865,
+      0.8625,
+      0.8675
      ]
     },
     "0.95": {
-     "pooled": 0.9095,
+     "pooled": 0.911,
      "per_parameter": [
-      0.9125,
+      0.94,
       0.9075,
-      0.9075,
-      0.9125,
+      0.8975,
+      0.9025,
       0.9075
      ]
     }
    },
    "mean_bias_s_per_lap": {
-    "C1": 0.00122,
-    "C2": -0.00056,
-    "C3": -0.00053,
-    "C4": -0.00069,
-    "C5": -0.00065
+    "C1": -0.0004,
+    "C2": -0.00018,
+    "C3": -0.00064,
+    "C4": -0.00072,
+    "C5": -0.00058
    },
    "mc_se_at_95_nominal": 0.0109,
    "what_it_tests": "the estimator against data drawn from the fitted model itself; it cannot detect misspecification"
@@ -1380,24 +1381,33 @@
     "full_predictive": {
      "coverage": {
       "0.50": {
-       "coverage": 0.528,
-       "k": 19,
+       "coverage": 0.472,
+       "k": 17,
        "n": 36,
        "wilson_95": [
-        0.37,
-        0.68
+        0.32,
+        0.63
        ]
       },
       "0.80": {
-       "coverage": 0.778,
-       "k": 28,
+       "coverage": 0.667,
+       "k": 24,
        "n": 36,
        "wilson_95": [
-        0.619,
-        0.883
+        0.503,
+        0.798
        ]
       },
       "0.90": {
+       "coverage": 0.806,
+       "k": 29,
+       "n": 36,
+       "wilson_95": [
+        0.65,
+        0.902
+       ]
+      },
+      "0.95": {
        "coverage": 0.889,
        "k": 32,
        "n": 36,
@@ -1405,32 +1415,32 @@
         0.747,
         0.956
        ]
-      },
-      "0.95": {
-       "coverage": 0.917,
-       "k": 33,
-       "n": 36,
-       "wilson_95": [
-        0.782,
-        0.971
-       ]
       }
      },
-     "z_mean": 0.008,
-     "z_sd": 1.262
+     "z_mean": 0.012,
+     "z_sd": 1.351
     },
     "no_event_sampling_variance": {
      "coverage": {
       "0.50": {
-       "coverage": 0.5,
-       "k": 18,
+       "coverage": 0.472,
+       "k": 17,
        "n": 36,
        "wilson_95": [
-        0.345,
-        0.655
+        0.32,
+        0.63
        ]
       },
       "0.80": {
+       "coverage": 0.667,
+       "k": 24,
+       "n": 36,
+       "wilson_95": [
+        0.503,
+        0.798
+       ]
+      },
+      "0.90": {
        "coverage": 0.75,
        "k": 27,
        "n": 36,
@@ -1439,15 +1449,6 @@
         0.862
        ]
       },
-      "0.90": {
-       "coverage": 0.861,
-       "k": 31,
-       "n": 36,
-       "wilson_95": [
-        0.713,
-        0.939
-       ]
-      },
       "0.95": {
        "coverage": 0.861,
        "k": 31,
@@ -1458,411 +1459,411 @@
        ]
       }
      },
-     "z_mean": -0.045,
-     "z_sd": 1.76
+     "z_mean": 0.023,
+     "z_sd": 1.458
     },
     "no_circuit_variance": {
      "coverage": {
       "0.50": {
-       "coverage": 0.25,
-       "k": 9,
+       "coverage": 0.194,
+       "k": 7,
        "n": 36,
        "wilson_95": [
-        0.138,
-        0.411
+        0.098,
+        0.35
        ]
       },
       "0.80": {
-       "coverage": 0.528,
-       "k": 19,
+       "coverage": 0.389,
+       "k": 14,
        "n": 36,
        "wilson_95": [
-        0.37,
-        0.68
+        0.248,
+        0.551
        ]
       },
       "0.90": {
-       "coverage": 0.583,
-       "k": 21,
+       "coverage": 0.444,
+       "k": 16,
        "n": 36,
        "wilson_95": [
-        0.422,
-        0.729
+        0.295,
+        0.604
        ]
       },
       "0.95": {
-       "coverage": 0.639,
-       "k": 23,
+       "coverage": 0.5,
+       "k": 18,
        "n": 36,
        "wilson_95": [
-        0.476,
-        0.775
+        0.345,
+        0.655
        ]
       }
      },
-     "z_mean": 0.042,
-     "z_sd": 2.276
+     "z_mean": -0.065,
+     "z_sd": 3.141
     }
    },
    "cells": [
     {
      "event": "Australian Grand Prix",
      "compound": "C3",
-     "own": 0.05995,
-     "own_se": 0.00814,
-     "pooled": 0.04756,
-     "pooled_se": 0.01482,
-     "tau": 0.0466,
+     "own": 0.06668,
+     "own_se": 0.00979,
+     "pooled": 0.05511,
+     "pooled_se": 0.01583,
+     "tau": 0.05189,
      "n_runs": 30
     },
     {
      "event": "Australian Grand Prix",
      "compound": "C4",
-     "own": 0.01209,
-     "own_se": 0.01919,
-     "pooled": 0.04325,
-     "pooled_se": 0.01499,
-     "tau": 0.0466,
+     "own": 0.05844,
+     "own_se": 0.01556,
+     "pooled": 0.06273,
+     "pooled_se": 0.01587,
+     "tau": 0.05189,
      "n_runs": 20
     },
     {
      "event": "Australian Grand Prix",
      "compound": "C5",
-     "own": 0.01811,
-     "own_se": 0.01872,
-     "pooled": 0.02238,
-     "pooled_se": 0.01615,
-     "tau": 0.0466,
+     "own": 0.09888,
+     "own_se": 0.01592,
+     "pooled": 0.03326,
+     "pooled_se": 0.01627,
+     "tau": 0.05189,
      "n_runs": 8
     },
     {
      "event": "Austrian Grand Prix",
      "compound": "C3",
-     "own": 0.0816,
-     "own_se": 0.00545,
-     "pooled": 0.04742,
-     "pooled_se": 0.01439,
-     "tau": 0.04491,
+     "own": 0.08209,
+     "own_se": 0.00607,
+     "pooled": 0.05108,
+     "pooled_se": 0.01603,
+     "tau": 0.05247,
      "n_runs": 34
     },
     {
      "event": "Austrian Grand Prix",
      "compound": "C4",
-     "own": 0.08733,
-     "own_se": 0.00978,
-     "pooled": 0.03784,
-     "pooled_se": 0.01459,
-     "tau": 0.04491,
+     "own": 0.06939,
+     "own_se": 0.00813,
+     "pooled": 0.0628,
+     "pooled_se": 0.01608,
+     "tau": 0.05247,
      "n_runs": 30
     },
     {
      "event": "Austrian Grand Prix",
      "compound": "C5",
-     "own": 0.01266,
-     "own_se": 0.0155,
-     "pooled": 0.02187,
-     "pooled_se": 0.01563,
-     "tau": 0.04491,
+     "own": 0.03359,
+     "own_se": 0.0106,
+     "pooled": 0.03991,
+     "pooled_se": 0.01649,
+     "tau": 0.05247,
      "n_runs": 8
     },
     {
      "event": "Barcelona Grand Prix",
      "compound": "C2",
-     "own": 0.16635,
-     "own_se": 0.01331,
-     "pooled": 0.04434,
-     "pooled_se": 0.01187,
-     "tau": 0.03062,
+     "own": 0.15021,
+     "own_se": 0.01196,
+     "pooled": 0.03096,
+     "pooled_se": 0.01216,
+     "tau": 0.0363,
      "n_runs": 37
     },
     {
      "event": "Barcelona Grand Prix",
      "compound": "C3",
-     "own": 0.16965,
-     "own_se": 0.02568,
-     "pooled": 0.04371,
-     "pooled_se": 0.01036,
-     "tau": 0.03062,
+     "own": 0.17815,
+     "own_se": 0.01527,
+     "pooled": 0.04358,
+     "pooled_se": 0.01148,
+     "tau": 0.0363,
      "n_runs": 18
     },
     {
      "event": "Barcelona Grand Prix",
      "compound": "C4",
-     "own": 0.11731,
-     "own_se": 0.04338,
-     "pooled": 0.03555,
-     "pooled_se": 0.0106,
-     "tau": 0.03062,
+     "own": 0.20073,
+     "own_se": 0.024,
+     "pooled": 0.05143,
+     "pooled_se": 0.01153,
+     "tau": 0.0363,
      "n_runs": 9
     },
     {
      "event": "Belgian Grand Prix",
      "compound": "C2",
-     "own": 0.05304,
-     "own_se": 0.02538,
-     "pooled": 0.05281,
-     "pooled_se": 0.01518,
-     "tau": 0.04565,
+     "own": 0.05846,
+     "own_se": 0.028,
+     "pooled": 0.0352,
+     "pooled_se": 0.0162,
+     "tau": 0.0519,
      "n_runs": 25
     },
     {
      "event": "Belgian Grand Prix",
      "compound": "C3",
-     "own": 0.03143,
-     "own_se": 0.10239,
-     "pooled": 0.05053,
-     "pooled_se": 0.01426,
-     "tau": 0.04565,
+     "own": 0.07168,
+     "own_se": 0.03633,
+     "pooled": 0.05334,
+     "pooled_se": 0.01573,
+     "tau": 0.0519,
      "n_runs": 12
     },
     {
      "event": "Belgian Grand Prix",
      "compound": "C4",
-     "own": 0.11348,
-     "own_se": 0.07163,
-     "pooled": 0.04136,
-     "pooled_se": 0.01449,
-     "tau": 0.04565,
+     "own": 0.09729,
+     "own_se": 0.03426,
+     "pooled": 0.06216,
+     "pooled_se": 0.0158,
+     "tau": 0.0519,
      "n_runs": 3
     },
     {
      "event": "British Grand Prix",
      "compound": "C1",
-     "own": 0.09311,
-     "own_se": 0.00841,
-     "pooled": 0.03496,
-     "pooled_se": 0.06278,
-     "tau": 0.0439,
+     "own": 0.10962,
+     "own_se": 0.00827,
+     "pooled": 0.02522,
+     "pooled_se": 0.01862,
+     "tau": 0.04937,
      "n_runs": 36
     },
     {
      "event": "British Grand Prix",
      "compound": "C2",
-     "own": 0.05105,
-     "own_se": 0.01191,
-     "pooled": 0.05635,
-     "pooled_se": 0.0151,
-     "tau": 0.0439,
+     "own": 0.04745,
+     "own_se": 0.01108,
+     "pooled": 0.03418,
+     "pooled_se": 0.01545,
+     "tau": 0.04937,
      "n_runs": 30
     },
     {
      "event": "Canadian Grand Prix",
      "compound": "C3",
-     "own": -0.05803,
-     "own_se": 0.0419,
-     "pooled": 0.05654,
-     "pooled_se": 0.01294,
-     "tau": 0.04019,
+     "own": -0.01898,
+     "own_se": 0.0145,
+     "pooled": 0.0621,
+     "pooled_se": 0.01363,
+     "tau": 0.04401,
      "n_runs": 10
     },
     {
      "event": "Canadian Grand Prix",
      "compound": "C4",
-     "own": -0.01706,
-     "own_se": 0.00758,
-     "pooled": 0.04923,
-     "pooled_se": 0.01337,
-     "tau": 0.04019,
+     "own": -0.01776,
+     "own_se": 0.00676,
+     "pooled": 0.07293,
+     "pooled_se": 0.01372,
+     "tau": 0.04401,
      "n_runs": 65
     },
     {
      "event": "Canadian Grand Prix",
      "compound": "C5",
-     "own": -0.01914,
-     "own_se": 0.01152,
-     "pooled": 0.02328,
-     "pooled_se": 0.01484,
-     "tau": 0.04019,
+     "own": -0.02264,
+     "own_se": 0.00932,
+     "pooled": 0.04174,
+     "pooled_se": 0.01428,
+     "tau": 0.04401,
      "n_runs": 40
     },
     {
      "event": "Chinese Grand Prix",
      "compound": "C2",
-     "own": 0.04338,
-     "own_se": 0.02013,
-     "pooled": 0.053,
-     "pooled_se": 0.01516,
-     "tau": 0.04502,
+     "own": 0.03752,
+     "own_se": 0.01011,
+     "pooled": 0.04308,
+     "pooled_se": 0.01578,
+     "tau": 0.05025,
      "n_runs": 42
     },
     {
      "event": "Chinese Grand Prix",
      "compound": "C3",
-     "own": 0.01542,
-     "own_se": 0.04227,
-     "pooled": 0.05353,
-     "pooled_se": 0.01424,
-     "tau": 0.04502,
+     "own": 0.10771,
+     "own_se": 0.01744,
+     "pooled": 0.05214,
+     "pooled_se": 0.01529,
+     "tau": 0.05025,
      "n_runs": 14
     },
     {
      "event": "Dutch Grand Prix",
      "compound": "C2",
-     "own": 0.06228,
-     "own_se": 0.00694,
-     "pooled": 0.05315,
-     "pooled_se": 0.01669,
-     "tau": 0.04636,
+     "own": 0.05966,
+     "own_se": 0.00659,
+     "pooled": 0.02698,
+     "pooled_se": 0.01742,
+     "tau": 0.05551,
      "n_runs": 33
     },
     {
      "event": "Dutch Grand Prix",
      "compound": "C3",
-     "own": 0.07843,
-     "own_se": 0.01485,
-     "pooled": 0.04707,
-     "pooled_se": 0.0148,
-     "tau": 0.04636,
+     "own": 0.07611,
+     "own_se": 0.01139,
+     "pooled": 0.0572,
+     "pooled_se": 0.0169,
+     "tau": 0.05551,
      "n_runs": 13
     },
     {
      "event": "Dutch Grand Prix",
      "compound": "C4",
-     "own": 0.04389,
-     "own_se": 0.01233,
-     "pooled": 0.04232,
-     "pooled_se": 0.01521,
-     "tau": 0.04636,
+     "own": 0.05281,
+     "own_se": 0.01022,
+     "pooled": 0.06857,
+     "pooled_se": 0.01699,
+     "tau": 0.05551,
      "n_runs": 24
     },
     {
      "event": "Hungarian Grand Prix",
      "compound": "C3",
-     "own": 0.09122,
-     "own_se": 0.00948,
-     "pooled": 0.04625,
-     "pooled_se": 0.01408,
-     "tau": 0.04404,
+     "own": 0.0904,
+     "own_se": 0.00871,
+     "pooled": 0.05075,
+     "pooled_se": 0.01582,
+     "tau": 0.05187,
      "n_runs": 46
     },
     {
      "event": "Hungarian Grand Prix",
      "compound": "C4",
-     "own": 0.09087,
-     "own_se": 0.01751,
-     "pooled": 0.03818,
-     "pooled_se": 0.01425,
-     "tau": 0.04404,
+     "own": 0.08183,
+     "own_se": 0.01327,
+     "pooled": 0.06156,
+     "pooled_se": 0.01587,
+     "tau": 0.05187,
      "n_runs": 20
     },
     {
      "event": "Hungarian Grand Prix",
      "compound": "C5",
-     "own": 0.05694,
-     "own_se": 0.01464,
-     "pooled": 0.0186,
-     "pooled_se": 0.01562,
-     "tau": 0.04404,
+     "own": 0.04848,
+     "own_se": 0.01126,
+     "pooled": 0.03931,
+     "pooled_se": 0.01633,
+     "tau": 0.05187,
      "n_runs": 25
     },
     {
      "event": "Italian Grand Prix",
      "compound": "C3",
-     "own": -0.00932,
-     "own_se": 0.01606,
-     "pooled": 0.054,
-     "pooled_se": 0.01414,
-     "tau": 0.04436,
+     "own": 0.00649,
+     "own_se": 0.01073,
+     "pooled": 0.05862,
+     "pooled_se": 0.01534,
+     "tau": 0.05004,
      "n_runs": 22
     },
     {
      "event": "Italian Grand Prix",
      "compound": "C4",
-     "own": -0.00829,
-     "own_se": 0.01533,
-     "pooled": 0.04526,
-     "pooled_se": 0.01442,
-     "tau": 0.04436,
+     "own": 0.01168,
+     "own_se": 0.01104,
+     "pooled": 0.06922,
+     "pooled_se": 0.01542,
+     "tau": 0.05004,
      "n_runs": 16
     },
     {
      "event": "Italian Grand Prix",
      "compound": "C5",
-     "own": 0.04464,
-     "own_se": 0.02469,
-     "pooled": 0.02443,
-     "pooled_se": 0.01541,
-     "tau": 0.04436,
+     "own": 0.06445,
+     "own_se": 0.01485,
+     "pooled": 0.03497,
+     "pooled_se": 0.01579,
+     "tau": 0.05004,
      "n_runs": 4
     },
     {
      "event": "Japanese Grand Prix",
      "compound": "C1",
-     "own": 0.02308,
-     "own_se": 0.02261,
-     "pooled": 0.09187,
-     "pooled_se": 0.02145,
-     "tau": 0.04022,
+     "own": -0.01517,
+     "own_se": 0.02885,
+     "pooled": 0.08446,
+     "pooled_se": 0.0216,
+     "tau": 0.0474,
      "n_runs": 19
     },
     {
      "event": "Japanese Grand Prix",
      "compound": "C2",
-     "own": -0.23032,
-     "own_se": 0.06872,
-     "pooled": 0.05917,
-     "pooled_se": 0.01343,
-     "tau": 0.04022,
+     "own": -0.00453,
+     "own_se": 0.03006,
+     "pooled": 0.03951,
+     "pooled_se": 0.01461,
+     "tau": 0.0474,
      "n_runs": 24
     },
     {
      "event": "Miami Grand Prix",
      "compound": "C3",
-     "own": 0.03027,
-     "own_se": 0.00535,
-     "pooled": 0.05292,
-     "pooled_se": 0.01446,
-     "tau": 0.04541,
+     "own": -0.05549,
+     "own_se": 0.01341,
+     "pooled": 0.05701,
+     "pooled_se": 0.01572,
+     "tau": 0.05154,
      "n_runs": 30
     },
     {
      "event": "Miami Grand Prix",
      "compound": "C4",
-     "own": 0.0504,
-     "own_se": 0.00716,
-     "pooled": 0.03857,
-     "pooled_se": 0.01471,
-     "tau": 0.04541,
+     "own": -0.02513,
+     "own_se": 0.01671,
+     "pooled": 0.06437,
+     "pooled_se": 0.01579,
+     "tau": 0.05154,
      "n_runs": 17
     },
     {
      "event": "Miami Grand Prix",
      "compound": "C5",
-     "own": 0.00779,
-     "own_se": 0.0162,
-     "pooled": 0.01974,
-     "pooled_se": 0.0157,
-     "tau": 0.04541,
+     "own": -0.05713,
+     "own_se": 0.03026,
+     "pooled": 0.04055,
+     "pooled_se": 0.01614,
+     "tau": 0.05154,
      "n_runs": 5
     },
     {
      "event": "Monaco Grand Prix",
      "compound": "C3",
-     "own": 0.03232,
-     "own_se": 0.01063,
-     "pooled": 0.05091,
-     "pooled_se": 0.01514,
-     "tau": 0.04775,
+     "own": 0.01688,
+     "own_se": 0.01218,
+     "pooled": 0.0603,
+     "pooled_se": 0.01609,
+     "tau": 0.05298,
      "n_runs": 12
     },
     {
      "event": "Monaco Grand Prix",
      "compound": "C4",
-     "own": 0.02556,
+     "own": 0.03615,
      "own_se": 0.01146,
-     "pooled": 0.04516,
-     "pooled_se": 0.0154,
-     "tau": 0.04775,
+     "pooled": 0.0614,
+     "pooled_se": 0.01618,
+     "tau": 0.05298,
      "n_runs": 18
     },
     {
      "event": "Monaco Grand Prix",
      "compound": "C5",
-     "own": 0.00131,
-     "own_se": 0.01615,
-     "pooled": 0.02516,
-     "pooled_se": 0.01654,
-     "tau": 0.04775,
+     "own": -0.02869,
+     "own_se": 0.01453,
+     "pooled": 0.05481,
+     "pooled_se": 0.01657,
+     "tau": 0.05298,
      "n_runs": 19
     }
    ],
@@ -1908,9 +1909,9 @@
      0.03637
     ],
     "deconfounded": {
-     "mean": 0.08237,
-     "lo": 0.04133,
-     "hi": 0.12342
+     "mean": 0.04104,
+     "lo": 0.00791,
+     "hi": 0.07417
     },
     "n_runs": 55
    },
@@ -1935,9 +1936,9 @@
      0.04069
     ],
     "deconfounded": {
-     "mean": 0.05324,
-     "lo": 0.02568,
-     "hi": 0.0808
+     "mean": 0.03733,
+     "lo": 0.00815,
+     "hi": 0.0665
     },
     "n_runs": 191
    },
@@ -1962,9 +1963,9 @@
      0.05043
     ],
     "deconfounded": {
-     "mean": 0.05024,
-     "lo": 0.02409,
-     "hi": 0.07639
+     "mean": 0.05439,
+     "lo": 0.02577,
+     "hi": 0.083
     },
     "n_runs": 242
    },
@@ -1989,9 +1990,9 @@
      0.0351
     ],
     "deconfounded": {
-     "mean": 0.04205,
-     "lo": 0.01545,
-     "hi": 0.06864
+     "mean": 0.06333,
+     "lo": 0.03459,
+     "hi": 0.09207
     },
     "n_runs": 223
    },
@@ -2016,9 +2017,9 @@
      0.01828
     ],
     "deconfounded": {
-     "mean": 0.02172,
-     "lo": -0.00682,
-     "hi": 0.05026
+     "mean": 0.03851,
+     "lo": 0.00904,
+     "hi": 0.06797
     },
     "n_runs": 109
    }
@@ -2029,11 +2030,11 @@
    "C5"
   ],
   "abs_gap_deconfounded_vs_practitioner_s_per_lap": {
-   "C1": 0.04879,
-   "C2": 0.01506,
-   "C3": 0.0021,
-   "C4": 0.00902,
-   "C5": 0.00542
+   "C1": 0.00746,
+   "C2": 0.00085,
+   "C3": 0.00625,
+   "C4": 0.0303,
+   "C5": 0.02221
   },
   "fuel_s_per_kg_central": 0.033,
   "same_laps_same_compound_grouping": true,
@@ -2046,52 +2047,52 @@
    "n_runs": 1038,
    "rates_pooled_label_s_per_lap": {
     "HARD": {
-     "mean": 0.04419,
-     "lo": 0.02271,
-     "hi": 0.06568,
+     "mean": 0.03842,
+     "lo": 0.01824,
+     "hi": 0.0586,
      "n_runs": 383
     },
     "MEDIUM": {
-     "mean": 0.05867,
-     "lo": 0.03707,
-     "hi": 0.08027,
+     "mean": 0.06478,
+     "lo": 0.04451,
+     "hi": 0.08505,
      "n_runs": 431
     },
     "SOFT": {
-     "mean": 0.06536,
-     "lo": 0.04175,
-     "hi": 0.08897,
+     "mean": 0.08498,
+     "lo": 0.06412,
+     "hi": 0.10584,
      "n_runs": 224
     }
    },
    "monotone_softer_degrades_faster": true,
-   "circuit_slope_sd_s_per_lap": 0.04302,
+   "circuit_slope_sd_s_per_lap": 0.04118,
    "within_event_label_contrast_s_per_lap": {
     "MEDIUM_minus_HARD": {
-     "mean": 0.01418,
-     "lo": 0.00399,
-     "hi": 0.02437
+     "mean": 0.02629,
+     "lo": 0.02114,
+     "hi": 0.03144
     },
     "SOFT_minus_HARD": {
-     "mean": 0.02043,
-     "lo": 0.00605,
-     "hi": 0.03481
+     "mean": 0.04648,
+     "lo": 0.03905,
+     "hi": 0.05391
     }
    },
    "trend_per_step_softer": {
     "within_event": {
-     "mean": 0.01094,
-     "lo": 0.00399,
-     "hi": 0.01788
+     "mean": 0.02376,
+     "lo": 0.02012,
+     "hi": 0.0274
     },
     "pooled_random_circuit": {
-     "mean": 0.0113,
-     "lo": 0.00445,
-     "hi": 0.01815
+     "mean": 0.02381,
+     "lo": 0.02019,
+     "hi": 0.02742
     }
    },
    "convergence_all_ok": true,
-   "fit_seconds": 6.9
+   "fit_seconds": 3.6
   },
   "2023": {
    "n_events": 16,
@@ -2099,52 +2100,52 @@
    "n_runs": 860,
    "rates_pooled_label_s_per_lap": {
     "HARD": {
-     "mean": 0.05499,
-     "lo": 0.03876,
-     "hi": 0.07123,
+     "mean": 0.05146,
+     "lo": 0.03531,
+     "hi": 0.06761,
      "n_runs": 449
     },
     "MEDIUM": {
-     "mean": 0.05721,
-     "lo": 0.03978,
-     "hi": 0.07464,
+     "mean": 0.05948,
+     "lo": 0.04313,
+     "hi": 0.07583,
      "n_runs": 287
     },
     "SOFT": {
-     "mean": 0.0596,
-     "lo": 0.03843,
-     "hi": 0.08077,
+     "mean": 0.07524,
+     "lo": 0.0579,
+     "hi": 0.09258,
      "n_runs": 124
     }
    },
    "monotone_softer_degrades_faster": true,
-   "circuit_slope_sd_s_per_lap": 0.03092,
+   "circuit_slope_sd_s_per_lap": 0.03138,
    "within_event_label_contrast_s_per_lap": {
     "MEDIUM_minus_HARD": {
-     "mean": 0.00265,
-     "lo": -0.00731,
-     "hi": 0.01262
+     "mean": 0.00813,
+     "lo": 0.00436,
+     "hi": 0.0119
     },
     "SOFT_minus_HARD": {
-     "mean": 0.00462,
-     "lo": -0.0119,
-     "hi": 0.02114
+     "mean": 0.02402,
+     "lo": 0.01667,
+     "hi": 0.03137
     }
    },
    "trend_per_step_softer": {
     "within_event": {
-     "mean": 0.00244,
-     "lo": -0.00459,
-     "hi": 0.00947
+     "mean": 0.01014,
+     "lo": 0.00717,
+     "hi": 0.01311
     },
     "pooled_random_circuit": {
-     "mean": 0.00227,
-     "lo": -0.00465,
-     "hi": 0.00919
+     "mean": 0.01003,
+     "lo": 0.00708,
+     "hi": 0.01299
     }
    },
    "convergence_all_ok": true,
-   "fit_seconds": 5.4
+   "fit_seconds": 3.0
   },
   "2024": {
    "n_events": 18,
@@ -2152,52 +2153,52 @@
    "n_runs": 857,
    "rates_pooled_label_s_per_lap": {
     "HARD": {
-     "mean": 0.06251,
-     "lo": 0.0493,
-     "hi": 0.07572,
+     "mean": 0.06216,
+     "lo": 0.04948,
+     "hi": 0.07484,
      "n_runs": 446
     },
     "MEDIUM": {
-     "mean": 0.06,
-     "lo": 0.04557,
-     "hi": 0.07443,
+     "mean": 0.05852,
+     "lo": 0.04565,
+     "hi": 0.07138,
      "n_runs": 310
     },
     "SOFT": {
-     "mean": 0.06457,
-     "lo": 0.04539,
-     "hi": 0.08376,
+     "mean": 0.08201,
+     "lo": 0.06749,
+     "hi": 0.09652,
      "n_runs": 101
     }
    },
    "monotone_softer_degrades_faster": false,
-   "circuit_slope_sd_s_per_lap": 0.02579,
+   "circuit_slope_sd_s_per_lap": 0.02521,
    "within_event_label_contrast_s_per_lap": {
     "MEDIUM_minus_HARD": {
-     "mean": -0.00178,
-     "lo": -0.01074,
-     "hi": 0.00718
+     "mean": -0.0035,
+     "lo": -0.00667,
+     "hi": -0.00034
     },
     "SOFT_minus_HARD": {
-     "mean": 0.00271,
-     "lo": -0.01288,
-     "hi": 0.01831
+     "mean": 0.01963,
+     "lo": 0.01227,
+     "hi": 0.02698
     }
    },
    "trend_per_step_softer": {
     "within_event": {
-     "mean": 6e-05,
-     "lo": -0.00637,
-     "hi": 0.00649
+     "mean": 0.00203,
+     "lo": -0.00051,
+     "hi": 0.00458
     },
     "pooled_random_circuit": {
-     "mean": -0.00044,
-     "lo": -0.00683,
-     "hi": 0.00596
+     "mean": 0.002,
+     "lo": -0.00055,
+     "hi": 0.00454
     }
    },
    "convergence_all_ok": true,
-   "fit_seconds": 6.2
+   "fit_seconds": 3.4
   },
   "2025": {
    "n_events": 17,
@@ -2205,52 +2206,52 @@
    "n_runs": 872,
    "rates_pooled_label_s_per_lap": {
     "HARD": {
-     "mean": 0.05008,
-     "lo": 0.037,
-     "hi": 0.06316,
+     "mean": 0.04736,
+     "lo": 0.0353,
+     "hi": 0.05943,
      "n_runs": 370
     },
     "MEDIUM": {
-     "mean": 0.05233,
-     "lo": 0.03859,
-     "hi": 0.06606,
+     "mean": 0.05593,
+     "lo": 0.04371,
+     "hi": 0.06814,
      "n_runs": 355
     },
     "SOFT": {
-     "mean": 0.07186,
-     "lo": 0.05262,
-     "hi": 0.0911,
+     "mean": 0.08022,
+     "lo": 0.06664,
+     "hi": 0.09379,
      "n_runs": 147
     }
    },
    "monotone_softer_degrades_faster": true,
-   "circuit_slope_sd_s_per_lap": 0.02347,
+   "circuit_slope_sd_s_per_lap": 0.02266,
    "within_event_label_contrast_s_per_lap": {
     "MEDIUM_minus_HARD": {
-     "mean": -0.0005,
-     "lo": -0.01061,
-     "hi": 0.00962
+     "mean": 0.0082,
+     "lo": 0.00419,
+     "hi": 0.0122
     },
     "SOFT_minus_HARD": {
-     "mean": 0.01675,
-     "lo": -0.00118,
-     "hi": 0.03467
+     "mean": 0.03231,
+     "lo": 0.02498,
+     "hi": 0.03965
     }
    },
    "trend_per_step_softer": {
     "within_event": {
-     "mean": 0.00481,
-     "lo": -0.00311,
-     "hi": 0.01272
+     "mean": 0.01272,
+     "lo": 0.00957,
+     "hi": 0.01587
     },
     "pooled_random_circuit": {
-     "mean": 0.00751,
-     "lo": -0.00016,
-     "hi": 0.01517
+     "mean": 0.01305,
+     "lo": 0.00992,
+     "hi": 0.01618
     }
    },
    "convergence_all_ok": true,
-   "fit_seconds": 6.0
+   "fit_seconds": 3.7
   },
   "2026": {
    "n_events": 13,
@@ -2258,61 +2259,61 @@
    "n_runs": 820,
    "rates_pooled_label_s_per_lap": {
     "HARD": {
-     "mean": 0.0542,
-     "lo": 0.02905,
-     "hi": 0.07934,
+     "mean": 0.04657,
+     "lo": 0.02055,
+     "hi": 0.07258,
      "n_runs": 376
     },
     "MEDIUM": {
-     "mean": 0.04802,
-     "lo": 0.02208,
-     "hi": 0.07396,
+     "mean": 0.05919,
+     "lo": 0.03294,
+     "hi": 0.08543,
      "n_runs": 297
     },
     "SOFT": {
-     "mean": 0.02908,
-     "lo": 0.00208,
-     "hi": 0.05608,
+     "mean": 0.0378,
+     "lo": 0.01103,
+     "hi": 0.06457,
      "n_runs": 147
     }
    },
    "monotone_softer_degrades_faster": false,
-   "circuit_slope_sd_s_per_lap": 0.04389,
+   "circuit_slope_sd_s_per_lap": 0.04596,
    "within_event_label_contrast_s_per_lap": {
     "MEDIUM_minus_HARD": {
-     "mean": -0.00529,
-     "lo": -0.01677,
-     "hi": 0.0062
+     "mean": 0.01285,
+     "lo": 0.00707,
+     "hi": 0.01863
     },
     "SOFT_minus_HARD": {
-     "mean": -0.02452,
-     "lo": -0.03792,
-     "hi": -0.01112
+     "mean": -0.00858,
+     "lo": -0.01644,
+     "hi": -0.00071
     }
    },
    "trend_per_step_softer": {
     "within_event": {
-     "mean": -0.01124,
-     "lo": -0.01772,
-     "hi": -0.00477
+     "mean": -0.00085,
+     "lo": -0.00462,
+     "hi": 0.00292
     },
     "pooled_random_circuit": {
-     "mean": -0.01162,
-     "lo": -0.01805,
-     "hi": -0.0052
+     "mean": -0.00097,
+     "lo": -0.00473,
+     "hi": 0.00279
     }
    },
    "convergence_all_ok": true,
-   "fit_seconds": 5.3
+   "fit_seconds": 3.0
   }
  },
  "power": {
   "params_per_lap": {
-   "circuit_sd": 0.04367,
-   "run_slope_sd": 0.0315,
-   "run_sd": 0.2842,
-   "driver_sd": 1.1664,
-   "sigma": 0.5555
+   "circuit_sd": 0.04982,
+   "run_slope_sd": 0.03534,
+   "run_sd": 0.3029,
+   "driver_sd": 1.1516,
+   "sigma": 0.5524
   },
   "design_notes": "13 circuits, 20-lap stints, 3 stints per driver-event, two compounds; balanced = both at every circuit, split = disjoint circuits",
   "n_sims_per_point": 100,
@@ -2329,55 +2330,55 @@
      2496
     ],
     "power_wald_z": [
-     0.1,
-     0.16,
-     0.18,
-     0.35,
-     0.67,
-     0.81,
-     0.87,
-     0.98
+     0.09,
+     0.14,
+     0.14,
+     0.31,
+     0.56,
+     0.77,
+     0.79,
+     0.97
     ],
     "power_t_df12": [
      0.03,
-     0.11,
-     0.11,
-     0.27,
-     0.55,
-     0.75,
-     0.82,
-     0.97
+     0.08,
+     0.1,
+     0.24,
+     0.48,
+     0.67,
+     0.7,
+     0.95
     ],
     "power_analytic_known_variance": [
-     0.088,
-     0.126,
-     0.205,
-     0.361,
-     0.621,
-     0.793,
-     0.894,
-     0.975
+     0.082,
+     0.115,
+     0.182,
+     0.316,
+     0.553,
+     0.727,
+     0.842,
+     0.952
     ],
     "mc_se_at_50pct": 0.05,
     "crossing_80pct_wald_z": {
-     "crossing": 1212.374,
-     "mc_se": 132.335,
+     "crossing": 1701.908,
+     "mc_se": 244.693,
      "mc_ci95": [
-      1018.987733,
-      1512.208519
+      1168.528835,
+      1894.561971
      ],
      "share_of_resamples_never_reaching_target": 0.0
     },
     "crossing_80pct_t_df12": {
-     "crossing": 1532.698,
-     "mc_se": 180.159,
+     "crossing": 1956.995,
+     "mc_se": 103.759,
      "mc_ci95": [
-      1193.023202,
-      1820.987518
+      1712.89708,
+      2102.540804
      ],
      "share_of_resamples_never_reaching_target": 0.0
     },
-    "failed_refits": 6,
+    "failed_refits": 9,
     "crossing_is_at_or_below_smallest_grid_point": false
    },
    "split_effect_0.006": {
@@ -2387,19 +2388,19 @@
      2496
     ],
     "power_wald_z": [
-     0.09,
-     0.08,
+     0.1,
+     0.07,
      0.07
     ],
     "power_t_df12": [
      0.07,
-     0.06,
+     0.05,
      0.05
     ],
     "power_analytic_known_variance": [
-     0.056,
-     0.057,
-     0.057
+     0.055,
+     0.055,
+     0.055
     ],
     "mc_se_at_50pct": 0.05,
     "crossing_80pct_wald_z": {
@@ -2414,7 +2415,7 @@
      "mc_ci95": null,
      "share_of_resamples_never_reaching_target": 1.0
     },
-    "failed_refits": 4,
+    "failed_refits": 2,
     "crossing_is_at_or_below_smallest_grid_point": false
    },
    "balanced_effect_0.02": {
@@ -2429,9 +2430,9 @@
      2496
     ],
     "power_wald_z": [
-     0.32,
-     0.76,
-     0.98,
+     0.3,
+     0.7,
+     0.96,
      1.0,
      1.0,
      1.0,
@@ -2439,9 +2440,9 @@
      1.0
     ],
     "power_t_df12": [
-     0.27,
-     0.67,
-     0.97,
+     0.26,
+     0.6,
+     0.9,
      1.0,
      1.0,
      1.0,
@@ -2449,10 +2450,10 @@
      1.0
     ],
     "power_analytic_known_variance": [
-     0.472,
-     0.762,
-     0.966,
-     1.0,
+     0.415,
+     0.694,
+     0.937,
+     0.999,
      1.0,
      1.0,
      1.0,
@@ -2460,24 +2461,24 @@
     ],
     "mc_se_at_50pct": 0.05,
     "crossing_80pct_wald_z": {
-     "crossing": 117.969,
-     "mc_se": 11.555,
+     "crossing": 135.773,
+     "mc_se": 11.408,
      "mc_ci95": [
-      98.597486,
-      139.082255
+      108.08296,
+      153.594187
      ],
      "share_of_resamples_never_reaching_target": 0.0
     },
     "crossing_80pct_t_df12": {
-     "crossing": 140.436,
-     "mc_se": 9.839,
+     "crossing": 165.09,
+     "mc_se": 10.444,
      "mc_ci95": [
-      116.718362,
-      155.007831
+      145.048972,
+      187.466116
      ],
      "share_of_resamples_never_reaching_target": 0.0
     },
-    "failed_refits": 5,
+    "failed_refits": 8,
     "crossing_is_at_or_below_smallest_grid_point": false
    },
    "split_effect_0.02": {
@@ -2487,19 +2488,19 @@
      2496
     ],
     "power_wald_z": [
-     0.22,
-     0.15,
-     0.13
+     0.19,
+     0.11,
+     0.12
     ],
     "power_t_df12": [
-     0.18,
-     0.09,
-     0.11
+     0.16,
+     0.08,
+     0.09
     ],
     "power_analytic_known_variance": [
-     0.117,
-     0.13,
-     0.13
+     0.102,
+     0.111,
+     0.111
     ],
     "mc_se_at_50pct": 0.05,
     "crossing_80pct_wald_z": {
@@ -2514,14 +2515,14 @@
      "mc_ci95": null,
      "share_of_resamples_never_reaching_target": 1.0
     },
-    "failed_refits": 3,
+    "failed_refits": 5,
     "crossing_is_at_or_below_smallest_grid_point": false
    }
   },
   "analytic_crossing_known_variance": {
-   "balanced_effect_0.006": 1272.8,
+   "balanced_effect_0.006": 1498.5,
    "split_effect_0.006": null,
-   "balanced_effect_0.02": 115.8,
+   "balanced_effect_0.02": 135.6,
    "split_effect_0.02": null
   },
   "type_I_error_at_zero_effect": {
@@ -2541,13 +2542,13 @@
    }
   },
   "ceiling_split_design_power": {
-   "0.006": 0.057,
-   "0.02": 0.131
+   "0.006": 0.055,
+   "0.02": 0.112
   },
   "min_detectable_effect_80pct_s_per_lap": {
    "n_stints": 832,
-   "balanced": 0.0074,
-   "split": 0.0685
+   "balanced": 0.008,
+   "split": 0.0781
   },
   "original_welch_calculation": {
    "grid_point_returned_by_n_for": 512,
@@ -2577,18 +2578,2950 @@
    "noise_used_s": 0.462127,
    "what_it_ignores": "circuit variance, stint-level wear variation, run correlation"
   },
-  "seconds": 287.0
+  "seconds": 56.8
+ },
+ "circuit_vs_event": {
+  "design": {
+   "seasons": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "n_laps": 69395,
+   "n_runs": 4445,
+   "n_events": 82,
+   "n_circuits": 23,
+   "circuits_with_repeat_visits": 20,
+   "events_per_circuit_median": 4.0,
+   "compounds": "physical C numbers (2022-25 from Pirelli nomination history, 2026 from allocation.json)"
+  },
+  "sd_s_per_lap": {
+   "circuit_persistent": {
+    "estimate": 0.02776,
+    "profile_95": [
+     0.01965,
+     0.0405
+    ],
+    "bootstrap_95": [
+     0.01568,
+     0.03799
+    ]
+   },
+   "event_specific": {
+    "estimate": 0.02405,
+    "profile_95": [
+     0.02082,
+     0.02899
+    ],
+    "bootstrap_95": [
+     0.01905,
+     0.0288
+    ]
+   },
+   "run_slope": 0.03824,
+   "run_intercept": 0.29506,
+   "driver_event": 0.74513,
+   "resid": 0.46555
+  },
+  "persistent_share_of_slope_variance": {
+   "estimate": 0.571,
+   "bootstrap_95": [
+    0.275,
+    0.754
+   ]
+  },
+  "circuit_component_test": {
+   "reml_lr": 26.963,
+   "p_parametric_bootstrap": 0.002,
+   "n_bootstrap": 500,
+   "p_floor": 0.002,
+   "p_chibar2": 0.0,
+   "bootstrap_lr_95_99": [
+    2.053,
+    4.655
+   ],
+   "distinguishable_from_zero": true
+  },
+  "event_component_test": {
+   "reml_lr": 258.502,
+   "p_chibar2": 0.0
+  },
+  "seconds_over_20_laps": {
+   "circuit_persistent": 0.555,
+   "event_specific": 0.481,
+   "circuit_persistent_profile_95": [
+    0.393,
+    0.81
+   ],
+   "event_specific_profile_95": [
+    0.416,
+    0.58
+   ]
+  },
+  "compound_rates_pooled_s_per_lap": {
+   "C1": {
+    "mean": 0.04433,
+    "lo": 0.0307,
+    "hi": 0.05796
+   },
+   "C2": {
+    "mean": 0.04278,
+    "lo": 0.02962,
+    "hi": 0.05594
+   },
+   "C3": {
+    "mean": 0.05965,
+    "lo": 0.04662,
+    "hi": 0.07268
+   },
+   "C4": {
+    "mean": 0.06626,
+    "lo": 0.05313,
+    "hi": 0.07938
+   },
+   "C5": {
+    "mean": 0.07308,
+    "lo": 0.0594,
+    "hi": 0.08676
+   }
+  },
+  "compound_rate_sd_s_per_lap": 0.01336,
+  "compound_vs_variance": {
+   "compound_sd_raw": {
+    "bootstrap_95": [
+     0.01109,
+     0.01563
+    ],
+    "median": 0.01338
+   },
+   "compound_sd_noise_corrected": {
+    "bootstrap_95": [
+     0.00852,
+     0.01429
+    ],
+    "median": 0.01148
+   },
+   "circuit_minus_compound_raw": {
+    "bootstrap_95": [
+     0.00215,
+     0.02527
+    ],
+    "median": 0.01373,
+    "p_circuit_greater": 0.992
+   },
+   "circuit_minus_compound_corrected": {
+    "bootstrap_95": [
+     0.00306,
+     0.02872
+    ],
+    "median": 0.01553,
+    "p_circuit_greater": 0.992
+   },
+   "event_minus_compound_raw": {
+    "bootstrap_95": [
+     0.00538,
+     0.01608
+    ],
+    "median": 0.01064,
+    "p_event_greater": 1.0
+   }
+  },
+  "sensitivity": {
+   "without_2025": {
+    "circuit_sd": 0.02849,
+    "event_sd": 0.02451,
+    "share_circuit": 0.575,
+    "n_laps": 54154,
+    "n_events": 65
+   },
+   "verified_nominations_only": {
+    "circuit_sd": 0.02772,
+    "event_sd": 0.02446,
+    "share_circuit": 0.562,
+    "n_laps": 67587,
+    "n_events": 80
+   }
+  },
+  "convergence": {
+   "converged": true,
+   "hessian_pd": true,
+   "boundary_components": [],
+   "start_deviances": [
+    -90292.076,
+    -90292.076,
+    -90292.076
+   ]
+  },
+  "bootstrap_seconds": 173.9
+ },
+ "exact_vs_approximate": {
+  "what": "Same laps, same random effects, same REML engine; only the construction of the fixed-effect columns differs. exact: tilde(D_c) offsets (one reference compound) and tilde(D_c x raw tyre age) slopes; approximate: raw D_c offsets and D_c x tilde(age) slopes.",
+  "shipped_2026": {
+   "exact": {
+    "rates_s_per_lap": {
+     "C1": {
+      "mean": 0.04104,
+      "lo": 0.00791,
+      "hi": 0.07417,
+      "n_runs": 55,
+      "n_laps": 801
+     },
+     "C2": {
+      "mean": 0.03733,
+      "lo": 0.00815,
+      "hi": 0.0665,
+      "n_runs": 191,
+      "n_laps": 2836
+     },
+     "C3": {
+      "mean": 0.05439,
+      "lo": 0.02577,
+      "hi": 0.083,
+      "n_runs": 242,
+      "n_laps": 3316
+     },
+     "C4": {
+      "mean": 0.06333,
+      "lo": 0.03459,
+      "hi": 0.09207,
+      "n_runs": 223,
+      "n_laps": 2943
+     },
+     "C5": {
+      "mean": 0.03851,
+      "lo": 0.00904,
+      "hi": 0.06797,
+      "n_runs": 109,
+      "n_laps": 1143
+     }
+    },
+    "variance_sd": {
+     "circuit_slope": 0.04982,
+     "driver_event": 1.15165,
+     "run": 0.30286,
+     "run_slope": 0.03534,
+     "resid": 0.55236
+    },
+    "compound_rate_sd_raw": 0.01143,
+    "compound_rate_sd_noise_corrected": 0.0,
+    "converged_all_ok": true,
+    "n_obs": 11039
+   },
+   "approximate": {
+    "rates_s_per_lap": {
+     "C1": {
+      "mean": 0.08237,
+      "lo": 0.04133,
+      "hi": 0.12342,
+      "n_runs": 55,
+      "n_laps": 801
+     },
+     "C2": {
+      "mean": 0.05324,
+      "lo": 0.02568,
+      "hi": 0.0808,
+      "n_runs": 191,
+      "n_laps": 2836
+     },
+     "C3": {
+      "mean": 0.05024,
+      "lo": 0.02409,
+      "hi": 0.07639,
+      "n_runs": 242,
+      "n_laps": 3316
+     },
+     "C4": {
+      "mean": 0.04205,
+      "lo": 0.01545,
+      "hi": 0.06864,
+      "n_runs": 223,
+      "n_laps": 2943
+     },
+     "C5": {
+      "mean": 0.02172,
+      "lo": -0.00682,
+      "hi": 0.05026,
+      "n_runs": 109,
+      "n_laps": 1143
+     }
+    },
+    "variance_sd": {
+     "circuit_slope": 0.04367,
+     "driver_event": 1.16643,
+     "run": 0.28421,
+     "run_slope": 0.0315,
+     "resid": 0.55553
+    },
+    "compound_rate_sd_raw": 0.02192,
+    "compound_rate_sd_noise_corrected": 0.01543,
+    "converged_all_ok": true,
+    "n_obs": 11039
+   },
+   "exact_minus_approximate_rate_s_per_lap": {
+    "C1": -0.04133,
+    "C2": -0.01591,
+    "C3": 0.00415,
+    "C4": 0.02128,
+    "C5": 0.01679
+   },
+   "compound_rate_sd_exact_minus_approximate": -0.01049
+  },
+  "pooled_2022_26_nested": {
+   "exact": {
+    "rates_s_per_lap": {
+     "C1": {
+      "mean": 0.04433,
+      "lo": 0.0307,
+      "hi": 0.05796
+     },
+     "C2": {
+      "mean": 0.04278,
+      "lo": 0.02962,
+      "hi": 0.05594
+     },
+     "C3": {
+      "mean": 0.05965,
+      "lo": 0.04662,
+      "hi": 0.07268
+     },
+     "C4": {
+      "mean": 0.06626,
+      "lo": 0.05313,
+      "hi": 0.07938
+     },
+     "C5": {
+      "mean": 0.07308,
+      "lo": 0.0594,
+      "hi": 0.08676
+     }
+    },
+    "variance_sd": {
+     "circuit_slope": 0.02776,
+     "event_slope": 0.02405,
+     "driver_event": 0.74513,
+     "run": 0.29506,
+     "run_slope": 0.03824,
+     "resid": 0.46555
+    },
+    "compound_rate_sd_raw": 0.01336,
+    "compound_rate_sd_noise_corrected": 0.0115,
+    "persistent_share_of_slope_variance": 0.571,
+    "converged": true,
+    "n_obs": 69395
+   },
+   "approximate": {
+    "rates_s_per_lap": {
+     "C1": {
+      "mean": 0.05562,
+      "lo": 0.04084,
+      "hi": 0.07041
+     },
+     "C2": {
+      "mean": 0.04737,
+      "lo": 0.03453,
+      "hi": 0.0602
+     },
+     "C3": {
+      "mean": 0.05828,
+      "lo": 0.04609,
+      "hi": 0.07047
+     },
+     "C4": {
+      "mean": 0.05899,
+      "lo": 0.04627,
+      "hi": 0.0717
+     },
+     "C5": {
+      "mean": 0.05314,
+      "lo": 0.03828,
+      "hi": 0.068
+     }
+    },
+    "variance_sd": {
+     "circuit_slope": 0.02471,
+     "event_slope": 0.02397,
+     "driver_event": 0.74586,
+     "run": 0.29304,
+     "run_slope": 0.03804,
+     "resid": 0.46643
+    },
+    "compound_rate_sd_raw": 0.0047,
+    "compound_rate_sd_noise_corrected": 0.0,
+    "persistent_share_of_slope_variance": 0.515,
+    "converged": true,
+    "n_obs": 69395
+   },
+   "exact_minus_approximate_rate_s_per_lap": {
+    "C1": -0.01129,
+    "C2": -0.00459,
+    "C3": 0.00137,
+    "C4": 0.00727,
+    "C5": 0.01994
+   },
+   "compound_rate_sd_exact_minus_approximate": 0.00866
+  }
+ },
+ "season_c_rates": {
+  "2022": {
+   "n_events": 18,
+   "n_laps": 13637,
+   "n_runs": 1038,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.04651,
+     "lo": 0.0205,
+     "hi": 0.07252,
+     "n_runs": 32
+    },
+    "C2": {
+     "mean": 0.04097,
+     "lo": 0.01938,
+     "hi": 0.06257,
+     "n_runs": 326
+    },
+    "C3": {
+     "mean": 0.06291,
+     "lo": 0.04136,
+     "hi": 0.08447,
+     "n_runs": 504
+    },
+    "C4": {
+     "mean": 0.08997,
+     "lo": 0.06782,
+     "hi": 0.11212,
+     "n_runs": 166
+    },
+    "C5": {
+     "mean": 0.13602,
+     "lo": 0.10695,
+     "hi": 0.16509,
+     "n_runs": 10
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.0441,
+   "convergence_all_ok": true
+  },
+  "2023": {
+   "n_events": 16,
+   "n_laps": 13536,
+   "n_runs": 860,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.0435,
+     "lo": 0.02526,
+     "hi": 0.06174,
+     "n_runs": 95
+    },
+    "C2": {
+     "mean": 0.04866,
+     "lo": 0.03123,
+     "hi": 0.06608,
+     "n_runs": 135
+    },
+    "C3": {
+     "mean": 0.06085,
+     "lo": 0.04377,
+     "hi": 0.07793,
+     "n_runs": 434
+    },
+    "C4": {
+     "mean": 0.06369,
+     "lo": 0.04608,
+     "hi": 0.0813,
+     "n_runs": 186
+    },
+    "C5": {
+     "mean": 0.15345,
+     "lo": 0.12702,
+     "hi": 0.17988,
+     "n_runs": 10
+    }
+   },
+   "monotone_softer_degrades_faster": true,
+   "circuit_slope_sd_s_per_lap": 0.03322,
+   "convergence_all_ok": true
+  },
+  "2024": {
+   "n_events": 18,
+   "n_laps": 15942,
+   "n_runs": 857,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.05396,
+     "lo": 0.03832,
+     "hi": 0.06959,
+     "n_runs": 112
+    },
+    "C2": {
+     "mean": 0.05535,
+     "lo": 0.03998,
+     "hi": 0.07071,
+     "n_runs": 117
+    },
+    "C3": {
+     "mean": 0.06495,
+     "lo": 0.05067,
+     "hi": 0.07924,
+     "n_runs": 414
+    },
+    "C4": {
+     "mean": 0.06057,
+     "lo": 0.046,
+     "hi": 0.07514,
+     "n_runs": 199
+    },
+    "C5": {
+     "mean": 0.09624,
+     "lo": 0.07688,
+     "hi": 0.11559,
+     "n_runs": 15
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.02843,
+   "convergence_all_ok": true
+  },
+  "2025": {
+   "n_events": 17,
+   "n_laps": 15241,
+   "n_runs": 870,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.04529,
+     "lo": 0.02598,
+     "hi": 0.06461,
+     "n_runs": 33
+    },
+    "C2": {
+     "mean": 0.03952,
+     "lo": 0.02126,
+     "hi": 0.05778,
+     "n_runs": 94
+    },
+    "C3": {
+     "mean": 0.04379,
+     "lo": 0.02685,
+     "hi": 0.06072,
+     "n_runs": 264
+    },
+    "C4": {
+     "mean": 0.06184,
+     "lo": 0.04491,
+     "hi": 0.07877,
+     "n_runs": 334
+    },
+    "C5": {
+     "mean": 0.07978,
+     "lo": 0.06204,
+     "hi": 0.09753,
+     "n_runs": 145
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.0327,
+   "convergence_all_ok": true
+  },
+  "2026": {
+   "n_events": 13,
+   "n_laps": 11039,
+   "n_runs": 820,
+   "rates_s_per_lap": {
+    "C1": {
+     "mean": 0.04104,
+     "lo": 0.00791,
+     "hi": 0.07417,
+     "n_runs": 55
+    },
+    "C2": {
+     "mean": 0.03733,
+     "lo": 0.00815,
+     "hi": 0.0665,
+     "n_runs": 191
+    },
+    "C3": {
+     "mean": 0.05439,
+     "lo": 0.02577,
+     "hi": 0.083,
+     "n_runs": 242
+    },
+    "C4": {
+     "mean": 0.06333,
+     "lo": 0.03459,
+     "hi": 0.09207,
+     "n_runs": 223
+    },
+    "C5": {
+     "mean": 0.03851,
+     "lo": 0.00904,
+     "hi": 0.06797,
+     "n_runs": 109
+    }
+   },
+   "monotone_softer_degrades_faster": false,
+   "circuit_slope_sd_s_per_lap": 0.04982,
+   "convergence_all_ok": true
+  }
+ },
+ "compound_spread_2026": {
+  "circuit_sd_s_per_lap": 0.04982,
+  "compound_rate_sd_raw": 0.01143,
+  "compound_rate_sd_noise_corrected": 0.0,
+  "parametric_bootstrap": {
+   "compound_sd_raw": {
+    "bootstrap_95": [
+     0.00838,
+     0.01875
+    ],
+    "median": 0.01219
+   },
+   "compound_sd_noise_corrected": {
+    "bootstrap_95": [
+     0.0,
+     0.01237
+    ],
+    "median": 0.0
+   },
+   "circuit_minus_compound_raw": {
+    "bootstrap_95": [
+     0.01503,
+     0.05919
+    ],
+    "median": 0.03562,
+    "p_circuit_greater": 1.0
+   },
+   "circuit_minus_compound_corrected": {
+    "bootstrap_95": [
+     0.02086,
+     0.07079
+    ],
+    "median": 0.0484,
+    "p_circuit_greater": 1.0
+   }
+  },
+  "event_cluster_bootstrap": {
+   "n_bootstrap": 500,
+   "n_used": 450,
+   "share_dropped_missing_compound_or_unconverged": 0.1,
+   "circuit_sd": {
+    "bootstrap_95": [
+     0.02165,
+     0.06825
+    ],
+    "median": 0.04609
+   },
+   "compound_sd_raw": {
+    "bootstrap_95": [
+     0.00752,
+     0.02882
+    ],
+    "median": 0.01772
+   },
+   "compound_sd_noise_corrected": {
+    "bootstrap_95": [
+     0.0,
+     0.02341
+    ],
+    "median": 0.00852
+   },
+   "circuit_minus_compound_raw": {
+    "bootstrap_95": [
+     0.00085,
+     0.05196
+    ],
+    "median": 0.02944,
+    "p_gt_0": 0.976
+   },
+   "circuit_minus_compound_corrected": {
+    "bootstrap_95": [
+     0.00278,
+     0.06673
+    ],
+    "median": 0.03872,
+    "p_gt_0": 0.987
+   },
+   "note": "Races redrawn with replacement; a repeated race counts as two blocks. Resamples missing a compound (C1 runs at only two races) are dropped and counted."
+  },
+  "jackknife_leave_one_event_out": {
+   "circuit_minus_compound_raw": {
+    "estimate": 0.03839,
+    "jackknife_se": 0.01729,
+    "ci95_normal": [
+     0.0045,
+     0.07228
+    ]
+   },
+   "circuit_minus_compound_corrected": {
+    "estimate": 0.04982,
+    "jackknife_se": 0.01957,
+    "ci95_normal": [
+     0.01145,
+     0.08818
+    ]
+   },
+   "n_events": 13
+  },
+  "note": "In 2026 each circuit hosts one race, so this circuit SD is race-to-race variance."
+ },
+ "power_extended": {
+  "params_per_lap": {
+   "point": {
+    "circuit_sd": 0.04982,
+    "run_slope_sd": 0.03534
+   },
+   "circuit_sd_low": {
+    "circuit_sd": 0.03543,
+    "run_slope_sd": 0.03534
+   },
+   "circuit_sd_high": {
+    "circuit_sd": 0.08102,
+    "run_slope_sd": 0.03534
+   },
+   "circuit_high_and_run_slope_x1.5": {
+    "circuit_sd": 0.08102,
+    "run_slope_sd": 0.05301
+   }
+  },
+  "design_notes": "13 events with the actual 2026 Pirelli nominations; 20-lap stints; N counts stints of the two compared compounds; balanced = both at every circuit; split = disjoint circuits",
+  "analytic_crossing_80pct_stints": {
+   "effect_0.006": {
+    "balanced": {
+     "point": 1489.0,
+     "circuit_sd_low": 1489.0,
+     "circuit_sd_high": 1489.0,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 2482.0,
+     "circuit_sd_low": 2481.0,
+     "circuit_sd_high": 2482.0,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C2_C3": {
+     "point": 2092.0,
+     "circuit_sd_low": 2090.0,
+     "circuit_sd_high": 2093.0,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C3_C4": {
+     "point": 1578.0,
+     "circuit_sd_low": 1578.0,
+     "circuit_sd_high": 1579.0,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C4_C5": {
+     "point": 1747.0,
+     "circuit_sd_low": 1747.0,
+     "circuit_sd_high": 1748.0,
+     "circuit_high_and_run_slope_x1.5": null
+    }
+   },
+   "effect_0.01": {
+    "balanced": {
+     "point": 536.0,
+     "circuit_sd_low": 536.0,
+     "circuit_sd_high": 536.0,
+     "circuit_high_and_run_slope_x1.5": 1026.0
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 893.0,
+     "circuit_sd_low": 893.0,
+     "circuit_sd_high": 893.0,
+     "circuit_high_and_run_slope_x1.5": 1710.0
+    },
+    "realistic_C2_C3": {
+     "point": 749.0,
+     "circuit_sd_low": 748.0,
+     "circuit_sd_high": 750.0,
+     "circuit_high_and_run_slope_x1.5": 1435.0
+    },
+    "realistic_C3_C4": {
+     "point": 569.0,
+     "circuit_sd_low": 569.0,
+     "circuit_sd_high": 570.0,
+     "circuit_high_and_run_slope_x1.5": 1079.0
+    },
+    "realistic_C4_C5": {
+     "point": 629.0,
+     "circuit_sd_low": 628.0,
+     "circuit_sd_high": 630.0,
+     "circuit_high_and_run_slope_x1.5": 1205.0
+    }
+   },
+   "effect_0.02": {
+    "balanced": {
+     "point": 134.0,
+     "circuit_sd_low": 134.0,
+     "circuit_sd_high": 134.0,
+     "circuit_high_and_run_slope_x1.5": 257.0
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 223.0,
+     "circuit_sd_low": 222.0,
+     "circuit_sd_high": 223.0,
+     "circuit_high_and_run_slope_x1.5": 427.0
+    },
+    "realistic_C2_C3": {
+     "point": 189.0,
+     "circuit_sd_low": 188.0,
+     "circuit_sd_high": 189.0,
+     "circuit_high_and_run_slope_x1.5": 358.0
+    },
+    "realistic_C3_C4": {
+     "point": 145.0,
+     "circuit_sd_low": 144.0,
+     "circuit_sd_high": 145.0,
+     "circuit_high_and_run_slope_x1.5": 266.0
+    },
+    "realistic_C4_C5": {
+     "point": 150.0,
+     "circuit_sd_low": 150.0,
+     "circuit_sd_high": 151.0,
+     "circuit_high_and_run_slope_x1.5": 295.0
+    }
+   },
+   "effect_0.03": {
+    "balanced": {
+     "point": 60.0,
+     "circuit_sd_low": 60.0,
+     "circuit_sd_high": 60.0,
+     "circuit_high_and_run_slope_x1.5": 114.0
+    },
+    "split": {
+     "point": null,
+     "circuit_sd_low": null,
+     "circuit_sd_high": null,
+     "circuit_high_and_run_slope_x1.5": null
+    },
+    "realistic_C1_C2": {
+     "point": 99.0,
+     "circuit_sd_low": 99.0,
+     "circuit_sd_high": 100.0,
+     "circuit_high_and_run_slope_x1.5": 190.0
+    },
+    "realistic_C2_C3": {
+     "point": 86.0,
+     "circuit_sd_low": 84.0,
+     "circuit_sd_high": 87.0,
+     "circuit_high_and_run_slope_x1.5": 164.0
+    },
+    "realistic_C3_C4": {
+     "point": 68.0,
+     "circuit_sd_low": 67.0,
+     "circuit_sd_high": 68.0,
+     "circuit_high_and_run_slope_x1.5": 126.0
+    },
+    "realistic_C4_C5": {
+     "point": 66.0,
+     "circuit_sd_low": 66.0,
+     "circuit_sd_high": 67.0,
+     "circuit_high_and_run_slope_x1.5": 128.0
+    }
+   }
+  },
+  "analytic_se_floor_split_design_s_per_lap": {
+   "point": 0.02763,
+   "circuit_sd_low": 0.01965,
+   "circuit_sd_high": 0.04494,
+   "circuit_high_and_run_slope_x1.5": 0.04494
+  },
+  "split_design_power_ceiling": {
+   "effect_0.006": {
+    "point": 0.055,
+    "circuit_sd_low": 0.061,
+    "circuit_sd_high": 0.052,
+    "circuit_high_and_run_slope_x1.5": 0.052
+   },
+   "effect_0.01": {
+    "point": 0.065,
+    "circuit_sd_low": 0.08,
+    "circuit_sd_high": 0.056,
+    "circuit_high_and_run_slope_x1.5": 0.056
+   },
+   "effect_0.02": {
+    "point": 0.112,
+    "circuit_sd_low": 0.174,
+    "circuit_sd_high": 0.073,
+    "circuit_high_and_run_slope_x1.5": 0.073
+   },
+   "effect_0.03": {
+    "point": 0.192,
+    "circuit_sd_low": 0.333,
+    "circuit_sd_high": 0.102,
+    "circuit_high_and_run_slope_x1.5": 0.102
+   }
+  },
+  "simulated": {
+   "effect_0.006": {
+    "balanced": {
+     "n_stints": [
+      884,
+      1482
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.557,
+      0.789
+     ],
+     "power_mc_se": [
+      0.016,
+      0.013
+     ],
+     "power_t_df12": [
+      0.476,
+      0.723
+     ],
+     "crossing_80_wald_z": {
+      "crossing": null,
+      "mc_se": 16.478,
+      "mc_ci95": [
+       1422.669548,
+       1482.0
+      ],
+      "share_of_resamples_never_reaching_target": 0.777
+     },
+     "crossing_80_t_df12": {
+      "crossing": null,
+      "mc_se": null,
+      "mc_ci95": null,
+      "share_of_resamples_never_reaching_target": 1.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      1482
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.589
+     ],
+     "power_mc_se": [
+      0.016
+     ],
+     "power_t_df12": [
+      0.348
+     ],
+     "crossing_80_wald_z": {
+      "crossing": null,
+      "mc_se": null,
+      "mc_ci95": null,
+      "share_of_resamples_never_reaching_target": 1.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": null,
+      "mc_se": null,
+      "mc_ci95": null,
+      "share_of_resamples_never_reaching_target": 1.0
+     }
+    }
+   },
+   "effect_0.01": {
+    "balanced": {
+     "n_stints": [
+      312,
+      546,
+      806,
+      1170
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.603,
+      0.831,
+      0.923,
+      0.979
+     ],
+     "power_mc_se": [
+      0.015,
+      0.012,
+      0.008,
+      0.005
+     ],
+     "power_t_df12": [
+      0.514,
+      0.766,
+      0.879,
+      0.972
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 505.997,
+      "mc_se": 12.967,
+      "mc_ci95": [
+       482.910482,
+       534.507477
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 613.882,
+      "mc_se": 20.442,
+      "mc_ci95": [
+       570.916092,
+       647.194094
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      546,
+      884,
+      1352,
+      1976
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.574,
+      0.797,
+      0.939,
+      0.99
+     ],
+     "power_mc_se": [
+      0.016,
+      0.013,
+      0.008,
+      0.003
+     ],
+     "power_t_df12": [
+      0.337,
+      0.599,
+      0.801,
+      0.951
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 891.971,
+      "mc_se": 27.67,
+      "mc_ci95": [
+       846.810341,
+       950.937024
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 1349.159,
+      "mc_se": 35.781,
+      "mc_ci95": [
+       1285.653943,
+       1429.423126
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    }
+   },
+   "effect_0.02": {
+    "balanced": {
+     "n_stints": [
+      78,
+      130,
+      208,
+      286
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.547,
+      0.782,
+      0.924,
+      0.983
+     ],
+     "power_mc_se": [
+      0.016,
+      0.013,
+      0.008,
+      0.004
+     ],
+     "power_t_df12": [
+      0.47,
+      0.728,
+      0.891,
+      0.969
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 137.981,
+      "mc_se": 5.117,
+      "mc_ci95": [
+       128.145583,
+       147.185379
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 159.995,
+      "mc_se": 4.366,
+      "mc_ci95": [
+       150.468577,
+       167.945275
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      130,
+      234,
+      338,
+      494
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.576,
+      0.827,
+      0.926,
+      0.99
+     ],
+     "power_mc_se": [
+      0.016,
+      0.012,
+      0.008,
+      0.003
+     ],
+     "power_t_df12": [
+      0.332,
+      0.641,
+      0.811,
+      0.94
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 219.663,
+      "mc_se": 5.889,
+      "mc_ci95": [
+       209.607076,
+       233.38133
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 330.053,
+      "mc_se": 8.511,
+      "mc_ci95": [
+       315.592596,
+       349.457328
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    }
+   },
+   "effect_0.03": {
+    "balanced": {
+     "n_stints": [
+      52,
+      78,
+      130
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.752,
+      0.892,
+      0.986
+     ],
+     "power_mc_se": [
+      0.014,
+      0.01,
+      0.004
+     ],
+     "power_t_df12": [
+      0.675,
+      0.843,
+      0.974
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 59.755,
+      "mc_se": 1.708,
+      "mc_ci95": [
+       56.078949,
+       63.003043
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 70.311,
+      "mc_se": 1.666,
+      "mc_ci95": [
+       67.332077,
+       73.723458
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    },
+    "realistic_C1_C2": {
+     "n_stints": [
+      52,
+      104,
+      156,
+      208
+     ],
+     "reps": 1000,
+     "power_wald_z": [
+      0.497,
+      0.811,
+      0.94,
+      0.986
+     ],
+     "power_mc_se": [
+      0.016,
+      0.012,
+      0.008,
+      0.004
+     ],
+     "power_t_df12": [
+      0.29,
+      0.608,
+      0.828,
+      0.94
+     ],
+     "crossing_80_wald_z": {
+      "crossing": 101.505,
+      "mc_se": 2.856,
+      "mc_ci95": [
+       96.887968,
+       108.082709
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     },
+     "crossing_80_t_df12": {
+      "crossing": 148.154,
+      "mc_se": 2.964,
+      "mc_ci95": [
+       143.018019,
+       154.885367
+      ],
+      "share_of_resamples_never_reaching_target": 0.0
+     }
+    }
+   }
+  },
+  "simulation_cap_stints": 2000,
+  "simulated_points_skipped_above_cap": [
+   {
+    "design": "balanced",
+    "effect": 0.006,
+    "n_stints": 2236
+   },
+   {
+    "design": "balanced",
+    "effect": 0.006,
+    "n_stints": 3276
+   },
+   {
+    "design": "realistic_C1_C2",
+    "effect": 0.006,
+    "n_stints": 2470
+   },
+   {
+    "design": "realistic_C1_C2",
+    "effect": 0.006,
+    "n_stints": 3718
+   },
+   {
+    "design": "realistic_C1_C2",
+    "effect": 0.006,
+    "n_stints": 5460
+   }
+  ],
+  "type_I_error_at_zero_effect": {
+   "balanced": {
+    "n_stints": 832,
+    "reps": 2000,
+    "wald_z_reject_rate": 0.056,
+    "wald_z_mc_se": 0.005,
+    "t_df12_reject_rate": 0.032,
+    "nominal": 0.05
+   },
+   "realistic_C1_C2": {
+    "n_stints": 832,
+    "reps": 2000,
+    "wald_z_reject_rate": 0.05,
+    "wald_z_mc_se": 0.005,
+    "t_df12_reject_rate": 0.011,
+    "nominal": 0.05
+   }
+  },
+  "analytic_grid_stints": [
+   52,
+   104,
+   208,
+   416,
+   832,
+   1664,
+   2496
+  ],
+  "seconds": 1321.5
+ },
+ "min_detectable_effect": {
+  "n_runs_by_compound": {
+   "C1": 55,
+   "C2": 191,
+   "C3": 242,
+   "C4": 223,
+   "C5": 109
+  },
+  "n_balanced_stints": 832,
+  "analytic_known_variance": {
+   "balanced": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00287,
+      "mde_80_s_per_lap": 0.008
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00287,
+      "mde_80_s_per_lap": 0.008
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00287,
+      "mde_80_s_per_lap": 0.008
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00396,
+      "mde_80_s_per_lap": 0.0111
+     }
+    }
+   },
+   "split": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.02786,
+      "mde_80_s_per_lap": 0.0781
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.01992,
+      "mde_80_s_per_lap": 0.0558
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.04517,
+      "mde_80_s_per_lap": 0.1265
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.04525,
+      "mde_80_s_per_lap": 0.1268
+     }
+    }
+   },
+   "realistic_C1_C2": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.0037,
+      "mde_80_s_per_lap": 0.0104
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.0037,
+      "mde_80_s_per_lap": 0.0104
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.0037,
+      "mde_80_s_per_lap": 0.0104
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00512,
+      "mde_80_s_per_lap": 0.0143
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 246,
+     "point": {
+      "se_s_per_lap": 0.00677,
+      "mde_80_s_per_lap": 0.019
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00676,
+      "mde_80_s_per_lap": 0.0189
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00677,
+      "mde_80_s_per_lap": 0.019
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00937,
+      "mde_80_s_per_lap": 0.0262
+     }
+    }
+   },
+   "realistic_C2_C3": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00339,
+      "mde_80_s_per_lap": 0.0095
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00338,
+      "mde_80_s_per_lap": 0.0095
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00339,
+      "mde_80_s_per_lap": 0.0095
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00469,
+      "mde_80_s_per_lap": 0.0131
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 433,
+     "point": {
+      "se_s_per_lap": 0.00468,
+      "mde_80_s_per_lap": 0.0131
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00467,
+      "mde_80_s_per_lap": 0.0131
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00469,
+      "mde_80_s_per_lap": 0.0131
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00648,
+      "mde_80_s_per_lap": 0.0182
+     }
+    }
+   },
+   "realistic_C3_C4": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.00293,
+      "mde_80_s_per_lap": 0.0082
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00293,
+      "mde_80_s_per_lap": 0.0082
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00293,
+      "mde_80_s_per_lap": 0.0082
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00405,
+      "mde_80_s_per_lap": 0.0114
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 465,
+     "point": {
+      "se_s_per_lap": 0.00398,
+      "mde_80_s_per_lap": 0.0111
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00397,
+      "mde_80_s_per_lap": 0.0111
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00398,
+      "mde_80_s_per_lap": 0.0111
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.0055,
+      "mde_80_s_per_lap": 0.0154
+     }
+    }
+   },
+   "realistic_C4_C5": {
+    "at_N_832": {
+     "n_stints": 832,
+     "point": {
+      "se_s_per_lap": 0.0031,
+      "mde_80_s_per_lap": 0.0087
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.0031,
+      "mde_80_s_per_lap": 0.0087
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.0031,
+      "mde_80_s_per_lap": 0.0087
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.0043,
+      "mde_80_s_per_lap": 0.012
+     }
+    },
+    "at_actual_pair_runs": {
+     "n_stints": 332,
+     "point": {
+      "se_s_per_lap": 0.00496,
+      "mde_80_s_per_lap": 0.0139
+     },
+     "circuit_sd_low": {
+      "se_s_per_lap": 0.00496,
+      "mde_80_s_per_lap": 0.0139
+     },
+     "circuit_sd_high": {
+      "se_s_per_lap": 0.00496,
+      "mde_80_s_per_lap": 0.0139
+     },
+     "circuit_high_and_run_slope_x1.5": {
+      "se_s_per_lap": 0.00686,
+      "mde_80_s_per_lap": 0.0192
+     }
+    }
+   }
+  },
+  "simulated_refit": {
+   "balanced": {
+    "n_stints": 832,
+    "reps": 1000,
+    "effects": [
+     0.0048,
+     0.0068,
+     0.0088,
+     0.012,
+     0.016
+    ],
+    "power_wald_z": [
+     0.376,
+     0.682,
+     0.86,
+     0.987,
+     0.999
+    ],
+    "power_mc_se": [
+     0.015,
+     0.015,
+     0.011,
+     0.004,
+     0.001
+    ],
+    "power_t_df12": [
+     0.282,
+     0.608,
+     0.813,
+     0.969,
+     0.999
+    ],
+    "mde_80_wald_z": {
+     "crossing": 0.008,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.007864,
+      0.00828
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "mde_80_t_df12": {
+     "crossing": 0.009,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.008444,
+      0.008969
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "n_failed_fits": 42
+   },
+   "realistic_C1_C2": {
+    "n_stints": 246,
+    "reps": 1000,
+    "effects": [
+     0.0114,
+     0.0161,
+     0.0209,
+     0.0285,
+     0.038
+    ],
+    "power_wald_z": [
+     0.414,
+     0.658,
+     0.867,
+     0.987,
+     1.0
+    ],
+    "power_mc_se": [
+     0.016,
+     0.015,
+     0.011,
+     0.004,
+     0.0
+    ],
+    "power_t_df12": [
+     0.209,
+     0.438,
+     0.717,
+     0.946,
+     0.999
+    ],
+    "mde_80_wald_z": {
+     "crossing": 0.019,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.018792,
+      0.019643
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "mde_80_t_df12": {
+     "crossing": 0.023,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.022757,
+      0.023932
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "n_failed_fits": 29
+   },
+   "realistic_C3_C4": {
+    "n_stints": 465,
+    "reps": 1000,
+    "effects": [
+     0.0067,
+     0.0094,
+     0.0122,
+     0.0167,
+     0.0222
+    ],
+    "power_wald_z": [
+     0.386,
+     0.644,
+     0.864,
+     0.989,
+     0.999
+    ],
+    "power_mc_se": [
+     0.015,
+     0.015,
+     0.011,
+     0.003,
+     0.001
+    ],
+    "power_t_df12": [
+     0.31,
+     0.572,
+     0.82,
+     0.975,
+     0.999
+    ],
+    "mde_80_wald_z": {
+     "crossing": 0.011,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.011092,
+      0.011542
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "mde_80_t_df12": {
+     "crossing": 0.012,
+     "mc_se": 0.0,
+     "mc_ci95": [
+      0.011697,
+      0.012287
+     ],
+     "share_of_resamples_never_reaching_target": 0.0
+    },
+    "n_failed_fits": 36
+   }
+  },
+  "note": "mde_80 = smallest compound gap (s/lap) with 80% power; analytic uses known variances (a lower bound on the detectable gap), simulated refits them. 'crossing' keys are effects, not stints.",
+  "seconds": 138.1
+ },
+ "detectable_from_fit": {
+  "what": "Smallest true gap in wear rate between neighbouring compounds that the REAL data would detect with 80% power (two-sided 5% Wald test), from each fit's own covariance; not a simulation and not the idealised design of power_extended.",
+  "mde80_formula": "MDE80 = (z_0.975 + z_0.80) x SE",
+  "z_0.975": 1.959964,
+  "z_0.80": 0.841621,
+  "multiplier": 2.8016,
+  "units": "seconds per lap of tyre age; contrast 'Cb-Ca' is rate(Cb) minus rate(Ca)",
+  "shipped_2026": {
+   "specification": "shipped race fit: compound offsets and tyre-age slopes, traffic, random circuit slope, driver-in-event, run intercept, run slope; REML",
+   "n_races": 13,
+   "n_runs": 820,
+   "block_for_t_reference": "race (one per circuit in 2026)",
+   "contrasts": {
+    "C2-C1": {
+     "estimate": -0.00372,
+     "se": 0.0091,
+     "lo": -0.02156,
+     "hi": 0.01413,
+     "z": -0.408,
+     "p_wald": 0.683,
+     "mde80": 0.02551,
+     "mde80_t_reference": 0.03178,
+     "t_reference_df": 5,
+     "n_runs": {
+      "C1": 55,
+      "C2": 191
+     },
+     "n_events": {
+      "C1": 2,
+      "C2": 6
+     },
+     "n_blocks_carrying_either_compound": 6
+    },
+    "C3-C2": {
+     "estimate": 0.01706,
+     "se": 0.00661,
+     "lo": 0.00411,
+     "hi": 0.03001,
+     "z": 2.583,
+     "p_wald": 0.00981,
+     "mde80": 0.01851,
+     "mde80_t_reference": 0.02016,
+     "t_reference_df": 12,
+     "n_runs": {
+      "C2": 191,
+      "C3": 242
+     },
+     "n_events": {
+      "C2": 6,
+      "C3": 12
+     },
+     "n_blocks_carrying_either_compound": 13
+    },
+    "C4-C3": {
+     "estimate": 0.00894,
+     "se": 0.00324,
+     "lo": 0.0026,
+     "hi": 0.01529,
+     "z": 2.762,
+     "p_wald": 0.00574,
+     "mde80": 0.00907,
+     "mde80_t_reference": 0.00996,
+     "t_reference_df": 11,
+     "n_runs": {
+      "C3": 242,
+      "C4": 223
+     },
+     "n_events": {
+      "C3": 12,
+      "C4": 11
+     },
+     "n_blocks_carrying_either_compound": 12
+    },
+    "C5-C4": {
+     "estimate": -0.02482,
+     "se": 0.00427,
+     "lo": -0.0332,
+     "hi": -0.01645,
+     "z": -5.809,
+     "p_wald": 0.0,
+     "mde80": 0.01197,
+     "mde80_t_reference": 0.01328,
+     "t_reference_df": 10,
+     "n_runs": {
+      "C4": 223,
+      "C5": 109
+     },
+     "n_events": {
+      "C4": 11,
+      "C5": 7
+     },
+     "n_blocks_carrying_either_compound": 11
+    }
+   }
+  },
+  "pooled_2022_26_nested": {
+   "specification": "circuit random slope plus race-within-circuit random slope, C-number compounds, run terms as shipped; REML",
+   "n_races": 82,
+   "n_circuits": 23,
+   "n_runs": 4445,
+   "block_for_t_reference": "circuit",
+   "contrasts": {
+    "C2-C1": {
+     "estimate": -0.00155,
+     "se": 0.00237,
+     "lo": -0.0062,
+     "hi": 0.0031,
+     "z": -0.653,
+     "p_wald": 0.514,
+     "mde80": 0.00665,
+     "mde80_t_reference": 0.00715,
+     "t_reference_df": 14,
+     "n_runs": {
+      "C1": 327,
+      "C2": 863
+     },
+     "n_events": {
+      "C1": 19,
+      "C2": 39
+     },
+     "n_blocks_carrying_either_compound": 15
+    },
+    "C3-C2": {
+     "estimate": 0.01687,
+     "se": 0.0017,
+     "lo": 0.01355,
+     "hi": 0.0202,
+     "z": 9.946,
+     "p_wald": 0.0,
+     "mde80": 0.00475,
+     "mde80_t_reference": 0.00497,
+     "t_reference_df": 22,
+     "n_runs": {
+      "C2": 863,
+      "C3": 1858
+     },
+     "n_events": {
+      "C2": 39,
+      "C3": 75
+     },
+     "n_blocks_carrying_either_compound": 23
+    },
+    "C4-C3": {
+     "estimate": 0.00661,
+     "se": 0.00111,
+     "lo": 0.00443,
+     "hi": 0.00878,
+     "z": 5.952,
+     "p_wald": 0.0,
+     "mde80": 0.00311,
+     "mde80_t_reference": 0.00325,
+     "t_reference_df": 22,
+     "n_runs": {
+      "C3": 1858,
+      "C4": 1108
+     },
+     "n_events": {
+      "C3": 75,
+      "C4": 58
+     },
+     "n_blocks_carrying_either_compound": 23
+    },
+    "C5-C4": {
+     "estimate": 0.00683,
+     "se": 0.00218,
+     "lo": 0.00255,
+     "hi": 0.01111,
+     "z": 3.126,
+     "p_wald": 0.00177,
+     "mde80": 0.00612,
+     "mde80_t_reference": 0.00647,
+     "t_reference_df": 18,
+     "n_runs": {
+      "C4": 1108,
+      "C5": 289
+     },
+     "n_events": {
+      "C4": 58,
+      "C5": 30
+     },
+     "n_blocks_carrying_either_compound": 19
+    }
+   }
+  },
+  "caveats": "Wald z with fitted variance components treated as known; the t-reference column shows how much larger the detectable gap is when the number of independent races or circuits is small."
+ },
+ "mundlak_check": {
+  "question": "Is a run's random pace level unrelated to its tyre age? (Mundlak / correlated random effects)",
+  "device": "fixed covariates = run mean of the model's own tyre-age regressor for that run's compound (tilde(D_c x raw age) / SD, exactly within-transformed), one per compound; slopes then use within-run variation only",
+  "shipped_2026": {
+   "design": {
+    "n_laps": 11039,
+    "n_runs": 820,
+    "n_races": 13,
+    "n_runs_by_compound": {
+     "C1": 55,
+     "C2": 191,
+     "C3": 242,
+     "C4": 223,
+     "C5": 109
+    },
+    "sd_of_run_mean_tyre_age_over_sd_within_run": 1.784
+   },
+   "slopes_s_per_lap": {
+    "C1": {
+     "re": {
+      "mean": 0.04104,
+      "lo": 0.00791,
+      "hi": 0.07417,
+      "se": 0.0169,
+      "se_cluster_bootstrap": 0.02906
+     },
+     "cre": {
+      "mean": 0.04625,
+      "lo": 0.01321,
+      "hi": 0.0793,
+      "se": 0.01686,
+      "se_cluster_bootstrap": 0.03887
+     },
+     "cre_minus_re": {
+      "estimate": 0.00521,
+      "se": 0.01104,
+      "lo": -0.01643,
+      "hi": 0.02685,
+      "z": 0.472,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.01104,
+      "bootstrap_percentile_95": [
+       -0.01579,
+       0.0218
+      ],
+      "se_cluster_bootstrap_iqr": 0.01305,
+      "n_bootstrap_with_compound": 440
+     },
+     "run_mean_coefficient": {
+      "mean": -0.04899,
+      "lo": -0.08692,
+      "hi": -0.01106,
+      "se": 0.01935
+     },
+     "between_run_slope_implied": {
+      "mean": -0.00274,
+      "lo": -0.05003,
+      "hi": 0.04456,
+      "se": 0.02413
+     }
+    },
+    "C2": {
+     "re": {
+      "mean": 0.03733,
+      "lo": 0.00815,
+      "hi": 0.0665,
+      "se": 0.01489,
+      "se_cluster_bootstrap": 0.01575
+     },
+     "cre": {
+      "mean": 0.04033,
+      "lo": 0.01137,
+      "hi": 0.0693,
+      "se": 0.01478,
+      "se_cluster_bootstrap": 0.01972
+     },
+     "cre_minus_re": {
+      "estimate": 0.00301,
+      "se": 0.00657,
+      "lo": -0.00987,
+      "hi": 0.01588,
+      "z": 0.458,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.00657,
+      "bootstrap_percentile_95": [
+       -0.0144,
+       0.0103
+      ],
+      "se_cluster_bootstrap_iqr": 0.00475,
+      "n_bootstrap_with_compound": 491
+     },
+     "run_mean_coefficient": {
+      "mean": -0.00251,
+      "lo": -0.01789,
+      "hi": 0.01287,
+      "se": 0.00785
+     },
+     "between_run_slope_implied": {
+      "mean": 0.03782,
+      "lo": 0.00626,
+      "hi": 0.06939,
+      "se": 0.01611
+     }
+    },
+    "C3": {
+     "re": {
+      "mean": 0.05439,
+      "lo": 0.02577,
+      "hi": 0.083,
+      "se": 0.0146,
+      "se_cluster_bootstrap": 0.01583
+     },
+     "cre": {
+      "mean": 0.05615,
+      "lo": 0.0278,
+      "hi": 0.0845,
+      "se": 0.01446,
+      "se_cluster_bootstrap": 0.01953
+     },
+     "cre_minus_re": {
+      "estimate": 0.00177,
+      "se": 0.00617,
+      "lo": -0.01033,
+      "hi": 0.01386,
+      "z": 0.286,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.00617,
+      "bootstrap_percentile_95": [
+       -0.01342,
+       0.00991
+      ],
+      "se_cluster_bootstrap_iqr": 0.00466,
+      "n_bootstrap_with_compound": 491
+     },
+     "run_mean_coefficient": {
+      "mean": 0.00704,
+      "lo": -0.00317,
+      "hi": 0.01724,
+      "se": 0.00521
+     },
+     "between_run_slope_implied": {
+      "mean": 0.06319,
+      "lo": 0.0339,
+      "hi": 0.09247,
+      "se": 0.01494
+     }
+    },
+    "C4": {
+     "re": {
+      "mean": 0.06333,
+      "lo": 0.03459,
+      "hi": 0.09207,
+      "se": 0.01466,
+      "se_cluster_bootstrap": 0.01637
+     },
+     "cre": {
+      "mean": 0.06803,
+      "lo": 0.0396,
+      "hi": 0.09647,
+      "se": 0.01451,
+      "se_cluster_bootstrap": 0.01967
+     },
+     "cre_minus_re": {
+      "estimate": 0.00471,
+      "se": 0.00611,
+      "lo": -0.00727,
+      "hi": 0.01668,
+      "z": 0.77,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.00611,
+      "bootstrap_percentile_95": [
+       -0.01144,
+       0.01219
+      ],
+      "se_cluster_bootstrap_iqr": 0.00429,
+      "n_bootstrap_with_compound": 491
+     },
+     "run_mean_coefficient": {
+      "mean": -0.01438,
+      "lo": -0.02549,
+      "hi": -0.00328,
+      "se": 0.00567
+     },
+     "between_run_slope_implied": {
+      "mean": 0.05365,
+      "lo": 0.02383,
+      "hi": 0.08348,
+      "se": 0.01522
+     }
+    },
+    "C5": {
+     "re": {
+      "mean": 0.03851,
+      "lo": 0.00904,
+      "hi": 0.06797,
+      "se": 0.01503,
+      "se_cluster_bootstrap": 0.02153
+     },
+     "cre": {
+      "mean": 0.04217,
+      "lo": 0.01286,
+      "hi": 0.07149,
+      "se": 0.01496,
+      "se_cluster_bootstrap": 0.02684
+     },
+     "cre_minus_re": {
+      "estimate": 0.00367,
+      "se": 0.00755,
+      "lo": -0.01113,
+      "hi": 0.01846,
+      "z": 0.485,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.00755,
+      "bootstrap_percentile_95": [
+       -0.01134,
+       0.01811
+      ],
+      "se_cluster_bootstrap_iqr": 0.00506,
+      "n_bootstrap_with_compound": 491
+     },
+     "run_mean_coefficient": {
+      "mean": -0.00526,
+      "lo": -0.02042,
+      "hi": 0.00989,
+      "se": 0.00773
+     },
+     "between_run_slope_implied": {
+      "mean": 0.03691,
+      "lo": 0.00552,
+      "hi": 0.06829,
+      "se": 0.01601
+     }
+    }
+   },
+   "wald_run_means_zero": {
+    "statistic": 15.046,
+    "df": 5,
+    "p_chi2": 0.0102,
+    "coefficients_tested": [
+     "tl_runmean_C1",
+     "tl_runmean_C2",
+     "tl_runmean_C3",
+     "tl_runmean_C4",
+     "tl_runmean_C5"
+    ],
+    "note": "Wald chi-square from the CRE fit's own covariance, variance components treated as known.",
+    "p_bootstrap_t": 0.619,
+    "bootstrap_t": {
+     "n_used": 440,
+     "n_ge": 272,
+     "wstar_median": 19.364,
+     "wstar_95": 66.823,
+     "reading": "Share of cluster-bootstrap replicates whose statistic for (delta* - delta_hat) reaches the observed one; calibrates the chi-square to the small number of independent races."
+    }
+   },
+   "hausman": {
+    "variance_of_difference": "V(CRE) - V(RE) on the compound slopes (RE efficient under H0)",
+    "positive_definite": false,
+    "min_eigenvalue": -2.1e-05,
+    "diagonal_positive": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": false
+    },
+    "chi2_all_slopes_equal": null,
+    "df": 5,
+    "p_chi2": null,
+    "se_used_for_differences": "cluster_bootstrap"
+   },
+   "run_fixed_effects_ols": {
+    "cluster_by_event": {
+     "C1": {
+      "estimate": 9e-05,
+      "se": 0.04512,
+      "lo": -0.0982,
+      "hi": 0.09839,
+      "t": 0.002,
+      "p": 0.998,
+      "n_clusters_with_compound": 2,
+      "lo_conservative": -0.57316,
+      "hi_conservative": 0.57334
+     },
+     "C2": {
+      "estimate": -0.00948,
+      "se": 0.04271,
+      "lo": -0.10253,
+      "hi": 0.08358,
+      "t": -0.222,
+      "p": 0.828,
+      "n_clusters_with_compound": 6,
+      "lo_conservative": -0.11926,
+      "hi_conservative": 0.10031
+     },
+     "C3": {
+      "estimate": 0.00666,
+      "se": 0.04193,
+      "lo": -0.08469,
+      "hi": 0.09802,
+      "t": 0.159,
+      "p": 0.876,
+      "n_clusters_with_compound": 12,
+      "lo_conservative": -0.08562,
+      "hi_conservative": 0.09895
+     },
+     "C4": {
+      "estimate": 0.00047,
+      "se": 0.04137,
+      "lo": -0.08966,
+      "hi": 0.09061,
+      "t": 0.011,
+      "p": 0.991,
+      "n_clusters_with_compound": 11,
+      "lo_conservative": -0.0917,
+      "hi_conservative": 0.09265
+     },
+     "C5": {
+      "estimate": -0.01501,
+      "se": 0.03914,
+      "lo": -0.10029,
+      "hi": 0.07026,
+      "t": -0.384,
+      "p": 0.708,
+      "n_clusters_with_compound": 7,
+      "lo_conservative": -0.11078,
+      "hi_conservative": 0.08075
+     },
+     "n_clusters": 13,
+     "t_df": 12,
+     "level_identified": true,
+     "level_note": "",
+     "note": "lo/hi and p use t with G-1 df; lo_conservative/hi_conservative use t with (clusters carrying the compound - 1) df, the honest reading for a compound that few clusters carry"
+    }
+   },
+   "variance_components": {
+    "re": {
+     "circuit_slope": 0.04982,
+     "driver_event": 1.15165,
+     "run": 0.30286,
+     "run_slope": 0.03534,
+     "resid": 0.55236,
+     "compound_rate_sd_raw": 0.01143,
+     "compound_rate_sd_noise_corrected": 0.0
+    },
+    "cre": {
+     "circuit_slope": 0.04892,
+     "driver_event": 1.15793,
+     "run": 0.30283,
+     "run_slope": 0.03674,
+     "resid": 0.5516,
+     "compound_rate_sd_raw": 0.01151,
+     "compound_rate_sd_noise_corrected": 0.0
+    },
+    "bootstrap_95": {
+     "circuit_slope": {
+      "re_95": [
+       0.02326,
+       0.06814
+      ],
+      "cre_95": [
+       0.02553,
+       0.07351
+      ],
+      "cre_minus_re_95": [
+       -0.00379,
+       0.0163
+      ],
+      "n": 491
+     },
+     "driver_event": {
+      "re_95": [
+       1.06211,
+       1.21839
+      ],
+      "cre_95": [
+       1.0638,
+       1.23261
+      ],
+      "cre_minus_re_95": [
+       -0.00396,
+       0.0262
+      ],
+      "n": 491
+     },
+     "run": {
+      "re_95": [
+       0.27026,
+       0.35245
+      ],
+      "cre_95": [
+       0.26614,
+       0.34758
+      ],
+      "cre_minus_re_95": [
+       -0.013,
+       0.0086
+      ],
+      "n": 491
+     },
+     "run_slope": {
+      "re_95": [
+       0.0289,
+       0.04812
+      ],
+      "cre_95": [
+       0.02995,
+       0.05155
+      ],
+      "cre_minus_re_95": [
+       8e-05,
+       0.00719
+      ],
+      "n": 491
+     },
+     "resid": {
+      "re_95": [
+       0.47364,
+       0.62972
+      ],
+      "cre_95": [
+       0.47042,
+       0.62912
+      ],
+      "cre_minus_re_95": [
+       -0.00462,
+       -0.00014
+      ],
+      "n": 491
+     },
+     "compound_rate_sd_raw": {
+      "re_95": [
+       0.00735,
+       0.0309
+      ],
+      "cre_95": [
+       0.00705,
+       0.03566
+      ],
+      "cre_minus_re_95": [
+       -0.00092,
+       0.00727
+      ],
+      "n": 491
+     },
+     "compound_rate_sd_noise_corrected": {
+      "re_95": [
+       0.0,
+       0.0271
+      ],
+      "cre_95": [
+       0.0,
+       0.03181
+      ],
+      "cre_minus_re_95": [
+       -0.00414,
+       0.01181
+      ],
+      "n": 491
+     }
+    }
+   },
+   "bootstrap": {
+    "unit": "race",
+    "n_requested": 500,
+    "n_converged_both": 491,
+    "note": "races redrawn with replacement (one drawn twice counts as two blocks), RE and CRE refitted on each resample; replicates where either fit did not converge are dropped; a compound absent from a resample is left out of that compound's statistics.",
+    "seconds": 27.3
+   },
+   "convergence": {
+    "re": {
+     "converged": true,
+     "hessian_pd": true,
+     "boundary_components": [],
+     "start_deviances": [
+      -10497.323,
+      -10497.323,
+      -10497.323
+     ]
+    },
+    "cre": {
+     "converged": true,
+     "hessian_pd": true,
+     "boundary_components": [],
+     "start_deviances": [
+      -10477.649,
+      -10477.649,
+      -10477.649,
+      -10477.649
+     ]
+    }
+   }
+  },
+  "pooled_2022_26_nested": {
+   "design": {
+    "n_laps": 69395,
+    "n_runs": 4445,
+    "n_races": 82,
+    "n_runs_by_compound": {
+     "C1": 327,
+     "C2": 863,
+     "C3": 1858,
+     "C4": 1108,
+     "C5": 289
+    },
+    "sd_of_run_mean_tyre_age_over_sd_within_run": 1.472
+   },
+   "slopes_s_per_lap": {
+    "C1": {
+     "re": {
+      "mean": 0.04433,
+      "lo": 0.0307,
+      "hi": 0.05796,
+      "se": 0.00696,
+      "se_cluster_bootstrap": 0.00925
+     },
+     "cre": {
+      "mean": 0.04475,
+      "lo": 0.03115,
+      "hi": 0.05835,
+      "se": 0.00694,
+      "se_cluster_bootstrap": 0.00925
+     },
+     "cre_minus_re": {
+      "estimate": 0.00042,
+      "se": 0.0009,
+      "lo": -0.00134,
+      "hi": 0.00219,
+      "z": 0.47,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.0009,
+      "bootstrap_percentile_95": [
+       -0.00054,
+       0.0026
+      ],
+      "se_cluster_bootstrap_iqr": 0.00068,
+      "n_bootstrap_with_compound": 494
+     },
+     "run_mean_coefficient": {
+      "mean": -0.00439,
+      "lo": -0.01483,
+      "hi": 0.00604,
+      "se": 0.00532
+     },
+     "between_run_slope_implied": {
+      "mean": 0.04036,
+      "lo": 0.02359,
+      "hi": 0.05712,
+      "se": 0.00855
+     }
+    },
+    "C2": {
+     "re": {
+      "mean": 0.04278,
+      "lo": 0.02962,
+      "hi": 0.05594,
+      "se": 0.00672,
+      "se_cluster_bootstrap": 0.0072
+     },
+     "cre": {
+      "mean": 0.04293,
+      "lo": 0.0298,
+      "hi": 0.05607,
+      "se": 0.0067,
+      "se_cluster_bootstrap": 0.00721
+     },
+     "cre_minus_re": {
+      "estimate": 0.00016,
+      "se": 0.00063,
+      "lo": -0.00108,
+      "hi": 0.00139,
+      "z": 0.246,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.00063,
+      "bootstrap_percentile_95": [
+       -0.00101,
+       0.00136
+      ],
+      "se_cluster_bootstrap_iqr": 0.00059,
+      "n_bootstrap_with_compound": 495
+     },
+     "run_mean_coefficient": {
+      "mean": 0.00159,
+      "lo": -0.00461,
+      "hi": 0.00778,
+      "se": 0.00316
+     },
+     "between_run_slope_implied": {
+      "mean": 0.04452,
+      "lo": 0.03034,
+      "hi": 0.0587,
+      "se": 0.00724
+     }
+    },
+    "C3": {
+     "re": {
+      "mean": 0.05965,
+      "lo": 0.04662,
+      "hi": 0.07268,
+      "se": 0.00665,
+      "se_cluster_bootstrap": 0.00662
+     },
+     "cre": {
+      "mean": 0.06001,
+      "lo": 0.04702,
+      "hi": 0.073,
+      "se": 0.00663,
+      "se_cluster_bootstrap": 0.0068
+     },
+     "cre_minus_re": {
+      "estimate": 0.00036,
+      "se": 0.00054,
+      "lo": -0.0007,
+      "hi": 0.00142,
+      "z": 0.665,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.00054,
+      "bootstrap_percentile_95": [
+       -0.00048,
+       0.00157
+      ],
+      "se_cluster_bootstrap_iqr": 0.00054,
+      "n_bootstrap_with_compound": 495
+     },
+     "run_mean_coefficient": {
+      "mean": -0.0014,
+      "lo": -0.00523,
+      "hi": 0.00243,
+      "se": 0.00196
+     },
+     "between_run_slope_implied": {
+      "mean": 0.05861,
+      "lo": 0.04523,
+      "hi": 0.07198,
+      "se": 0.00682
+     }
+    },
+    "C4": {
+     "re": {
+      "mean": 0.06626,
+      "lo": 0.05313,
+      "hi": 0.07938,
+      "se": 0.0067,
+      "se_cluster_bootstrap": 0.00815
+     },
+     "cre": {
+      "mean": 0.06683,
+      "lo": 0.05374,
+      "hi": 0.07991,
+      "se": 0.00667,
+      "se_cluster_bootstrap": 0.00833
+     },
+     "cre_minus_re": {
+      "estimate": 0.00057,
+      "se": 0.00048,
+      "lo": -0.00037,
+      "hi": 0.00151,
+      "z": 1.184,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": null,
+      "se_cluster_bootstrap": 0.00048,
+      "bootstrap_percentile_95": [
+       -9e-05,
+       0.00176
+      ],
+      "se_cluster_bootstrap_iqr": 0.00046,
+      "n_bootstrap_with_compound": 495
+     },
+     "run_mean_coefficient": {
+      "mean": -0.00403,
+      "lo": -0.00842,
+      "hi": 0.00036,
+      "se": 0.00224
+     },
+     "between_run_slope_implied": {
+      "mean": 0.0628,
+      "lo": 0.04912,
+      "hi": 0.07647,
+      "se": 0.00698
+     }
+    },
+    "C5": {
+     "re": {
+      "mean": 0.07308,
+      "lo": 0.0594,
+      "hi": 0.08676,
+      "se": 0.00698,
+      "se_cluster_bootstrap": 0.01115
+     },
+     "cre": {
+      "mean": 0.07485,
+      "lo": 0.06116,
+      "hi": 0.08854,
+      "se": 0.00699,
+      "se_cluster_bootstrap": 0.01221
+     },
+     "cre_minus_re": {
+      "estimate": 0.00177,
+      "se": 0.00174,
+      "lo": -0.00164,
+      "hi": 0.00518,
+      "z": 1.016,
+      "se_method": "cluster_bootstrap",
+      "se_analytic_hausman": 0.00028,
+      "se_cluster_bootstrap": 0.00174,
+      "bootstrap_percentile_95": [
+       -0.00055,
+       0.00612
+      ],
+      "se_cluster_bootstrap_iqr": 0.00172,
+      "n_bootstrap_with_compound": 495
+     },
+     "run_mean_coefficient": {
+      "mean": -0.0106,
+      "lo": -0.01905,
+      "hi": -0.00215,
+      "se": 0.00431
+     },
+     "between_run_slope_implied": {
+      "mean": 0.06425,
+      "lo": 0.04883,
+      "hi": 0.07967,
+      "se": 0.00787
+     }
+    }
+   },
+   "wald_run_means_zero": {
+    "statistic": 10.509,
+    "df": 5,
+    "p_chi2": 0.062,
+    "coefficients_tested": [
+     "tl_runmean_C1",
+     "tl_runmean_C2",
+     "tl_runmean_C3",
+     "tl_runmean_C4",
+     "tl_runmean_C5"
+    ],
+    "note": "Wald chi-square from the CRE fit's own covariance, variance components treated as known.",
+    "p_bootstrap_t": 0.4828,
+    "bootstrap_t": {
+     "n_used": 494,
+     "n_ge": 238,
+     "wstar_median": 9.799,
+     "wstar_95": 29.188,
+     "reading": "Share of cluster-bootstrap replicates whose statistic for (delta* - delta_hat) reaches the observed one; calibrates the chi-square to the small number of independent races."
+    }
+   },
+   "hausman": {
+    "variance_of_difference": "V(CRE) - V(RE) on the compound slopes (RE efficient under H0)",
+    "positive_definite": false,
+    "min_eigenvalue": -1e-06,
+    "diagonal_positive": {
+     "C1": false,
+     "C2": false,
+     "C3": false,
+     "C4": false,
+     "C5": true
+    },
+    "chi2_all_slopes_equal": null,
+    "df": 5,
+    "p_chi2": null,
+    "se_used_for_differences": "cluster_bootstrap"
+   },
+   "run_fixed_effects_ols": {
+    "cluster_by_event": {
+     "C1": {
+      "estimate": -0.01802,
+      "se": 0.03883,
+      "lo": -0.09527,
+      "hi": 0.05924,
+      "t": -0.464,
+      "p": 0.644,
+      "n_clusters_with_compound": 19,
+      "lo_conservative": -0.09959,
+      "hi_conservative": 0.06356
+     },
+     "C2": {
+      "estimate": -0.02359,
+      "se": 0.03835,
+      "lo": -0.09989,
+      "hi": 0.05272,
+      "t": -0.615,
+      "p": 0.54,
+      "n_clusters_with_compound": 39,
+      "lo_conservative": -0.10122,
+      "hi_conservative": 0.05405
+     },
+     "C3": {
+      "estimate": -0.00643,
+      "se": 0.03833,
+      "lo": -0.0827,
+      "hi": 0.06984,
+      "t": -0.168,
+      "p": 0.867,
+      "n_clusters_with_compound": 75,
+      "lo_conservative": -0.08281,
+      "hi_conservative": 0.06995
+     },
+     "C4": {
+      "estimate": -0.00338,
+      "se": 0.03807,
+      "lo": -0.07912,
+      "hi": 0.07236,
+      "t": -0.089,
+      "p": 0.929,
+      "n_clusters_with_compound": 58,
+      "lo_conservative": -0.07961,
+      "hi_conservative": 0.07284
+     },
+     "C5": {
+      "estimate": 0.00215,
+      "se": 0.03683,
+      "lo": -0.07113,
+      "hi": 0.07543,
+      "t": 0.058,
+      "p": 0.954,
+      "n_clusters_with_compound": 30,
+      "lo_conservative": -0.07318,
+      "hi_conservative": 0.07748
+     },
+     "n_clusters": 82,
+     "t_df": 81,
+     "level_identified": true,
+     "level_note": "",
+     "note": "lo/hi and p use t with G-1 df; lo_conservative/hi_conservative use t with (clusters carrying the compound - 1) df, the honest reading for a compound that few clusters carry"
+    },
+    "cluster_by_circuit": {
+     "C1": {
+      "estimate": -0.01802,
+      "se": 0.0403,
+      "lo": -0.1016,
+      "hi": 0.06557,
+      "t": -0.447,
+      "p": 0.659,
+      "n_clusters_with_compound": 5,
+      "lo_conservative": -0.12992,
+      "hi_conservative": 0.09389
+     },
+     "C2": {
+      "estimate": -0.02359,
+      "se": 0.03964,
+      "lo": -0.10579,
+      "hi": 0.05862,
+      "t": -0.595,
+      "p": 0.558,
+      "n_clusters_with_compound": 15,
+      "lo_conservative": -0.1086,
+      "hi_conservative": 0.06143
+     },
+     "C3": {
+      "estimate": -0.00643,
+      "se": 0.03977,
+      "lo": -0.08891,
+      "hi": 0.07606,
+      "t": -0.162,
+      "p": 0.873,
+      "n_clusters_with_compound": 23,
+      "lo_conservative": -0.08891,
+      "hi_conservative": 0.07606
+     },
+     "C4": {
+      "estimate": -0.00338,
+      "se": 0.03911,
+      "lo": -0.0845,
+      "hi": 0.07774,
+      "t": -0.086,
+      "p": 0.932,
+      "n_clusters_with_compound": 19,
+      "lo_conservative": -0.08556,
+      "hi_conservative": 0.07879
+     },
+     "C5": {
+      "estimate": 0.00215,
+      "se": 0.03653,
+      "lo": -0.07361,
+      "hi": 0.07791,
+      "t": 0.059,
+      "p": 0.954,
+      "n_clusters_with_compound": 12,
+      "lo_conservative": -0.07826,
+      "hi_conservative": 0.08256
+     },
+     "n_clusters": 23,
+     "t_df": 22,
+     "level_identified": true,
+     "level_note": "",
+     "note": "lo/hi and p use t with G-1 df; lo_conservative/hi_conservative use t with (clusters carrying the compound - 1) df, the honest reading for a compound that few clusters carry"
+    }
+   },
+   "variance_components": {
+    "re": {
+     "circuit_slope": 0.02776,
+     "event_slope": 0.02405,
+     "driver_event": 0.74513,
+     "run": 0.29506,
+     "run_slope": 0.03824,
+     "resid": 0.46555,
+     "persistent_share_of_slope_variance": 0.571,
+     "compound_rate_sd_raw": 0.01336,
+     "compound_rate_sd_noise_corrected": 0.0115
+    },
+    "cre": {
+     "circuit_slope": 0.02766,
+     "event_slope": 0.02382,
+     "driver_event": 0.74753,
+     "run": 0.29485,
+     "run_slope": 0.03831,
+     "resid": 0.46549,
+     "persistent_share_of_slope_variance": 0.574,
+     "compound_rate_sd_raw": 0.01386,
+     "compound_rate_sd_noise_corrected": 0.01208
+    },
+    "bootstrap_95": {
+     "circuit_slope": {
+      "re_95": [
+       0.01396,
+       0.03708
+      ],
+      "cre_95": [
+       0.0148,
+       0.03653
+      ],
+      "cre_minus_re_95": [
+       -0.00064,
+       0.00037
+      ],
+      "n": 495
+     },
+     "event_slope": {
+      "re_95": [
+       0.0156,
+       0.03363
+      ],
+      "cre_95": [
+       0.0156,
+       0.03313
+      ],
+      "cre_minus_re_95": [
+       -0.0008,
+       0.00016
+      ],
+      "n": 495
+     },
+     "driver_event": {
+      "re_95": [
+       0.6996,
+       0.78887
+      ],
+      "cre_95": [
+       0.70052,
+       0.79256
+      ],
+      "cre_minus_re_95": [
+       7e-05,
+       0.0051
+      ],
+      "n": 495
+     },
+     "run": {
+      "re_95": [
+       0.25481,
+       0.34568
+      ],
+      "cre_95": [
+       0.25371,
+       0.34572
+      ],
+      "cre_minus_re_95": [
+       -0.00234,
+       0.00044
+      ],
+      "n": 495
+     },
+     "run_slope": {
+      "re_95": [
+       0.03183,
+       0.04354
+      ],
+      "cre_95": [
+       0.03197,
+       0.04356
+      ],
+      "cre_minus_re_95": [
+       -4e-05,
+       0.0004
+      ],
+      "n": 495
+     },
+     "resid": {
+      "re_95": [
+       0.40507,
+       0.53202
+      ],
+      "cre_95": [
+       0.40495,
+       0.53193
+      ],
+      "cre_minus_re_95": [
+       -0.00028,
+       -1e-05
+      ],
+      "n": 495
+     },
+     "persistent_share_of_slope_variance": {
+      "re_95": [
+       0.26237,
+       0.77449
+      ],
+      "cre_95": [
+       0.26691,
+       0.77521
+      ],
+      "cre_minus_re_95": [
+       -0.00777,
+       0.01483
+      ],
+      "n": 495
+     },
+     "compound_rate_sd_raw": {
+      "re_95": [
+       0.00889,
+       0.02398
+      ],
+      "cre_95": [
+       0.00899,
+       0.02552
+      ],
+      "cre_minus_re_95": [
+       -0.00016,
+       0.00178
+      ],
+      "n": 495
+     },
+     "compound_rate_sd_noise_corrected": {
+      "re_95": [
+       0.00586,
+       0.02273
+      ],
+      "cre_95": [
+       0.00604,
+       0.02433
+      ],
+      "cre_minus_re_95": [
+       -0.00022,
+       0.00191
+      ],
+      "n": 495
+     }
+    }
+   },
+   "bootstrap": {
+    "unit": "circuit",
+    "n_requested": 500,
+    "n_converged_both": 495,
+    "note": "circuits redrawn with replacement (one drawn twice counts as two blocks), RE and CRE refitted on each resample; replicates where either fit did not converge are dropped; a compound absent from a resample is left out of that compound's statistics.",
+    "seconds": 284.6
+   },
+   "convergence": {
+    "re": {
+     "converged": true,
+     "hessian_pd": true,
+     "boundary_components": [],
+     "start_deviances": [
+      -90292.076,
+      -90292.076,
+      -90292.076
+     ]
+    },
+    "cre": {
+     "converged": true,
+     "hessian_pd": true,
+     "boundary_components": [],
+     "start_deviances": [
+      -90259.239,
+      -90259.239,
+      -90259.239,
+      -90259.239
+     ]
+    }
+   }
+  }
  },
  "audit": {
   "script": "scripts/paper/p3_model.py",
-  "generated_at": "2026-10-30T17:09:29+00:00",
-  "git_commit": "ca48a2039958a3599a56e48514ef1bca930ac619",
-  "git_dirty_src_or_scripts": true,
+  "generated_at": "2026-11-01T09:58:01+00:00",
+  "git_commit": null,
+  "git_dirty_src_or_scripts": false,
   "seed": 20261030,
-  "python": "3.12.9",
-  "numpy": "2.5.2",
+  "python": "3.10.12",
+  "numpy": "2.2.6",
   "pandas": "2.3.3",
-  "scipy": "1.18.1",
+  "scipy": "1.15.3",
   "statsmodels": "0.15.0",
   "inputs": {
    "laps_2022.parquet": {
@@ -2615,1580 +5548,39 @@
   "replicates": {
    "circuit_lr_null": 500,
    "circuit_alt_and_sbc": 400,
-   "power_per_point": 100
+   "power_per_point": 100,
+   "nested_circuit_lr_null": 500,
+   "nested_alt": 500,
+   "event_cluster_bootstrap_2026": 500,
+   "mundlak_cluster_bootstrap_2026_races": 500,
+   "mundlak_cluster_bootstrap_pooled_circuits": 500,
+   "power_extended_per_point": 1000,
+   "type_I_error": 2000,
+   "power_extended_max_sim_stints": 2000
   },
-  "workers": 6,
+  "workers": 16,
   "section_seconds": {
-   "engine_agreement": 5.1,
-   "old_fit_reproduction": 1.6,
-   "inference_comparison": 4.8,
-   "circuit_effect": 140.0,
-   "compound_within_event": 6.3,
-   "per_race_separation": 5.6,
-   "rate_calibration": 7.7,
-   "lap_level_calibration": 3.5,
+   "engine_agreement": 2.3,
+   "old_fit_reproduction": 1.2,
+   "inference_comparison": 3.1,
+   "circuit_effect": 21.6,
+   "compound_within_event": 4.1,
+   "per_race_separation": 1.2,
+   "rate_calibration": 1.8,
+   "lap_level_calibration": 2.1,
    "ablation": 0.1,
-   "season_robustness": 29.9,
-   "power": 287.1
+   "season_robustness": 16.8,
+   "power": 56.8,
+   "circuit_vs_event": 230.6,
+   "exact_vs_approximate": 22.8,
+   "season_c_rates": 6.3,
+   "compound_spread_2026": 8.6,
+   "power_extended": 1321.5,
+   "min_detectable_effect": 138.1,
+   "detectable_from_fit": 10.4,
+   "mundlak_check": 350.2
   },
-  "total_seconds": 493.8,
+  "total_seconds": 2201.1,
   "command": "python scripts/paper/p3_model.py"
- },
- "circuit_vs_event": {
-  "design": {
-   "seasons": [
-    2022,
-    2023,
-    2024,
-    2025,
-    2026
-   ],
-   "n_laps": 69395,
-   "n_runs": 4445,
-   "n_events": 82,
-   "n_circuits": 23,
-   "circuits_with_repeat_visits": 20,
-   "events_per_circuit_median": 4.0,
-   "compounds": "physical C numbers (2022-25 from Pirelli nomination history, 2026 from allocation.json)"
-  },
-  "sd_s_per_lap": {
-   "circuit_persistent": {
-    "estimate": 0.02471,
-    "profile_95": [
-     0.01693,
-     0.03657
-    ],
-    "bootstrap_95": [
-     0.0132,
-     0.03421
-    ]
-   },
-   "event_specific": {
-    "estimate": 0.02397,
-    "profile_95": [
-     0.02075,
-     0.02887
-    ],
-    "bootstrap_95": [
-     0.01895,
-     0.02855
-    ]
-   },
-   "run_slope": 0.03804,
-   "run_intercept": 0.29304,
-   "driver_event": 0.74586,
-   "resid": 0.46643
-  },
-  "persistent_share_of_slope_variance": {
-   "estimate": 0.515,
-   "bootstrap_95": [
-    0.216,
-    0.726
-   ]
-  },
-  "circuit_component_test": {
-   "reml_lr": 21.327,
-   "p_parametric_bootstrap": 0.002,
-   "n_bootstrap": 500,
-   "p_floor": 0.002,
-   "p_chibar2": 2e-06,
-   "bootstrap_lr_95_99": [
-    2.262,
-    4.718
-   ],
-   "distinguishable_from_zero": true
-  },
-  "event_component_test": {
-   "reml_lr": 257.228,
-   "p_chibar2": 0.0
-  },
-  "seconds_over_20_laps": {
-   "circuit_persistent": 0.494,
-   "event_specific": 0.479,
-   "circuit_persistent_profile_95": [
-    0.339,
-    0.731
-   ],
-   "event_specific_profile_95": [
-    0.415,
-    0.577
-   ]
-  },
-  "compound_rates_pooled_s_per_lap": {
-   "C1": {
-    "mean": 0.05562,
-    "lo": 0.04084,
-    "hi": 0.07041
-   },
-   "C2": {
-    "mean": 0.04737,
-    "lo": 0.03453,
-    "hi": 0.0602
-   },
-   "C3": {
-    "mean": 0.05828,
-    "lo": 0.04609,
-    "hi": 0.07047
-   },
-   "C4": {
-    "mean": 0.05899,
-    "lo": 0.04627,
-    "hi": 0.0717
-   },
-   "C5": {
-    "mean": 0.05314,
-    "lo": 0.03828,
-    "hi": 0.068
-   }
-  },
-  "compound_rate_sd_s_per_lap": 0.0047,
-  "compound_vs_variance": {
-   "compound_sd_raw": {
-    "bootstrap_95": [
-     0.00309,
-     0.00874
-    ],
-    "median": 0.0057
-   },
-   "compound_sd_noise_corrected": {
-    "bootstrap_95": [
-     0.0,
-     0.00532
-    ],
-    "median": 0.0
-   },
-   "circuit_minus_compound_raw": {
-    "bootstrap_95": [
-     0.00684,
-     0.02971
-    ],
-    "median": 0.01819,
-    "p_circuit_greater": 0.996
-   },
-   "circuit_minus_compound_corrected": {
-    "bootstrap_95": [
-     0.01037,
-     0.03421
-    ],
-    "median": 0.02342,
-    "p_circuit_greater": 1.0
-   },
-   "event_minus_compound_raw": {
-    "bootstrap_95": [
-     0.01259,
-     0.02368
-    ],
-    "median": 0.01821,
-    "p_event_greater": 1.0
-   }
-  },
-  "sensitivity": {
-   "without_2025": {
-    "circuit_sd": 0.02547,
-    "event_sd": 0.02472,
-    "share_circuit": 0.515,
-    "n_laps": 54154,
-    "n_events": 65
-   },
-   "verified_nominations_only": {
-    "circuit_sd": 0.02458,
-    "event_sd": 0.02443,
-    "share_circuit": 0.503,
-    "n_laps": 67587,
-    "n_events": 80
-   }
-  },
-  "convergence": {
-   "converged": true,
-   "hessian_pd": true,
-   "boundary_components": [],
-   "start_deviances": [
-    -90090.177,
-    -90090.177,
-    -90090.177
-   ]
-  },
-  "bootstrap_seconds": 1310.0
- },
- "season_c_rates": {
-  "2022": {
-   "n_events": 18,
-   "n_laps": 13637,
-   "n_runs": 1038,
-   "rates_s_per_lap": {
-    "C1": {
-     "mean": 0.05492,
-     "lo": 0.02515,
-     "hi": 0.08468,
-     "n_runs": 32
-    },
-    "C2": {
-     "mean": 0.04275,
-     "lo": 0.01976,
-     "hi": 0.06574,
-     "n_runs": 326
-    },
-    "C3": {
-     "mean": 0.05408,
-     "lo": 0.03125,
-     "hi": 0.07691,
-     "n_runs": 504
-    },
-    "C4": {
-     "mean": 0.0764,
-     "lo": 0.05094,
-     "hi": 0.10186,
-     "n_runs": 166
-    },
-    "C5": {
-     "mean": 0.13512,
-     "lo": 0.06613,
-     "hi": 0.20411,
-     "n_runs": 10
-    }
-   },
-   "monotone_softer_degrades_faster": false,
-   "circuit_slope_sd_s_per_lap": 0.04594,
-   "convergence_all_ok": true
-  },
-  "2023": {
-   "n_events": 16,
-   "n_laps": 13536,
-   "n_runs": 860,
-   "rates_s_per_lap": {
-    "C1": {
-     "mean": 0.05898,
-     "lo": 0.03838,
-     "hi": 0.07958,
-     "n_runs": 95
-    },
-    "C2": {
-     "mean": 0.05321,
-     "lo": 0.03402,
-     "hi": 0.0724,
-     "n_runs": 135
-    },
-    "C3": {
-     "mean": 0.05655,
-     "lo": 0.04006,
-     "hi": 0.07305,
-     "n_runs": 434
-    },
-    "C4": {
-     "mean": 0.05414,
-     "lo": 0.035,
-     "hi": 0.07328,
-     "n_runs": 186
-    },
-    "C5": {
-     "mean": 0.15163,
-     "lo": 0.09586,
-     "hi": 0.2074,
-     "n_runs": 10
-    }
-   },
-   "monotone_softer_degrades_faster": false,
-   "circuit_slope_sd_s_per_lap": 0.03032,
-   "convergence_all_ok": true
-  },
-  "2024": {
-   "n_events": 18,
-   "n_laps": 15942,
-   "n_runs": 857,
-   "rates_s_per_lap": {
-    "C1": {
-     "mean": 0.06559,
-     "lo": 0.04703,
-     "hi": 0.08415,
-     "n_runs": 112
-    },
-    "C2": {
-     "mean": 0.05417,
-     "lo": 0.03666,
-     "hi": 0.07169,
-     "n_runs": 117
-    },
-    "C3": {
-     "mean": 0.06433,
-     "lo": 0.05071,
-     "hi": 0.07796,
-     "n_runs": 414
-    },
-    "C4": {
-     "mean": 0.06012,
-     "lo": 0.0444,
-     "hi": 0.07583,
-     "n_runs": 199
-    },
-    "C5": {
-     "mean": 0.05534,
-     "lo": 0.02248,
-     "hi": 0.08821,
-     "n_runs": 15
-    }
-   },
-   "monotone_softer_degrades_faster": false,
-   "circuit_slope_sd_s_per_lap": 0.0252,
-   "convergence_all_ok": true
-  },
-  "2025": {
-   "n_events": 17,
-   "n_laps": 15241,
-   "n_runs": 870,
-   "rates_s_per_lap": {
-    "C1": {
-     "mean": 0.05437,
-     "lo": 0.01855,
-     "hi": 0.09019,
-     "n_runs": 33
-    },
-    "C2": {
-     "mean": 0.04516,
-     "lo": 0.0223,
-     "hi": 0.06802,
-     "n_runs": 94
-    },
-    "C3": {
-     "mean": 0.05458,
-     "lo": 0.03823,
-     "hi": 0.07093,
-     "n_runs": 264
-    },
-    "C4": {
-     "mean": 0.05376,
-     "lo": 0.03752,
-     "hi": 0.06999,
-     "n_runs": 334
-    },
-    "C5": {
-     "mean": 0.05667,
-     "lo": 0.03717,
-     "hi": 0.07617,
-     "n_runs": 145
-    }
-   },
-   "monotone_softer_degrades_faster": false,
-   "circuit_slope_sd_s_per_lap": 0.02778,
-   "convergence_all_ok": true
-  },
-  "2026": {
-   "n_events": 13,
-   "n_laps": 11039,
-   "n_runs": 820,
-   "rates_s_per_lap": {
-    "C1": {
-     "mean": 0.08237,
-     "lo": 0.04133,
-     "hi": 0.12342,
-     "n_runs": 55
-    },
-    "C2": {
-     "mean": 0.05324,
-     "lo": 0.02568,
-     "hi": 0.0808,
-     "n_runs": 191
-    },
-    "C3": {
-     "mean": 0.05024,
-     "lo": 0.02409,
-     "hi": 0.07639,
-     "n_runs": 242
-    },
-    "C4": {
-     "mean": 0.04205,
-     "lo": 0.01545,
-     "hi": 0.06864,
-     "n_runs": 223
-    },
-    "C5": {
-     "mean": 0.02172,
-     "lo": -0.00682,
-     "hi": 0.05026,
-     "n_runs": 109
-    }
-   },
-   "monotone_softer_degrades_faster": false,
-   "circuit_slope_sd_s_per_lap": 0.04367,
-   "convergence_all_ok": true
-  }
- },
- "min_detectable_effect": {
-  "n_runs_by_compound": {
-   "C1": 55,
-   "C2": 191,
-   "C3": 242,
-   "C4": 223,
-   "C5": 109
-  },
-  "n_balanced_stints": 832,
-  "analytic_known_variance": {
-   "balanced": {
-    "at_N_832": {
-     "n_stints": 832,
-     "point": {
-      "se_s_per_lap": 0.00265,
-      "mde_80_s_per_lap": 0.0074
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00265,
-      "mde_80_s_per_lap": 0.0074
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00265,
-      "mde_80_s_per_lap": 0.0074
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.0036,
-      "mde_80_s_per_lap": 0.0101
-     }
-    }
-   },
-   "split": {
-    "at_N_832": {
-     "n_stints": 832,
-     "point": {
-      "se_s_per_lap": 0.02444,
-      "mde_80_s_per_lap": 0.0685
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.01722,
-      "mde_80_s_per_lap": 0.0482
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.04072,
-      "mde_80_s_per_lap": 0.1141
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.04079,
-      "mde_80_s_per_lap": 0.1143
-     }
-    }
-   },
-   "realistic_C1_C2": {
-    "at_N_832": {
-     "n_stints": 832,
-     "point": {
-      "se_s_per_lap": 0.00341,
-      "mde_80_s_per_lap": 0.0096
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00341,
-      "mde_80_s_per_lap": 0.0096
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00342,
-      "mde_80_s_per_lap": 0.0096
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.00465,
-      "mde_80_s_per_lap": 0.013
-     }
-    },
-    "at_actual_pair_runs": {
-     "n_stints": 246,
-     "point": {
-      "se_s_per_lap": 0.00625,
-      "mde_80_s_per_lap": 0.0175
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00624,
-      "mde_80_s_per_lap": 0.0175
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00625,
-      "mde_80_s_per_lap": 0.0175
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.00851,
-      "mde_80_s_per_lap": 0.0238
-     }
-    }
-   },
-   "realistic_C2_C3": {
-    "at_N_832": {
-     "n_stints": 832,
-     "point": {
-      "se_s_per_lap": 0.00313,
-      "mde_80_s_per_lap": 0.0088
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00312,
-      "mde_80_s_per_lap": 0.0088
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00313,
-      "mde_80_s_per_lap": 0.0088
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.00426,
-      "mde_80_s_per_lap": 0.0119
-     }
-    },
-    "at_actual_pair_runs": {
-     "n_stints": 433,
-     "point": {
-      "se_s_per_lap": 0.00432,
-      "mde_80_s_per_lap": 0.0121
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00431,
-      "mde_80_s_per_lap": 0.0121
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00433,
-      "mde_80_s_per_lap": 0.0121
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.00588,
-      "mde_80_s_per_lap": 0.0165
-     }
-    }
-   },
-   "realistic_C3_C4": {
-    "at_N_832": {
-     "n_stints": 832,
-     "point": {
-      "se_s_per_lap": 0.00271,
-      "mde_80_s_per_lap": 0.0076
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.0027,
-      "mde_80_s_per_lap": 0.0076
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00271,
-      "mde_80_s_per_lap": 0.0076
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.00368,
-      "mde_80_s_per_lap": 0.0103
-     }
-    },
-    "at_actual_pair_runs": {
-     "n_stints": 465,
-     "point": {
-      "se_s_per_lap": 0.00367,
-      "mde_80_s_per_lap": 0.0103
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00367,
-      "mde_80_s_per_lap": 0.0103
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00367,
-      "mde_80_s_per_lap": 0.0103
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.005,
-      "mde_80_s_per_lap": 0.014
-     }
-    }
-   },
-   "realistic_C4_C5": {
-    "at_N_832": {
-     "n_stints": 832,
-     "point": {
-      "se_s_per_lap": 0.00287,
-      "mde_80_s_per_lap": 0.008
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00287,
-      "mde_80_s_per_lap": 0.008
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00287,
-      "mde_80_s_per_lap": 0.008
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.0039,
-      "mde_80_s_per_lap": 0.0109
-     }
-    },
-    "at_actual_pair_runs": {
-     "n_stints": 332,
-     "point": {
-      "se_s_per_lap": 0.00458,
-      "mde_80_s_per_lap": 0.0128
-     },
-     "circuit_sd_low": {
-      "se_s_per_lap": 0.00457,
-      "mde_80_s_per_lap": 0.0128
-     },
-     "circuit_sd_high": {
-      "se_s_per_lap": 0.00458,
-      "mde_80_s_per_lap": 0.0128
-     },
-     "circuit_high_and_run_slope_x1.5": {
-      "se_s_per_lap": 0.00623,
-      "mde_80_s_per_lap": 0.0175
-     }
-    }
-   }
-  },
-  "simulated_refit": {
-   "balanced": {
-    "n_stints": 832,
-    "reps": 1000,
-    "effects": [
-     0.0044,
-     0.0063,
-     0.0081,
-     0.0111,
-     0.0148
-    ],
-    "power_wald_z": [
-     0.367,
-     0.694,
-     0.855,
-     0.986,
-     0.999
-    ],
-    "power_mc_se": [
-     0.015,
-     0.015,
-     0.011,
-     0.004,
-     0.001
-    ],
-    "power_t_df12": [
-     0.285,
-     0.614,
-     0.808,
-     0.97,
-     0.999
-    ],
-    "mde_80_wald_z": {
-     "crossing": 0.007,
-     "mc_se": 0.0,
-     "mc_ci95": [
-      0.007236,
-      0.007643
-     ],
-     "share_of_resamples_never_reaching_target": 0.0
-    },
-    "mde_80_t_df12": {
-     "crossing": 0.008,
-     "mc_se": 0.0,
-     "mc_ci95": [
-      0.007811,
-      0.008328
-     ],
-     "share_of_resamples_never_reaching_target": 0.0
-    },
-    "n_failed_fits": 44
-   },
-   "realistic_C1_C2": {
-    "n_stints": 246,
-    "reps": 1000,
-    "effects": [
-     0.0105,
-     0.0149,
-     0.0193,
-     0.0263,
-     0.035
-    ],
-    "power_wald_z": [
-     0.416,
-     0.658,
-     0.863,
-     0.986,
-     1.0
-    ],
-    "power_mc_se": [
-     0.016,
-     0.015,
-     0.011,
-     0.004,
-     0.0
-    ],
-    "power_t_df12": [
-     0.208,
-     0.438,
-     0.711,
-     0.948,
-     0.999
-    ],
-    "mde_80_wald_z": {
-     "crossing": 0.018,
-     "mc_se": 0.0,
-     "mc_ci95": [
-      0.017422,
-      0.018224
-     ],
-     "share_of_resamples_never_reaching_target": 0.0
-    },
-    "mde_80_t_df12": {
-     "crossing": 0.022,
-     "mc_se": 0.0,
-     "mc_ci95": [
-      0.021127,
-      0.022159
-     ],
-     "share_of_resamples_never_reaching_target": 0.0
-    },
-    "n_failed_fits": 35
-   },
-   "realistic_C3_C4": {
-    "n_stints": 465,
-    "reps": 1000,
-    "effects": [
-     0.0062,
-     0.0088,
-     0.0113,
-     0.0155,
-     0.0206
-    ],
-    "power_wald_z": [
-     0.391,
-     0.656,
-     0.869,
-     0.989,
-     0.999
-    ],
-    "power_mc_se": [
-     0.015,
-     0.015,
-     0.011,
-     0.003,
-     0.001
-    ],
-    "power_t_df12": [
-     0.314,
-     0.587,
-     0.82,
-     0.974,
-     0.999
-    ],
-    "mde_80_wald_z": {
-     "crossing": 0.01,
-     "mc_se": 0.0,
-     "mc_ci95": [
-      0.010222,
-      0.010626
-     ],
-     "share_of_resamples_never_reaching_target": 0.0
-    },
-    "mde_80_t_df12": {
-     "crossing": 0.011,
-     "mc_se": 0.0,
-     "mc_ci95": [
-      0.010828,
-      0.011397
-     ],
-     "share_of_resamples_never_reaching_target": 0.0
-    },
-    "n_failed_fits": 42
-   }
-  },
-  "note": "mde_80 = smallest compound gap (s/lap) with 80% power; analytic uses known variances (a lower bound on the detectable gap), simulated refits them. 'crossing' keys are effects, not stints.",
-  "seconds": 646.0
- },
- "audit_additions": {
-  "min_detectable_effect": {
-   "script": "scripts/paper/p3_model.py",
-   "generated_at": "2026-10-31T14:21:25+00:00",
-   "git_commit": "f210c888ea94a3cc77970e341c5b8407f9153e3b",
-   "git_dirty_src_or_scripts": false,
-   "seed": 20261030,
-   "python": "3.12.9",
-   "numpy": "2.5.2",
-   "pandas": "2.3.3",
-   "scipy": "1.18.1",
-   "statsmodels": "0.15.0",
-   "inputs": {
-    "laps_2022.parquet": {
-     "sha256_16": "8b028f6ae54b9a3a",
-     "bytes": 1873297
-    },
-    "laps_2023.parquet": {
-     "sha256_16": "77688e78f12c2d06",
-     "bytes": 1674187
-    },
-    "laps_2024.parquet": {
-     "sha256_16": "33709d45612b5856",
-     "bytes": 1854471
-    },
-    "laps_2025.parquet": {
-     "sha256_16": "5555784901af55d7",
-     "bytes": 1851572
-    },
-    "laps.parquet": {
-     "sha256_16": "e991bb77e29af443",
-     "bytes": 1508216
-    }
-   },
-   "replicates": {
-    "circuit_lr_null": 500,
-    "circuit_alt_and_sbc": 400,
-    "power_per_point": 100,
-    "nested_circuit_lr_null": 500,
-    "nested_alt": 500,
-    "event_cluster_bootstrap_2026": 500,
-    "power_extended_per_point": 1000,
-    "type_I_error": 2000
-   },
-   "workers": 11,
-   "section_seconds": {
-    "min_detectable_effect": 646.0
-   },
-   "total_seconds": 648.1,
-   "command": "python scripts/paper/p3_model.py --only min_detectable_effect"
-  },
-  "compound_spread_2026+power_extended": {
-   "script": "scripts/paper/p3_model.py",
-   "generated_at": "2026-10-31T18:23:32+00:00",
-   "git_commit": "0a3114a129a12f86a8a1c65bcd3d7dbf061d9e6e",
-   "git_dirty_src_or_scripts": true,
-   "seed": 20261030,
-   "python": "3.12.9",
-   "numpy": "2.5.2",
-   "pandas": "2.3.3",
-   "scipy": "1.18.1",
-   "statsmodels": "0.15.0",
-   "inputs": {
-    "laps_2022.parquet": {
-     "sha256_16": "8b028f6ae54b9a3a",
-     "bytes": 1873297
-    },
-    "laps_2023.parquet": {
-     "sha256_16": "77688e78f12c2d06",
-     "bytes": 1674187
-    },
-    "laps_2024.parquet": {
-     "sha256_16": "33709d45612b5856",
-     "bytes": 1854471
-    },
-    "laps_2025.parquet": {
-     "sha256_16": "5555784901af55d7",
-     "bytes": 1851572
-    },
-    "laps.parquet": {
-     "sha256_16": "e991bb77e29af443",
-     "bytes": 1508216
-    }
-   },
-   "replicates": {
-    "circuit_lr_null": 500,
-    "circuit_alt_and_sbc": 400,
-    "power_per_point": 100,
-    "nested_circuit_lr_null": 500,
-    "nested_alt": 500,
-    "event_cluster_bootstrap_2026": 500,
-    "power_extended_per_point": 1000,
-    "type_I_error": 2000
-   },
-   "workers": 10,
-   "section_seconds": {
-    "compound_spread_2026": 79.9,
-    "power_extended": 53.2
-   },
-   "total_seconds": 135.2,
-   "command": "python scripts/paper/p3_model.py --only compound_spread_2026 power_extended"
-  }
- },
- "compound_spread_2026": {
-  "circuit_sd_s_per_lap": 0.04367,
-  "compound_rate_sd_raw": 0.02192,
-  "compound_rate_sd_noise_corrected": 0.01543,
-  "parametric_bootstrap": {
-   "compound_sd_raw": {
-    "bootstrap_95": [
-     0.01036,
-     0.0396
-    ],
-    "median": 0.02331
-   },
-   "compound_sd_noise_corrected": {
-    "bootstrap_95": [
-     0.0,
-     0.03691
-    ],
-    "median": 0.0177
-   },
-   "circuit_minus_compound_raw": {
-    "bootstrap_95": [
-     -0.00475,
-     0.04356
-    ],
-    "median": 0.01947,
-    "p_circuit_greater": 0.927
-   },
-   "circuit_minus_compound_corrected": {
-    "bootstrap_95": [
-     -0.00247,
-     0.05703
-    ],
-    "median": 0.02544,
-    "p_circuit_greater": 0.955
-   }
-  },
-  "event_cluster_bootstrap": {
-   "n_bootstrap": 500,
-   "n_used": 448,
-   "share_dropped_missing_compound_or_unconverged": 0.104,
-   "circuit_sd": {
-    "bootstrap_95": [
-     0.01742,
-     0.06465
-    ],
-    "median": 0.0401
-   },
-   "compound_sd_raw": {
-    "bootstrap_95": [
-     0.01155,
-     0.02758
-    ],
-    "median": 0.02131
-   },
-   "compound_sd_noise_corrected": {
-    "bootstrap_95": [
-     0.0,
-     0.02397
-    ],
-    "median": 0.01436
-   },
-   "circuit_minus_compound_raw": {
-    "bootstrap_95": [
-     -0.00605,
-     0.04434
-    ],
-    "median": 0.01975,
-    "p_gt_0": 0.906
-   },
-   "circuit_minus_compound_corrected": {
-    "bootstrap_95": [
-     -0.00404,
-     0.05889
-    ],
-    "median": 0.02762,
-    "p_gt_0": 0.953
-   },
-   "note": "Races redrawn with replacement; a repeated race counts as two blocks. Resamples missing a compound (C1 runs at only two races) are dropped and counted."
-  },
-  "jackknife_leave_one_event_out": {
-   "circuit_minus_compound_raw": {
-    "estimate": 0.02175,
-    "jackknife_se": 0.01757,
-    "ci95_normal": [
-     -0.01268,
-     0.05618
-    ]
-   },
-   "circuit_minus_compound_corrected": {
-    "estimate": 0.02823,
-    "jackknife_se": 0.02411,
-    "ci95_normal": [
-     -0.01901,
-     0.07548
-    ]
-   },
-   "n_events": 13
-  },
-  "note": "In 2026 each circuit hosts one race, so this circuit SD is race-to-race variance."
- },
- "power_extended": {
-  "params_per_lap": {
-   "point": {
-    "circuit_sd": 0.04367,
-    "run_slope_sd": 0.0315
-   },
-   "circuit_sd_low": {
-    "circuit_sd": 0.03058,
-    "run_slope_sd": 0.0315
-   },
-   "circuit_sd_high": {
-    "circuit_sd": 0.07303,
-    "run_slope_sd": 0.0315
-   },
-   "circuit_high_and_run_slope_x1.5": {
-    "circuit_sd": 0.07303,
-    "run_slope_sd": 0.04725
-   }
-  },
-  "design_notes": "13 events with the actual 2026 Pirelli nominations; 20-lap stints; N counts stints of the two compared compounds; balanced = both at every circuit; split = disjoint circuits",
-  "analytic_crossing_80pct_stints": {
-   "effect_0.006": {
-    "balanced": {
-     "point": 1270.0,
-     "circuit_sd_low": 1270.0,
-     "circuit_sd_high": 1270.0,
-     "circuit_high_and_run_slope_x1.5": 2352.0
-    },
-    "split": {
-     "point": null,
-     "circuit_sd_low": null,
-     "circuit_sd_high": null,
-     "circuit_high_and_run_slope_x1.5": null
-    },
-    "realistic_C1_C2": {
-     "point": 2116.0,
-     "circuit_sd_low": 2115.0,
-     "circuit_sd_high": 2116.0,
-     "circuit_high_and_run_slope_x1.5": null
-    },
-    "realistic_C2_C3": {
-     "point": 1778.0,
-     "circuit_sd_low": 1776.0,
-     "circuit_sd_high": 1779.0,
-     "circuit_high_and_run_slope_x1.5": null
-    },
-    "realistic_C3_C4": {
-     "point": 1341.0,
-     "circuit_sd_low": 1341.0,
-     "circuit_sd_high": 1341.0,
-     "circuit_high_and_run_slope_x1.5": 2483.0
-    },
-    "realistic_C4_C5": {
-     "point": 1491.0,
-     "circuit_sd_low": 1490.0,
-     "circuit_sd_high": 1491.0,
-     "circuit_high_and_run_slope_x1.5": null
-    }
-   },
-   "effect_0.01": {
-    "balanced": {
-     "point": 457.0,
-     "circuit_sd_low": 457.0,
-     "circuit_sd_high": 457.0,
-     "circuit_high_and_run_slope_x1.5": 847.0
-    },
-    "split": {
-     "point": null,
-     "circuit_sd_low": null,
-     "circuit_sd_high": null,
-     "circuit_high_and_run_slope_x1.5": null
-    },
-    "realistic_C1_C2": {
-     "point": 761.0,
-     "circuit_sd_low": 761.0,
-     "circuit_sd_high": 762.0,
-     "circuit_high_and_run_slope_x1.5": 1411.0
-    },
-    "realistic_C2_C3": {
-     "point": 638.0,
-     "circuit_sd_low": 636.0,
-     "circuit_sd_high": 639.0,
-     "circuit_high_and_run_slope_x1.5": 1183.0
-    },
-    "realistic_C3_C4": {
-     "point": 488.0,
-     "circuit_sd_low": 488.0,
-     "circuit_sd_high": 489.0,
-     "circuit_high_and_run_slope_x1.5": 886.0
-    },
-    "realistic_C4_C5": {
-     "point": 536.0,
-     "circuit_sd_low": 536.0,
-     "circuit_sd_high": 537.0,
-     "circuit_high_and_run_slope_x1.5": 994.0
-    }
-   },
-   "effect_0.02": {
-    "balanced": {
-     "point": 114.0,
-     "circuit_sd_low": 114.0,
-     "circuit_sd_high": 114.0,
-     "circuit_high_and_run_slope_x1.5": 212.0
-    },
-    "split": {
-     "point": null,
-     "circuit_sd_low": null,
-     "circuit_sd_high": null,
-     "circuit_high_and_run_slope_x1.5": null
-    },
-    "realistic_C1_C2": {
-     "point": 190.0,
-     "circuit_sd_low": 189.0,
-     "circuit_sd_high": 190.0,
-     "circuit_high_and_run_slope_x1.5": 352.0
-    },
-    "realistic_C2_C3": {
-     "point": 164.0,
-     "circuit_sd_low": 162.0,
-     "circuit_sd_high": 165.0,
-     "circuit_high_and_run_slope_x1.5": 295.0
-    },
-    "realistic_C3_C4": {
-     "point": 126.0,
-     "circuit_sd_low": 126.0,
-     "circuit_sd_high": 126.0,
-     "circuit_high_and_run_slope_x1.5": 216.0
-    },
-    "realistic_C4_C5": {
-     "point": 128.0,
-     "circuit_sd_low": 127.0,
-     "circuit_sd_high": 128.0,
-     "circuit_high_and_run_slope_x1.5": 240.0
-    }
-   },
-   "effect_0.03": {
-    "balanced": {
-     "point": 52.0,
-     "circuit_sd_low": 52.0,
-     "circuit_sd_high": 52.0,
-     "circuit_high_and_run_slope_x1.5": 94.0
-    },
-    "split": {
-     "point": null,
-     "circuit_sd_low": null,
-     "circuit_sd_high": null,
-     "circuit_high_and_run_slope_x1.5": null
-    },
-    "realistic_C1_C2": {
-     "point": 86.0,
-     "circuit_sd_low": 85.0,
-     "circuit_sd_high": 86.0,
-     "circuit_high_and_run_slope_x1.5": 156.0
-    },
-    "realistic_C2_C3": {
-     "point": 69.0,
-     "circuit_sd_low": 67.0,
-     "circuit_sd_high": 70.0,
-     "circuit_high_and_run_slope_x1.5": 138.0
-    },
-    "realistic_C3_C4": {
-     "point": 58.0,
-     "circuit_sd_low": 57.0,
-     "circuit_sd_high": 58.0,
-     "circuit_high_and_run_slope_x1.5": 107.0
-    },
-    "realistic_C4_C5": {
-     "point": 57.0,
-     "circuit_sd_low": 56.0,
-     "circuit_sd_high": 57.0,
-     "circuit_high_and_run_slope_x1.5": 105.0
-    }
-   }
-  },
-  "analytic_se_floor_split_design_s_per_lap": {
-   "point": 0.02422,
-   "circuit_sd_low": 0.01696,
-   "circuit_sd_high": 0.04051,
-   "circuit_high_and_run_slope_x1.5": 0.04051
-  },
-  "split_design_power_ceiling": {
-   "effect_0.006": {
-    "point": 0.057,
-    "circuit_sd_low": 0.064,
-    "circuit_sd_high": 0.053,
-    "circuit_high_and_run_slope_x1.5": 0.053
-   },
-   "effect_0.01": {
-    "point": 0.07,
-    "circuit_sd_low": 0.091,
-    "circuit_sd_high": 0.057,
-    "circuit_high_and_run_slope_x1.5": 0.057
-   },
-   "effect_0.02": {
-    "point": 0.131,
-    "circuit_sd_low": 0.218,
-    "circuit_sd_high": 0.078,
-    "circuit_high_and_run_slope_x1.5": 0.078
-   },
-   "effect_0.03": {
-    "point": 0.236,
-    "circuit_sd_low": 0.424,
-    "circuit_sd_high": 0.115,
-    "circuit_high_and_run_slope_x1.5": 0.115
-   }
-  },
-  "simulated": {
-   "effect_0.006": {
-    "balanced": {
-     "n_stints": [
-      754,
-      1274,
-      1898,
-      2782
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.561,
-      0.803,
-      0.919,
-      0.98
-     ],
-     "power_mc_se": [
-      0.016,
-      0.013,
-      0.009,
-      0.004
-     ],
-     "power_t_df12": [
-      0.477,
-      0.739,
-      0.885,
-      0.971
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 1265.743,
-      "mc_se": 38.132,
-      "mc_ci95": [
-       1208.877831,
-       1352.576586
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 1504.885,
-      "mc_se": 37.493,
-      "mc_ci95": [
-       1427.691002,
-       1575.210715
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     }
-    },
-    "realistic_C1_C2": {
-     "n_stints": [
-      1274,
-      2106,
-      3172
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.584,
-      0.791,
-      0.921
-     ],
-     "power_mc_se": [
-      0.016,
-      0.013,
-      0.009
-     ],
-     "power_t_df12": [
-      0.341,
-      0.589,
-      0.817
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 2166.57,
-      "mc_se": 70.913,
-      "mc_ci95": [
-       2038.055229,
-       2301.620024
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 3076.597,
-      "mc_se": 51.772,
-      "mc_ci95": [
-       2963.804321,
-       3164.474342
-      ],
-      "share_of_resamples_never_reaching_target": 0.075
-     }
-    }
-   },
-   "effect_0.01": {
-    "balanced": {
-     "n_stints": [
-      286,
-      468,
-      676,
-      1014
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.582,
-      0.819,
-      0.934,
-      0.979
-     ],
-     "power_mc_se": [
-      0.016,
-      0.012,
-      0.008,
-      0.005
-     ],
-     "power_t_df12": [
-      0.5,
-      0.756,
-      0.899,
-      0.974
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 449.883,
-      "mc_se": 11.03,
-      "mc_ci95": [
-       431.117337,
-       474.786228
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 524.064,
-      "mc_se": 13.91,
-      "mc_ci95": [
-       495.534641,
-       548.206248
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     }
-    },
-    "realistic_C1_C2": {
-     "n_stints": [
-      468,
-      754,
-      1144,
-      1664
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.62,
-      0.797,
-      0.918,
-      0.985
-     ],
-     "power_mc_se": [
-      0.015,
-      0.013,
-      0.009,
-      0.004
-     ],
-     "power_t_df12": [
-      0.377,
-      0.591,
-      0.79,
-      0.948
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 761.834,
-      "mc_se": 27.377,
-      "mc_ci95": [
-       716.360817,
-       822.340421
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 1171.454,
-      "mc_se": 30.077,
-      "mc_ci95": [
-       1112.627216,
-       1224.440071
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     }
-    }
-   },
-   "effect_0.02": {
-    "balanced": {
-     "n_stints": [
-      78,
-      104,
-      182,
-      260
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.607,
-      0.762,
-      0.956,
-      0.989
-     ],
-     "power_mc_se": [
-      0.015,
-      0.013,
-      0.006,
-      0.003
-     ],
-     "power_t_df12": [
-      0.533,
-      0.697,
-      0.931,
-      0.973
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 116.048,
-      "mc_se": 3.672,
-      "mc_ci95": [
-       108.159559,
-       122.426477
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 133.049,
-      "mc_se": 2.894,
-      "mc_ci95": [
-       127.440244,
-       138.159281
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     }
-    },
-    "realistic_C1_C2": {
-     "n_stints": [
-      104,
-      182,
-      286,
-      416
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.552,
-      0.799,
-      0.931,
-      0.982
-     ],
-     "power_mc_se": [
-      0.016,
-      0.013,
-      0.008,
-      0.004
-     ],
-     "power_t_df12": [
-      0.316,
-      0.575,
-      0.805,
-      0.923
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 182.624,
-      "mc_se": 6.275,
-      "mc_ci95": [
-       173.07453,
-       196.239831
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 283.204,
-      "mc_se": 7.682,
-      "mc_ci95": [
-       271.003995,
-       301.306334
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     }
-    }
-   },
-   "effect_0.03": {
-    "balanced": {
-     "n_stints": [
-      52,
-      78,
-      104
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.804,
-      0.938,
-      0.981
-     ],
-     "power_mc_se": [
-      0.013,
-      0.008,
-      0.004
-     ],
-     "power_t_df12": [
-      0.747,
-      0.903,
-      0.971
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 52.0,
-      "mc_se": 0.835,
-      "mc_ci95": [
-       52.0,
-       54.908738
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 59.68,
-      "mc_se": 1.516,
-      "mc_ci95": [
-       56.424619,
-       62.370295
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     }
-    },
-    "realistic_C1_C2": {
-     "n_stints": [
-      52,
-      78,
-      130,
-      182
-     ],
-     "reps": 1000,
-     "power_wald_z": [
-      0.562,
-      0.799,
-      0.935,
-      0.983
-     ],
-     "power_mc_se": [
-      0.016,
-      0.013,
-      0.008,
-      0.004
-     ],
-     "power_t_df12": [
-      0.338,
-      0.597,
-      0.802,
-      0.951
-     ],
-     "crossing_80_wald_z": {
-      "crossing": 78.294,
-      "mc_se": 2.48,
-      "mc_ci95": [
-       75.277848,
-       84.691833
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     },
-     "crossing_80_t_df12": {
-      "crossing": 129.354,
-      "mc_se": 3.66,
-      "mc_ci95": [
-       122.041088,
-       135.948653
-      ],
-      "share_of_resamples_never_reaching_target": 0.0
-     }
-    }
-   }
-  },
-  "simulation_cap_stints": 3500,
-  "simulated_points_skipped_above_cap": [
-   {
-    "design": "realistic_C1_C2",
-    "effect": 0.006,
-    "n_stints": 4654
-   }
-  ],
-  "type_I_error_at_zero_effect": {
-   "balanced": {
-    "n_stints": 832,
-    "reps": 2000,
-    "wald_z_reject_rate": 0.054,
-    "wald_z_mc_se": 0.005,
-    "t_df12_reject_rate": 0.032,
-    "nominal": 0.05
-   },
-   "realistic_C1_C2": {
-    "n_stints": 832,
-    "reps": 2000,
-    "wald_z_reject_rate": 0.047,
-    "wald_z_mc_se": 0.005,
-    "t_df12_reject_rate": 0.009,
-    "nominal": 0.05
-   }
-  },
-  "analytic_grid_stints": [
-   52,
-   104,
-   208,
-   416,
-   832,
-   1664,
-   2496
-  ],
-  "seconds": 53.2
  }
 }

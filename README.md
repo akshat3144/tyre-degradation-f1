@@ -169,7 +169,7 @@ paper is published.
 machine-readable checks in fenced `claims` blocks, one per quoted number:
 
 ```
-{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "mean"], "value": 0.0824, "places": 4}
+{"file": "paper/results/model.json", "path": ["shipped_fit", "rates_s_per_lap", "C1", "mean"], "value": 0.041, "places": 4}
 ```
 
 `python scripts/paper/check_claims.py` compares each to the current JSON after
