@@ -22,6 +22,7 @@ GENERATED = MANUSCRIPT / "generated"
 FIGURES = MANUSCRIPT / "figures"
 
 MODEL = "paper/results/model.json"
+RECOV = "paper/results/recovery.json"
 
 # DRY RUN ONLY. PAPER_MODEL_JSON=<file> makes every read of paper/results/model.json come from <file>
 # instead (for example model.quick.json from ``p3_model.py --quick``), so the section can be rendered

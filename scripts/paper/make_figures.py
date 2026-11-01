@@ -62,7 +62,7 @@ RC = {
     "savefig.bbox": "tight",
     "savefig.pad_inches": 0.03,
 }
-RATE_LABEL = r"Degradation rate (s lap$^{-1}$)"
+RATE_LABEL = r"Degradation rate (s/lap)"
 
 
 def _save(fig, name):
@@ -132,7 +132,7 @@ def fig_circuit_decomposition():
     a1.set_yticks(y, [r[0] for r in rows])
     a1.set_xlim(0, 0.07)
     a1.set_ylim(-0.6, len(rows) - 0.4)
-    a1.set_xlabel(r"Standard deviation (s lap$^{-1}$), 95% bootstrap interval")
+    a1.set_xlabel(r"Standard deviation (s/lap), 95% bootstrap interval")
     a1.set_title("Spread of tyre-age slopes", loc="left", fontsize=8)
     rates = cve["compound_rates_pooled_s_per_lap"]
     yc = np.arange(len(COMPOUNDS))[::-1]
@@ -209,7 +209,7 @@ def fig_circuit_rates():
     handles = [plt.Line2D([], [], marker=CMARK[c], color=CCOL[c], ls="none", ms=4.5, label=c) for c in COMPOUNDS]
     a2.legend(handles=handles, loc="lower right", bbox_to_anchor=(1.0, 1.0), ncol=5, columnspacing=0.8,
               handletextpad=0.2, borderaxespad=0.1)
-    a2.text(0.99, 0.04, rf"2026 circuit-slope SD {cs['estimate']:.3f} s lap$^{{-1}}$" "\n"
+    a2.text(0.99, 0.04, rf"2026 circuit-slope SD {cs['estimate']:.3f} s/lap" "\n"
             rf"[{cs['profile_likelihood_95'][0]:.3f}, {cs['profile_likelihood_95'][1]:.3f}] profile interval",
             transform=a2.transAxes, ha="right", va="bottom", fontsize=7, color="#333333")
     _panel(a2, "B")
@@ -257,7 +257,7 @@ def fig_race_practice():
     a2.axvline(0, color="black", lw=0.6)
     a2.set_yticks(yy, [lab + (f"\n$n$ = {nn}" if nn else "") if "\n" not in lab else lab + (f", $n$ = {nn}" if nn else "")
                        for lab, _g, _c, nn, *_ in rows])
-    a2.set_xlabel(r"Race minus practice slope (s lap$^{-1}$)")
+    a2.set_xlabel(r"Race minus practice slope (s/lap)")
     a2.xaxis.set_major_locator(plt.MaxNLocator(5))
     a2.set_ylim(-0.6, len(rows) - 0.4)
     a2.grid(axis="y", visible=False)
@@ -310,7 +310,7 @@ def fig_power():
     a2.text(0.0065, 1.0, "0.006", fontsize=6.5, color="#444444", va="top")
     a2.set_xlim(0, 0.075)
     a2.set_ylim(0, 1.03)
-    a2.set_xlabel(r"True compound gap (s lap$^{-1}$)")
+    a2.set_xlabel(r"True compound gap (s/lap)")
     a2.set_ylabel("Power (Wald $z$ test)")
     a2.legend(loc="lower right", fontsize=6.3, handlelength=2.6)
     _panel(a2, "B")
@@ -322,7 +322,7 @@ def fig_power():
     a1.set_ylim(30, 9000)
     a1.axhline(n_real, color=GREY, lw=0.9)
     a1.text(0.0353, n_real * 1.07, f"our {n_real} C1 + C2 runs", fontsize=6.5, color="#444444", ha="right", va="bottom")
-    a1.set_xlabel(r"True compound gap (s lap$^{-1}$)")
+    a1.set_xlabel(r"True compound gap (s/lap)")
     a1.set_ylabel("Runs for 80% power (log scale)")
     ticks = [0.006, 0.01, 0.02, 0.03]
     a1.set_xticks(ticks, [str(t) for t in ticks])
@@ -387,11 +387,11 @@ def fig_forecast():
             a2.errorbar(diff, yi, xerr=[[diff - lo], [hi - diff]], fmt=mk, color=col, ms=4.5, lw=1.0, capsize=2,
                         mfc=(col if k == "shrink50" else "white"))
     a1.set_yticks(yy, [lab for _, lab, _, _ in LADDER])
-    a1.set_xlabel(r"Mean absolute error (s lap$^{-1}$)")
+    a1.set_xlabel(r"Mean absolute error (s/lap)")
     a1.set_xlim(0, 0.14)
     a1.set_title(f"Out-of-season MAE, 95% CI ({hf['n_cells']} groups)", loc="left", fontsize=8)
     a2.axvline(0, color="black", lw=0.6)
-    a2.set_xlabel(r"MAE minus scaled (s lap$^{-1}$), paired 95% CI")
+    a2.set_xlabel(r"MAE minus scaled (s/lap), paired 95% CI")
     a2.set_title("Paired difference", loc="left", fontsize=8)
     a2.set_ylim(-0.6, len(LADDER) - 0.4)
     for a in (a1, a2):

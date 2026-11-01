@@ -31,6 +31,7 @@ from _paper_common import (  # noqa: E402
     MODEL,
     PIT,
     PUB4,
+    RECOV,
     STRAT,
     TELE,
     TRANS,
@@ -617,9 +618,62 @@ def build() -> list[Macro]:
     add("PersistSDLoAbs", MODEL, *sdp, "profile_95", 0, places=3, absval=True)
     add("PersistSDHiAbs", MODEL, *sdp, "profile_95", 1, places=3, absval=True)
     add("EventSDAbs", MODEL, *cv, "sd_s_per_lap", "event_specific", "estimate", places=3, absval=True)
+    # run-level slope variation in the same pooled model: the largest component
+    add("RunSlopeSD", MODEL, *cv, "sd_s_per_lap", "run_slope", places=4)
+    add("RunSlopeSDAbs", MODEL, *cv, "sd_s_per_lap", "run_slope", places=3, absval=True)
     add("PooledCompoundSDAbs", MODEL, *cv, "compound_rate_sd_s_per_lap", places=3, absval=True)
     add("MaeScalarAbs", TRANS, *sb, "scalar", "mae", places=3, absval=True)
     add("MaeConstantAbs", TRANS, *sb, "const", "mae", places=3, absval=True)
+
+    # neighbouring-compound contrasts and the gap each fit would detect (from its own covariance)
+    pair = {"C2-C1": "TwoOne", "C3-C2": "ThreeTwo", "C4-C3": "FourThree", "C5-C4": "FiveFour"}
+    for fit_key, pre in (("pooled_2022_26_nested", "Pool"), ("shipped_2026", "Six")):
+        for k, w in pair.items():
+            ct = ["detectable_from_fit", fit_key, "contrasts", k]
+            add(f"{pre}Con{w}", MODEL, *ct, "estimate", places=3, signed=True)
+            add(f"{pre}Con{w}Lo", MODEL, *ct, "lo", places=3, signed=True)
+            add(f"{pre}Con{w}Hi", MODEL, *ct, "hi", places=3, signed=True)
+            add(f"{pre}MDE{w}", MODEL, *ct, "mde80", places=3)
+            add(f"{pre}MDET{w}", MODEL, *ct, "mde80_t_reference", places=3)
+
+    # correlated random effects (Mundlak): CRE minus RE slope shifts and the joint test
+    mk = ["mundlak_check"]
+    for fit_key, pre in (("pooled_2022_26_nested", "Pool"), ("shipped_2026", "Six")):
+        add(f"Mundlak{pre}P", MODEL, *mk, fit_key, "wald_run_means_zero", "p_bootstrap_t", places=2)
+        for c, w in WORD.items():
+            add(f"Mundlak{pre}Shift{w}", MODEL, *mk, fit_key, "slopes_s_per_lap", c, "cre_minus_re", "estimate",
+                places=4, signed=True)
+
+    # exact versus approximate within-transformation, same laps and engine
+    ea = ["exact_vs_approximate"]
+    for fit_key, pre in (("pooled_2022_26_nested", "Pool"), ("shipped_2026", "Six")):
+        for c, w in WORD.items():
+            add(f"Approx{pre}Rate{w}", MODEL, *ea, fit_key, "approximate", "rates_s_per_lap", c, "mean", places=3)
+        add(f"Approx{pre}CompoundSD", MODEL, *ea, fit_key, "approximate", "compound_rate_sd_raw", places=4)
+    add("ApproxPoolCircuitSD", MODEL, *ea, "pooled_2022_26_nested", "approximate", "variance_sd", "circuit_slope",
+        places=4)
+    add("PooledCompoundSDCorr", MODEL, *ea, "pooled_2022_26_nested", "exact", "compound_rate_sd_noise_corrected",
+        places=4)
+
+    # recovery study: bias and coverage by estimator and scenario
+    scen = {"exogenous": "Exo", "pace": "Pace", "wear": "Wear"}
+    est = {"eq1_exact_within": "Exact", "eq1_exact_within_mundlak": "ExactMundlak", "eq1_shipped": "Approx",
+           "cross_section_cell": "Cross", "field_demeaned_ols": "Field", "fuel_within_run": "Fuel",
+           "naive_pooled_ols": "Naive"}
+    for s, sw in scen.items():
+        for e, ew in est.items():
+            mo = ["results", s, e, "mean_over_compounds"]
+            add(f"Rec{ew}{sw}Bias", RECOV, *mo, "bias", places=3, signed=True)
+            add(f"Rec{ew}{sw}Cov", RECOV, *mo, "coverage", places=2)
+        add(f"RecExact{sw}CircBias", RECOV, "results", s, "eq1_exact_within", "circuit_sd", "bias", places=4,
+            signed=True)
+        add(f"RecExact{sw}WorstCov", RECOV, "results", s, "eq1_exact_within", "worst_compound", "coverage", places=2)
+    add("RecExactWearBiasAbs", RECOV, "results", "wear", "eq1_exact_within", "mean_over_compounds", "bias",
+        places=3, absval=True)
+    add("RecFuelExoBiasAbs", RECOV, "results", "exogenous", "fuel_within_run", "mean_over_compounds", "bias",
+        places=3, absval=True)
+    add("RecTrueCircuitSD", RECOV, "truth_circuit_slope_sd_s_per_lap", places=3)
+    add("RecReps", RECOV, "results", "exogenous", "eq1_exact_within", "circuit_sd", "n")
 
     # ---------------------------------------------------------------- coverage guard
     missing = []

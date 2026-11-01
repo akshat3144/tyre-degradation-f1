@@ -33,6 +33,7 @@ from _paper_common import (  # noqa: E402
     GENERATED,
     MGMT,
     MODEL,
+    RECOV,
     STRAT,
     TRANS,
     ci,
@@ -338,7 +339,50 @@ def t9_inference():
                    ["Inference", *COMPOUNDS, "Lag-1 autocorr."], rows)
 
 
+def t10_exact():
+    """Compound rates and slope SDs under the exact and the approximate within-transformation."""
+    ea = get(MODEL, "exact_vs_approximate")
+    rows = []
+    for key, label in (("shipped_2026", "2026"), ("pooled_2022_26_nested", "2022--26 pooled")):
+        for kind, name in (("exact", "exact"), ("approximate", "approximate")):
+            b = ea[key][kind]
+            circ = b["variance_sd"]["circuit_slope"]
+            rows.append([f"{label}, {name}", *[fmt_num(b["rates_s_per_lap"][c]["mean"], 3) for c in COMPOUNDS],
+                         fmt_num(b["compound_rate_sd_raw"], 4), fmt_num(circ, 4)])
+    return tabular("@{}l" + "r" * (len(COMPOUNDS) + 2) + "@{}",
+                   ["Fit", *COMPOUNDS, "Compound SD", "Circuit SD"], rows)
+
+
+def t11_recovery():
+    """Mean bias and 95% coverage over compounds, by estimator and pit-stop scenario."""
+    res = get(RECOV, "results")
+    spec = [
+        ("naive_pooled_ols", "Naive"),
+        ("fuel_within_run", "Fuel-corrected within run"),
+        ("cross_section_cell", "Cross-sectional, no run terms"),
+        ("field_demeaned_ols", "Field-demeaned, no run terms"),
+        ("eq1_shipped", "Eq.~(1), approximate demeaning"),
+        ("eq1_exact_within", "Eq.~(1) (ours)"),
+        ("eq1_exact_within_mundlak", "Eq.~(1) with run means"),
+    ]
+    rows = []
+    for key, label in spec:
+        cells = []
+        for s in ("exogenous", "pace", "wear"):
+            m = res[s][key]["mean_over_compounds"]
+            cells += [fmt_num(m["bias"], 3, signed=True), fmt_num(m["mean_abs_bias"], 3), fmt_num(m["coverage"], 2)]
+        rows.append([label, *cells])
+    head = ["Estimator"] + ["Bias", "$|$Bias$|$", "Cov."] * 3
+    body = tabular("@{}l" + "r" * 9 + "@{}", head, rows)
+    group = (r"\multicolumn{1}{l}{} & \multicolumn{3}{c}{Random stops} & \multicolumn{3}{c}{Stops by pace} "
+             r"& \multicolumn{3}{c}{Stops by wear} \\" "\n"
+             r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(l){8-10}" "\n")
+    return body.replace("\\toprule\n", "\\toprule\n" + group, 1)
+
+
 TABLES = {
+    "tab_exact": t10_exact,
+    "tab_recovery": t11_recovery,
     "tab_inference": t9_inference,
     "tab_data": t1_data,
     "tab_rates": t2_rates,

@@ -1,0 +1,15 @@
+\begin{tabular}{@{}lrrrrrrrrr@{}}
+\toprule
+\multicolumn{1}{l}{} & \multicolumn{3}{c}{Random stops} & \multicolumn{3}{c}{Stops by pace} & \multicolumn{3}{c}{Stops by wear} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(l){8-10}
+Estimator & Bias & $|$Bias$|$ & Cov. & Bias & $|$Bias$|$ & Cov. & Bias & $|$Bias$|$ & Cov. \\
+\midrule
+Naive & \ensuremath{-}0.062 & 0.062 & 0.05 & \ensuremath{-}0.077 & 0.077 & 0.02 & \ensuremath{-}0.070 & 0.070 & 0.03 \\
+Fuel-corrected within run & \ensuremath{-}0.012 & 0.012 & 0.42 & \ensuremath{-}0.012 & 0.012 & 0.43 & \ensuremath{-}0.029 & 0.029 & 0.22 \\
+Cross-sectional, no run terms & \ensuremath{+}0.000 & 0.000 & 0.79 & \ensuremath{-}0.027 & 0.027 & 0.51 & \ensuremath{-}0.032 & 0.032 & 0.32 \\
+Field-demeaned, no run terms & \ensuremath{+}0.000 & 0.000 & 0.80 & \ensuremath{-}0.027 & 0.027 & 0.51 & \ensuremath{-}0.035 & 0.035 & 0.30 \\
+Eq.~(1), approximate demeaning & \ensuremath{+}0.002 & 0.005 & 0.92 & \ensuremath{+}0.001 & 0.005 & 0.92 & \ensuremath{-}0.007 & 0.007 & 0.87 \\
+Eq.~(1) (ours) & \ensuremath{+}0.000 & 0.000 & 0.92 & \ensuremath{-}0.001 & 0.001 & 0.92 & \ensuremath{-}0.009 & 0.009 & 0.79 \\
+Eq.~(1) with run means & \ensuremath{+}0.000 & 0.000 & 0.92 & \ensuremath{-}0.001 & 0.001 & 0.92 & \ensuremath{-}0.008 & 0.008 & 0.81 \\
+\bottomrule
+\end{tabular}
