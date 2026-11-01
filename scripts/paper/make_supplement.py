@@ -5,7 +5,9 @@
 Reads data/allocation.json (2026) and data/allocation_history.json (2022-2025)
 and writes paper/manuscript/supplementary/pirelli_nominations.csv with one row
 per Grand Prix: season, event, the physical compound (C number) labelled hard,
-medium and soft, whether two sources agree, and the source URLs. Offline.
+medium and soft, whether two sources agree, and the source URLs. The 2026
+rows come from Pirelli's pre-event announcements and were not cross-checked
+against a second source, so they are marked "not checked". Offline.
 """
 
 from __future__ import annotations
@@ -43,8 +45,8 @@ def rows() -> list[dict]:
                 "hard": c["HARD"],
                 "medium": c["MEDIUM"],
                 "soft": c["SOFT"],
-                "two_sources_agree": "",
-                "sources": rec.get("source") or "",
+                "two_sources_agree": "not checked",
+                "sources": "Pirelli pre-event compound nomination (press.pirelli.com)",
             }
         )
     return sorted(out, key=lambda r: (r["season"], r["event"]))
