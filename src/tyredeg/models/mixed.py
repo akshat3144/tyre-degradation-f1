@@ -20,6 +20,20 @@ THE MODEL (race, the shipped fit)
 ``y`` is lap time minus the (event, lap) mean of the field, so fuel, track
 evolution and the weather are gone before the model starts. Tyre age is linear.
 
+THE WITHIN-TRANSFORMATION IS APPLIED TO EVERY FIXED-EFFECT COLUMN
+
+Giving each (event, lap) cell its own intercept means subtracting the cell mean
+from lap time AND from every fixed-effect column: ``tilde(D_c)`` for the compound
+offsets (one reference compound dropped) and ``tilde(D_c * age)`` for the
+compound slopes, with age the RAW tyre age. An earlier version multiplied a raw
+compound dummy by the already-demeaned age. When cars on different compounds
+share a lap those two differ, and the difference biases the compound slopes (by
+about +0.013 s/lap for C1 and -0.008 for C5 in the simulation in
+``paper/results/recovery.json``). ``exact_within=True`` (the default) is the
+correct transform; ``exact_within=False`` keeps the old construction only so the
+two can be compared (``paper/results/model.json``, section
+``exact_vs_approximate``). See ``models.within``.
+
 WHY THE RUN TERMS ARE THERE
 
 Laps of one stint are not independent: after the driver and run intercepts the
@@ -67,6 +81,7 @@ import pandas as pd
 
 from ..artifacts.schema import CompoundCurve, CurvePoint, DegradationArtifact, Interval
 from .reml import Comp, RemlModel, single_threaded_blas
+from .within import demean, offset_columns, redemean_frame
 
 #: Order matters: hardest to softest. Used for ordering output and for checking
 #: whether the fitted rates are monotone in compound hardness.
@@ -120,6 +135,9 @@ class Fit:
     #: order, so differences between compounds use the right standard error.
     rate_cov: np.ndarray | None = None
     rate_names: tuple[str, ...] = ()
+    #: Whether the fixed-effect columns were demeaned within (event, lap)
+    #: exactly (True) or built the earlier approximate way (False).
+    exact_within: bool = True
 
     def rate_for(self, compound: str, event: str | None = None) -> float:
         """Degradation rate for a compound, at a circuit if we know one.
@@ -213,28 +231,53 @@ class Fit:
 log = logging.getLogger(__name__)
 
 
-def _design(df: pd.DataFrame, *, quadratic: bool, with_offsets: bool, order) -> tuple:
+def _design(df: pd.DataFrame, *, quadratic: bool, with_offsets: bool, order,
+            cells: tuple[np.ndarray, int] | None = None) -> tuple:
     """Fixed-effect matrix with tyre age rescaled to unit SD.
 
     Rescaling is what rescued convergence: the slope is estimated in units of
     "per SD of tyre age" and converted back afterwards, so every parameter the
     optimiser sees is of order one.
+
+    ``cells`` is ``(codes, n_cells)`` for the exact within-(event, lap)
+    transform (``df`` must already be re-demeaned, see
+    ``within.redemean_frame``): offsets become ``tilde(D_c)`` with the first
+    compound as reference, slopes ``tilde(D_c * raw age)``. With ``cells=None``
+    the old construction is used (raw dummies, ``D_c * tilde(age)``), kept only
+    for comparison.
     """
     cats = [c for c in order if c in set(df["C"])]
     s1 = float(df["tl"].std())
     s2 = float(df["tl2"].std()) if quadratic else 1.0
+    C = df["C"].to_numpy()
     cols, names = [], []
-    if with_offsets:
+    if cells is None:
+        if with_offsets:
+            for c in cats:
+                cols.append((C == c).astype(float))
+                names.append(("off", c))
         for c in cats:
-            cols.append((df["C"] == c).to_numpy(float))
-            names.append(("off", c))
-    for c in cats:
-        cols.append((df["C"] == c).to_numpy(float) * df["tl"].to_numpy(float) / s1)
-        names.append(("tl", c))
-    if quadratic:
+            cols.append((C == c).astype(float) * df["tl"].to_numpy(float) / s1)
+            names.append(("tl", c))
+        if quadratic:
+            for c in cats:
+                cols.append((C == c).astype(float) * df["tl2"].to_numpy(float) / s2)
+                names.append(("tl2", c))
+    else:
+        codes, n = cells
+        age = df["TyreLife"].to_numpy(float)
+        if with_offsets:
+            off, off_cats = offset_columns(C, cats, codes, n)
+            for j, c in enumerate(off_cats):
+                cols.append(off[:, j])
+                names.append(("off", c))
         for c in cats:
-            cols.append((df["C"] == c).to_numpy(float) * df["tl2"].to_numpy(float) / s2)
-            names.append(("tl2", c))
+            cols.append(demean((C == c) * age, codes, n) / s1)
+            names.append(("tl", c))
+        if quadratic:
+            for c in cats:
+                cols.append(demean((C == c) * age**2, codes, n) / s2)
+                names.append(("tl2", c))
     # Traffic gets a single shared coefficient, not one per compound: dirty air
     # costs the same lap time whatever tyre you are on, and a per-compound
     # traffic term would compete with the degradation slope for the same signal.
@@ -244,6 +287,31 @@ def _design(df: pd.DataFrame, *, quadratic: bool, with_offsets: bool, order) -> 
         cols.append(df["tr"].to_numpy(float))
         names.append(("tr", None))
     return np.column_stack(cols), names, s1, s2
+
+
+def _offsets_vs_field(beta, cov, names, C, cats) -> dict[str, Interval]:
+    """Compound offsets relative to the lap-weighted average compound.
+
+    With the exact transform the first compound of ``cats`` is the reference, so
+    its offset is not a coefficient. The offsets reported are the contrasts
+    (reference = 0) re-centred on the average over laps, which is how
+    "fresh-tyre pace relative to the field" was always meant; intervals come
+    from the fixed-effect covariance.
+    """
+    idx = {c: i for i, (k, c) in enumerate(names) if k == "off"}
+    if not idx:
+        return {}
+    share = {c: float((C == c).mean()) for c in cats}
+    out = {}
+    for c in cats:
+        a = np.zeros(len(beta))
+        for k in cats:
+            if k in idx:
+                a[idx[k]] += (1.0 if k == c else 0.0) - share[k]
+        mean = float(a @ beta)
+        half = 1.96 * math.sqrt(max(float(a @ cov @ a), 0.0))
+        out[c] = Interval(mean=mean, lo=mean - half, hi=mean + half)
+    return out
 
 
 def fit_degradation(
@@ -257,10 +325,13 @@ def fit_degradation(
     run_slopes: bool | None = None,
     order: tuple[str, ...] | None = None,
     engine: str = "reml",
+    exact_within: bool = True,
 ) -> Fit:
     """Fit per-compound degradation on a prepared design frame.
 
-    The design is already demeaned, so there is no intercept. Driver-in-event
+    There is no intercept: every (event, lap) cell has its own, removed by
+    subtracting the cell mean from lap time and from every fixed-effect column
+    (``exact_within``, below). Driver-in-event
     random intercepts soak up the fact that some drivers are simply quicker,
     which would otherwise leak into the tyre-age slope whenever quick drivers
     happen to run older tyres.
@@ -277,6 +348,17 @@ def fit_degradation(
         order: compounds hardest to softest; the C numbers by default, pass
             ``LABEL_ORDER`` for HARD/MEDIUM/SOFT.
         engine: ``"reml"`` (default, fast) or ``"statsmodels"`` (reference).
+        exact_within: demean each fixed-effect column (compound offsets and
+            compound x raw tyre age) within its (event, lap) cell, which is what
+            a cell intercept means. ``False`` reproduces the earlier
+            construction (raw compound dummies; dummy x already-demeaned age),
+            which is biased when compounds are mixed on a lap; keep it only for
+            the comparison in ``model.json``. Applies to the race context; a
+            practice frame is centred within the run, where a compound dummy is
+            constant, so the two constructions coincide. Needs the raw
+            ``TyreLife`` and ``LapNumber`` columns that ``design.race_design``
+            keeps. The cell means are recomputed on the frame passed in, so
+            subsets are transformed exactly for the sample fitted.
 
     Returns:
         A ``Fit``. ``rates`` are seconds lost per lap at the start of a stint;
@@ -291,7 +373,13 @@ def fit_degradation(
         run_slopes = bool(run_effects) and engine == "reml"
     use_circuit = bool(circuit_effects and df["event"].nunique() >= 4)
 
-    X, names, s1, s2 = _design(df, quadratic=quadratic, with_offsets=with_offsets, order=order)
+    exact = bool(exact_within and context == "race")
+    cells = None
+    if exact:
+        df, codes, n_cells = redemean_frame(df)
+        cells = (codes, n_cells)
+    X, names, s1, s2 = _design(df, quadratic=quadratic, with_offsets=with_offsets, order=order,
+                               cells=cells)
     ev = df["event"].astype(str).to_numpy()
     de = (df["event"].astype(str) + "|" + df["Driver"].astype(str)).to_numpy()
     tl_s = df["tl"].to_numpy(float) / s1
@@ -347,10 +435,17 @@ def fit_degradation(
     }
 
     counts = df.groupby("C", observed=True)
+    if not with_offsets:
+        offsets = {}
+    elif exact:
+        cats_ = [c for c in order if c in set(df["C"])]
+        offsets = _offsets_vs_field(beta, cov, names, df["C"].to_numpy(), cats_)
+    else:
+        offsets = pull("off", 1.0)
     return Fit(
         rates=rates,
         curvature=pull("tl2", s2) if quadratic else {},
-        offsets=pull("off", 1.0) if with_offsets else {},
+        offsets=offsets,
         n_laps={str(k): int(v) for k, v in counts.size().items()},
         n_runs={str(k): int(v) for k, v in counts["run_id"].nunique().items()},
         events={str(k): sorted(v) for k, v in counts["event"].unique().items()},
@@ -365,6 +460,7 @@ def fit_degradation(
         convergence=conv,
         rate_cov=rate_cov,
         rate_names=rate_names,
+        exact_within=exact,
     )
 
 
@@ -571,9 +667,10 @@ def to_artifact(fit: Fit, max_life: int = 26, event: str | None = None) -> Degra
             "variance_units": "seconds; seconds per lap for circuit_slope and run_slope",
             "n_obs": fit.n_obs,
             "specification": (
-                "within (event, lap) transform; compound offset + compound x tyre-age slope "
-                "+ traffic; random circuit slope, driver-in-event intercept, run intercept, "
-                "run slope; REML"
+                "within (event, lap) transform of lap time and of every fixed-effect column "
+                "(compound offset, compound x tyre-age slope, traffic; exact_within="
+                f"{fit.exact_within}); random circuit slope, driver-in-event intercept, run "
+                "intercept, run slope; REML"
             ),
             "interval": "95% Wald from the REML fixed-effect covariance",
         },

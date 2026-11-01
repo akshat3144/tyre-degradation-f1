@@ -35,6 +35,20 @@ PRE-STATED EXPECTATIONS (written before the final numbers were produced)
         reaches 80% in the split design, whatever the number of stints.
 
 Every number the paper quotes from the core model is in model.json.
+
+WITHIN-TRANSFORMATION CORRECTION
+    Every fixed-effect column of Eq. 1 is now demeaned within its (event, lap) cell
+    (``models.within``): tilde(D_c) offsets and tilde(D_c x raw tyre age) slopes. The
+    earlier construction used raw dummies and dummy x demeaned age, which biases the
+    compound slopes when compounds are mixed on a lap. Every section of model.json is
+    from the corrected estimator except ``old_fit_reproduction`` (a record of an old
+    optimiser failure) and the ``approximate`` blocks of ``exact_vs_approximate``,
+    which hold the earlier construction for the comparison.
+
+ADDED LATER (new keys only, via ``--only``): ``detectable_from_fit`` (the smallest
+compound-pair gap the actual data can detect, from each fit's own covariance) and
+``mundlak_check`` (correlated random effects: are run pace levels unrelated to tyre
+age, and what do the slopes look like if only within-run variation is used).
 """
 
 from __future__ import annotations
@@ -76,6 +90,9 @@ def main() -> None:
     ap.add_argument("--quick", action="store_true")
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--skip", nargs="*", default=[], help="section names to skip (partial output)")
+    ap.add_argument("--max-sim-stints", type=int, default=3500,
+                    help="power_extended: simulated points above this many stints are not run (the "
+                         "analytic curves still cover them); default 3500, recorded in the output")
     ap.add_argument("--only", nargs="*", default=None,
                     help="run just these sections and MERGE them into the existing model.json "
                          "(existing keys are left untouched); e.g. circuit_vs_event")
@@ -86,6 +103,7 @@ def main() -> None:
     b_null_nested, b_alt_nested = (12, 12) if q else (500, 500)
     reps_x, size_reps_x = (10, 40) if q else (1000, 2000)
     b_boot_events = 20 if q else 500
+    b_mundlak, b_mundlak_pooled = (20, 8) if q else (500, 500)
     t0 = time.time()
     laps = pd.read_parquet(PROCESSED / "laps.parquet")
     design = prepare(laps, "race").reset_index(drop=True)
@@ -114,8 +132,10 @@ def main() -> None:
     shipped = fit_degradation(design, quadratic=False, circuit_effects=True)
     ords = shipped.ordered
     res["shipped_fit"] = {
-        "specification": "within (event, lap); compound offset + compound x tyre-age slope + traffic; "
+        "specification": "within (event, lap) transform of lap time and of every fixed-effect column "
+                         "(exact_within); compound offset + compound x tyre-age slope + traffic; "
                          "random circuit slope, driver-in-event intercept, run intercept, run slope; REML",
+        "exact_within": bool(shipped.exact_within),
         "rates_s_per_lap": {c: {"mean": round(v.mean, 5), "lo": round(v.lo, 5), "hi": round(v.hi, 5),
                                 "n_runs": shipped.n_runs.get(c), "n_laps": shipped.n_laps.get(c)}
                             for c, v in shipped.rates.items()},
@@ -176,12 +196,16 @@ def main() -> None:
         return mc.pooled_physical_design(data)
 
     pool_df = None
-    if args.only is None or "circuit_vs_event" in args.only or "season_c_rates" in args.only:
+    if args.only is None or {"circuit_vs_event", "season_c_rates", "detectable_from_fit",
+                             "mundlak_check", "exact_vs_approximate"} & set(args.only):
         pool_df = pooled()
     cve = section("circuit_vs_event", lambda: mc.circuit_vs_event(
         pool_df, b_null_nested, b_alt_nested, args.workers, SEED))
     if cve is not None:
         res["circuit_vs_event"] = cve
+    eva = section("exact_vs_approximate", lambda: mc.exact_vs_approximate(design, pool_df))
+    if eva is not None:
+        res["exact_vs_approximate"] = eva
     scr = section("season_c_rates", lambda: mc.season_c_rates(pool_df))
     if scr is not None:
         res["season_c_rates"] = scr
@@ -198,7 +222,8 @@ def main() -> None:
     def pwx():
         ci = tuple(res["circuit_effect"]["circuit_slope_sd_s_per_lap"]["profile_likelihood_95"])
         return mc.power_extended(shipped.variance, ci, design, args.workers, SEED,
-                                 reps=reps_x, size_reps=size_reps_x)
+                                 reps=reps_x, size_reps=size_reps_x,
+                                 max_sim_stints=args.max_sim_stints)
 
     px = section("power_extended", pwx)
     if px is not None:
@@ -214,13 +239,27 @@ def main() -> None:
     if mde is not None:
         res["min_detectable_effect"] = mde
 
+    # What the actual data can detect (no simulation), and whether a run's random
+    # pace level is unrelated to its tyre age (Mundlak / correlated random effects).
+    dff = section("detectable_from_fit", lambda: mc.detectable_from_fit(design, pool_df, shipped))
+    if dff is not None:
+        res["detectable_from_fit"] = dff
+
+    mk = section("mundlak_check", lambda: mc.mundlak_check(
+        design, pool_df, b_mundlak, b_mundlak_pooled, args.workers, SEED))
+    if mk is not None:
+        res["mundlak_check"] = mk
+
     inputs = [PROCESSED / f"laps_{s}.parquet" for s in (2022, 2023, 2024, 2025)] + [PROCESSED / "laps.parquet"]
     audit_ = mc.audit(
         "scripts/paper/p3_model.py", inputs, SEED,
         {"replicates": {"circuit_lr_null": b_null, "circuit_alt_and_sbc": b_alt, "power_per_point": n_sims,
                         "nested_circuit_lr_null": b_null_nested, "nested_alt": b_alt_nested,
                         "event_cluster_bootstrap_2026": b_boot_events,
-                        "power_extended_per_point": reps_x, "type_I_error": size_reps_x},
+                        "mundlak_cluster_bootstrap_2026_races": b_mundlak,
+                        "mundlak_cluster_bootstrap_pooled_circuits": b_mundlak_pooled,
+                        "power_extended_per_point": reps_x, "type_I_error": size_reps_x,
+                        "power_extended_max_sim_stints": args.max_sim_stints},
          "workers": args.workers, "section_seconds": timings,
          "total_seconds": round(time.time() - t0, 1),
          "command": "python scripts/paper/p3_model.py" + (" --quick" if q else "")

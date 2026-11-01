@@ -40,6 +40,14 @@ def synth(
 ) -> pd.DataFrame:
     """Frames shaped like ``prepare(..., 'race')`` output, truth from the model."""
     rng = np.random.default_rng(seed)
+    # Runs start on different laps of the race (cars pit at different times), so a lap's
+    # cars are at different points of their runs. A separate stream keeps every other draw
+    # unchanged. Without it tyre age would be a function of the lap number plus a run
+    # constant, which makes the exact within-(event, lap) design collinear with the Mundlak
+    # run-mean columns: an artefact of a toy design, not of races.
+    shift_rng = np.random.default_rng(seed + 977)
+    shift = {(f"GP{e}", d, r): int(shift_rng.integers(0, 12))
+             for e in range(n_events) for d in range(n_drivers) for r in range(runs_per_driver)}
     rows = []
     for e in range(n_events):
         ev = f"GP{e}"
@@ -58,7 +66,8 @@ def synth(
                     rows.append({
                         "event": ev, "Driver": f"D{d}", "run_id": f"{ev}|D{d}|{r}", "C": labels[comp],
                         "Compound": ("HARD", "MEDIUM", "SOFT")[comp], "tl": tl, "tl2": tl**2,
-                        "y": y, "tr": 0.0, "LapNumber": float(lap + 1 + 10 * r),
+                        "TyreLife": float(age),
+                        "y": y, "tr": 0.0, "LapNumber": float(lap + 1 + 10 * r + shift[(ev, d, r)]),
                     })
     df = pd.DataFrame(rows)
     df["tr"] = np.random.default_rng(seed + 1).normal(0, 0.3, len(df))
@@ -147,6 +156,7 @@ def test_rescaling_tyre_age_does_not_change_the_answer_in_laps():
     a = fit_degradation(df, quadratic=False, circuit_effects=True)
     df2 = df.copy()
     df2["tl"] = df2["tl"] * 5.0  # tyre age in different units
+    df2["TyreLife"] = df2["TyreLife"] * 5.0
     b = fit_degradation(df2, quadratic=False, circuit_effects=True)
     for c in a.rates:
         assert a.rates[c].mean == pytest.approx(5.0 * b.rates[c].mean, rel=1e-3)
@@ -395,6 +405,8 @@ def synth_nested(n_circuits=8, visits=4, circuit_sd=0.05, event_sd=0.02, seed=0,
                         rows.append({
                             "circuit": f"GP{c}", "event_key": ev, "Driver": f"D{d}",
                             "run_id": f"{ev}|D{d}|{r}", "C": ("C3", "C4")[comp], "tl": tl,
+                            "TyreLife": start + lap + 1.0,
+                            "LapNumber": float(lap + 1 + 12 * r + int(start)),
                             "y": (rates[comp] + tau_c + tau_e) * tl + u_d + u_r + rng.normal(0, 0.3),
                             "tr": 0.0,
                         })
@@ -552,3 +564,289 @@ def test_the_t_reference_counts_only_the_races_that_carry_the_compared_compounds
     assert r["n_events_in_design"] == 4  # of the eight races in NOMS, four carry C1 or C2
     b = P.simulate_mixed_power(52, 0.10, "balanced", PARAMS, seeds, n_events=8)
     assert b["n_events_in_design"] == 8
+
+
+# ---------------------------------------------------------------------------
+# what the data can detect, and correlated random effects (Mundlak)
+# ---------------------------------------------------------------------------
+
+
+def _with_run_selection(df, gamma):
+    """A run's pace level moves with its mean tyre age: the violation Mundlak tests for."""
+    d = df.copy()
+    d["y"] = d["y"] + gamma * d.groupby("run_id")["tl"].transform("mean")
+    return d
+
+
+def _no_circuit_synth(**kw):
+    return synth(n_events=10, n_drivers=10, laps=8, circuit_sd=0.0, run_slope_sd=0.0, **kw)
+
+
+def test_extra_fixed_columns_are_appended_last_and_the_default_is_unchanged():
+    from tyredeg.paper import model_checks as mc
+
+    df = synth(n_events=6, n_drivers=4, laps=10, seed=2)
+    m0, meta0 = mc.build_model(df)
+    m1, meta1 = mc.build_model(df, extra_fixed=None)
+    assert meta0["names"] == meta1["names"] and np.array_equal(m0.X, m1.X)
+    z = np.random.default_rng(0).normal(size=len(df))
+    m2, meta2 = mc.build_model(df, extra_fixed={"z": z})
+    assert meta2["names"] == meta0["names"] + [("extra", "z")]
+    assert np.array_equal(m2.X[:, :-1], m0.X) and np.array_equal(m2.X[:, -1], z)  # appended as given
+    with pytest.raises(ValueError):
+        mc.build_model(df, extra_fixed={"z": z[:-1]})
+    # the nested builder takes the same argument and leaves its default alone
+    nd = synth_nested(n_circuits=4, visits=2, seed=1)
+    n0, nm0 = mc.build_nested_model(nd)
+    zn = np.random.default_rng(1).normal(size=len(nd))
+    n1, nm1 = mc.build_nested_model(nd, extra_fixed={"z": zn})
+    assert nm1["names"] == nm0["names"] + [("extra", "z")]
+    assert np.array_equal(n1.X[:, :-1], n0.X)
+
+
+def test_build_model_default_still_reproduces_the_shipped_fit():
+    """The extension must not move any existing result: same slopes as ``fit_degradation``."""
+    from tyredeg.paper import model_checks as mc
+
+    df = synth(n_events=8, n_drivers=6, laps=12, seed=6)
+    ref = fit_degradation(df, quadratic=False, circuit_effects=True)
+    m, meta = mc.build_model(df)
+    k = len(m.names)
+    f = m.fit(starts=[np.full(k, 0.5), np.full(k, 0.1), np.linspace(2, 0.2, k)])
+    for c in ref.rates:
+        assert f.beta[meta["names"].index(("tl", c))] / meta["s1"] == pytest.approx(ref.rates[c].mean, abs=1e-9)
+
+
+def test_a_fixed_covariate_added_through_extra_fixed_is_estimated():
+    from tyredeg.paper import model_checks as mc
+
+    df = synth(n_events=8, n_drivers=6, laps=10, seed=4)
+    from tyredeg.models.within import cell_codes, demean
+
+    z = demean(np.random.default_rng(1).normal(size=len(df)), *cell_codes(df))  # already within-cell
+    df["y"] = df["y"] + 0.5 * z
+    m, meta = mc.build_model(df, extra_fixed={"z": z})
+    f = m.fit(starts=[np.full(len(m.names), 0.5), np.full(len(m.names), 0.1)])
+    assert f.beta[meta["names"].index(("extra", "z"))] == pytest.approx(0.5, abs=0.05)
+
+
+def test_run_mean_covariates_are_the_run_mean_in_the_column_of_the_runs_compound():
+    from tyredeg.models.within import cell_codes, demean
+    from tyredeg.paper import model_checks as mc
+
+    df = synth(n_events=4, n_drivers=4, laps=9, seed=3)
+    cols = mc.run_mean_covariates(df)
+    assert list(cols) == ["tl_runmean_C3", "tl_runmean_C4"]
+    # the exact construction: run mean of the model's own (within-transformed) slope column
+    m, meta = mc.build_model(df, circuit="none", run=False, run_slope=False)
+    for c in ("C3", "C4"):
+        x = m.X[:, meta["names"].index(("tl", c))]
+        rm = pd.Series(x).groupby(df["run_id"].to_numpy()).transform("mean").to_numpy()
+        assert np.allclose(cols[f"tl_runmean_{c}"], (df["C"] == c).to_numpy() * rm)
+        assert np.all(cols[f"tl_runmean_{c}"][(df["C"] != c).to_numpy()] == 0)
+    # constant inside a run: it is a run-level covariate, which is the whole point
+    assert pd.DataFrame(cols).groupby(df["run_id"].to_numpy()).nunique().to_numpy().max() == 1
+    # the earlier construction: run mean of the cell-demeaned age
+    old = mc.run_mean_covariates(df, exact_within=False)
+    rm_old = df.groupby("run_id")["tl"].transform("mean") / df["tl"].std()
+    assert np.allclose(old["tl_runmean_C3"] + old["tl_runmean_C4"], rm_old)
+    bad = df.copy()
+    bad.loc[0, "C"] = "C4" if bad.loc[0, "C"] == "C3" else "C3"
+    with pytest.raises(ValueError):
+        mc.run_mean_covariates(bad)
+
+
+def _re_cre_slopes(df, exact_within):
+    """RE and CRE slopes, the Wald p of the run-mean coefficients, for either construction."""
+    cats = ("C3", "C4")
+    ef = mc_run_mean(df, exact_within)
+    out = []
+    for extra in (None, ef):
+        from tyredeg.paper import model_checks as mc
+
+        m, meta = mc.build_model(df, exact_within=exact_within, extra_fixed=extra)
+        f = m.fit(starts=[np.full(4, 0.5), np.full(4, 0.1)])
+        out.append((f, meta))
+    (f0, meta0), (f1, meta1) = out
+    s1 = meta0["s1"]
+    re = np.array([f0.beta[meta0["names"].index(("tl", c))] / s1 for c in cats])
+    cre = np.array([f1.beta[meta1["names"].index(("tl", c))] / s1 for c in cats])
+    xi = [i for i, n in enumerate(meta1["names"]) if n[0] == "extra"]
+    d, V = f1.beta[xi], f1.cov_beta[np.ix_(xi, xi)]
+    return re, cre, float(stats.chi2.sf(d @ np.linalg.solve(V, d), len(xi)))
+
+
+def mc_run_mean(df, exact_within):
+    from tyredeg.paper import model_checks as mc
+
+    return mc.run_mean_covariates(df, exact_within=exact_within)
+
+
+def test_cre_slopes_equal_the_run_fixed_effects_slopes_and_the_wald_test_sees_selection_old_construction():
+    """Mundlak result under the EARLIER construction (kept for comparison): with run-mean
+    covariates the slopes use within-run variation only, which is what a run fixed-effects
+    regression uses. If a run pace level tracks its mean tyre age, the random-effects slopes are
+    pulled off and the run-mean coefficients are not zero."""
+    from tyredeg.paper import model_checks as mc
+
+    truth = np.array([0.03, 0.06])
+    df = _with_run_selection(_no_circuit_synth(seed=1), -0.25)
+    re, cre, p = _re_cre_slopes(df, False)
+    fe = mc._run_fe_ols(df, "event", exact_within=False)["rates"]
+    assert p < 1e-6
+    assert np.allclose(cre, [fe["C3"]["est"], fe["C4"]["est"]], atol=2e-3)
+    assert np.all(np.abs(cre - truth) < 0.012)
+    assert np.all(re < cre - 0.002)
+
+    re0, cre0, p0 = _re_cre_slopes(_no_circuit_synth(seed=1), False)
+    assert p0 > 0.01
+    assert np.allclose(re0, cre0, atol=3e-3)
+
+
+def test_cre_under_the_exact_construction_sees_selection_and_leaves_clean_data_alone():
+    """The exact construction identifies the slopes from far less within-stint variation than
+    the earlier one, so this design is larger (more cars, longer runs)."""
+    truth = np.array([0.03, 0.06])
+
+    def big(**kw):
+        return synth(n_events=10, n_drivers=16, laps=14, circuit_sd=0.0, run_slope_sd=0.0, seed=1, **kw)
+
+    re, cre, p = _re_cre_slopes(_with_run_selection(big(), -0.25), True)
+    assert p < 1e-6                       # the Wald test sees a run pace level that tracks tyre age
+    assert np.all(np.abs(cre - truth) < 0.012)
+
+    re0, cre0, p0 = _re_cre_slopes(big(), True)
+    assert p0 > 0.01
+    assert np.allclose(re0, cre0, atol=3e-3)  # nothing to correct when run pace is unrelated to age
+
+
+def test_run_fixed_effects_ols_ignores_run_pace_and_uses_t_with_g_minus_one_df():
+    from tyredeg.paper import model_checks as mc
+
+    df = _with_run_selection(_no_circuit_synth(seed=1), -0.25)
+    out = mc._run_fe_ols(df, "event")
+    assert out["n_clusters"] == 10 and out["t_df"] == 9
+    c3 = out["rates"]["C3"]
+    crit = stats.t.ppf(0.975, 9)
+    assert c3["hi"] - c3["est"] == pytest.approx(crit * c3["se"])
+    assert c3["p"] == pytest.approx(2 * stats.t.sf(abs(c3["t"]), 9))
+    assert c3["n_clusters_with_compound"] == 10
+    # a constant added to every lap of a run is differenced away: nothing moves
+    shifted = df.copy()
+    shifted["y"] = shifted["y"] + 0.7 * shifted["run_id"].astype("category").cat.codes
+    out2 = mc._run_fe_ols(shifted, "event")
+    for c in ("C3", "C4"):
+        assert out2["rates"][c]["est"] == pytest.approx(out["rates"][c]["est"], abs=1e-9)
+        assert out2["rates"][c]["se"] == pytest.approx(out["rates"][c]["se"], abs=1e-9)
+
+
+def test_detectable_from_fit_is_2_8_standard_errors_from_the_fits_own_covariance():
+    from tyredeg.paper import model_checks as mc
+
+    df = synth(n_events=8, n_drivers=6, laps=12, seed=5)
+    pooled = synth_nested(n_circuits=6, visits=3, seed=2)
+    out = mc.detectable_from_fit(df, pooled)
+    fit = fit_degradation(df, quadratic=False, circuit_effects=True)
+    assert set(out["shipped_2026"]["contrasts"]) == {"C4-C3"}  # only pairs whose compounds are both fitted
+    row = out["shipped_2026"]["contrasts"]["C4-C3"]
+    iv = fit.contrast("C3", "C4")
+    z = stats.norm.ppf(0.975) + stats.norm.ppf(0.80)
+    assert row["estimate"] == pytest.approx(iv.mean, abs=1e-5)
+    assert row["se"] == pytest.approx((iv.hi - iv.lo) / 3.92, abs=1e-5)
+    assert row["mde80"] == pytest.approx(z * row["se"], abs=2e-5)
+    assert row["lo"] == pytest.approx(row["estimate"] - 1.959964 * row["se"], abs=2e-5)
+    assert row["n_runs"] == {"C3": fit.n_runs["C3"], "C4": fit.n_runs["C4"]}
+    assert row["mde80_t_reference"] > row["mde80"]
+    pr = out["pooled_2022_26_nested"]["contrasts"]["C4-C3"]
+    runs = pooled.groupby("C")["run_id"].nunique()
+    assert pr["n_runs"] == {"C3": int(runs["C3"]), "C4": int(runs["C4"])}
+    assert pr["mde80"] == pytest.approx(z * pr["se"], abs=2e-5)
+    assert pr["n_blocks_carrying_either_compound"] == pooled["circuit"].nunique()
+    # a shipped fit that is passed in is used as it is, not refitted
+    again = mc.detectable_from_fit(df, pooled, shipped=fit)
+    assert again["shipped_2026"] == out["shipped_2026"]
+
+
+def test_the_bootstrap_t_wald_calibrates_to_the_nominal_level_when_the_statistic_is_chi_square():
+    from tyredeg.paper.model_checks import _boot_wald_t
+
+    rng = np.random.default_rng(0)
+    ok = []
+    for _ in range(600):
+        d = np.full(5, np.nan)
+        d[:2] = rng.multivariate_normal([0.0, 0.0], np.eye(2) * 0.01)
+        ok.append({"cre": {"delta": d, "delta_cov": np.eye(5) * 0.01}})
+    crit = stats.chi2.ppf(0.95, 2)
+    out = _boot_wald_t(ok, ["C1", "C2"], np.zeros(2), crit)
+    assert out["n_used"] == 600
+    assert out["p"] == pytest.approx(0.05, abs=0.025)
+    assert _boot_wald_t(ok[:5], ["C1", "C2"], np.zeros(2), crit) is None  # too few to say anything
+
+
+def test_mundlak_bootstrap_replicate_redraws_races_and_is_deterministic():
+    from tyredeg.paper import model_checks as mc
+
+    df = synth(n_events=6, n_drivers=4, laps=10, seed=5)
+    spec = dict(circuit="random", slopes="compound")
+    _, _, f0, _, _, f1 = mc._fit_re_cre(df, False)
+    mc._init_worker_spec(df, spec, {**mc._fit_payload(f0), "theta_re": f0.theta, "theta_cre": f1.theta})
+    a = mc._task_mundlak_boot(np.random.SeedSequence(3))
+    b = mc._task_mundlak_boot(np.random.SeedSequence(3))
+    present, absent = [2, 3], [0, 1, 4]  # C3 and C4 are in the data; C1, C2 and C5 are not
+    assert np.isfinite(a["re"]["rate"][present]).all() and np.isnan(a["re"]["rate"][absent]).all()
+    assert np.isfinite(a["cre"]["delta"][present]).all() and a["cre"]["delta_cov"].shape == (5, 5)
+    assert np.allclose(a["cre"]["rate"][present], b["cre"]["rate"][present])
+    assert a["n_compounds"] == 2
+
+
+def test_mundlak_check_reports_the_requested_quantities_for_both_specifications(monkeypatch):
+    import json
+
+    from tyredeg.paper import model_checks as mc
+
+    def serial(df, spec, payload, fn, items, workers, **kw):
+        mc._init_worker_spec(df, spec, payload)
+        return [fn(it) for it in items]
+
+    monkeypatch.setattr(mc, "_run_sharded", serial)
+    design = _with_run_selection(synth(n_events=5, n_drivers=4, laps=8, seed=7), -0.2)
+    pooled = _with_run_selection(synth_nested(n_circuits=4, visits=2, drivers=4, laps=8, seed=3), -0.2)
+    out = mc.mundlak_check(design, pooled, 10, 10, 1, 0)
+    for key, nested in (("shipped_2026", False), ("pooled_2022_26_nested", True)):
+        b = out[key]
+        assert set(b["slopes_s_per_lap"]) == {"C3", "C4"}
+        w = b["wald_run_means_zero"]
+        assert w["df"] == 2 and 0.0 <= w["p_chi2"] <= 1.0 and w["statistic"] > 0
+        row = b["slopes_s_per_lap"]["C3"]
+        assert row["re"]["se"] > 0 and row["cre"]["se"] > 0
+        d = row["cre_minus_re"]
+        assert d["se_method"] in ("analytic_hausman", "cluster_bootstrap")
+        assert (d["se_method"] == "analytic_hausman") == b["hausman"]["positive_definite"]
+        assert d["se_cluster_bootstrap"] is not None
+        assert d["estimate"] == pytest.approx(row["cre"]["mean"] - row["re"]["mean"], abs=2e-5)
+        assert 0 < b["bootstrap"]["n_converged_both"] <= 10
+        vc = b["variance_components"]
+        assert ("persistent_share_of_slope_variance" in vc["cre"]) == nested
+        assert {"re", "cre", "bootstrap_95"} <= set(vc)
+        assert set(b["run_fixed_effects_ols"]) == (
+            {"cluster_by_event", "cluster_by_circuit"} if nested else {"cluster_by_event"})
+    json.dumps(mc.jsonable(out))  # everything in it is serialisable
+
+
+def test_exact_vs_approximate_reports_both_constructions_for_both_fits():
+    from tyredeg.paper import model_checks as mc
+
+    df = synth(n_events=8, n_drivers=8, laps=12, seed=5)
+    pooled = synth_nested(n_circuits=6, visits=3, seed=2)
+    out = mc.exact_vs_approximate(df, pooled)
+    for key in ("shipped_2026", "pooled_2022_26_nested"):
+        for which in ("exact", "approximate"):
+            blk = out[key][which]
+            assert set(blk["rates_s_per_lap"]) == {"C3", "C4"}
+            assert blk["compound_rate_sd_raw"] is not None and "variance_sd" in blk
+        assert set(out[key]["exact_minus_approximate_rate_s_per_lap"]) == {"C3", "C4"}
+    assert "persistent_share_of_slope_variance" in out["pooled_2022_26_nested"]["exact"]
+    # same layout as shipped_fit, so the recovery study can read its planted truth from it
+    ap = out["shipped_2026"]["approximate"]
+    assert {"circuit_slope", "driver_event", "run", "run_slope", "resid"} <= set(ap["variance_sd"])
+    assert out["shipped_2026"]["exact"]["rates_s_per_lap"] != ap["rates_s_per_lap"]

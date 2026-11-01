@@ -34,6 +34,7 @@ from scipy import stats
 
 from ..models.mixed import C_ORDER, LABEL_ORDER, fit_degradation
 from ..models.reml import Comp, RemlModel, single_threaded_blas
+from ..models.within import absorb, demean, offset_columns, redemean_frame
 from ..validation.calibration import coverage_of_truth, predictive_coverage
 
 Z95 = 1.959963984540054
@@ -54,6 +55,8 @@ def build_model(
     order: tuple[str, ...] = C_ORDER,
     ref: str | None = None,
     with_offsets: bool = True,
+    extra_fixed: dict[str, np.ndarray] | None = None,
+    exact_within: bool = True,
 ) -> tuple[RemlModel, dict]:
     """The degradation model in any of the shapes the checks need.
 
@@ -65,54 +68,89 @@ def build_model(
             compounds' slopes as differences from ``ref`` (use with
             ``circuit="fixed"``); ``"label_rank"`` MEDIUM and SOFT slope
             differences from HARD; ``"trend"`` one slope per step of hardness.
+        extra_fixed: optional extra FIXED-effect columns, ``{label: values}``
+            with one value per row of ``df`` in its row order. They are appended
+            after every other fixed effect and named ``("extra", label)``.
+            Nothing is added when it is ``None`` (the default), so every
+            existing specification is unchanged. Used for the Mundlak run-mean
+            covariates in ``mundlak_check``. They are appended as given.
+        exact_within: demean every fixed-effect column within its (event, lap)
+            cell: ``tilde(D_c)`` for the offsets (the first compound is the
+            reference and has no column), ``tilde(w * age)`` with RAW tyre age
+            for every slope column whose weight ``w`` varies within a cell
+            (compound dummies, hardness steps, label dummies). A column that is
+            constant within a cell times age (per-event slopes, one common
+            slope) is already exact. ``False`` is the earlier construction (raw
+            dummies, ``w * tilde(age)``), biased when compounds share a lap; kept
+            only for the comparison in ``model.json``. Cell means are computed on
+            ``df`` itself, so any subset is transformed exactly. Needs the raw
+            ``TyreLife`` and ``LapNumber`` columns.
     """
     df = df.reset_index(drop=True)
+    cells = None
+    if exact_within:
+        df, codes, ncell = redemean_frame(df)
+        cells = (codes, ncell)
     cats = [c for c in order if c in set(df["C"])]
     s1 = float(df["tl"].std())
     tl = df["tl"].to_numpy(float) / s1
     C = df["C"].to_numpy()
     cols, names = [], []
+
+    def slope_col(w: np.ndarray) -> np.ndarray:
+        """``w * age`` as the model sees it: exactly demeaned, or the old ``w * tilde(age)``."""
+        if cells is None:
+            return w * tl
+        return demean(w * df["TyreLife"].to_numpy(float), *cells) / s1
+
     if with_offsets:
-        for c in cats:
-            cols.append((C == c).astype(float))
-            names.append(("off", c))
+        if cells is None:
+            for c in cats:
+                cols.append((C == c).astype(float))
+                names.append(("off", c))
+        else:
+            off, off_cats = offset_columns(C, cats, *cells)
+            for j, c in enumerate(off_cats):
+                cols.append(off[:, j])
+                names.append(("off", c))
     events = sorted(df["event"].astype(str).unique())
     ev = df["event"].astype(str).to_numpy()
     if circuit == "fixed":
         for e in events:
-            cols.append((ev == e) * tl)
+            cols.append((ev == e) * tl)  # constant within a cell: already exact
             names.append(("ev_tl", e))
     if slopes == "compound":
         if circuit == "fixed":
             raise ValueError("per-compound slopes are not identified beside per-event slopes")
         for c in cats:
-            cols.append((C == c) * tl)
+            cols.append(slope_col((C == c).astype(float)))
             names.append(("tl", c))
     else:
         if circuit != "fixed":
-            cols.append(tl)
+            cols.append(tl)  # one common slope: already exact
             names.append(("tl", "all"))
         if slopes == "contrast":
             ref = ref or cats[len(cats) // 2]
             for c in cats:
                 if c != ref:
-                    cols.append((C == c) * tl)
+                    cols.append(slope_col((C == c).astype(float)))
                     names.append(("ctr", c))
         elif slopes == "label_rank":
             lab = (df["Compound"] if "Compound" in df.columns else df["C"]).to_numpy()
             for L in ("MEDIUM", "SOFT"):
-                cols.append((lab == L) * tl)
+                cols.append(slope_col((lab == L).astype(float)))
                 names.append(("lab", L))
         elif slopes == "trend":
             mid = (len(order) - 1) / 2
             idx = np.array([order.index(c) - mid if c in order else 0.0 for c in C])
-            cols.append(idx * tl)
+            cols.append(slope_col(idx))
             names.append(("trend", "step"))
         else:
             raise ValueError(f"unknown slopes {slopes!r}")
     if "tr" in df.columns and float(df["tr"].std() or 0.0) > 1e-9:
         cols.append(df["tr"].to_numpy(float))
         names.append(("tr", ""))
+    _append_extra_fixed(cols, names, extra_fixed, len(df))
     X = np.column_stack(cols)
     comps = []
     if circuit == "random":
@@ -123,7 +161,21 @@ def build_model(
     if run_slope:
         comps.append(Comp("run_slope", df["run_id"].astype(str).to_numpy(), tl))
     model = RemlModel(df["y"].to_numpy(float), X, ev, comps)
-    return model, {"names": names, "s1": s1, "cats": cats}
+    return model, {"names": names, "s1": s1, "cats": cats, "exact_within": bool(exact_within)}
+
+
+def _append_extra_fixed(cols: list, names: list, extra_fixed: dict | None, n: int) -> None:
+    """Append ``extra_fixed`` columns to a fixed-effect design being assembled, as given.
+
+    They are NOT demeaned again: the Mundlak run means are run means of columns
+    that are already within-transformed (see ``run_mean_covariates``).
+    """
+    for label, v in (extra_fixed or {}).items():
+        v = np.asarray(v, float)
+        if v.shape != (n,):
+            raise ValueError(f"extra_fixed[{label!r}] has shape {v.shape}, expected ({n},)")
+        cols.append(v)
+        names.append(("extra", label))
 
 
 def _col(meta: dict, key: tuple) -> int:
@@ -501,26 +553,46 @@ def old_fit_reproduction(design: pd.DataFrame) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def _fe_ols(design: pd.DataFrame, cluster_col: str) -> dict:
-    """Fixed-effects OLS (driver-in-event demeaned) with cluster-robust CIs."""
+def _fe_ols(design: pd.DataFrame, cluster_col: str, exact_within: bool = True) -> dict:
+    """Fixed-effects OLS (driver-in-event and (event, lap) cell effects) with cluster-robust CIs.
+
+    ``exact_within``: every column (compound dummies, compound x RAW tyre age,
+    traffic, lap time) has BOTH the (event, lap) cell means and the
+    driver-in-event means removed, by alternating projections, which is the
+    exact two-way within-transformation. ``False`` is the earlier version: the
+    columns ``D_c`` and ``D_c * tilde(age)`` demeaned by driver-in-event only.
+    """
     from ..models.ablation import cluster_ols
 
     d = design.reset_index(drop=True)
     cats = [c for c in C_ORDER if c in set(d["C"])]
     grp = (d["event"].astype(str) + "|" + d["Driver"].astype(str)).to_numpy()
-    cols = [(d["C"] == c).to_numpy(float) for c in cats]
-    cols += [(d["C"] == c).to_numpy(float) * d["tl"].to_numpy(float) for c in cats]
-    cols.append(d["tr"].to_numpy(float))
-    X = np.column_stack(cols)
-    Xd = X - pd.DataFrame(X).groupby(grp).transform("mean").to_numpy()
-    yd = d["y"].to_numpy(float)
-    yd = yd - pd.Series(yd).groupby(grp).transform("mean").to_numpy()
+    if exact_within:
+        d, codes, ncell = redemean_frame(d)
+        cell = np.asarray(codes)
+        age = d["TyreLife"].to_numpy(float)
+        raw = [(d["C"] == c).to_numpy(float) for c in cats[1:]]
+        raw += [(d["C"] == c).to_numpy(float) * age for c in cats]
+        raw.append(d["tr"].to_numpy(float))
+        raw.append(d["y"].to_numpy(float))
+        Z = absorb(np.column_stack(raw), [cell, grp])
+        Xd, yd = Z[:, :-1], Z[:, -1]
+        j0 = len(cats) - 1
+    else:
+        cols = [(d["C"] == c).to_numpy(float) for c in cats]
+        cols += [(d["C"] == c).to_numpy(float) * d["tl"].to_numpy(float) for c in cats]
+        cols.append(d["tr"].to_numpy(float))
+        X = np.column_stack(cols)
+        Xd = X - pd.DataFrame(X).groupby(grp).transform("mean").to_numpy()
+        yd = d["y"].to_numpy(float)
+        yd = yd - pd.Series(yd).groupby(grp).transform("mean").to_numpy()
+        j0 = len(cats)
     beta, cc, _ = cluster_ols(Xd, yd, d[cluster_col].astype(str))
     G = d[cluster_col].nunique()
     crit = float(stats.t.ppf(0.975, G - 1)) if cluster_col == "event" else Z95
     out = {}
     for i, c in enumerate(cats):
-        j = len(cats) + i
+        j = j0 + i
         se = math.sqrt(cc[j, j])
         out[c] = {"est": float(beta[j]), "lo": float(beta[j] - crit * se), "hi": float(beta[j] + crit * se)}
     return out
@@ -1186,23 +1258,44 @@ def pooled_physical_design(
 def build_nested_model(
     df: pd.DataFrame, *, order: tuple[str, ...] = C_ORDER, circuit: bool = True,
     event: bool = True, run_slope: bool = True,
+    extra_fixed: dict[str, np.ndarray] | None = None, exact_within: bool = True,
 ) -> tuple[RemlModel, dict]:
     """Circuit random slope plus event-within-circuit random slope.
 
     Blocks are CIRCUITS, so a circuit's several races (one per season) share one
     ``circuit_slope`` while each race has its own ``event_slope``. Driver-in-event
-    and run terms are nested inside the race as before.
+    and run terms are nested inside the race as before. ``extra_fixed`` adds
+    fixed-effect columns exactly as in ``build_model`` (default: none).
+
+    ``exact_within`` (default) demeans every fixed-effect column within its
+    (event_key, lap) cell: ``tilde(D_c)`` offsets (first compound is the
+    reference) and ``tilde(D_c * raw age)`` slopes. The cell is a race-season,
+    so seasons never mix. ``False`` is the earlier approximate construction.
+    The circuit and race slope columns use ``tilde(age)``, which is exact because
+    the circuit and the race are constant within a cell.
     """
     df = df.reset_index(drop=True)
+    cells = None
+    if exact_within:
+        df, codes, ncell = redemean_frame(df)
+        cells = (codes, ncell)
     cats = [c for c in order if c in set(df["C"])]
     s1 = float(df["tl"].std())
     tl = df["tl"].to_numpy(float) / s1
     C = df["C"].to_numpy()
-    cols = [(C == c).astype(float) for c in cats] + [(C == c) * tl for c in cats]
-    names = [("off", c) for c in cats] + [("tl", c) for c in cats]
+    if cells is None:
+        cols = [(C == c).astype(float) for c in cats] + [(C == c) * tl for c in cats]
+        names = [("off", c) for c in cats] + [("tl", c) for c in cats]
+    else:
+        off, off_cats = offset_columns(C, cats, *cells)
+        age = df["TyreLife"].to_numpy(float)
+        cols = [off[:, j] for j in range(len(off_cats))] + [
+            demean((C == c) * age, *cells) / s1 for c in cats]
+        names = [("off", c) for c in off_cats] + [("tl", c) for c in cats]
     if "tr" in df.columns and float(df["tr"].std() or 0.0) > 1e-9:
         cols.append(df["tr"].to_numpy(float))
         names.append(("tr", ""))
+    _append_extra_fixed(cols, names, extra_fixed, len(df))
     blk = df["circuit"].astype(str).to_numpy()
     ek = df["event_key"].astype(str).to_numpy()
     comps = []
@@ -1215,7 +1308,7 @@ def build_nested_model(
     if run_slope:
         comps.append(Comp("run_slope", df["run_id"].astype(str).to_numpy(), tl))
     model = RemlModel(df["y"].to_numpy(float), np.column_stack(cols), blk, comps)
-    return model, {"names": names, "s1": s1, "cats": cats}
+    return model, {"names": names, "s1": s1, "cats": cats, "exact_within": bool(exact_within)}
 
 
 def _fit_nested(df: pd.DataFrame, **kw):
@@ -1454,6 +1547,81 @@ def compound_vs_circuit_2026(alts: list, full, meta: dict, design: pd.DataFrame,
         },
         "note": "In 2026 each circuit hosts one race, so this circuit SD is race-to-race variance.",
     }
+
+
+# ---------------------------------------------------------------------------
+# the within-transformation correction: what it changed
+# ---------------------------------------------------------------------------
+
+
+def _summarise_fit(rates: dict, sd: dict, extra: dict | None = None) -> dict:
+    """Compound rates with intervals, variance SDs and the SD of the compound rates."""
+    est = np.array([v["mean"] for v in rates.values()])
+    se = np.array([(v["hi"] - v["lo"]) / (2 * Z95) for v in rates.values()])
+    out = {
+        "rates_s_per_lap": rates,
+        "variance_sd": sd,
+        "compound_rate_sd_raw": _r(np.std(est, ddof=1)),
+        "compound_rate_sd_noise_corrected": _r(np.sqrt(max(np.var(est, ddof=1) - np.mean(se**2), 0.0))),
+    }
+    out.update(extra or {})
+    return out
+
+
+def exact_vs_approximate(design: pd.DataFrame, pooled: pd.DataFrame) -> dict:
+    """What correcting the within-(event, lap) transformation changed.
+
+    Eq. 1 subtracts the (event, lap) cell mean from lap time and from every
+    fixed-effect column. The earlier construction subtracted it from lap time
+    and tyre age only and multiplied the result by a raw compound dummy; the
+    correct construction demeans ``D_c`` and ``D_c * raw age`` themselves (see
+    ``models.within``). The two differ whenever compounds are mixed on a lap,
+    which biases the compound slopes (``paper/results/recovery.json``).
+
+    Both are fitted here on the same laps, with the same random effects and the
+    same REML engine: the 2026 race fit (13 races, circuit slope) and the pooled
+    2022-26 nested fit (circuit plus race slopes). Reported for each: compound
+    rates with 95% intervals, every variance component, the SD of the five
+    compound rates (raw and corrected for estimation noise), the persistent
+    share (pooled), and the rate-by-rate difference. The ``approximate`` block of
+    ``shipped_2026`` has the same layout as ``shipped_fit`` and holds the
+    planted truth of the recovery study, which is not re-planted.
+    """
+    d26 = design.reset_index(drop=True)
+    out: dict = {
+        "what": "Same laps, same random effects, same REML engine; only the construction of the "
+                "fixed-effect columns differs. exact: tilde(D_c) offsets (one reference compound) and "
+                "tilde(D_c x raw tyre age) slopes; approximate: raw D_c offsets and D_c x tilde(age) slopes.",
+        "shipped_2026": {}, "pooled_2022_26_nested": {},
+    }
+    for label, ex in (("exact", True), ("approximate", False)):
+        f = fit_degradation(d26, quadratic=False, circuit_effects=True, exact_within=ex)
+        rates = {c: {"mean": round(v.mean, 5), "lo": round(v.lo, 5), "hi": round(v.hi, 5),
+                     "n_runs": f.n_runs.get(c), "n_laps": f.n_laps.get(c)} for c, v in f.rates.items()}
+        sd = {k: round(v, 5) for k, v in f.variance.items()}
+        out["shipped_2026"][label] = _summarise_fit(
+            rates, sd, {"converged_all_ok": bool(f.convergence.get("all_ok")), "n_obs": f.n_obs})
+    p = pooled.reset_index(drop=True)
+    for label, ex in (("exact", True), ("approximate", False)):
+        m, meta, nf = _fit_nested(p, exact_within=ex)
+        s1 = meta["s1"]
+        rt = _rate_table(nf, meta)
+        rates = {c: {"mean": _r(v["est"]), "lo": _r(v["lo"]), "hi": _r(v["hi"])} for c, v in rt.items()}
+        sd = {n: _r(nf.sd[n] / s1 if "slope" in n else nf.sd[n]) for n in m.names}
+        sd["resid"] = _r(np.sqrt(nf.sigma2))
+        c_, e_ = nf.sd["circuit_slope"] / s1, nf.sd["event_slope"] / s1
+        out["pooled_2022_26_nested"][label] = _summarise_fit(rates, sd, {
+            "persistent_share_of_slope_variance": _r(c_**2 / (c_**2 + e_**2 + 1e-18), 3),
+            "converged": bool(nf.converged), "n_obs": int(len(p))})
+    for key in ("shipped_2026", "pooled_2022_26_nested"):
+        blk = out[key]
+        blk["exact_minus_approximate_rate_s_per_lap"] = {
+            c: _r(blk["exact"]["rates_s_per_lap"][c]["mean"] - blk["approximate"]["rates_s_per_lap"][c]["mean"])
+            for c in blk["exact"]["rates_s_per_lap"] if c in blk["approximate"]["rates_s_per_lap"]
+        }
+        blk["compound_rate_sd_exact_minus_approximate"] = _r(
+            blk["exact"]["compound_rate_sd_raw"] - blk["approximate"]["compound_rate_sd_raw"])
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -1958,3 +2126,580 @@ def season_c_rates(pooled: pd.DataFrame) -> dict:
             "convergence_all_ok": bool(f.convergence.get("all_ok")),
         }
     return out
+
+
+# ---------------------------------------------------------------------------
+# 10. what the data we HAVE can detect; is a run's pace independent of its tyre age?
+# ---------------------------------------------------------------------------
+
+ADJACENT_PAIRS = (("C1", "C2"), ("C2", "C3"), ("C3", "C4"), ("C4", "C5"))
+Z80 = float(stats.norm.ppf(0.80))
+#: Multiplier turning a standard error into the minimum detectable effect at 80%
+#: power for a two-sided 5% Wald test: (z_0.975 + z_0.80) = 2.8016.
+MDE80_MULT = Z95 + Z80
+
+
+def _detect_row(est: float, se: float, a: str, b: str, runs: dict, events: dict, n_units: int) -> dict:
+    """One adjacent contrast: estimate, interval, Wald test and detectability."""
+    z = est / se if se > 0 else float("nan")
+    p = float(2 * stats.norm.sf(abs(z))) if np.isfinite(z) else None
+    t_df = max(int(n_units) - 1, 1)
+    # A t reference with (blocks - 1) degrees of freedom, for scale: with a handful
+    # of independent races the z interval is optimistic. Same (t_0.975 + t_0.80) * SE form.
+    mde_t = float((stats.t.ppf(0.975, t_df) + stats.t.ppf(0.80, t_df)) * se)
+    return {
+        "estimate": _r(est), "se": _r(se), "lo": _r(est - Z95 * se), "hi": _r(est + Z95 * se),
+        "z": _r(z, 3), "p_wald": float(f"{p:.3g}") if p is not None else None,
+        "mde80": _r(MDE80_MULT * se),
+        "mde80_t_reference": _r(mde_t), "t_reference_df": t_df,
+        "n_runs": {a: int(runs.get(a, 0)), b: int(runs.get(b, 0))},
+        "n_events": {a: int(events.get(a, 0)), b: int(events.get(b, 0))},
+        "n_blocks_carrying_either_compound": int(n_units),
+    }
+
+
+def detectable_from_fit(design: pd.DataFrame, pooled: pd.DataFrame, shipped=None) -> dict:
+    """What can the data we actually have detect, compound pair by compound pair?
+
+    ``power_extended`` answers an idealised question: how many 20-lap stints,
+    spread evenly over the races that nominated a compound, would a study need?
+    This answers the plain one. For each pair of neighbouring compounds (C2-C1,
+    C3-C2, C4-C3, C5-C4) it takes the gap in wear rate the fitted model
+    estimates, the standard error the model itself attaches to that gap, and
+    reports the smallest TRUE gap the same test would flag 80% of the time:
+    ``MDE80 = (z_0.975 + z_0.80) x SE``, about 2.8 standard errors. A gap
+    smaller than that could easily be there and still not show up. Nothing is
+    simulated; the standard error comes straight from the fit's own covariance
+    matrix, which already contains the circuit, driver, run and run-slope
+    variance. Done twice: for the shipped 2026 fit (13 races) and for the
+    pooled 2022-26 nested fit (circuit plus race slopes, 23 circuits), with the
+    number of runs each compound has behind it.
+
+    Caveats stated in the output: the covariance treats the fitted variance
+    components as known, and the interval and test are Wald z, so with few
+    independent races both are optimistic; ``mde80_t_reference`` gives the same
+    quantity with a t reference on (races or circuits carrying either compound
+    - 1) degrees of freedom to show the size of that effect.
+    """
+    fit = shipped if shipped is not None else fit_degradation(design, quadratic=False, circuit_effects=True)
+    d26 = design.reset_index(drop=True)
+    rows_26 = {}
+    for a, b in ADJACENT_PAIRS:
+        if a not in fit.rates or b not in fit.rates:
+            continue
+        i, j = fit.rate_names.index(a), fit.rate_names.index(b)
+        v = fit.rate_cov[i, i] + fit.rate_cov[j, j] - 2 * fit.rate_cov[i, j]
+        se = math.sqrt(max(float(v), 0.0))
+        est = fit.rates[b].mean - fit.rates[a].mean
+        n_ev = len(set(fit.events.get(a, [])) | set(fit.events.get(b, [])))
+        rows_26[f"{b}-{a}"] = _detect_row(
+            est, se, a, b, fit.n_runs, {c: len(fit.events.get(c, [])) for c in (a, b)}, n_ev)
+
+    p = pooled.reset_index(drop=True)
+    m, meta, nf = _fit_nested(p)
+    runs = p.groupby("C")["run_id"].nunique().to_dict()
+    events = p.groupby("C")["event_key"].nunique().to_dict()
+    circuits = p.groupby("C")["circuit"].agg(set).to_dict()
+    rows_pool = {}
+    for a, b in ADJACENT_PAIRS:
+        if ("tl", a) not in meta["names"] or ("tl", b) not in meta["names"]:
+            continue
+        c = lincomb(nf, meta, {("tl", b): 1.0, ("tl", a): -1.0})
+        rows_pool[f"{b}-{a}"] = _detect_row(
+            c["est"], c["se"], a, b, runs, events, len(circuits.get(a, set()) | circuits.get(b, set())))
+    return {
+        "what": "Smallest true gap in wear rate between neighbouring compounds that the REAL data would "
+                "detect with 80% power (two-sided 5% Wald test), from each fit's own covariance; "
+                "not a simulation and not the idealised design of power_extended.",
+        "mde80_formula": "MDE80 = (z_0.975 + z_0.80) x SE",
+        "z_0.975": _r(Z95, 6), "z_0.80": _r(Z80, 6), "multiplier": _r(MDE80_MULT, 4),
+        "units": "seconds per lap of tyre age; contrast 'Cb-Ca' is rate(Cb) minus rate(Ca)",
+        "shipped_2026": {
+            "specification": "shipped race fit: compound offsets and tyre-age slopes, traffic, random "
+                             "circuit slope, driver-in-event, run intercept, run slope; REML",
+            "n_races": int(d26["event"].nunique()), "n_runs": int(d26["run_id"].nunique()),
+            "block_for_t_reference": "race (one per circuit in 2026)",
+            "contrasts": rows_26,
+        },
+        "pooled_2022_26_nested": {
+            "specification": "circuit random slope plus race-within-circuit random slope, C-number "
+                             "compounds, run terms as shipped; REML",
+            "n_races": int(p["event_key"].nunique()), "n_circuits": int(p["circuit"].nunique()),
+            "n_runs": int(p["run_id"].nunique()),
+            "block_for_t_reference": "circuit",
+            "contrasts": rows_pool,
+        },
+        "caveats": "Wald z with fitted variance components treated as known; the t-reference column shows how "
+                   "much larger the detectable gap is when the number of independent races or circuits is "
+                   "small.",
+    }
+
+
+# ---- Mundlak / correlated random effects ----------------------------------
+
+
+def run_mean_covariates(df: pd.DataFrame, order: tuple[str, ...] = C_ORDER,
+                        exact_within: bool = True) -> dict[str, np.ndarray]:
+    """Mundlak covariates: each run's mean tyre-age regressor, one column per compound.
+
+    The correlated-random-effects device adds, as FIXED covariates, the mean over
+    a run of the regressor the model uses for that run's compound, placed in that
+    compound's column (zero for runs of other compounds). A run belongs to one
+    compound; a run that spans two raises ``ValueError``.
+
+    With ``exact_within`` (default) the regressor is the exactly within-transformed
+    ``tilde(D_c * raw age) / s1`` of ``build_model``, so a run's mean is how old
+    its tyres are RELATIVE to the field's compound-c tyres on the same laps. Without
+    it, the regressor is the earlier ``tl / s1`` (age minus the cell's mean age).
+    """
+    d = df.reset_index(drop=True)
+    run = d["run_id"].astype(str)
+    if (d.groupby(run)["C"].nunique() > 1).any():
+        raise ValueError("a run spans more than one compound; the run-mean columns need one each")
+    C = d["C"].to_numpy()
+    out = {}
+    if exact_within:
+        dw, codes, ncell = redemean_frame(d)
+        s1 = float(dw["tl"].std())
+        age = d["TyreLife"].to_numpy(float)
+        for c in order:
+            if c in set(C):
+                x = demean((C == c) * age, codes, ncell) / s1
+                out[f"tl_runmean_{c}"] = (C == c) * pd.Series(x).groupby(run.to_numpy()).transform("mean").to_numpy()
+        return out
+    s1 = float(d["tl"].std())
+    rm = (d["tl"] / s1).groupby(run).transform("mean").to_numpy(float)
+    return {f"tl_runmean_{c}": (C == c) * rm for c in order if c in set(C)}
+
+
+def _run_fe_ols(df: pd.DataFrame, cluster_col: str, order: tuple[str, ...] = C_ORDER,
+                exact_within: bool = True) -> dict:
+    """Eq. 1 with a free intercept per run: within-run demeaning, clustered errors.
+
+    Lap time, compound x tyre age and traffic have the run means removed on top
+    of the (event, lap) means, so every stint's pace level is differenced away
+    and slopes come from within-stint variation only. ``exact_within`` removes
+    both sets of means from the RAW compound x age column together (alternating
+    projections, the exact two-way transform); ``False`` is the earlier version,
+    which run-demeaned ``D_c * tilde(age)``.
+
+    IDENTIFICATION. With a free intercept for every (event, lap) cell and for every
+    run, tyre age is lap minus the run's first lap, so the SUM of the compound
+    slopes is not identified (the exact columns add to zero); only the slope
+    differences between compounds are. ``level_identified`` is False then, and the
+    reported ``rates`` are the minimum-norm solution, i.e. each compound's slope
+    minus the mean of the compounds' slopes, with valid standard errors for those
+    contrasts. The earlier (approximate) construction reported informative-looking
+    levels because ``D_c * tilde(age)`` is not exactly absorbed by the cell effects.
+    No assumption about how a run's pace relates to its tyre age is needed.
+    Errors are clustered by ``cluster_col`` (CR1) and intervals use t with G-1
+    degrees of freedom, G the number of clusters. Runs are nested inside the
+    clusters, so the absorbed run effects are not counted against the residual
+    degrees of freedom (the usual convention for nested fixed effects).
+    """
+    from ..models.ablation import cluster_ols
+
+    d = df.reset_index(drop=True)
+    cats = [c for c in order if c in set(d["C"])]
+    run = d["run_id"].astype(str).to_numpy()
+    if exact_within:
+        d, codes, _ = redemean_frame(d)
+        age = d["TyreLife"].to_numpy(float)
+        cols = [(d["C"] == c).to_numpy(float) * age for c in cats]
+    else:
+        tl = d["tl"].to_numpy(float)
+        cols = [(d["C"] == c).to_numpy(float) * tl for c in cats]
+    if "tr" in d.columns and float(d["tr"].std() or 0.0) > 1e-9:
+        cols.append(d["tr"].to_numpy(float))
+    X = np.column_stack(cols)
+    y = d["y"].to_numpy(float)
+    if exact_within:
+        Z = absorb(np.column_stack([X, y]), [np.asarray(codes), run])
+        Xd, yd = Z[:, :-1], Z[:, -1]
+    else:
+        Xd = X - pd.DataFrame(X).groupby(run).transform("mean").to_numpy()
+        yd = y - pd.Series(y).groupby(run).transform("mean").to_numpy()
+    beta, cc, _ = cluster_ols(Xd, yd, d[cluster_col].astype(str))
+    level_identified = bool(np.linalg.matrix_rank(Xd) == Xd.shape[1])
+    G = int(d[cluster_col].nunique())
+    crit = float(stats.t.ppf(0.975, G - 1))
+    out = {}
+    for i, c in enumerate(cats):
+        se = math.sqrt(max(float(cc[i, i]), 0.0))
+        t_ = float(beta[i]) / se if se > 0 else float("nan")
+        # A compound carried by few clusters has few independent scores behind its
+        # sandwich variance, whatever G is: report that count and the interval with
+        # a t reference on (clusters carrying it - 1) df beside the G-1 one.
+        g_c = int(d.loc[d["C"] == c, cluster_col].nunique())
+        crit_c = float(stats.t.ppf(0.975, max(g_c - 1, 1)))
+        out[c] = {"est": float(beta[i]), "se": se, "lo": float(beta[i] - crit * se),
+                  "hi": float(beta[i] + crit * se), "t": t_,
+                  "p": float(2 * stats.t.sf(abs(t_), G - 1)) if np.isfinite(t_) else None,
+                  "n_clusters_with_compound": g_c,
+                  "lo_conservative": float(beta[i] - crit_c * se), "hi_conservative": float(beta[i] + crit_c * se)}
+    return {"rates": out, "n_clusters": G, "t_df": G - 1, "cluster": cluster_col,
+            "level_identified": level_identified}
+
+
+def _fit_re_cre(df: pd.DataFrame, nested: bool, starts_re=None, starts_cre=None):
+    """The same specification fitted without (RE) and with (CRE) run-mean covariates."""
+    build = build_nested_model if nested else build_model
+    m0, meta0 = build(df)
+    m1, meta1 = build(df, extra_fixed=run_mean_covariates(df))
+    k = len(m0.names)
+    default = [np.full(k, 0.5), np.full(k, 0.1), np.linspace(2, 0.2, k)]
+    with single_threaded_blas():
+        f0 = m0.fit(starts=starts_re if starts_re is not None else default)
+        f1 = m1.fit(starts=starts_cre if starts_cre is not None else [f0.theta, *default])
+    return m0, meta0, f0, m1, meta1, f1
+
+
+def _full5(cats, vals, order=C_ORDER) -> np.ndarray:
+    """Values for the compounds present, placed on the five-compound axis (NaN if absent)."""
+    out = np.full(len(order), np.nan)
+    for c, v in zip(cats, vals, strict=True):
+        out[order.index(c)] = v
+    return out
+
+
+def _fit_record(meta: dict, f, cre: bool) -> dict:
+    """What a bootstrap replicate keeps from one fit: slopes, SEs, SDs, run-mean coefficients."""
+    s1 = meta["s1"]
+    cats = meta["cats"]
+    ridx = [_col(meta, ("tl", c)) for c in cats]
+    rec = {
+        "rate": _full5(cats, f.beta[ridx] / s1),
+        "se": _full5(cats, np.sqrt(np.diag(f.cov_beta)[ridx]) / s1),
+        "sd": {n: float(v / s1) if "slope" in n else float(v) for n, v in f.sd.items()},
+        "resid": float(np.sqrt(f.sigma2)), "converged": bool(f.converged),
+    }
+    if cre:
+        xi = [_col(meta, ("extra", f"tl_runmean_{c}")) for c in cats]
+        cov = np.full((5, 5), np.nan)
+        pos = [C_ORDER.index(c) for c in cats]
+        cov[np.ix_(pos, pos)] = f.cov_beta[np.ix_(xi, xi)] / s1**2
+        rec["delta"] = _full5(cats, f.beta[xi] / s1)
+        rec["delta_cov"] = cov
+    return rec
+
+
+def _task_mundlak_boot(seed_seq):
+    """Cluster bootstrap replicate: redraw whole races (circuits, pooled), refit RE and CRE.
+
+    A race (circuit) drawn twice becomes two blocks with their own slopes, as in
+    ``_task_event_boot``. Runs travel with their race, so run means are
+    unchanged; the run-mean columns are rebuilt on the resample because the
+    tyre-age scaling is. Both fits start at the full-sample variance ratios.
+    """
+    df, spec, p = _W["df"], _W["spec"], _W["fit"]
+    nested = bool(spec.get("nested"))
+    unit = "circuit" if nested else "event"
+    rng = np.random.default_rng(seed_seq)
+    units = sorted(df[unit].astype(str).unique())
+    draw = rng.integers(0, len(units), len(units))
+    keys = df[unit].astype(str).to_numpy()
+    parts = []
+    for k, i in enumerate(draw):
+        d = df[keys == units[i]].copy()
+        tag = f"#{k}"
+        d["run_id"] = d["run_id"].astype(str) + tag
+        if nested:
+            d["circuit"] = d["circuit"].astype(str) + tag
+            d["event_key"] = d["event_key"].astype(str) + tag
+        else:
+            d["event"] = d["event"].astype(str) + tag
+        parts.append(d)
+    b = pd.concat(parts, ignore_index=True)
+    k_ = len(p["theta_re"])
+    build = build_nested_model if nested else build_model
+    m0, meta0 = build(b)
+    m1, meta1 = build(b, extra_fixed=run_mean_covariates(b))
+    with single_threaded_blas():
+        f0 = m0.fit(starts=[p["theta_re"], np.full(k_, 0.5)])
+        f1 = m1.fit(starts=[f0.theta, p["theta_cre"]])
+    return {"re": _fit_record(meta0, f0, False), "cre": _fit_record(meta1, f1, True),
+            "n_compounds": len(meta0["cats"])}
+
+
+def _pct(x, q=(2.5, 97.5), k=5):
+    return [_r(np.percentile(x, q[0]), k), _r(np.percentile(x, q[1]), k)]
+
+
+def _vc_dict(f, meta: dict, nested: bool) -> dict:
+    """SDs of every variance component (per lap for slopes), persistent share, compound-rate SD."""
+    s1 = meta["s1"]
+    cats = meta["cats"]
+    ridx = [_col(meta, ("tl", c)) for c in cats]
+    rates = f.beta[ridx] / s1
+    se = np.sqrt(np.diag(f.cov_beta)[ridx]) / s1
+    out = {n: _r(v / s1 if "slope" in n else v) for n, v in f.sd.items()}
+    out["resid"] = _r(np.sqrt(f.sigma2))
+    if nested:
+        c, e = f.sd["circuit_slope"] / s1, f.sd["event_slope"] / s1
+        out["persistent_share_of_slope_variance"] = _r(c**2 / (c**2 + e**2 + 1e-18), 3)
+    out["compound_rate_sd_raw"] = _r(np.std(rates, ddof=1))
+    out["compound_rate_sd_noise_corrected"] = _r(
+        np.sqrt(max(np.var(rates, ddof=1) - np.mean(se**2), 0.0)))
+    return out
+
+
+def _vc_from_record(rec: dict, nested: bool) -> dict:
+    sd = rec["sd"]
+    out = {n: v for n, v in sd.items()}
+    out["resid"] = rec["resid"]
+    if nested:
+        c, e = sd["circuit_slope"], sd["event_slope"]
+        out["persistent_share_of_slope_variance"] = c**2 / (c**2 + e**2 + 1e-18)
+    r, s = rec["rate"], rec["se"]
+    ok = np.isfinite(r)
+    if ok.sum() >= 3:
+        out["compound_rate_sd_raw"] = float(np.std(r[ok], ddof=1))
+        out["compound_rate_sd_noise_corrected"] = float(
+            np.sqrt(max(np.var(r[ok], ddof=1) - np.mean(s[ok] ** 2), 0.0)))
+    return out
+
+
+def _boot_wald_t(ok: list, cats: list, delta_hat: np.ndarray, wald_obs: float) -> dict | None:
+    """Bootstrap-t calibration of the run-mean Wald statistic.
+
+    Each replicate gives ``W* = (delta* - delta_hat)' V*^-1 (delta* - delta_hat)``,
+    the statistic's distribution when the truth is the full-sample estimate.
+    The share at or above the observed statistic is a p-value that respects the
+    small number of independent races. Only replicates carrying every compound
+    in ``cats`` can be used.
+    """
+    pos = [C_ORDER.index(c) for c in cats]
+    delta = np.array([r["cre"]["delta"][pos] for r in ok])
+    cov = np.array([r["cre"]["delta_cov"][np.ix_(pos, pos)] for r in ok])
+    use = np.isfinite(delta).all(axis=1) & np.isfinite(cov).all(axis=(1, 2))
+    if use.sum() < 10:
+        return None
+    w = []
+    for d, V in zip(delta[use] - delta_hat[None, :], cov[use], strict=True):
+        try:
+            w.append(float(d @ np.linalg.solve(V, d)))
+        except np.linalg.LinAlgError:
+            continue
+    w = np.array(w)
+    return {"n_used": int(len(w)), "n_ge": int((w >= wald_obs).sum()),
+            "p": _r((1 + (w >= wald_obs).sum()) / (1 + len(w)), 4),
+            "wstar_median": _r(np.median(w), 3), "wstar_95": _r(np.percentile(w, 95), 3)}
+
+
+def _mundlak_boot_summary(ok: list, nested: bool) -> dict:
+    """Bootstrap SEs and intervals from converged replicates (on the five-compound axis)."""
+    rate_re = np.array([r["re"]["rate"] for r in ok])
+    rate_cre = np.array([r["cre"]["rate"] for r in ok])
+    diff = rate_cre - rate_re
+    fin = np.isfinite(diff)
+
+    def col(fn, a):
+        return [fn(a[fin[:, j], j]) if fin[:, j].sum() > 2 else None for j in range(a.shape[1])]
+
+    return {
+        "diff_se": col(lambda x: _r(np.std(x, ddof=1)), diff),
+        # IQR / 1.349 is the same quantity for a normal and ignores the heavy tail a
+        # resample with one race of a rare compound produces.
+        "diff_se_iqr": col(lambda x: _r((np.percentile(x, 75) - np.percentile(x, 25)) / 1.349), diff),
+        "diff_pct": col(_pct, diff),
+        "re_se": col(lambda x: _r(np.std(x, ddof=1)), rate_re),
+        "cre_se": col(lambda x: _r(np.std(x, ddof=1)), rate_cre),
+        "n_with": [int(fin[:, j].sum()) for j in range(diff.shape[1])],
+        "vc": _boot_vc(ok, nested),
+    }
+
+
+def _boot_vc(ok: list, nested: bool) -> dict:
+    """Percentile intervals of every variance summary under RE, CRE and their difference."""
+    out = {}
+    vre = [_vc_from_record(r["re"], nested) for r in ok]
+    vcr = [_vc_from_record(r["cre"], nested) for r in ok]
+    for key in vre[0]:
+        a = np.array([v.get(key, np.nan) for v in vre], float)
+        b = np.array([v.get(key, np.nan) for v in vcr], float)
+        good = np.isfinite(a) & np.isfinite(b)
+        if good.sum() < 3:
+            continue
+        out[key] = {"re_95": _pct(a[good]), "cre_95": _pct(b[good]),
+                    "cre_minus_re_95": _pct((b - a)[good]), "n": int(good.sum())}
+    return out
+
+
+def _mundlak_block(df: pd.DataFrame, nested: bool, b_boot: int, workers: int, seed: int) -> dict:
+    """The Mundlak check for one specification (shipped 2026, or pooled nested)."""
+    df = df.reset_index(drop=True)
+    m0, meta0, f0, m1, meta1, f1 = _fit_re_cre(df, nested)
+    cats = meta0["cats"]
+    s1 = meta0["s1"]
+    k = len(cats)
+    xn = [("extra", f"tl_runmean_{c}") for c in cats]
+    re = {c: lincomb(f0, meta0, {("tl", c): 1.0}) for c in cats}
+    cre = {c: lincomb(f1, meta1, {("tl", c): 1.0}) for c in cats}
+    delta = {c: lincomb(f1, meta1, {x: 1.0}) for c, x in zip(cats, xn, strict=True)}
+    between = {c: lincomb(f1, meta1, {("tl", c): 1.0, x: 1.0}) for c, x in zip(cats, xn, strict=True)}
+
+    # joint Wald test that every run-mean coefficient is zero (scale free)
+    xi = [_col(meta1, x) for x in xn]
+    d_, V_ = f1.beta[xi], f1.cov_beta[np.ix_(xi, xi)]
+    wald = float(d_ @ np.linalg.solve(V_, d_))
+    delta_hat = np.array([delta[c]["est"] for c in cats])
+
+    # analytic Hausman variance of CRE - RE (valid if RE is efficient under H0)
+    r0 = [_col(meta0, ("tl", c)) for c in cats]
+    r1 = [_col(meta1, ("tl", c)) for c in cats]
+    Vd = (f1.cov_beta[np.ix_(r1, r1)] - f0.cov_beta[np.ix_(r0, r0)]) / s1**2
+    eig = np.linalg.eigvalsh((Vd + Vd.T) / 2)
+    pd_ok = bool(eig.min() > 0)
+    diff = np.array([cre[c]["est"] - re[c]["est"] for c in cats])
+    hausman_chi2 = float(diff @ np.linalg.solve(Vd, diff)) if pd_ok else None
+
+    # cluster bootstrap over races (circuits when pooled)
+    spec = {"nested": True, "order": C_ORDER} if nested else dict(circuit="random", slopes="compound")
+    payload = {**_fit_payload(f0), "theta_re": f0.theta, "theta_cre": f1.theta}
+    seeds = np.random.SeedSequence(seed).spawn(b_boot)
+    t0 = time.time()
+    recs = _run_sharded(df, spec, payload, _task_mundlak_boot, seeds, workers) if b_boot else []
+    boot_seconds = time.time() - t0
+    ok = [r for r in recs if r["re"]["converged"] and r["cre"]["converged"]]
+    boot = _mundlak_boot_summary(ok, nested) if ok else None
+    wald_t = _boot_wald_t(ok, cats, delta_hat, wald) if ok else None
+
+    slopes = {}
+    for i, c in enumerate(cats):
+        j = C_ORDER.index(c)
+        v = float(Vd[i, i])
+        analytic = math.sqrt(v) if v > 0 else None
+        use_analytic = pd_ok and analytic is not None
+        se_boot = boot["diff_se"][j] if boot else None
+        se = analytic if use_analytic else se_boot
+        row = {
+            "re": {**_iv(re[c]), "se": _r(re[c]["se"])},
+            "cre": {**_iv(cre[c]), "se": _r(cre[c]["se"])},
+            "cre_minus_re": {
+                "estimate": _r(diff[i]), "se": _r(se),
+                "lo": _r(diff[i] - Z95 * se) if se else None, "hi": _r(diff[i] + Z95 * se) if se else None,
+                "z": _r(diff[i] / se, 3) if se else None,
+                "se_method": "analytic_hausman" if use_analytic else "cluster_bootstrap",
+                "se_analytic_hausman": _r(analytic), "se_cluster_bootstrap": se_boot,
+            },
+            "run_mean_coefficient": {**_iv(delta[c]), "se": _r(delta[c]["se"])},
+            "between_run_slope_implied": {**_iv(between[c]), "se": _r(between[c]["se"])},
+        }
+        if boot:
+            row["cre_minus_re"]["bootstrap_percentile_95"] = boot["diff_pct"][j]
+            row["cre_minus_re"]["se_cluster_bootstrap_iqr"] = boot["diff_se_iqr"][j]
+            row["cre_minus_re"]["n_bootstrap_with_compound"] = boot["n_with"][j]
+            row["re"]["se_cluster_bootstrap"] = boot["re_se"][j]
+            row["cre"]["se_cluster_bootstrap"] = boot["cre_se"][j]
+        slopes[c] = row
+
+    wald_out = {
+        "statistic": _r(wald, 3), "df": int(k), "p_chi2": float(f"{stats.chi2.sf(wald, k):.3g}"),
+        "coefficients_tested": [x[1] for x in xn],
+        "note": "Wald chi-square from the CRE fit's own covariance, variance components treated as known.",
+    }
+    if wald_t:
+        wald_out["p_bootstrap_t"] = wald_t["p"]
+        wald_out["bootstrap_t"] = {kk: vv for kk, vv in wald_t.items() if kk != "p"} | {
+            "reading": "Share of cluster-bootstrap replicates whose statistic for (delta* - delta_hat) "
+                       "reaches the observed one; calibrates the chi-square to the small number of "
+                       "independent races."}
+
+    fe = {"cluster_by_event": _run_fe_ols(df, "event_key" if nested else "event")}
+    if nested:
+        fe["cluster_by_circuit"] = _run_fe_ols(df, "circuit")
+    fe_out = {
+        name: {c: {"estimate": _r(v["est"]), "se": _r(v["se"]), "lo": _r(v["lo"]), "hi": _r(v["hi"]),
+                   "t": _r(v["t"], 3), "p": float(f"{v['p']:.3g}") if v["p"] is not None else None,
+                   "n_clusters_with_compound": v["n_clusters_with_compound"],
+                   "lo_conservative": _r(v["lo_conservative"]), "hi_conservative": _r(v["hi_conservative"])}
+               for c, v in blk["rates"].items()}
+        | {"n_clusters": blk["n_clusters"], "t_df": blk["t_df"],
+           "level_identified": blk["level_identified"],
+           "level_note": "False: with free cell and run effects the compound slopes are identified only up to "
+                         "their common level (age = lap - first lap of the run); the rates shown are each "
+                         "slope minus the mean slope" if not blk["level_identified"] else "",
+           "note": "lo/hi and p use t with G-1 df; lo_conservative/hi_conservative use t with "
+                   "(clusters carrying the compound - 1) df, the honest reading for a compound that few "
+                   "clusters carry"}
+        for name, blk in fe.items()
+    }
+
+    x = df["tl"] / s1
+    xbar = x.groupby(df["run_id"].astype(str)).transform("mean")
+    runs = df.groupby("C")["run_id"].nunique()
+    d0, d1 = m0.diagnostics(f0), m1.diagnostics(f1)
+    unit = "circuit" if nested else "race"
+    return {
+        "design": {
+            "n_laps": int(len(df)), "n_runs": int(df["run_id"].nunique()),
+            "n_races": int(df["event_key" if nested else "event"].nunique()),
+            "n_runs_by_compound": {c: int(runs[c]) for c in cats},
+            "sd_of_run_mean_tyre_age_over_sd_within_run": _r(float(xbar.std() / (x - xbar).std()), 3),
+        },
+        "slopes_s_per_lap": slopes,
+        "wald_run_means_zero": wald_out,
+        "hausman": {
+            "variance_of_difference": "V(CRE) - V(RE) on the compound slopes (RE efficient under H0)",
+            "positive_definite": pd_ok, "min_eigenvalue": float(f"{eig.min():.3g}"),
+            "diagonal_positive": {c: bool(Vd[i, i] > 0) for i, c in enumerate(cats)},
+            "chi2_all_slopes_equal": _r(hausman_chi2, 3), "df": int(k),
+            "p_chi2": float(f"{stats.chi2.sf(hausman_chi2, k):.3g}") if pd_ok else None,
+            "se_used_for_differences": "analytic_hausman" if pd_ok else "cluster_bootstrap",
+        },
+        "run_fixed_effects_ols": fe_out,
+        "variance_components": {
+            "re": _vc_dict(f0, meta0, nested), "cre": _vc_dict(f1, meta1, nested),
+            **({"bootstrap_95": boot["vc"]} if boot else {}),
+        },
+        "bootstrap": {
+            "unit": unit, "n_requested": int(b_boot), "n_converged_both": len(ok),
+            "note": f"{unit}s redrawn with replacement (one drawn twice counts as two blocks), RE and CRE "
+                    "refitted on each resample; replicates where either fit did not converge are dropped; a "
+                    "compound absent from a resample is left out of that compound's statistics.",
+            "seconds": round(boot_seconds, 1),
+        },
+        "convergence": {
+            "re": {"converged": bool(f0.converged), "hessian_pd": d0["hessian_pd"],
+                   "boundary_components": d0["boundary_components"],
+                   "start_deviances": [_r(v, 3) for v in f0.start_deviances]},
+            "cre": {"converged": bool(f1.converged), "hessian_pd": d1["hessian_pd"],
+                    "boundary_components": d1["boundary_components"],
+                    "start_deviances": [_r(v, 3) for v in f1.start_deviances]},
+        },
+    }
+
+
+def mundlak_check(design: pd.DataFrame, pooled: pd.DataFrame, b_boot: int, b_boot_pooled: int,
+                  workers: int, seed: int) -> dict:
+    """Does a stint's own pace level depend on its tyre age, and does it matter?
+
+    The race model gives every stint ("run") a random baseline pace and treats it
+    as noise. That is safe only if the baseline is unrelated to how old the
+    stint's tyres are. Pit-stop selection could break this: drivers whose
+    tyres have gone off, or who are stuck behind a slower car, may pit earlier,
+    so runs that look old relative to the field are not a random draw. If that
+    happens, the compound slopes inherit the mismatch, because a random-effects
+    fit leans partly on comparisons BETWEEN stints.
+
+    The standard remedy is Mundlak's correlated random effects: add each run's
+    mean tyre age (separately for each compound) as a fixed covariate. The
+    compound slopes then come from variation WITHIN each stint only, and the
+    coefficients on the run means measure the mismatch. Reported, for the
+    shipped 2026 model and the pooled 2022-26 nested model: the compound slopes
+    with and without the run means (RE and CRE), their difference with a
+    standard error (the analytic Hausman variance when it is positive definite,
+    otherwise a cluster bootstrap over races, or circuits when pooled; both
+    are always shown), the joint Wald test that all run-mean coefficients are
+    zero, the variance components under both, and, as a model-free cross-check,
+    a run fixed-effects OLS with errors clustered by race.
+    """
+    return {
+        "question": "Is a run's random pace level unrelated to its tyre age? (Mundlak / correlated random "
+                    "effects)",
+        "device": "fixed covariates = run mean of the model's own tyre-age regressor for that run's compound "
+                  "(tilde(D_c x raw age) / SD, exactly within-transformed), one per compound; slopes then use "
+                  "within-run variation only",
+        "shipped_2026": _mundlak_block(design, False, b_boot, workers, seed + 3),
+        "pooled_2022_26_nested": _mundlak_block(pooled, True, b_boot_pooled, workers, seed + 4),
+    }
