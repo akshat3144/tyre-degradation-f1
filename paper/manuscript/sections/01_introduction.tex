@@ -1,0 +1,33 @@
+\section{Introduction}\label{sec:intro}
+
+How fast a Formula~1 tyre loses pace decides when a car stops and what it fits next, so strategy tools take a degradation rate, in seconds lost per lap of tyre age, as an input.
+Simulators often assume a linear loss for each compound \citep{heilmeier2020virtual}, and a study of one team's telemetry calls linear models the industry standard \citep{todd2025explainable}.
+Learned strategies inherit whatever degradation model the simulator supplies \citep{thomas2025explainable}, and their choice of compound can depend strongly on it \citep{fieni2026multiagent}.
+Outside the teams, the evidence is public lap times.
+
+Lap times confound tyre wear with fuel burn, which falls in step with tyre age, and with track evolution, traffic and driver choices.
+Two unreviewed analyses of public data show the consequences.
+A regression of lap time on tyre age and lap number, fitted to several seasons, returned negative wear slopes for the soft and medium compounds, which the author attributes to non-linear wear \citep{joshi2026persistence}; the collinearity of tyre age with fuel load is a further candidate.
+Per-race base-pace estimates for each compound are confounded with the phase of the race in which the compound runs, and in 18 of 24 races in 2025 the soft tyre was not the fastest fitted compound \citep{santillana2026pitwall}.
+
+Work on degradation from public timing data is recent, and most of it estimates per race or per driver, or pools without adjusting for fuel and run.
+\citet{cappelloHoegh2026} fit a state-space model with latent pace, fuel and a linear degradation drift that resets at pit stops, and forecast one lap ahead for one driver.
+They evaluate it over 19 races of the 2025 season, but each race is fitted on its own rather than pooled across events (p.~7).
+They use free-practice long runs only as a hand-set prior (pp.~6--7), and attribute overlapping hard and medium rates at one race to small samples and tyre management (pp.~2, 10).
+\citet{heilmeier2020monte} fit a quadratic in lap number to each run to remove tyre and fuel effects before studying lap-time scatter.
+Multilevel models of race results attribute most of the driver-plus-constructor variance to the constructor \citep{bell2016formula,vankesteren2023bayesian}, but they do not address tyres.
+
+Observed degradation also depends on behaviour.
+Drivers can trade pace for tyre life, as an optimal-control study of tyre management shows \citep{west2022tyre}, and one recent optimiser lists a target pace as an extension \citep{fieni2025towards}.
+For Formula~1 tyres, management is a hypothesis rather than a measurement: Cappello and Hoegh invoke it to explain why compounds look alike (pp.~2, 10).
+We know of no study that compares degradation in races with degradation in practice, where cars run to measure rather than to race, or that forecasts race degradation from practice; our search was targeted rather than systematic.
+
+This paper asks what public timing data can identify about tyre degradation, and makes four contributions.
+First, we estimate degradation by comparing cars within each race lap, so that fuel load, track evolution and weather cancel by design rather than through assumed constants; run-level random effects protect this comparison from the selection created by pit-stop timing, and a simulation with known rates shows when it does and does not recover them (Section~\ref{sec:within}, Appendix~\ref{app:recovery}).
+Second, pooling five seasons, we decompose the variation in degradation into a persistent circuit component, a race-specific component and differences between compounds, and find each of the first two about twice the third (Section~\ref{sec:rates}).
+Third, we use the fitted model for a design analysis: simulating Pirelli's actual allocation of compounds to circuits, we find the smallest compound difference these data can detect, and show that when compounds are assigned to disjoint circuits the circuit variance sets a floor on the precision of their contrast that more runs at those circuits cannot lower (Sections~\ref{sec:design} and~\ref{sec:power}).
+Fourth, we apply one estimator to races and to practice, with a placebo comparison between practice sessions, to measure how much lower race degradation is, to test whether the shortfall depends on the compound, and to evaluate practice-based forecasts out of season (Sections~\ref{sec:gap} and~\ref{sec:transfer}).
+We also reproduce the published state-space model and compare it with ours on its own test laps (Section~\ref{sec:bench}).
+
+Section~\ref{sec:data} describes the data and Section~\ref{sec:methods} the methods.
+Section~\ref{sec:results} reports the results, Section~\ref{sec:discussion} discusses their implications and limitations, and Section~\ref{sec:conclusion} concludes.

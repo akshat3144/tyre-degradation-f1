@@ -1,0 +1,33 @@
+\section{Data}\label{sec:data}
+
+We use lap-level timing for the 2022 to 2026 seasons from the FastF1 Python package \citep[version 3.8.3]{schaefer2026fastf1}, covering practice sessions (FP1 to FP3), sprint sessions and races.
+Each lap carries its time, driver, stint, tyre compound label, tyre age in laps (which for a used set includes earlier running), track status and start time.
+A \emph{run} is one driver's continuous spell on one set of tyres.
+Car telemetry for the check in Appendix~\ref{app:tele} comes from the OpenF1 interface \citep{openf12026}.
+For 2026 we use the 13 races completed when the data were collected (Table~\ref{tab:data}).
+
+\begin{table}[t]
+\centering\small
+\input{generated/tab_data.tex}
+\caption{Data used. Italic rows are panel headings. Race-fit laps are green-flag laps in runs of at least five laps. Practice and sprint runs are those classified as race simulations (Section~\ref{sec:data}). Season rows use hard, medium and soft labels. The pooled 2022--26 fit of Section~\ref{sec:rates} uses physical compounds C1 to C5 and so omits the C6 soft tyre of the 2025 Monaco race, leaving \PooledNLaps{} laps in \PooledNRuns{} runs.}
+\label{tab:data}
+\end{table}
+
+\medskip\noindent\textit{Lap and run selection.}\ We keep timed laps that are not in-laps or out-laps, were run entirely under green flags and are marked accurate by FastF1.
+A long run is a sequence of at least five consecutive such laps on one set of tyres.
+In races we drop laps more than 2.5 standard deviations from the run median, which removes lock-ups and incidents.
+In practice we also drop laps slower than 1.10 times the driver's best lap (cool-down and preparation laps), split runs at gaps of more than three laps, discard the first lap of each run as warm-up, and keep only runs that look like race simulations: median lap at least 1.5\,s off the session best and a lap-time standard deviation of at most 2.5\,s.
+Sprint sessions count as race running.
+A race group needs at least four cars on the lap.
+
+\medskip\noindent\textit{Compounds.}\ Pirelli nominates three of its five dry compounds (C1, the hardest, to C5, the softest) for each weekend and labels them hard, medium and soft within that weekend, so a label denotes different rubber at different circuits.
+Harder compounds are meant to degrade more slowly \citep[pp.~2, 9]{cappelloHoegh2026}.
+We map labels to physical compounds using nominations compiled from Pirelli's published releases, because no timing feed carries them; the per-event table with sources is in the supplementary data.
+C numbers are ordinal within a season and the range was re-specified for 2025, so the pooled circuit analysis of Section~\ref{sec:rates} is repeated without 2025 and on the \SensVerifiedNEvents{} races whose nominations two sources confirm.
+The other 2022 to 2025 analyses use the labels.
+Because Pirelli nominates by circuit, compounds differ by circuit, which limits what any pooled fit can say about compounds (Section~\ref{sec:power}).
+
+\medskip\noindent\textit{Traffic.}\ We compute the gap to the car ahead at the start of each lap among cars on the same lap number.
+A car within 2\,s is in dirty air, and the traffic covariate is the shortfall of the gap from 2\,s, with gaps capped at 10\,s.
+Cars lapped by the car ahead are invisible to this measure.
+Omitting traffic biases the tyre-age slope towards zero, because fresh tyres often rejoin in traffic.

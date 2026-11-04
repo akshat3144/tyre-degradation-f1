@@ -1,0 +1,117 @@
+\section{Methods}\label{sec:methods}
+
+\subsection{Comparing cars within a lap}\label{sec:within}
+
+Let $y_{rt}$ be the lap time on race lap $t$ of run $r$, driven by driver $j$ at event $e$ on compound $c(r)$ with tyre age $a_{rt}$ and traffic $q_{rt}$, and let $D_{c,r}$ indicate that run $r$ uses compound $c$.
+In a race, fuel mass, track evolution and weather are nearly the same for every car on a given lap, so we write their joint contribution as a term $\lambda_{et}$ shared by all cars in the (event, lap) group.
+For any quantity $z$, let $\tilde z_{rt}$ be $z$ minus its mean over the cars in the same group.
+Applying this to every term of the lap-time model removes $\lambda_{et}$ without modelling it:
+\begin{equation}\label{eq:race}
+  \tilde y_{rt} = \sum_{c} \mu_c\,\tilde D_{c,r} + \sum_{c} \beta_{c}\,\widetilde{(D_c a)}_{rt} + \gamma\,\tilde q_{rt}
+  + b_{e}\,\tilde a_{rt} + \tilde d_{j(r)e,t} + \tilde g_{r,t} + \widetilde{h_r a}_{rt} + \tilde\varepsilon_{rt}.
+\end{equation}
+Here $\beta_c$ is the degradation rate of compound $c$ in seconds per lap of tyre age and $\mu_c$ its pace offset, with one compound as the reference.
+Every column is demeaned, including the compound indicators and their products with tyre age.
+A tempting shortcut, multiplying each indicator by tyre age demeaned over all cars, is exact only when every car on the lap uses the same compound; when compounds are mixed it leaks one compound's slope and offset into another's, and on our data it moves the 2026 C1 rate from \RateCOne\spl{} to \ApproxSixRateOne\spl{} (Appendix~\ref{app:exact}).
+The random effects are a circuit slope $b_e\sim N(0,\sigma_b^2)$, a driver-in-event intercept $d_{je}$, a run intercept $g_r$, a run slope $h_r$ and lap-level noise $\varepsilon_{rt}$, each independent and normal; tildes on these terms mean the same group demeaning of the car-level quantity.
+Tyre age enters linearly.
+
+The identifying assumption is that, within a lap, differences in tyre age between cars are not correlated with unmodelled pace once run intercepts and traffic are included.
+Fuel is common to the group, so its coefficient is not needed and cannot be mis-specified.
+Run intercepts matter because the cars on older tyres at a given lap are not a random draw: strategy and car pace decide who has stopped.
+That selection shifts a car's pace level, which the run intercept absorbs, so the slope comes from how a run's lap time changes with tyre age relative to the field on the same laps.
+A cross-sectional alternative that compares cars of different tyre age within a lap and compound without run terms picks up the selection and returns negative soft slopes (Appendix~\ref{app:xs}).
+Demeaning makes the errors of cars in one group correlated, because they share the subtracted mean; we do not model this correlation, but intervals that allow arbitrary correlation within each event are essentially no wider than ours (Appendix~\ref{app:inference}).
+Traffic is also affected by tyre age, since a car on worn tyres is more likely to be caught, so its coefficient is not a clean control (Section~\ref{sec:limits}).
+
+Practice sessions offer no common lap, since cars run at different times.
+Fuel and track evolution then both fall through the session, and the fuel coefficient is not identified from lap times.
+We therefore subtract an assumed fuel effect and centre within the run:
+\begin{equation}\label{eq:practice}
+  z_{rt} = y_{rt} + \phi\,\kappa_{rt}, \qquad \dot z_{rt} = z_{rt}-\bar z_{r},
+\end{equation}
+where $\kappa_{rt}$ is the fuel burned since the run began, taken as 1.7\,kg per lap, and $\phi=\FuelCoefficient$\,s/kg.
+These two constants are assumptions that we could not tie to an open source; Appendix~\ref{app:sens} varies both.
+We regress $\dot z_{rt}$ on tyre age centred within the run.
+The same assumed correction is added to every slope, so it cancels in differences between contexts and between compounds but not in ratios.
+
+\subsection{Estimation and inference}\label{sec:mixed}
+
+We fit Eq.~\eqref{eq:race} by restricted maximum likelihood (REML) with our own implementation of the standard mixed-model likelihood \citep{bates2015lme4}.
+On the specification that the statsmodels \texttt{MixedLM} class can fit (without run slopes), our implementation reproduces the compound rates to within \EngineRateDiff\spl; \citet{seabold2010statsmodels} is the general reference for that package.
+Intervals for compound rates are Wald intervals.
+The interval for $\sigma_b$ is a profile-likelihood interval, cross-checked by a parametric bootstrap.
+In 2026 each circuit is raced once, so $\sigma_b$ cannot distinguish a persistent circuit effect from race-to-race variation.
+To separate them we also fit the 2022 to 2026 laps, with physical compounds throughout, with random tyre-age slopes for circuit and for event within circuit: the \PooledNRepeat{} circuits raced more than once share one circuit slope with standard deviation $\sigma_c$, and each race adds its own deviation with standard deviation $\sigma_e$.
+The persistent share of the between-race slope variance is $\sigma_c^2/(\sigma_c^2+\sigma_e^2)$.
+Both models are fitted by REML, and we test $\sigma_c=0$ (and, in 2026, $\sigma_b=0$) by a parametric bootstrap of the REML likelihood-ratio statistic (\CircuitNBoot{} replicates), because the null lies on the boundary of the parameter space and chi-square mixture approximations can be poor \citep{crainiceanu2004likelihood}.
+The same bootstrap replicates give intervals for the components, their share and the difference between the circuit SD and the SD of the five compound rates.
+Laps within a run are serially correlated and runs differ in wear, so the run terms make the effective sample size follow runs and circuits rather than laps.
+
+We check calibration in two ways.
+First, leaving each circuit out in turn, we ask whether the pooled model's predictive interval covers that circuit's own fitted rate for each compound.
+Second, we simulate datasets from the fitted model and check whether intervals cover the true rates.
+That check cannot reveal misspecification, so a separate recovery study simulates races with known rates from a process that Eq.~\eqref{eq:race} does not assume, with explicit fuel and track terms and pit stops that occur at random, earlier for slower cars, or when a run's own wear crosses a threshold (Appendix~\ref{app:recovery}).
+The last scenario breaks the identifying assumption, because runs that degrade fast are cut short.
+The run intercepts and slopes are also assumed independent of tyre age.
+To check this we add each run's mean of its own tyre-age regressor as a fixed covariate, the device of Mundlak described by \citet[pp.~1056--1057]{bell2019fixed}, so that the slopes rest on variation within runs only, and test the added coefficients with a bootstrap over races or circuits (Appendix~\ref{app:mundlak}).
+We compare three estimators of the same rate on the same laps.
+The naive estimator regresses lap time on tyre age by compound with no controls and run-clustered errors.
+The fuel-corrected estimator adds the assumed fuel effect and uses driver-run fixed effects, with no control for track evolution or traffic.
+The third is Eq.~\eqref{eq:race}.
+
+\subsection{Design analysis}\label{sec:design}
+
+To learn what the data can detect, we simulate races from the fitted model of Eq.~\eqref{eq:race} with a known slope gap between two adjacent compounds, refit, and record how often a two-sided 5\% Wald test rejects.
+We compare three allocations: balanced, with both compounds at every circuit; realistic, in which each run uses one of the three compounds Pirelli nominated for that 2026 race; and split, with the two compounds at disjoint circuits.
+Runs last 20 laps and the variance components are the fitted ones, with sensitivity runs at the upper end of the circuit interval and with the run-slope standard deviation raised by half.
+We compute the standard error analytically at known variances and check it with \PXSimReps{} simulated datasets per point that re-estimate the variances; the Type I error uses \PXSizeReps{} datasets at zero effect.
+
+The split allocation has a floor.
+If one compound runs only at $K_1$ circuits and the other only at $K_2$ different ones, each circuit adds its own slope deviation $b_e$ to every run there, so the contrast between the compounds has variance at least $\sigma_b^2(1/K_1+1/K_2)$ however many runs each circuit contributes.
+More runs at the same circuits cannot remove this term; only more circuits can.
+Within-race contrasts cancel $b_e$, and the realistic allocation allows them because compounds share races.
+Because the simulated runs are idealised, we also report the minimum detectable effect implied by the fitted models' own standard errors, $(z_{0.975}+z_{0.80})\,\mathrm{SE}$, for each adjacent pair of compounds.
+
+\subsection{Race and practice with one estimator}\label{sec:mgmt}
+
+For each group $k$ (a season, event and compound label) we estimate a race slope and a practice slope with the estimator of Eq.~\eqref{eq:practice}, using the same code, tyre-age window (6 to 16 laps) and assumed fuel effect in both contexts.
+Unlike Eq.~\eqref{eq:race}, which needs a common lap, this lets a race run be treated like a practice run.
+Most practice race simulations start on used sets, whereas most race runs start on new ones, and used and new sets may degrade differently.
+The primary design therefore keeps used sets only, in both contexts, as flagged in the timing feed.
+We prefer this to our first design, which matched on the tyre age at which a run starts, because start age is a poor proxy for set state in races.
+Of the \RaceRunsStartAge{} race runs that start at tyre age 5 or more, only \RaceRunsStartAgeUsed{} are used sets, and \RaceRunsStartAgeGap{} are new sets resuming after a gap in the lap record; in practice, \PracRunsStartAgeUsed{} of the \PracRunsStartAge{} runs that start at age 5 to 9 are used sets.
+We report start-age matching, and the intersection of both rules, as robustness rows.
+For a set of groups we pool laps within each context, so that the slope is $\sum xz/\sum x^2$ over all laps, and we report the gap $\Delta=\hat\beta^{\mathrm{race}}-\hat\beta^{\mathrm{prac}}$ and the ratio $\hat\beta^{\mathrm{race}}/\hat\beta^{\mathrm{prac}}$.
+The gap is the primary quantity because the ratio of two noisy slopes is unstable and depends on the assumed fuel correction.
+Intervals are 95\% percentile intervals from a bootstrap that resamples whole event-seasons (\NMatchedEventSeasons{} clusters in the primary design; 5,000 replicates) \citep{cameron2008bootstrap}.
+A placebo applies the same design to FP2 against FP1 and FP3 together, where racing does not differ, to show how large a gap the design can produce by itself.
+The placebo's orientation is arbitrary, so only its size matters.
+
+Compound-specific management would show as a race--practice gap that grows with softness.
+Within each event-season we estimate, in each context, the difference between the slopes of two compounds with lap fixed effects (ten-minute session bins in practice) and run fixed effects.
+In a race the lap and run effects absorb the part of tyre age common to both compounds, so only the contrast is identified; two-way fixed effects remove lap- and run-level confounders only if effects are linear and additive \citep{imai2021twfe}.
+The difference between the race and practice contrasts is a difference in differences.
+We average it over events with inverse-variance weights that include an estimated between-event variance, take intervals from a bootstrap over events and $p$-values from a sign-flip permutation test with 10,000 draws, and adjust the three pairwise $p$-values by the Holm step-down method.
+The primary test regresses the group-level race-minus-practice slope on softness (hard 0, medium 1, soft 2) with event-season fixed effects; it counts as evidence only if the bootstrap interval excludes zero and both one- and two-sided permutation $p$-values are below 0.05.
+We obtain its minimum detectable effect by simulating the observed design.
+
+The analyses differ in when they were specified.
+The trend test and its decision rule were written into the analysis code before any slope was computed.
+The decomposition into circuit and race components (Section~\ref{sec:mixed}) and the design analysis (Section~\ref{sec:design}) were added in response to an internal review, as were the recovery study and the check with run means of tyre age.
+The recovery study exposed the shortcut described in Section~\ref{sec:within}, which our first analysis used; every result reported here uses the exact demeaning, Appendix~\ref{app:exact} compares the two, and the recovery criteria for the corrected estimator were set after the correction.
+The used-set and start-age designs, the placebo and the difference in differences were added after an internal review of the first run; each was specified before it was run and none was tuned on its output.
+The \MultiverseSpecs{} alternative specifications of Appendix~\ref{app:sens} and the 2023--24 telemetry extension of Appendix~\ref{app:tele} are exploratory and are reported because analysis choices can branch \citep{gelman2014crisis}.
+
+\subsection{Forecasting race degradation from practice}\label{sec:forecast}
+
+The forecast unit is an (event, compound) group.
+For a weekend we compute the practice slope per compound and multiply it by a single scalar factor, the median ratio of race to practice slope over other weekends.
+The target is the group's race slope, estimated by regressing lap time on tyre age and traffic within (event, lap) groups; a group needs at least three runs and a tyre-age spread of at least two laps across cars.
+Groups this small cannot support the run-level random effects of Eq.~\eqref{eq:race}, so the target omits them and carries the pit-timing selection described in Section~\ref{sec:within}; the evaluation therefore measures how well practice predicts this per-race estimate (Section~\ref{sec:limits}).
+In 2026 the factor for each weekend comes from the other weekends (leave-one-weekend-out).
+For 2022 to 2025 we freeze the practice design and a factor of \FrozenFactor, both chosen on 2026 data, so these seasons are an out-of-season holdout (\HoldoutCells{} groups, \HoldoutWeekends{} weekends, label compounds) on which nothing was tuned.
+The factor is smaller than the matched ratio of Section~\ref{sec:gap} because the two use different race estimators: here a cross-sectional fit within (event, lap) groups, there the within-run estimator on used sets.
+Accuracy is the mean absolute error (MAE) in s/lap, with intervals from a bootstrap over weekends and paired differences between forecasts.
+Baselines are the naive forecast (Sunday equals Friday), zero, the pooled race rate, a constant (the median race rate of other weekends) and the previous season's race rate at the same circuit.
+Within 2026 (\TwentySixCells{} groups) we also select design and session weights inside each training fold, to measure how optimistic the tuned figure is.

@@ -1,0 +1,64 @@
+% Manuscript for the Journal of Statistics and Data Science in Sports (JSDSS): single-anonymous review
+% (referees anonymous, authors named), PDF submission through OJS. Same sections, numbers, tables and
+% figures as main.tex; only the front matter, availability statement and document class differ.
+% Build: pdflatex main_jsdss -> bibtex main_jsdss -> pdflatex x2 (no journal style file needed).
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{chngcntr}
+\usepackage[section]{placeins}
+\usepackage[round,authoryear]{natbib}
+\bibpunct{(}{)}{;}{a}{}{,}
+\usepackage{url}
+
+\input{generated/numbers.tex}
+\newcommand{\spl}{\,s/lap}
+
+\title{What public timing data can tell us about tyre degradation in Formula~1}
+\author{Akshat Gupta\\[2pt]
+  \small School of AI and Computer Science, Plaksha University, Mohali, India\\
+  \small \href{mailto:akshat.gupta.ug23@plaksha.edu.in}{akshat.gupta.ug23@plaksha.edu.in}\quad
+  ORCID \href{https://orcid.org/0009-0005-9682-979X}{0009-0005-9682-979X}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}\noindent
+Pit-stop strategy in Formula~1 depends on how quickly tyres lose pace, yet public lap times mix tyre wear with fuel burn, track evolution, traffic and driver behaviour. Using \PooledNLaps{} race laps from 2022 to 2026, we compare cars within each lap and fit mixed models whose tyre-age slopes vary by circuit, race and run. In simulations with known rates the estimator is unbiased when pit timing depends on car pace, but understates degradation by about \RecExactWearBiasAbs\spl{} when teams stop because of wear. Degradation has a persistent circuit component (standard deviation \PersistSDAbs\spl) and a race-specific one of similar size (\EventSDAbs\spl), each about twice the spread between compounds (\PooledCompoundSDAbs\spl). Pooled rates rise with softness from the C2 to the C5 compound, but a single season resolves neighbouring compounds only if they differ by \SixMDEFourThree{} to \SixMDETwoOne\spl. On used tyres, degradation is \LevelGapMSAbs\spl{} lower in races than in practice, about half the practice rate under an assumed fuel correction; part of this gap may reflect differences between sessions, and it shows no detectable dependence on the compound. Practice-based forecasts beat a naive forecast but not a constant one.
+\end{abstract}
+\noindent\textbf{Keywords:} tyre degradation; motorsport; mixed-effects models; variance components; statistical power; forecast evaluation
+
+\input{sections/01_introduction}
+\input{sections/02_data}
+\input{sections/03_methods}
+\input{sections/04_results}
+\input{sections/05_discussion}
+
+\section*{Data and code availability}
+The data cover the 2022 to 2025 seasons and the first 13 races of 2026.
+The analysis code, its tests and the result files are provided with the submission, together with the per-event table of Pirelli compound nominations and their sources, and will be released in a public repository for the journal's reproducibility check.
+A script regenerates every number, table and figure in the paper from the result files, offline, and a register ties each claim to its source.
+The code builds the lap tables from the FastF1 package and the OpenF1 interface; the lap tables themselves derive from the timing provider's data and remain subject to its terms, so they are not redistributed, and at the time of writing downloading the raw timing data through FastF1 requires an F1 TV account.
+The code of Cappello and Hoegh carries no licence, so it is fetched by a script rather than redistributed.
+
+\section*{Use of AI-assisted technologies}
+During the preparation of this work the author used Claude (Anthropic) to assist with language editing and programming.
+After using this tool, the author reviewed and edited the content as needed and takes full responsibility for the content of the publication.
+
+\section*{Declarations}
+\textbf{Funding:} none. \textbf{Conflict of interest:} the author states no conflict of interest. \textbf{Ethics:} not applicable; the study uses publicly available motorsport timing and telemetry data, with no human participants.
+
+\input{sections/06_appendix}
+
+\bibliographystyle{apalike}
+\bibliography{refs}
+\end{document}

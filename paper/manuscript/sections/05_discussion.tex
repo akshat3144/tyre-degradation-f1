@@ -1,0 +1,44 @@
+\section{Discussion}\label{sec:discussion}
+
+\subsection{What the results mean for analysts of public data}
+
+Three points follow for anyone who estimates tyre degradation from public timing data.
+
+First, circuits matter more than compounds.
+Pooled over 2022 to 2026, the persistent circuit component and the race-to-race variation are each about twice the spread between compound rates; the compounds degrade in the expected order, but the within-race step from one compound to the next ranges from clearly positive in 2022 to undetectable in 2024 and 2026.
+Yet last season's rate at the same circuit did not beat a constant forecast (mean absolute error \MaeHistory\spl{} against \MaeConstant\spl; Appendix Table~\ref{tab:forecast}), consistent with a race-specific component as large as the circuit one: a circuit effect that is real on average is hard to use for a single race.
+A strategy model that reads a rate per compound from public lap times should therefore carry circuit- and race-level uncertainty, and naive regressions can mislead even about the sign.
+
+Second, the data have a resolution limit that the sport's design sets.
+Pirelli assigns compounds by circuit, so compound contrasts rest on the races where compounds overlap: a single season resolves neighbouring compounds only if they differ by \SixMDEFourThree{} to \SixMDETwoOne\spl, five seasons by \PoolMDEFourThree{} to \PoolMDETwoOne\spl, and with no overlap the circuit variance sets a floor that more runs at the same circuits cannot lower.
+The same question arises wherever a treatment is fixed by venue, such as equipment or playing surfaces chosen per event, and simulating the actual assignment from a fitted model, as in Section~\ref{sec:power}, shows in advance what an observational comparison can deliver.
+
+Third, practice is not a scale model of the race.
+On matched used sets races degrade less than practice, by about half under the assumed fuel correction, the shortfall does not behave like a compound-specific discount, and practice adds little to a constant prior when forecasting race degradation.
+For one-lap-ahead forecasts of one driver, a model that conditions on that driver's recent laps does better than our pooled estimator (Section~\ref{sec:bench}); the two answer different questions.
+
+\subsection{Limitations}\label{sec:limits}
+
+The analysis is observational.
+Compounds differ by circuit, so a pooled fit cannot fully separate the two; we report within-race contrasts, which are free of the circuit confound, and a design analysis that shows how much the actual allocation can resolve.
+The estimator assumes that, given run effects, tyre age is unrelated to unmodelled pace; if teams stop because a run's own wear is high, runs that degrade fast are cut short and the rates are understated, by \RecExactWearBiasAbs\spl{} in our simulation, with 95\% intervals that cover in only \RecExactWearCov{} of replicates.
+Run means of tyre age show no sign of such dependence (Appendix~\ref{app:mundlak}), but they cannot rule it out.
+The persistent circuit component rests on \PooledNCircuits{} circuits with a median of \PooledEventsPerCircuit{} races each, so its share of the variance is imprecise (bootstrap [\PersistShareBootLo, \PersistShareBootHi]), and we do not identify its cause, whether surface, layout or climate.
+The traffic control is endogenous, since tyre age affects traffic, and demeaning induces correlation within groups that we do not model, although intervals that allow arbitrary correlation within events are essentially no wider than ours (Appendix~\ref{app:inference}).
+
+The race--practice comparison matches set state, tyre age and estimator, but fuel load, run plans, temperature and the purpose of a practice run are unobserved and could each contribute to the gap; the placebo bounds differences between sessions but not these.
+The data do not show why race degradation is lower.
+The telemetry proxies for tyre management are coarse, come from a different public source than the lap data, and are ambiguous in 2026, when power-unit energy management makes coasting routine; a null here does not show that drivers do not manage tyres.
+The forecast target omits run effects and uses relative compound labels before 2026, so the evaluation measures how well practice predicts a noisy per-race estimate; the noise affects every forecast alike, but the target's selection bias could hide information that practice carries.
+Finally, the state-space comparison covers \JournalRacesScored{} of the \JournalRacesTotal{} races in the published table because our cached data lack the rest.
+
+\subsection{Extensions}
+
+Records of the age and history of each tyre set, which teams hold, would remove the largest confound in the race--practice comparison.
+More seasons with physical compound labels would sharpen the persistent share and show whether the slow-degrading C5 of 2026 persists.
+
+\section{Conclusion}\label{sec:conclusion}
+
+Public timing data identify persistent differences in tyre degradation between circuits, about as large as the variation from race to race and about twice the differences between compounds.
+Pooled over five seasons the compounds degrade in the expected order, except that the two hardest cannot be told apart, but a single season resolves only large differences, because Pirelli's allocation lets compounds meet in few races.
+On matched used tyres, races degrade less than practice, by about half under an assumed fuel correction, and the gap shows no detectable dependence on the compound.

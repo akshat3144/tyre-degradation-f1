@@ -107,6 +107,11 @@ paper/manuscript/*
 !paper/manuscript/generated/
 !paper/manuscript/figures/
 !paper/manuscript/smoke_assets.tex
+# Final paper source (JSDSS version) is public; the JQAS-era anonymised files stay local.
+!paper/manuscript/main_jsdss.tex
+!paper/manuscript/sections/
+!paper/manuscript/make_refs.py
+!paper/manuscript/refs.bib
+!paper/manuscript/build_jsdss.sh
 paper/style/
 paper/refs/
-paper/references.bib
