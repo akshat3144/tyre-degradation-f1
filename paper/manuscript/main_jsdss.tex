@@ -21,6 +21,8 @@
 
 \input{generated/numbers.tex}
 \newcommand{\spl}{\,s/lap}
+% Archived release of the repository; set to ", archived at \url{https://doi.org/...}" once Zenodo mints the DOI.
+\newcommand{\ZenodoNote}{}
 
 \title{What public timing data can tell us about tyre degradation in Formula~1}
 \author{Akshat Gupta\\[2pt]
@@ -43,9 +45,12 @@ Pit-stop strategy in Formula~1 depends on how quickly tyres lose pace, yet publi
 \input{sections/04_results}
 \input{sections/05_discussion}
 
+\section*{Acknowledgements}
+The code, tests, result files and manuscript source are at \url{https://github.com/akshat3144/tyre-degradation-f1}\ZenodoNote.
+
 \section*{Data and code availability}
 The data cover the 2022 to 2025 seasons and the first 13 races of 2026.
-The analysis code, its tests and the result files are provided with the submission, together with the per-event table of Pirelli compound nominations and their sources, and will be released in a public repository for the journal's reproducibility check.
+The analysis code, its tests and the result files are in the repository named in the Acknowledgements, together with the script that writes the per-event table of Pirelli compound nominations and their sources.
 A script regenerates every number, table and figure in the paper from the result files, offline, and a register ties each claim to its source.
 The code builds the lap tables from the FastF1 package and the OpenF1 interface; the lap tables themselves derive from the timing provider's data and remain subject to its terms, so they are not redistributed, and at the time of writing downloading the raw timing data through FastF1 requires an F1 TV account.
 The code of Cappello and Hoegh carries no licence, so it is fetched by a script rather than redistributed.
