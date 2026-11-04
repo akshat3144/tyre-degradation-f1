@@ -213,6 +213,7 @@ The paper is under review; until it is published, please cite the software
   author = {Gupta, Akshat},
   title  = {What public timing data can tell us about tyre degradation in Formula 1: code and results},
   year   = {2026},
+  doi    = {10.5281/zenodo.23936525},
   url    = {https://github.com/akshat3144/tyre-degradation-f1}
 }
 ```
