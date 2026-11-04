@@ -14,19 +14,26 @@ The question is how far such estimates can be trusted: for ranking compounds, fo
 forecasting a race from that weekend's practice, and for pit strategy. The main
 findings, each backed by a check in [`paper/CLAIMS.md`](paper/CLAIMS.md):
 
-- **Degradation differs persistently by circuit, about as much as race to race, and far
-  more than by compound.** Pooled over 2022-2026 (82 races, 23 circuits), the persistent
-  circuit slope SD is 0.025 s/lap (95% profile interval [0.017, 0.037]; bootstrap p = 0.002),
-  about 0.5 s over a 20-lap stint; race-to-race SD at a circuit is 0.024 [0.021, 0.029];
-  the SD of the five compound rates is 0.005. The 2026-only circuit SD (0.044) mixes the
-  two because each circuit was raced once. Rate intervals are approximately calibrated: leave-one-circuit-out coverage at a
-  nominal 80% is 0.78 (28 of 36 circuit-compound groups).
-- **Small compound differences are not detectable on this data.** In 2026 the
-  nominally hardest tyre (C1) has the highest fitted rate and no adjacent pair
-  separates at 95%. Under Pirelli's actual nominations the smallest gap detectable at
-  80% power is 0.0175 s/lap for C1 against C2 (246 runs); a 0.006 s/lap gap would need
-  about 2,100 runs of the pair. If compounds ran at disjoint circuits, no sample
-  size would suffice, because circuit variance enters the contrast.
+- **Degradation differs persistently by circuit, about as much as race to race, and about
+  twice as much as by compound.** Pooled over 2022-2026 (82 races, 23 circuits), the persistent
+  circuit slope SD is 0.028 s/lap (95% profile interval [0.020, 0.041]; bootstrap p = 0.002),
+  about 0.56 s over a 20-lap stint; race-to-race SD at a circuit is 0.024 [0.021, 0.029];
+  the SD of the five compound rates is 0.013. The 2026-only circuit SD (0.050) mixes the
+  two because each circuit was raced once. Leave-one-circuit-out coverage of the nominal
+  80% predictive interval is 0.67 (24 of 36 circuit-compound groups), so intervals are
+  somewhat narrow for a new circuit.
+- **Pooled compound rates rise with softness, but one season resolves only large gaps.**
+  Pooled rates are 0.044, 0.043, 0.060, 0.066 and 0.073 s/lap for C1 to C5; every step
+  from C2 to C5 is detected, C1 and C2 cannot be told apart. From the fits' own standard
+  errors, 2026 alone detects neighbouring-compound gaps of 0.009 to 0.026 s/lap at 80%
+  power. If compounds ran at disjoint circuits, more runs at the same circuits could not
+  help, because circuit variance enters the contrast.
+- **The within-lap comparison must demean every compound column.** Multiplying each
+  compound indicator by tyre age demeaned over all cars leaks slopes between compounds
+  mixed on a lap; it had made 2026 look reversed (C1 0.082 against 0.041 exact). A
+  simulation with known rates (`paper/results/recovery.json`) shows the exact estimator
+  is unbiased when stops are random or depend on car pace, and understates rates by about
+  0.009 s/lap when stops are triggered by wear.
 - **Naive slopes get the sign wrong.** Without controls, 3 of 5 compounds show
   negative degradation; the within-event estimator does not.
 - **Race degradation is about half of practice degradation on matched used sets, and
@@ -46,9 +53,6 @@ findings, each backed by a check in [`paper/CLAIMS.md`](paper/CLAIMS.md):
 - **Practice forecasts race degradation no better than a constant.** Out of season
   (2022-2025) the scaled practice forecast has MAE 0.036 s/lap against 0.112
   for "Sunday equals Friday", but is not distinguishable from a constant prior at 95%.
-- **The strategy layer barely beats simple rules.** Out of time, over 38 races, its
-  stop-count agreement with the field exceeds a race-length rule by 0.16
-  (interval touches zero) and "always one stop" by 0.29.
 - **A published benchmark is reproduced, but not beaten on its own task.** We ran
   the Cappello and Hoegh state-space model (Table 3 reproduces) and corrected its
   fuel ramp. On their 15 test races we win 2 on CRPS.
@@ -160,8 +164,12 @@ results into `paper/manuscript/generated/` and `paper/manuscript/figures/`:
 python scripts/paper/build_manuscript_assets.py          # add --check to fail if stale
 ```
 
-The manuscript itself will be added to this repository, with its citation, once the
-paper is published.
+The manuscript source is in `paper/manuscript/` (`main_jsdss.tex` and `sections/`); the
+reference list is built from the verified bibliography `paper/references.bib`:
+
+```bash
+bash paper/manuscript/build_jsdss.sh                     # needs pdflatex and bibtex
+```
 
 ## How the numbers are guarded
 
@@ -197,13 +205,14 @@ and OpenF1. The benchmark authors' code is not redistributed.
 
 ## Citation
 
-Citation details will be added on publication.
+The paper is under review; until it is published, please cite the software
+(see [`CITATION.cff`](CITATION.cff)):
 
 ```
-@article{TODO,
-  title   = {TODO},
-  author  = {TODO},
-  journal = {TODO},
-  year    = {TODO}
+@software{gupta2026tyredeg,
+  author = {Gupta, Akshat},
+  title  = {What public timing data can tell us about tyre degradation in Formula 1: code and results},
+  year   = {2026},
+  url    = {https://github.com/akshat3144/tyre-degradation-f1}
 }
 ```

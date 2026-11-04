@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or its results, please cite it as below."
+type: software
+title: "What public timing data can tell us about tyre degradation in Formula 1: code and results"
+authors:
+  - family-names: Gupta
+    given-names: Akshat
+    affiliation: "School of AI and Computer Science, Plaksha University"
+    orcid: "https://orcid.org/0009-0005-9682-979X"
+repository-code: "https://github.com/akshat3144/tyre-degradation-f1"
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-04"
+keywords:
+  - tyre degradation
+  - motorsport
+  - Formula 1
+  - mixed-effects models
+  - variance components
+  - reproducibility
