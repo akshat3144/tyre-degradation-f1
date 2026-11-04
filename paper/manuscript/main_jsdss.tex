@@ -52,7 +52,9 @@ The code, tests, result files and manuscript source are at \url{https://github.c
 The data cover the 2022 to 2025 seasons and the first 13 races of 2026.
 The analysis code, its tests and the result files are in the repository named in the Acknowledgements, together with the script that writes the per-event table of Pirelli compound nominations and their sources.
 A script regenerates every number, table and figure in the paper from the result files, offline, and a register ties each claim to its source.
-The code builds the lap tables from the FastF1 package and the OpenF1 interface; the lap tables themselves derive from the timing provider's data and remain subject to its terms, so they are not redistributed, and at the time of writing downloading the raw timing data through FastF1 requires an F1 TV account.
+The lap timing data were downloaded in September 2026 from Formula~1's live-timing archive with the FastF1 package, which at the time needed no account; race results came from the Jolpica-F1 interface and car telemetry from the OpenF1 interface.
+The lap tables derive from the timing provider's data and remain subject to its terms, so they are not redistributed.
+Since mid-October 2026 Formula~1 has required a signed-in F1 TV subscription to read the archive (FastF1 issue 978, \url{https://github.com/theOehrly/Fast-F1/issues/978}), so a fresh download now needs one; we keep the downloaded data and can share the processed lap tables with the editors for the reproducibility check.
 The code of Cappello and Hoegh carries no licence, so it is fetched by a script rather than redistributed.
 
 \section*{Use of AI-assisted technologies}
