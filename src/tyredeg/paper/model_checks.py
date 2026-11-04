@@ -1433,6 +1433,47 @@ def circuit_vs_event(pooled: pd.DataFrame, b_null: int, b_alt: int, workers: int
     }
 
 
+def regulation_sensitivity(pooled: pd.DataFrame) -> dict:
+    """Does the pooled picture survive dropping 2026, the season of new technical rules and narrower tyres?
+
+    2022-2025 share one set of car rules and one tyre size (18-inch, introduced in
+    2022); 2026 changed the power units, aerodynamics and tyre widths. The pooled
+    nested model is refitted on 2022-2025 only (whole races removed, so every
+    (event, lap) group stays complete) and the main quantities are set beside the
+    2022-2026 fit. Point estimates only: the intervals of the full fit come from
+    the bootstrap in ``circuit_vs_event``.
+    """
+
+    def summary(df_):
+        m, meta, f = _fit_nested(df_.reset_index(drop=True))
+        s1 = meta["s1"]
+        sd_c, sd_e = f.sd["circuit_slope"] / s1, f.sd["event_slope"] / s1
+        rates = {c: lincomb(f, meta, {("tl", c): 1.0}) for c in meta["cats"]}
+        cats = meta["cats"]
+        steps = {f"{b}-{a}": _iv(lincomb(f, meta, {("tl", b): 1.0, ("tl", a): -1.0}))
+                 for a, b in zip(cats[:-1], cats[1:])}
+        per_circuit = df_.groupby("circuit")["event_key"].nunique()
+        return {
+            "seasons": sorted(int(x) for x in df_["season"].unique()),
+            "n_laps": int(len(df_)), "n_events": int(df_["event_key"].nunique()),
+            "n_circuits": int(df_["circuit"].nunique()),
+            "circuits_with_repeat_visits": int((per_circuit > 1).sum()),
+            "circuit_sd": _r(sd_c), "event_sd": _r(sd_e),
+            "share_circuit": _r(sd_c**2 / (sd_c**2 + sd_e**2), 3),
+            "compound_rates_s_per_lap": {c: _iv(v) for c, v in rates.items()},
+            "compound_rate_sd": _r(float(np.std([v["est"] for v in rates.values()], ddof=1))),
+            "adjacent_steps_s_per_lap": steps,
+            "converged": bool(f.converged),
+        }
+
+    d = pooled.reset_index(drop=True)
+    return {
+        "question": "Is pooling 2026 (new rules, narrower tyres) with 2022-2025 (one rule set) driving the pooled results?",
+        "all_2022_2026": summary(d),
+        "without_2026": summary(d[d["season"] != 2026]),
+    }
+
+
 def _unverified_events() -> set[str]:
     """Races whose nomination rests on one source or an inferred label order."""
     from ..data.allocation_history import load_history

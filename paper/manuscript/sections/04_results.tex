@@ -15,6 +15,9 @@ The pooled rates are \PooledRateCOne{} and \PooledRateCTwo\spl{} for C1 and C2 a
 Each step from C2 to C5 is detected: C3 minus C2 is \PoolConThreeTwo\spl{} [\PoolConThreeTwoLo, \PoolConThreeTwoHi], C4 minus C3 is \PoolConFourThree{} [\PoolConFourThreeLo, \PoolConFourThreeHi] and C5 minus C4 is \PoolConFiveFour{} [\PoolConFiveFourLo, \PoolConFiveFourHi], whereas C1 and C2 cannot be told apart (\PoolConTwoOne{} [\PoolConTwoOneLo, \PoolConTwoOneHi]).
 The standard deviation of the five rates is \PooledCompoundSD\spl{} (bootstrap [\PooledCompoundSDBootLo, \PooledCompoundSDBootHi]), or \PooledCompoundSDCorr\spl{} once sampling noise is removed, so the persistent circuit and race-specific components are each about twice the compound spread.
 The persistent circuit standard deviation exceeds the compound one by \CircMinusCompound\spl{} (bootstrap median; [\CircMinusCompoundLo, \CircMinusCompoundHi]), with bootstrap probability \CircGreaterCompoundP{} that the difference is positive.
+The 2026 season brought new technical rules and narrower tyres, so we also refit the pooled model on 2022 to 2025 alone (\NoTwentySixNEvents{} races).
+The C1 to C4 rates change by less than 0.001\spl, but C5 rises to \NoTwentySixRateCFive\spl, because the slow-degrading C5 of 2026, described below, no longer pulls it down; the compound spread grows to \NoTwentySixCompoundSD\spl.
+The persistent circuit component, \NoTwentySixCircuitSD\spl, remains the largest and its share of the between-race slope variance rises to \NoTwentySixShare, while the race-specific component falls to \NoTwentySixEventSD\spl, close to the compound spread.
 
 \begin{figure}[t]
 \centering

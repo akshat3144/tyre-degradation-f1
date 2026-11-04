@@ -197,7 +197,8 @@ def main() -> None:
 
     pool_df = None
     if args.only is None or {"circuit_vs_event", "season_c_rates", "detectable_from_fit",
-                             "mundlak_check", "exact_vs_approximate"} & set(args.only):
+                             "mundlak_check", "exact_vs_approximate",
+                             "regulation_sensitivity"} & set(args.only):
         pool_df = pooled()
     cve = section("circuit_vs_event", lambda: mc.circuit_vs_event(
         pool_df, b_null_nested, b_alt_nested, args.workers, SEED))
@@ -206,6 +207,9 @@ def main() -> None:
     eva = section("exact_vs_approximate", lambda: mc.exact_vs_approximate(design, pool_df))
     if eva is not None:
         res["exact_vs_approximate"] = eva
+    rgs = section("regulation_sensitivity", lambda: mc.regulation_sensitivity(pool_df))
+    if rgs is not None:
+        res["regulation_sensitivity"] = rgs
     scr = section("season_c_rates", lambda: mc.season_c_rates(pool_df))
     if scr is not None:
         res["season_c_rates"] = scr

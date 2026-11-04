@@ -161,7 +161,7 @@
     "n_laps": 801
    },
    "C2": {
-    "mean": 0.03733,
+    "mean": 0.03732,
     "lo": 0.00815,
     "hi": 0.0665,
     "n_runs": 191,
@@ -226,9 +226,9 @@
    "n_starts": 3,
    "start_deviance_spread": 0.0,
    "n_starts_at_optimum": 3,
-   "grad_max_abs": 0.00262,
+   "grad_max_abs": 0.001804,
    "hessian_pd": true,
-   "hessian_min_eig": 117.804957,
+   "hessian_min_eig": 117.804263,
    "boundary_components": [],
    "boundary_slopes_nonnegative": true,
    "variance_components": [
@@ -243,7 +243,7 @@
   "n_drivers": 23,
   "total_loss_20_laps_s": {
    "C1": 0.821,
-   "C2": 0.747,
+   "C2": 0.746,
    "C3": 1.088,
    "C4": 1.267,
    "C5": 0.77
@@ -5582,5 +5582,196 @@
   },
   "total_seconds": 2201.1,
   "command": "python scripts/paper/p3_model.py"
+ },
+ "regulation_sensitivity": {
+  "question": "Is pooling 2026 (new rules, narrower tyres) with 2022-2025 (one rule set) driving the pooled results?",
+  "all_2022_2026": {
+   "seasons": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "n_laps": 69395,
+   "n_events": 82,
+   "n_circuits": 23,
+   "circuits_with_repeat_visits": 20,
+   "circuit_sd": 0.02776,
+   "event_sd": 0.02405,
+   "share_circuit": 0.571,
+   "compound_rates_s_per_lap": {
+    "C1": {
+     "mean": 0.04433,
+     "lo": 0.0307,
+     "hi": 0.05796
+    },
+    "C2": {
+     "mean": 0.04278,
+     "lo": 0.02961,
+     "hi": 0.05594
+    },
+    "C3": {
+     "mean": 0.05965,
+     "lo": 0.04662,
+     "hi": 0.07268
+    },
+    "C4": {
+     "mean": 0.06626,
+     "lo": 0.05313,
+     "hi": 0.07938
+    },
+    "C5": {
+     "mean": 0.07308,
+     "lo": 0.0594,
+     "hi": 0.08676
+    }
+   },
+   "compound_rate_sd": 0.01336,
+   "adjacent_steps_s_per_lap": {
+    "C2-C1": {
+     "mean": -0.00155,
+     "lo": -0.0062,
+     "hi": 0.0031
+    },
+    "C3-C2": {
+     "mean": 0.01687,
+     "lo": 0.01355,
+     "hi": 0.0202
+    },
+    "C4-C3": {
+     "mean": 0.00661,
+     "lo": 0.00443,
+     "hi": 0.00878
+    },
+    "C5-C4": {
+     "mean": 0.00683,
+     "lo": 0.00255,
+     "hi": 0.01111
+    }
+   },
+   "converged": true
+  },
+  "without_2026": {
+   "seasons": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "n_laps": 58356,
+   "n_events": 69,
+   "n_circuits": 22,
+   "circuits_with_repeat_visits": 19,
+   "circuit_sd": 0.02956,
+   "event_sd": 0.01871,
+   "share_circuit": 0.714,
+   "compound_rates_s_per_lap": {
+    "C1": {
+     "mean": 0.04448,
+     "lo": 0.03028,
+     "hi": 0.05868
+    },
+    "C2": {
+     "mean": 0.04335,
+     "lo": 0.02961,
+     "hi": 0.0571
+    },
+    "C3": {
+     "mean": 0.05976,
+     "lo": 0.04615,
+     "hi": 0.07337
+    },
+    "C4": {
+     "mean": 0.06641,
+     "lo": 0.0527,
+     "hi": 0.08012
+    },
+    "C5": {
+     "mean": 0.09101,
+     "lo": 0.07649,
+     "hi": 0.10554
+    }
+   },
+   "compound_rate_sd": 0.01947,
+   "adjacent_steps_s_per_lap": {
+    "C2-C1": {
+     "mean": -0.00113,
+     "lo": -0.00588,
+     "hi": 0.00362
+    },
+    "C3-C2": {
+     "mean": 0.01641,
+     "lo": 0.01304,
+     "hi": 0.01978
+    },
+    "C4-C3": {
+     "mean": 0.00665,
+     "lo": 0.00436,
+     "hi": 0.00894
+    },
+    "C5-C4": {
+     "mean": 0.02461,
+     "lo": 0.01946,
+     "hi": 0.02975
+    }
+   },
+   "converged": true
+  }
+ },
+ "audit_additions": {
+  "regulation_sensitivity": {
+   "script": "scripts/paper/p3_model.py",
+   "generated_at": "2026-11-04T19:18:34+00:00",
+   "git_commit": "0d7a126a4ba7a873cbee88dda0b86f5708e0fe46",
+   "git_dirty_src_or_scripts": true,
+   "seed": 20261030,
+   "python": "3.12.9",
+   "numpy": "2.5.2",
+   "pandas": "2.3.3",
+   "scipy": "1.18.1",
+   "statsmodels": "0.15.0",
+   "inputs": {
+    "laps_2022.parquet": {
+     "sha256_16": "8b028f6ae54b9a3a",
+     "bytes": 1873297
+    },
+    "laps_2023.parquet": {
+     "sha256_16": "77688e78f12c2d06",
+     "bytes": 1674187
+    },
+    "laps_2024.parquet": {
+     "sha256_16": "33709d45612b5856",
+     "bytes": 1854471
+    },
+    "laps_2025.parquet": {
+     "sha256_16": "5555784901af55d7",
+     "bytes": 1851572
+    },
+    "laps.parquet": {
+     "sha256_16": "e991bb77e29af443",
+     "bytes": 1508216
+    }
+   },
+   "replicates": {
+    "circuit_lr_null": 500,
+    "circuit_alt_and_sbc": 400,
+    "power_per_point": 100,
+    "nested_circuit_lr_null": 500,
+    "nested_alt": 500,
+    "event_cluster_bootstrap_2026": 500,
+    "mundlak_cluster_bootstrap_2026_races": 500,
+    "mundlak_cluster_bootstrap_pooled_circuits": 500,
+    "power_extended_per_point": 1000,
+    "type_I_error": 2000,
+    "power_extended_max_sim_stints": 3500
+   },
+   "workers": 4,
+   "section_seconds": {
+    "regulation_sensitivity": 25.7
+   },
+   "total_seconds": 29.1,
+   "command": "python scripts/paper/p3_model.py --only regulation_sensitivity"
+  }
  }
 }

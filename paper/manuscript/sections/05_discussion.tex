@@ -23,6 +23,7 @@ The analysis is observational.
 Compounds differ by circuit, so a pooled fit cannot fully separate the two; we report within-race contrasts, which are free of the circuit confound, and a design analysis that shows how much the actual allocation can resolve.
 The estimator assumes that, given run effects, tyre age is unrelated to unmodelled pace; if teams stop because a run's own wear is high, runs that degrade fast are cut short and the rates are understated, by \RecExactWearBiasAbs\spl{} in our simulation, with 95\% intervals that cover in only \RecExactWearCov{} of replicates.
 Run means of tyre age show no sign of such dependence (Appendix~\ref{app:mundlak}), but they cannot rule it out.
+The pooled fit spans a change of technical rules and tyre widths in 2026; without that season the circuit component is still the largest, but the compound spread is closer to it (Section~\ref{sec:rates}).
 The persistent circuit component rests on \PooledNCircuits{} circuits with a median of \PooledEventsPerCircuit{} races each, so its share of the variance is imprecise (bootstrap [\PersistShareBootLo, \PersistShareBootHi]), and we do not identify its cause, whether surface, layout or climate.
 The traffic control is endogenous, since tyre age affects traffic, and demeaning induces correlation within groups that we do not model, although intervals that allow arbitrary correlation within events are essentially no wider than ours (Appendix~\ref{app:inference}).
 

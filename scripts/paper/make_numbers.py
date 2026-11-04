@@ -670,6 +670,14 @@ def build() -> list[Macro]:
         add(f"RecExact{sw}WorstCov", RECOV, "results", s, "eq1_exact_within", "worst_compound", "coverage", places=2)
     add("RecExactWearBiasAbs", RECOV, "results", "wear", "eq1_exact_within", "mean_over_compounds", "bias",
         places=3, absval=True)
+    # pooled model without 2026 (new technical rules and narrower tyres)
+    rg = ["regulation_sensitivity", "without_2026"]
+    add("NoTwentySixCircuitSD", MODEL, *rg, "circuit_sd", places=3)
+    add("NoTwentySixEventSD", MODEL, *rg, "event_sd", places=3)
+    add("NoTwentySixShare", MODEL, *rg, "share_circuit", places=2)
+    add("NoTwentySixCompoundSD", MODEL, *rg, "compound_rate_sd", places=3)
+    add("NoTwentySixRateCFive", MODEL, *rg, "compound_rates_s_per_lap", "C5", "mean", places=3)
+    add("NoTwentySixNEvents", MODEL, *rg, "n_events")
     add("RecFuelExoBiasAbs", RECOV, "results", "exogenous", "fuel_within_run", "mean_over_compounds", "bias",
         places=3, absval=True)
     add("RecTrueCircuitSD", RECOV, "truth_circuit_slope_sd_s_per_lap", places=3)
